@@ -23,7 +23,7 @@
       brave
       gimp
       kate
-      
+
       rust-analyzer
       rustfmt
       rustup

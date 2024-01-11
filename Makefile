@@ -11,9 +11,6 @@ add-channels:
 	sudo nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 	sudo nix-channel --update
 
-post-setup:
-	
-
 setup:
 	cp -r ./* /etc/nixos/
 	sudo nixos-rebuild switch

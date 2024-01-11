@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 
-{ 
+{
   services.postgresql = {
     enable = true;
     ensureDatabases = [ "mydatabase" ];
