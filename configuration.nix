@@ -1,0 +1,117 @@
+{ config, lib, pkgs, ... }:
+
+{
+  imports = [
+    # <home-manager/nixos>
+    /etc/nixos/hardware-configuration.nix
+    /etc/nixos/users/sashapop10.nix
+    /etc/nixos/packages.nix
+  ];
+
+  system.stateVersion = "23.11";
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = true; 
+  services.printing.enable = true;
+  
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 25;
+    };
+  };
+
+  time.timeZone = "Europe/Moscow";
+  i18n.defaultLocale = "en_US.UTF-8";
+  time.hardwareClockInLocalTime = true;
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "ru_RU.UTF-8";
+    LC_IDENTIFICATION = "ru_RU.UTF-8";
+    LC_MEASUREMENT = "ru_RU.UTF-8";
+    LC_MONETARY = "ru_RU.UTF-8";
+    LC_NAME = "ru_RU.UTF-8";
+    LC_NUMERIC = "ru_RU.UTF-8";
+    LC_PAPER = "ru_RU.UTF-8";
+    LC_TELEPHONE = "ru_RU.UTF-8";
+    LC_TIME = "ru_RU.UTF-8";
+  };
+
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  hardware.nvidia = {
+    powerManagement.finegrained = false;
+    powerManagement.enable = false;
+    modesetting.enable = true;
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+  };
+
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "nvidia-x11"
+      "nvidia-settings"
+    ];
+
+  services.xserver = {
+    enable = true;
+    layout = "us,ru";
+    xkbVariant = "workman,";
+    xkbOptions = "grp:alt_shift_toggle";
+    videoDrivers = ["nvidia"];
+    desktopManager.plasma5.enable = true;
+    displayManager = {
+      sddm.enable = true;
+      autoLogin = {
+        enable = true;
+        user = "sashapop10";
+      };
+    };
+  };
+
+  nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 7d";
+    dates = "weekly";
+  };
+
+  networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
+  services.tailscale.enable = true;
+  services.openssh = {
+    enable = lib.mkForce true;
+    ports = [ 2222 ];
+    settings = {
+      X11Forwarding = true;
+    };
+  };
+
+  documentation = {
+    enable = true;
+    dev.enable = true;
+    doc.enable = true;
+    info.enable = true;
+    man.enable = true;
+    man.man-db.enable = true;
+    man.generateCaches = true;
+    nixos.enable = true;
+  };
+}
