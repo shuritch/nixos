@@ -10,11 +10,13 @@
 
   system.stateVersion = "23.11";
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true; 
+  system.autoUpgrade.allowReboot = true;
   services.printing.enable = true;
-  
+
   #boot.kernelPackages = pkgs.linuxPackages_latest;
   #boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+
+  #? Dualdrive dualboot / single bootloader
   boot.loader = {
     efi.canTouchEfiVariables = true;
     systemd-boot = {
@@ -22,6 +24,22 @@
       configurationLimit = 25;
     };
   };
+
+  # ? Dualboot bootloader
+  # boor.loader = {
+  #   efi = {
+  #     canTouchEfiVariables = true;
+  #     efiSysMountPoint = "/boot/efi";
+  #   };
+  #   grub = {
+  #     devices = [ "nodev" ];
+  #     enable = true;
+  #     #efiInstallAsRemovable = true;
+  #     configurationLimit = 25;
+  #     efiSupport = true;
+  #     useOSProber = true;
+  #   };
+  # }
 
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_US.UTF-8";
