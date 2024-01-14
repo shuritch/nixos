@@ -7,6 +7,9 @@
 </h2>
 
 ```bash
+  # Clone directly
+  chown -R <user> /etc/nixos
+  git clone https://github.com/sashapop10/nixos /etc/nixos/
   # If system not installed
   sudo nixos-install
   # Build & switch
@@ -29,7 +32,9 @@
   nix-env --uninstall packageName
 ```
 
-### Variables
+### Nix
+
+#### Variables
 
 ```nix
   let
@@ -38,6 +43,21 @@
   {
     # Can be used here
   }
+```
+
+#### Functions
+
+```nix
+  let myfunc = { a ? 100, b, ... }@args: a + b;
+  in myfunc { b = 15; c = true }; # 115
+```
+
+#### Logical
+
+```nix
+  let myfunc = { a ? 100, b, ... }@args:
+  if args.c then a else b;
+  in myfunc { b = 15; c = true } # 100
 ```
 
 ### Overlays / Replacing package
