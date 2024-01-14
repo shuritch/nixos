@@ -14,8 +14,8 @@
 
   environment.variables = {
     TERMINAL = "Konsole";
-    EDITOR = "nano";
-    VISUAL = "nano";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
   };
 
   environment.systemPackages = with pkgs; [
