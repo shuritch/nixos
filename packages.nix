@@ -7,6 +7,7 @@
     /etc/nixos/packages/virtual.nix
     /etc/nixos/packages/terminal.nix
     /etc/nixos/packages/database.nix
+    /etc/nixos/packages/nvim.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -19,7 +20,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    man-pages
     man-pages-posix
     docker-compose
     asciiquarium

@@ -23,6 +23,7 @@
       brave
       gimp
       kate
+      vlc      
 
       rust-analyzer
       rustfmt
@@ -43,5 +44,5 @@
       nodejs_latest.pkgs.vscode-langservers-extracted
       pkgs.nodePackages.npm-check-updates
     ];
-};
+  };
 }

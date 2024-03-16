@@ -19,23 +19,23 @@ in
 
       lualine = {
 	enable = true;
-	componentSeparators = {
-	  left = "";
-	  tight = "";
-	};
-        sectionSeparators = {
-	  left = "";
-	  right = "";
-	};
-	sections = {
-	  lualine_c = "filename";
-	  lualine_x = "filetype";
-	};
+	#componentSeparators = {
+	#  left = "";
+	#  tight = "";
+	#};
+        #sectionSeparators = {
+	#  left = "";
+	#  right = "";
+	#};
+	#sections = {
+	#  lualine_c = "filename";
+	#  lualine_x = "filetype";
+	#};
       };
 
       which-key = {
 	enable = true;
-	icons.separaor = "";
+	#icons.separaor = "";
       };
 
       nvim-tree = {
