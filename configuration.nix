@@ -10,13 +10,13 @@
 
   system.stateVersion = "23.11";
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
+  system.autoUpgrade.allowReboot = false;
   services.printing.enable = true;
 
   #boot.kernelPackages = pkgs.linuxPackages_latest;
   #boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
 
-  #? Dualdrive dualboot / single bootloader
+  #? Systemd Dualboot
   boot.loader = {
     efi.canTouchEfiVariables = true;
     systemd-boot = {
@@ -25,7 +25,7 @@
     };
   };
 
-  # ? Dualboot bootloader
+  # ? GRUB Dualboot
   # boor.loader = {
   #   efi = {
   #     canTouchEfiVariables = true;
