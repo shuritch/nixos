@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   users.users.sashapop10 = {
@@ -16,23 +16,14 @@
       chromium
       discord
       pgadmin
-      #postman
+      postman # Alive ?
       firefox
       anydesk
       vscode
       brave
       gimp
       kate
-      vlc      
-
-      rust-analyzer
-      rustfmt
-      rustup
-      rustc
-      cargo
-      cargo-edit
-      cargo-watch
-      cargo-show-asm
+      vlc
 
       nodejs_latest
       nodejs_latest.pkgs.dockerfile-language-server-nodejs

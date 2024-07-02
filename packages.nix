@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -23,6 +23,7 @@
     man-pages-posix
     docker-compose
     asciiquarium
+    nixpkgs-fmt
     alacritty
     neofetch
     starship

@@ -8,11 +8,12 @@
     /etc/nixos/packages.nix
   ];
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "23.11"; # 24.05
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = false;
+  system.autoUpgrade.allowReboot = false; # Changable ?
   services.printing.enable = true;
 
+  #? Perfomance ?
   #boot.kernelPackages = pkgs.linuxPackages_latest;
   #boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
 
@@ -88,20 +89,21 @@
       "nvidia-settings"
     ];
 
+  services.displayManager = {
+    sddm.enable = true;
+    autoLogin = {
+      enable = true;
+      user = "sashapop10";
+    };
+  };
+
   services.xserver = {
     enable = true;
-    layout = "us,ru";
-    xkbVariant = "workman,";
-    xkbOptions = "grp:alt_shift_toggle";
-    videoDrivers = ["nvidia"];
+    xkb.layout = "us,ru";
+    xkb.variant = "workman,";
+    xkb.options = "grp:alt_shift_toggle";
+    videoDrivers = [ "nvidia" ];
     desktopManager.plasma5.enable = true;
-    displayManager = {
-      sddm.enable = true;
-      autoLogin = {
-        enable = true;
-        user = "sashapop10";
-      };
-    };
   };
 
   nix.settings.auto-optimise-store = true;

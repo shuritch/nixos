@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   services.postgresql = {
     enable = true;
     ensureDatabases = [ "mydatabase" ];
-    extraPlugins = [pkgs.postgis];
+    extraPlugins = [ pkgs.postgis ];
     authentication = pkgs.lib.mkOverride 10 ''
       #type database  DBuser  auth-method
        local all all              trust
