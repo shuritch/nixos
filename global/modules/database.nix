@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, env-config, ... }:
 
 {
   services.postgresql = {
     enable = true;
-    ensureDatabases = [ "mydatabase" ];
+    ensureDatabases = [ env-config.default-database ];
     extraPlugins = [ pkgs.postgis ];
     authentication = pkgs.lib.mkOverride 10 ''
       #type database  DBuser  auth-method

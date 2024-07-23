@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, env-config, ... }: {
   programs.git = {
     enable = true;
     config = {
@@ -8,8 +6,8 @@
       core.editor = "nano";
       core.autocrlf = "input";
       user = {
-        name = "Alexander Ivanov";
-        email = "sashapop10@yandex.ru";
+        name = env-config.user.name;
+        email = env-config.user.email;
       };
     };
   };

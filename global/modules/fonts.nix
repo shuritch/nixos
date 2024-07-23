@@ -14,6 +14,12 @@
     dina-font
     proggyfonts
     iosevka-bin
+    jetbrains-mono
+    twemoji-color-font
+    font-awesome
+    powerline-fonts
+    powerline-symbols
+    fira
   ];
 
   fonts.fontconfig = {
