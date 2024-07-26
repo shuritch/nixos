@@ -2,7 +2,7 @@
   imports = [
     ../desktop/hyprland
     ../options/coding.nix
-    ../options/steam.nix
+    ../options/gaming.nix
     ../default.nix
   ];
 

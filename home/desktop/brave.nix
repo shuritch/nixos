@@ -3,8 +3,8 @@
     enable = true;
     package = pkgs.brave;
     commandLineArgs = [ "--disable-features=WebRtcAllowInputVolumeAdjustment" ];
-    programs.chromium.dictionaries =
-      [ pkgs.hunspellDictsChromium.en_US pkgs.hunspellDictsChromium.ru_RU ];
+    # programs.chromium.dictionaries =
+    #   [ pkgs.hunspellDictsChromium.en_US pkgs.hunspellDictsChromium.ru_RU ];
 
     # { id = "ibplnjkanclpjokhdolnendpplpjiace"; } # Simple Translate
     extensions = [

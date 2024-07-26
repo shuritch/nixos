@@ -22,6 +22,9 @@
       "default";
 
   home.packages = with pkgs; [
+    hunspell # Dict for libreoffice
+    hunspellDicts.ru_RU # Dict for libreoffice
+    libreoffice-qt
     telegram-desktop
     flameshot
     pkgs.stable.sublime-music # Player
