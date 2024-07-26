@@ -49,7 +49,7 @@ This behavior works thanks to [Mutagen](https://github.com/InioX/matugen).
 | background               | on_tertiary_container    | on_background              |
 | tertiary_fixed           | shadow                   | tertiary_fixed_dim         |
 | scrim                    | on_tertiary_fixed        | on_tertiary_fixed_variant  |
-| source_color             |                          |                            |
+|                          | source_color             |                            |
 
 ![Color scheme](./assets/colors.jpg)
 
