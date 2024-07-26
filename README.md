@@ -29,6 +29,8 @@ This behavior works thanks to [Mutagen](https://github.com/InioX/matugen).
 
 <div align="center">
 
+![Color scheme](./assets/colors.jpg)
+
 ### Keywords
 
 | keyword                  | keyword                  | keyword                    |
@@ -50,8 +52,6 @@ This behavior works thanks to [Mutagen](https://github.com/InioX/matugen).
 | tertiary_fixed           | shadow                   | tertiary_fixed_dim         |
 | scrim                    | on_tertiary_fixed        | on_tertiary_fixed_variant  |
 |                          | source_color             |                            |
-
-![Color scheme](./assets/colors.jpg)
 
 </div>
 
