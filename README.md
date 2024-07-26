@@ -1,14 +1,5 @@
 <h1 align="center">My NixOS setup</h1>
 
-## About
-
-- Use `env.nix` to configure your NixOS environment;
-- Nixos root configuration stored at `global`;
-- User configuration stored at `home`;
-- Virtualization with docker & podman;
-- Locales `ru_RU` / `en_US`;
-- `Nvidia drivers` for GPU;
-
 ## Installation
 
 ```bash
@@ -26,11 +17,9 @@ reboot
 ## Update / Rebuild
 
 ```bash
-make rebuild
-# Or
 nix-flakes update
-sudo nixos-rebuild switch --flake . # If globals updated
-home-manager switch --flake . # If home updated
+sudo nixos-rebuild switch --flake .#<username>@<hostname> # If Hosts updated
+home-manager switch --flake .#<username>@<hostname> # If Home updated
 ```
 
 <p align="center">
