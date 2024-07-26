@@ -11,6 +11,12 @@ rebuild:
 	sudo nixos-rebuild switch --flake .
 	home-manager switch --flake . #
 
+repair-store:
+	sudo nix-store --verify --repair --check-contents
+
+test:
+	nix flake check --verbose
+
 add-channels:
 	sudo nix-channel --add https://nixos.org/channels/nixos-unstable unstable
 	sudo nix-channel --add https://github.com/NixOS/nixos-hardware/archive/master.tar.gz nixos-hardware

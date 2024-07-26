@@ -1,13 +1,11 @@
-{ pkgs, ... }:
-
 let
   apc-extension = builtins.fetchGit {
     url = "https://github.com/drcika/apc-extension.git";
     rev = "d4cc908bf2869fe354aa0c103bab063aa09fd491";
   };
-in ({ final, prev }:
+in ({ prev }:
   prev.vscode.overrideAttrs (oldAttrs: {
-    buildInputs = oldAttrs.buildInputs ++ [ pkgs.bun ];
+    buildInputs = oldAttrs.buildInputs ++ [ prev.bun ];
     postInstall = ''
       cd $out
       mkdir apc-extension

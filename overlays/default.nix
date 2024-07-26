@@ -1,4 +1,10 @@
-{ inputs, outputs, ... }: {
+{ inputs, ... }:
+
+let
+  addPatches = pkg: patches:
+    pkg.overrideAttrs
+    (oldAttrs: { patches = (oldAttrs.patches or [ ]) ++ patches; });
+in {
   #  aliases 'pkgs.inputs.${flake}'
   flake-inputs = final: _: {
     inputs = builtins.mapAttrs (_: flake:
@@ -8,16 +14,22 @@
       in if legacyPackages != { } then legacyPackages else packages) inputs;
   };
 
-  additions = final: _prev: import ../pkgs { pkgs = final; };
-
   # pkgs.stable / inputs.nixpkgs-stable.legacyPackages.${pkgs.system}
   stable = final: _: {
     stable = inputs.nixpkgs-stable.legacyPackages.${final.system};
   };
 
-  # https://nixos.wiki/wiki/Overlays
-  modifications = final: prev:
-    {
-      # vscode = import ./vscode.nix { inherit final prev; };
+  # Adds my custom packages
+  additions = final: prev:
+    import ../pkgs { pkgs = final; } // {
+      formats = (prev.formats or { })
+        // import ../pkgs/formats { pkgs = final; };
     };
+
+  # https://nixos.wiki/wiki/Overlays
+  modifications = final: prev: {
+    wl-clipboard = addPatches prev.wl-clipboard [ ./wl-clipboard-secrets.diff ];
+    hyprbars = addPatches prev.hyprbars [ ./hyprbars-color-windowrules.patch ];
+    # vscode = import ./vscode.nix { inherit final prev; };
+  };
 }
