@@ -4,7 +4,6 @@ let
   w09 = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" ];
   wf1f12 = [ "F1" "F2" "F3" "F4" "F5" "F6" "F7" "F8" "F9" "F10" "F11" "F12" ];
   workspaces = w09 ++ wf1f12;
-  # Map keys (arrows and hjkl) to hyprland directions (l, r, u, d)
   directions = rec {
     left = "l";
     right = "r";
@@ -20,6 +19,7 @@ in {
     bindm = [ "SUPER,mouse:272,movewindow" "SUPER,mouse:273,resizewindow" ];
     bind = [
       "SUPERSHIFT,q,killactive"
+      "SUPER,q,killactive"
       "SUPERSHIFT,e,exit"
       "SUPER,l,exit"
 

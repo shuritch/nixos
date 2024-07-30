@@ -7,7 +7,7 @@ let
   swaymsg = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
 
   isLocked = "${pgrep} -x ${swaylock}";
-  lockTime = 10 * 60;
+  lockTime = 30 * 60;
 
   # Makes two timeouts: one for when the screen is not locked (lockTime+timeout) and one for when it is.
   afterLockTimeout = { timeout, command, resumeCommand ? null, }: [

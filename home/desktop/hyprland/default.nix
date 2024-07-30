@@ -304,10 +304,11 @@ in {
     # This is order sensitive, so it has to come here.
     extraConfig = ''
       #? Startup
+      exec-once =[workspace 1] kitty
       exec-once =[workspace 2 silent] firefox
       exec-once =[workspace 3 silent] vesktop
-      exec-once =[workspace 1 silent] nm-applet --indicator
-      exec-once =[workspace 1 silent] blueman-applet
+      exec-once = nm-applet --indicator
+      exec-once = blueman-applet
 
       # Passthrough mode (e.g. for VNC)
       bind=SUPER,P,submap,passthrough
