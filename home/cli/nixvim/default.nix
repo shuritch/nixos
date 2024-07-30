@@ -13,28 +13,7 @@ in {
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
-    colorschemes.base16 = {
-      enable = true;
-      colorscheme = {
-        base00 = "${colors.surface}"; # bg
-        base01 = "${colors.surface_variant}"; # bg alt 1
-        base02 = "${colors.tertiary_container}"; # bg alt 2
-        base03 = "${colors.primary_container}"; # bright bg
-        base04 = "${colors.on_surface_variant}"; # fg alt 1
-        base05 = "${colors.on_surface}"; # fg
-        base06 = "${colors.on_tertiary_container}"; # fg alt 2
-        base07 = "${colors.on_primary_container}"; # bright fg
-        base08 = "${harmonized.red}"; # red
-        base09 = "${colors.primary}"; # accent 1
-        base0A = "${harmonized.yellow}"; # yellow
-        base0B = "${harmonized.green}"; # green
-        base0C = "${harmonized.cyan}"; # cyan
-        base0D = "${harmonized.blue}"; # blue
-        base0E = "${harmonized.magenta}"; # magenta
-        base0F = "${colors.error}"; # accent 2
-      };
-    };
-
+    extraConfigVim = import ./theme.nix config.colorscheme;
     opts = {
       updatetime = 100; # Faster completion
       relativenumber = true; # Relative line numbers

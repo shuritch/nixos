@@ -9,7 +9,6 @@
     ./network.nix
     ./nix.nix
     ./security.nix
-    ./sops.nix
     ./xserver.nix
   ];
 }

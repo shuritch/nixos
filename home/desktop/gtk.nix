@@ -69,6 +69,7 @@ let
       '';
     };
 in rec {
+  home.packages = [ pkgs.dconf ];
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   services.xsettingsd = {
     enable = true;

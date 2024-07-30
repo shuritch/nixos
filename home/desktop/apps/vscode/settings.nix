@@ -14,7 +14,7 @@
     "window.customTitleBarVisibility" = "never";
     "window.openFoldersInNewWindow" = "on";
     "window.menuBarVisibility" = "compact";
-    "window.autoDetectColorScheme" = true;
+    "window.autoDetectColorScheme" = false;
     "window.titleBarStyle" = "native";
     # "window.restoreWindows"= "none";
     # "window.titleBarStyle"= "custom";
@@ -48,6 +48,7 @@
     "workbench.statusBar.feedback.visible" = false;
     "workbench.panel.defaultLocation" = "right";
     "workbench.sideBar.location" = "left";
+    "workbench.activityBar.location" = "hidden";
 
     # Terminal
     "terminal.integrated.enableMultiLinePasteWarning" = false;

@@ -43,6 +43,7 @@
       tomoki1207.pdf
       redhat.ansible
       bbenoist.nix
+      # drcika.apc-extension
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "markdown-pdf";

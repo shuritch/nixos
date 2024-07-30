@@ -29,6 +29,7 @@
   home.packages = with pkgs; [
     wf-recorder
     wl-clipboard
+    networkmanagerapplet
     # Screenshots
     grim
     grimblast

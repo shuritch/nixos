@@ -1,9 +1,0 @@
-keys:
-  #nix-shell -p ssh-to-age --run 'cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age'
-  - &atlas age1z97ms4z5shej92u9dxga0dsdw2hv20jq6t3lcnhmxrmnyua5hgxqrhxl82
-
-creation_rules:
-  - path_regex: secrets.ya?ml$
-    key_groups:
-      - age:
-          - *atlas
