@@ -13,12 +13,9 @@ in {
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
-    colorscheme = "my-colors";
     colorschemes.base16 = {
       enable = true;
-      useTrueColor = true;
-      colorscheme = "my-colors";
-      customColorScheme = {
+      colorscheme = {
         base00 = "${colors.surface}"; # bg
         base01 = "${colors.surface_variant}"; # bg alt 1
         base02 = "${colors.tertiary_container}"; # bg alt 2

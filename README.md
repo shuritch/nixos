@@ -9,7 +9,6 @@ curl https://github.com/sashapop10/nixos/disko.nix
 # Edit disko.nix (replace device with name from lsblk result)
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disko.nix
 git clone https://github.com/sashapop10/nixos /mnt/flake
-# Edit /mnt/flake/env.nix before running next command
 sudo nixos-install --flake /mnt/flake
 reboot
 ```
@@ -29,7 +28,7 @@ This behavior works thanks to [Mutagen](https://github.com/InioX/matugen).
 
 <div align="center">
 
-![Color scheme](./assets/colors.jpg)
+![Color scheme](./colors.jpg)
 
 ### Keywords
 
@@ -61,11 +60,9 @@ This behavior works thanks to [Mutagen](https://github.com/InioX/matugen).
 let
 inherit (config.colorscheme) colors harmonized;
 in {
-	programs.<program> = {
-    enable = true;
-		# Base 16
-    colorscheme = {
-			# All colors in #hex format
+	programs.program = {
+    enable = true;# Base 16
+    colorscheme = {# All colors in #HEX format
       base00 = "${colors.surface}"; # bg
       base01 = "${colors.surface_variant}"; # bg alt 1
       base02 = "${colors.tertiary_container}"; # bg alt 2

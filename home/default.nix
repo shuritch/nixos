@@ -1,19 +1,19 @@
-{ inputs, outputs, lib, config, pkgs, ... }:
+{ inputs, outputs, lib, config, pkgs, vars, ... }:
 
 let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
 in {
   imports = [ ./cli ./colorscheme.nix ]
     ++ (builtins.attrValues outputs.homeManagerModules);
-  systemd.user.startServices = "sd-switch"; # Hotreload
+  systemd.user.startServices = "sd-switch";
   programs.home-manager.enable = true;
   programs.git.enable = true;
 
   home = {
-    username = lib.mkDefault config.main-user;
-    homeDirectory = lib.mkDefault "/home/${config.main-user}";
-    stateVersion = lib.mkDefault config.originVersion;
+    username = lib.mkDefault vars.admin.login;
+    homeDirectory = lib.mkDefault "/home/${config.home.username}";
+    sessionVariables.FLAKE = vars.flake-location;
     sessionPath = [ "$HOME/.local/bin" ];
-    sessionVariables = { FLAKE = config.flakeLocation; };
+    stateVersion = lib.mkDefault "23.11";
   };
 
   nix = {
@@ -22,11 +22,6 @@ in {
       experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
       warn-dirty = false;
     };
-  };
-
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = builtins.attrValues outputs.overlays;
   };
 
   home.sessionVariables = {

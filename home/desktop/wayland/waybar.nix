@@ -50,25 +50,19 @@ in {
           ++ (lib.optionals hyprlandCfg.enable [
             "hyprland/workspaces"
             "hyprland/submap"
+            "hyprland/language"
           ]) ++ [ "custom/currentplayer" "custom/player" ];
 
-        modules-center = [
-          "cpu"
-          "custom/gpu"
-          "memory"
-          "clock"
-          "pulseaudio"
-          "battery"
-          "custom/unread-mail"
-        ];
+        modules-center =
+          [ "cpu" "custom/gpu" "memory" "clock" "pulseaudio" "battery" ];
 
-        modules-right = [
-          # "custom/gammastep" TODO: currently broken for some reason
-          "custom/rfkill"
-          "network"
-          "tray"
-          "custom/hostname"
-        ];
+        modules-right = [ "custom/rfkill" "network" "tray" "custom/hostname" ];
+
+        "hyprland/language" = {
+          format-en = "US";
+          format-ru = "RU";
+          tooltip = false;
+        };
 
         clock = {
           interval = 1;
@@ -81,6 +75,7 @@ in {
         };
 
         cpu = { format = "  {usage}%"; };
+
         "custom/gpu" = {
           interval = 5;
           exec = mkScript {
@@ -95,6 +90,7 @@ in {
         };
 
         pulseaudio = {
+          on-click = lib.getExe pkgs.pavucontrol;
           format = "{icon}  {volume}%";
           format-muted = "   0%";
           format-icons = {
@@ -103,7 +99,6 @@ in {
             portable = " ";
             default = [ " " " " " " ];
           };
-          on-click = lib.getExe pkgs.pavucontrol;
         };
 
         idle_inhibitor = {
@@ -124,6 +119,7 @@ in {
         };
 
         "sway/window" = { max-length = 20; };
+
         network = {
           interval = 3;
           format-wifi = "   {essid}";
@@ -155,78 +151,6 @@ in {
         "custom/hostname" = {
           exec = mkScript { script = ''echo "$USER@$HOSTNAME"''; };
           on-click = mkScript { script = "systemctl --user restart waybar"; };
-        };
-
-        "custom/unread-mail" = {
-          interval = 5;
-          return-type = "json";
-          exec = mkScriptJson {
-            deps = [ pkgs.findutils pkgs.procps ];
-            pre = ''
-              count=$(find ~/Mail/*/Inbox/new -type f | wc -l)
-              if pgrep mbsync &>/dev/null; then
-                status="syncing"
-              else
-                if [ "$count" == "0" ]; then
-                  status="read"
-                else
-                  status="unread"
-                fi
-              fi
-            '';
-            text = "$count";
-            alt = "$status";
-          };
-          format = "{icon}  ({})";
-          format-icons = {
-            "read" = "󰇯";
-            "unread" = "󰇮";
-            "syncing" = "󰁪";
-          };
-        };
-
-        "custom/gammastep" = {
-          interval = 5;
-          tooltip = "Gammastep is $status";
-          alt = "\${status:-inactive}";
-          return-type = "json";
-          format = "{icon}";
-
-          exec = mkScriptJson {
-            deps = [ pkgs.findutils ];
-            pre = ''
-              if unit_status="$(systemctl --user is-active gammastep)"; then
-                period="$(journalctl --user -u gammastep.service -g 'Period: ' | tail -1 | cut -d ':' -f6 | xargs)"
-                status="$unit_status ($period)"
-              else
-                status="$unit_status"
-              fi
-            '';
-          };
-
-          format-icons = {
-            "activating" = "󰁪 ";
-            "deactivating" = "󰁪 ";
-            "inactive" = "? ";
-            "active (Night)" = " ";
-            "active (Nighttime)" = " ";
-            "active (Transition (Night)" = " ";
-            "active (Transition (Nighttime)" = " ";
-            "active (Day)" = " ";
-            "active (Daytime)" = " ";
-            "active (Transition (Day)" = " ";
-            "active (Transition (Daytime)" = " ";
-          };
-
-          on-click = mkScript {
-            script = ''
-              if systemctl --user is-active gammastep; then
-                systemctl --user stop gammastep
-              else
-                systemctl --user start gammastep
-              fi
-            '';
-          };
         };
 
         "custom/currentplayer" = {

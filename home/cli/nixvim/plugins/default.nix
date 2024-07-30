@@ -4,6 +4,7 @@
     nvim-autopairs.enable = true;
     transparent.enable = true;
     which-key.enable = true;
+    nix.enable = true;
 
     floaterm = {
       enable = true;
@@ -23,7 +24,6 @@
 
     neo-tree = {
       enable = true;
-      programs.nixvim.plugins.nix.enable = true;
       filesystem.followCurrentFile.enabled = true;
       closeIfLastWindow = true;
     };
@@ -31,10 +31,8 @@
     barbar = {
       enable = true;
       keymaps = {
-        silent = true;
-
-        next = "<TAB>";
-        previous = "<S-TAB>";
+        next.key = "<TAB>";
+        previous.key = "<S-TAB>";
         # close = "<C-q>";
       };
     };

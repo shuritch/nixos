@@ -4,6 +4,16 @@ let features = "nix-command flakes ca-derivations";
 in {
   default = pkgs.mkShell {
     NIX_CONFIG = "extra-experimental-features = ${features}";
-    nativeBuildInputs = with pkgs; [ nix home-manager gnupg git ];
+    nativeBuildInputs = with pkgs; [
+      nix
+      home-manager
+      gnumake
+      git
+
+      gnupg
+      sops
+      ssh-to-age
+      age
+    ];
   };
 }

@@ -3,8 +3,6 @@
 
 let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
 in {
-  imports = [ ./default.nix ];
-
   nix = {
     registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
     settings = {
@@ -24,6 +22,7 @@ in {
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
+      permittedInsecurePackages = [ "python-2.7.18.8" "electron-25.9.0" ];
     };
   };
 }

@@ -21,8 +21,8 @@
     treesitter = {
       enable = true;
       nixvimInjections = true;
+      settings.indent.enable = true;
       folding = true;
-      indent = true;
     };
 
     treesitter-refactor = {

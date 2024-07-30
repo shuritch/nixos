@@ -2,31 +2,35 @@
   description = "<My NixOS configuration>";
 
   inputs = {
+    #################### Official NixOS and HM Package Sources ####################
     systems.url = "github:nix-systems/default-linux";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     hardware.url = "github:nixos/nixos-hardware";
-
-    # Third party
+    #################### Utilities ####################
+    disko.url = "github:nix-community/disko";
+    disko.follows = "nixpkgs";
+    sops-nix.url = "github:mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.inputs.nixpkgs-stable.follows = "nixpkgs";
+    nix-gl.url = "github:nix-community/nixgl";
+    nix-gl.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.url = "github:misterio77/nix-colors";
     # impermanence.url = "github:nix-community/impermanence";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
+      vars = import ./library/vars { inherit inputs outputs lib; };
+      specialArgs = { inherit vars inputs outputs; };
       forSys = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (system:
         import nixpkgs {
@@ -35,28 +39,21 @@
         });
     in {
       inherit lib;
-      overlays = import ./overlays { inherit inputs outputs; };
+      overlays = import ./library/overlays { inherit inputs outputs; };
       devShells = forSys (pkgs: import ./shell.nix { inherit pkgs; });
-      packages = forSys (pkgs: import ./pkgs { inherit pkgs; });
+      packages = forSys (pkgs: import ./library/pkgs { inherit pkgs; });
+      homeManagerModules = import ./library/modules/home;
+      nixosModules = import ./library/modules/global;
       formatter = forSys (pkgs: pkgs.nixfmt-classic);
-      homeManagerModules = import ./modules/home;
-      nixosModules = import ./modules/global;
 
-      # TODO | nixos-rebuild --flake .#your-hostname
-      nixosConfigurations = builtins.mapAttrs (name: _: {
-        modules = [ ./nixos/hosts/${name} ];
-        specialArgs = { inherit inputs outputs; };
-      }) builtins.readDir ./nixos/hosts;
+      nixosConfigurations.atlas = lib.nixosSystem {
+        modules = [ ./core/hosts/atlas ];
+        specialArgs = specialArgs;
+      };
 
-      # nixosConfigurations.atlas = lib.nixosSystem {
-      #   modules = [ ./hosts/atlas ];
-      #   specialArgs = { inherit inputs outputs; };
-      # };
-
-      # TODO | home-manager --flake .#your-username@your-hostname
       homeConfigurations."sashapop10@atlas" = lib.homeManagerConfiguration {
-        extraSpecialArgs = { inherit inputs outputs; };
-        modules = [ ./home/standalone.nix ];
+        extraSpecialArgs = specialArgs;
+        modules = [ ./home/standalone.nix ./home/hosts/atlas.nix ];
         pkgs = pkgsFor.x86_64-linux;
       };
     };

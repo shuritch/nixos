@@ -36,8 +36,9 @@
     nix-direnv.enable = true;
   };
 
-  sessionVariables.PF_INFO = "ascii title os kernel uptime shell de palette";
-  packages = with pkgs; [
+  home.sessionVariables.PF_INFO =
+    "ascii title os kernel uptime shell de palette";
+  home.packages = with pkgs; [
     fastfetch
     pfetch-rs
     comma # Install and run programs by sticking a , before them
@@ -59,7 +60,7 @@
     tree # console.dir
     wget
     tldr
-    rar
+    # rar
     unrar
     zip
     unzip
@@ -75,14 +76,13 @@
     mkcert
     mediainfo
     gnupg
-
+    pkgs.stable.nixfmt-classic
     # nil # Nix Language server
     nixd # Nix Language server
     # alejandra # Nix formatter
-    nixfmt-classic # Nix formatter
+    # nixfmt-classic # Nix formatter
     #nixpkgs-fmt #  Nix formatter
     #nixfmt-rfc-style  # Nix formatter
-    nixfmt-rfc-style
     nvd # Differ
     nix-diff # Differ, more detailed
     nix-output-monitor
