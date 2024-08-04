@@ -12,13 +12,13 @@
   "extensions.ignoreRecommendations" = false;
   "window.customTitleBarVisibility" = "never";
   "window.openFoldersInNewWindow" = "on";
-  "window.menuBarVisibility" = "compact";
+  "window.menuBarVisibility" = "hidden";
   "window.autoDetectColorScheme" = false;
   "window.titleBarStyle" = "native";
   # "window.restoreWindows"= "none";
   # "window.titleBarStyle"= "custom";
   "window.commandCenter" = true;
-  "window.zoomLevel" = 1;
+  "window.zoomLevel" = 2;
   "window.nativeTabs" = true;
 
   # Workbench

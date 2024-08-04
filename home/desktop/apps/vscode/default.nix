@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, ... }@input:
 
 let
-  userSettings = import ./settings;
+  userSettings = import ./settings input;
   keybindings = import ./bindings.nix;
   dir = "$HOME/.config/Code/User";
 in {
-  imports = [ ./extentions.nix ./bindings.nix ];
+  imports = [ ./extentions.nix ];
   programs.vscode = {
     inherit userSettings keybindings;
     enable = true;

@@ -27,13 +27,20 @@
   };
 
   home.packages = with pkgs; [
+    xdragon
     wf-recorder
     wl-clipboard
     networkmanagerapplet
+    nemo # File manager
     # Screenshots
     grim
     grimblast
     slurp
     swappy
+    # Media
+    feh # Imager viewer
+    imv # Image viewer
+    vlc # Video player
+    mpv # Video player
   ];
 }

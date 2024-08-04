@@ -8,6 +8,8 @@ let
   }) outputs.homeConfigurations;
   # rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
+  packageNames = map (p: p.pname or p.name or null) config.home.packages;
+  hasPackage = name: lib.any (x: x == name) packageNames;
 in {
   imports = [ ../default.nix ../wayland ./binds.nix ./hyprbars.nix ];
   home.packages = with pkgs; [ grimblast hyprpicker ];
@@ -196,13 +198,14 @@ in {
       bind = let
         grimblast = lib.getExe pkgs.grimblast;
         tesseract = lib.getExe pkgs.tesseract;
-        fmanager = lib.getExe pkgs.pcmanfm-qt;
+        fmanager = lib.getExe pkgs.nemo;
         pactl = lib.getExe' pkgs.pulseaudio "pactl";
         notify-send = lib.getExe' pkgs.libnotify "notify-send";
         defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
+        terminal = defaultApp "x-scheme-handler/terminal";
       in [
         # Program bindings
-        "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
+        "SUPER,Return,exec,${terminal}"
         "SUPER,e,exec,${defaultApp "text/plain"}"
         "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
         "SUPER,m,exec,${fmanager}"
@@ -303,12 +306,28 @@ in {
 
     # This is order sensitive, so it has to come here.
     extraConfig = ''
-      #? Startup
-      exec-once =[workspace 1] kitty
-      exec-once =[workspace 2 silent] firefox
-      exec-once =[workspace 3 silent] vesktop
       exec-once = nm-applet --indicator
       exec-once = blueman-applet
+
+      ${if config.programs.kitty.enable then
+        "exec-once =[workspace 1 silent] kitty"
+      else
+        ""}
+
+      ${if hasPackage "firefox" then
+        "exec-once =[workspace 2 silent] firefox"
+      else
+        ""}
+
+      ${if hasPackage "vesktop" then
+        "exec-once =[workspace 3 silent] vesktop"
+      else
+        ""}
+
+      ${if hasPackage "telegram-desktop" then
+        "exec-once = telegram-desktop -startintray"
+      else
+        ""}
 
       # Passthrough mode (e.g. for VNC)
       bind=SUPER,P,submap,passthrough

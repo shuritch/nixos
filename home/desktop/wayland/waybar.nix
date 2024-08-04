@@ -44,7 +44,7 @@ in {
         passthrough = false;
         height = 40;
         margin = "6";
-        position = "top";
+        position = "bottom";
         modules-left = [ "custom/menu" ]
           ++ (lib.optionals swayCfg.enable [ "sway/workspaces" "sway/mode" ])
           ++ (lib.optionals hyprlandCfg.enable [

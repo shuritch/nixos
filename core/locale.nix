@@ -2,7 +2,7 @@ let
   native = "ru_RU.UTF-8";
   en = "en_US.UTF-8";
 in {
-  location.provider = "geoclue2";
+  # location.provider = "geoclue2";
   time.timeZone = "Europe/Moscow";
   time.hardwareClockInLocalTime = true;
   i18n = {
