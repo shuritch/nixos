@@ -5,7 +5,7 @@
     ./firefox.nix
     ./vscode
     ./chrome.nix
-    ./gaming.nix
+
   ];
 
   home.packages = with pkgs; [

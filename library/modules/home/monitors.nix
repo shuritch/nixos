@@ -36,6 +36,10 @@ in {
           type = types.int;
           default = 0;
         };
+        rotate = mkOption {
+          type = types.int;
+          default = 0;
+        };
         enabled = mkOption {
           type = types.bool;
           default = true;

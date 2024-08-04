@@ -295,7 +295,9 @@ in {
           if m.enabled then
             "${toString m.width}x${toString m.height}@${
               toString m.refreshRate
-            },${toString m.x}x${toString m.y},${toString m.scale}"
+            },${toString m.x}x${toString m.y},${toString m.scale},transform,${
+              toString m.rotate
+            }"
           else
             "disable"
         }") (config.monitors));
