@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   #? Security & Telemetry
   "telemetry.telemetryLevel" = "off";
   "security.workspace.trust.untrustedFiles" = "open";
@@ -118,7 +119,7 @@
   "editor.cursorStyle" = "line";
   "editor.smoothScrolling" = true;
   "editor.tabSize" = 2;
-  "editor.lineNumbers" = "default"; # ? relative | default | off
+  "editor.lineNumbers" = "on"; # ? relative | on | off
   "editor.minimap.enabled" = true; # ?
   "editor.minimap.renderCharacters" = false;
   "editor.minimap.scale" = 2;
@@ -130,11 +131,11 @@
   "editor.lineHeight" = 20;
   "editor.fontWeight" = "400";
   "editor.suggestFontSize" = 14;
-  "editor.inlineSuggest.suppressSuggestions" = true;
+  "editor.inlineSuggest.suppressSuggestions" = false;
   "editor.suggestLineHeight" = 20;
   "editor.linkedEditing" = true;
   "editor.mouseWheelZoom" = false;
-  "editor.inlineSuggest.enabled" = false;
+  "editor.inlineSuggest.enabled" = true;
   "editor.suggest.insertMode" = "replace";
   "editor.minimap.maxColumn" = 80;
   "editor.insertSpaces" = true;
@@ -221,8 +222,21 @@
   #? Plugins
   "eslint.run" = "onSave";
   "cSpell.language" = "en,ru";
-  "errorLens.enabledDiagnosticLevels" = [ "warning" "error" ];
+  "errorLens.gutterIconSize" = "auto";
+  "errorLens.fontWeight" = "bold";
+  "errorLens.fontStyleItalic" = true;
+  "errorLens.enabledDiagnosticLevels" = [ "warning" "error" "hint" ];
   "errorLens.excludeBySource" = [ "cSpell" ];
+  "errorLens.statusBarIconsEnabled" = true;
+  "errorLens.delay" = 500;
+  "errorLens.gutterIconsEnabled" = true;
+  "errorLens.gutterIconSet" = "emoji";
+  "errorLens.gutterEmoji" = {
+    "error" = "🦠";
+    "warning" = "🧙";
+    "info" = "🧼";
+    "hint" = "🌀";
+  };
   "tabnine.experimentalAutoImports" = true;
   "svelte.enable-ts-plugin" = true;
   "svelte.plugin.svelte.format.config.svelteStrictMode" = true;
@@ -237,4 +251,4 @@
   "prettier.singleQuote" = true;
   "prettier.arrowParens" = "avoid";
   "prettier.printWidth" = 100;
-}
+} // import ./styles config

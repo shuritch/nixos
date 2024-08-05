@@ -3,8 +3,6 @@
 }
 
 .line-numbers {
-  position: relative !important;
-  font-family: 'FiraCode Nerd Font' !important;
   opacity: 0.3;
 }
 
@@ -34,7 +32,6 @@
 
 /* List item label name */
 .monaco-list.list_id_1 .monaco-list-row.selected .label-name {
-  color: #fff !important;
   opacity: 1 !important;
 }
 
@@ -46,9 +43,7 @@
 /* File Explorer Item Label */
 .monaco-tree .monaco-tree-row .label-name,
 .monaco-list .monaco-list-row .monaco-icon-label .label-name {
-  font-family: 'FiraCode Nerd Font', monospace !important;
   font-weight: 400 !important;
-  color: #fff !important;
 }
 
 /* Sidebar top shadow */
@@ -124,7 +119,6 @@
 
 /* Search Label */
 .search-label {
-  font-family: 'FiraCode Nerd Font' !important;
   font-size: 14px !important;
   color: #fff;
   display: block;
@@ -179,7 +173,6 @@
   padding: 8px !important;
   border: none !important;
   background-color: rgba(34, 34, 34, 0.4) !important;
-  font-family: 'FiraCode Nerd Font' !important;
   font-size: 14px !important;
   margin-bottom: 16px !important;
 }
