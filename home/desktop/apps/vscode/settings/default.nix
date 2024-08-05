@@ -1,4 +1,5 @@
-{ config, ... }:
+config:
+
 {
   #? Security & Telemetry
   "telemetry.telemetryLevel" = "off";
@@ -32,11 +33,12 @@
   "git.suggestSmartCommit" = false;
   "git.decorations.enabled" = true;
   "workbench.editor.decorations" = false;
-  "workbench.editor.decorations.badges" = false;
+  # "workbench.editor.decorations.badges" = false;
   "breadcrumbs.enabled" = false;
   "scm.diffDecorations" = "none";
   "workbench.tips.enabled" = false;
   "problems.decorations.enabled" = false;
+  "workbench.editor.highlightModifiedTabs" = true;
   "workbench.editor.showTabs" = "single"; # none | single
   "workbench.colorTheme" = "Blink Contrast (rainglow)";
   "workbench.iconTheme" = "material-icon-theme";

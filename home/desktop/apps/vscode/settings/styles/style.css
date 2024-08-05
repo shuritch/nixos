@@ -3,7 +3,7 @@
 }
 
 .line-numbers {
-  opacity: 0.3;
+  opacity: 0.75;
 }
 
 /* Code canvas top shadow */
@@ -22,7 +22,7 @@
   box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
 }
 
-/* File Explorer Selected Item */
+/* File Explorer Selected Item  */
 .monaco-list.list_id_1 .monaco-list-row.selected {
   background-color: #4f5971 !important;
   opacity: 1 !important;
@@ -63,23 +63,6 @@
   font-weight: bold !important;
   font-size: 12px !important;
   text-transform: uppercase;
-  color: #bc9abc !important;
-}
-
-.composite.title h2::before {
-  display: inline-block;
-  margin-right: 6px;
-  font-size: 1.1rem;
-  content: '🚀';
-}
-
-/* Scroll Bar */
-.slider {
-  position: absolute !important;
-  right: 1px !important;
-  width: 1px !important;
-  background: #bc9abc !important;
-  left: auto !important;
 }
 
 .codicon-toolbar-more,
@@ -91,10 +74,10 @@
 .monaco-editor-hover,
 .monaco-hover {
   box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.45) !important;
-  padding: 10px !important;
-  background-image: linear-gradient(#3c3c50 0%, #2a2b38 100%) !important;
+  padding: 8px !important;
+  /* background-image: linear-gradient(#3c3c50 0%, #2a2b38 100%) !important; */
   backdrop-filter: blur(3px) !important;
-  border-radius: 20px !important;
+  border-radius: 6px !important;
   border: none !important;
 }
 
@@ -148,9 +131,9 @@
   top: 50% !important;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.45) !important;
   padding: 10px 10px 18px 10px !important;
-  background-image: linear-gradient(#3c3c50 0%, #2a2b38 100%) !important;
+  /* background-image: linear-gradient(#3c3c50 0%, #2a2b38 100%) !important; */
   backdrop-filter: blur(3px) !important;
-  border-radius: 20px !important;
+  border-radius: 10px !important;
 }
 
 /* Remove background for lists */
@@ -169,7 +152,7 @@
 
 /* Command palette text input */
 .quick-input-filter .monaco-inputbox {
-  border-radius: 12px !important;
+  border-radius: 8px !important;
   padding: 8px !important;
   border: none !important;
   background-color: rgba(34, 34, 34, 0.4) !important;
@@ -207,5 +190,5 @@
   background-repeat: no-repeat no-repeat !important;
   background-position: center center !important;
   background-size: contain !important;
-  width: 60% !important;
+  width: 40% !important;
 }

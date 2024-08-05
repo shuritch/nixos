@@ -1,7 +1,7 @@
-{ pkgs, ... }@input:
+{ pkgs, config, ... }:
 
 let
-  userSettings = import ./settings input;
+  userSettings = import ./settings config;
   keybindings = import ./bindings.nix;
   jsonSettings =
     pkgs.writeText "tmp_vscode_settings" (builtins.toJSON userSettings);
@@ -9,7 +9,7 @@ let
     pkgs.writeText "tmp_vscode_settings" (builtins.toJSON keybindings);
   dir = "$HOME/.config/Code/User";
 in {
-  imports = [ ./extentions.nix ];
+  imports = [ ./extensions ];
   programs.vscode = {
     inherit userSettings keybindings;
     package = pkgs.vscode;
