@@ -54,9 +54,10 @@ in {
           ]) ++ [ "custom/currentplayer" "custom/player" ];
 
         modules-center =
-          [ "cpu" "custom/gpu" "memory" "clock" "pulseaudio" "battery" ];
+          [ "cpu" "custom/gpu" "memory" "disk" "clock" "pulseaudio" "battery" ];
 
-        modules-right = [ "custom/rfkill" "network" "tray" "custom/hostname" ];
+        modules-right =
+          [ "custom/rfkill" "bluetooth" "network" "tray" "custom/hostname" ];
 
         "hyprland/language" = {
           format-en = "US";
@@ -74,19 +75,26 @@ in {
             <tt><small>{calendar}</small></tt>'';
         };
 
-        cpu = { format = "  {usage}%"; };
+        cpu = { format = "   {usage}%"; };
 
         "custom/gpu" = {
-          interval = 5;
+          interval = 30;
           exec = mkScript {
             script = "cat /sys/class/drm/card0/device/gpu_busy_percent";
           };
-          format = "󰒋  {}%";
+          format = "󰒋   {}%";
         };
 
         memory = {
-          format = "  {}%";
-          interval = 5;
+          format = "   {}%";
+          interval = 30;
+        };
+
+        disk = {
+          interval = 30;
+          format = "󰋊   {percentage_used}%";
+          tooltip-format =
+            "({used}/{total})({percentage_used}%) in '{path}', available {free}({percentage_free}%)";
         };
 
         pulseaudio = {
@@ -122,14 +130,46 @@ in {
 
         network = {
           interval = 3;
-          format-wifi = "   {essid}";
-          format-ethernet = "󰈁 Connected";
+          max-length = 20;
+          format-wifi = "    {essid}";
+          format-ethernet = "󰈁   Connected";
           format-disconnected = "";
+          on-click = "nm-connection-editor";
           tooltip-format = ''
             {ifname}
             {ipaddr}/{cidr}
             Up: {bandwidthUpBits}
             Down: {bandwidthDownBits}'';
+        };
+
+        bluetooth = {
+          format = "󰂯";
+          max-length = 35;
+          on-click = "blueman-manager";
+          format-disabled = "󰂲";
+          format-connected = "󰂱   {device_alias}";
+          format-connected-battery =
+            "󰂱   {device_alias} (󰥉 {device_battery_percentage}%)";
+          # "format-device-preference": [ "device1", "device2" ], # preference list deciding the displayed device
+
+          tooltip-format-disabled = "bluetooth off";
+          tooltip-format = ''
+            {controller_alias}	{controller_address} ({status})
+
+            {num_connections} connected'';
+
+          tooltip-format-connected = ''
+            {controller_alias}	{controller_address} ({status})
+
+            {num_connections} connected
+
+            {device_enumerate}'';
+
+          tooltip-format-enumerate-connected =
+            "{device_alias}	{device_address}";
+
+          tooltip-format-enumerate-connected-battery =
+            "{device_alias}	{device_address}	({device_battery_percentage}%)";
         };
 
         "custom/menu" = {
@@ -199,7 +239,7 @@ in {
         "custom/player" = {
           return-type = "json";
           interval = 2;
-          max-length = 30;
+          max-length = 20;
           format = "{icon} {}";
           format-icons = {
             "Playing" = "󰐊";
@@ -220,25 +260,29 @@ in {
             script = "playerctl metadata --format '${format}' 2>/dev/null";
           };
 
-          on-click = mkScript {
+          on-click-middle = mkScript {
             deps = [ pkgs.playerctl ];
             script = "playerctl play-pause";
+          };
+
+          on-click-right = mkScript {
+            deps = [ pkgs.playerctl ];
+            script = "playerctl next";
+          };
+
+          on-click = mkScript {
+            deps = [ pkgs.playerctl ];
+            script = "playerctl prev";
           };
         };
       };
     };
 
-    # Cheatsheet:
-    # x -> all sides
-    # x y -> vertical, horizontal
-    # x y z -> top, horizontal, bottom
-    # w x y z -> top, right, bottom, left
     style = let
       inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
       inherit (config.colorscheme) colors;
       toRGBA = color: opacity:
         "rgba(${hexToRGBString "," (lib.removePrefix "#" color)},${opacity})";
-      # css
     in ''
       * {
         font-family: ${config.fontProfiles.regular.family}, ${config.fontProfiles.monospace.family};

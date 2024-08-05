@@ -3,11 +3,16 @@
 let
   userSettings = import ./settings input;
   keybindings = import ./bindings.nix;
+  jsonSettings =
+    pkgs.writeText "tmp_vscode_settings" (builtins.toJSON userSettings);
+  jsonBindings =
+    pkgs.writeText "tmp_vscode_settings" (builtins.toJSON keybindings);
   dir = "$HOME/.config/Code/User";
 in {
   imports = [ ./extentions.nix ];
   programs.vscode = {
     inherit userSettings keybindings;
+    package = pkgs.vscode;
     enable = true;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = true;
@@ -20,24 +25,22 @@ in {
       before = [ "checkLinkTargets" ];
       data = ''
         if [ -f "${dir}/settings.json" ]; then
-          rm "${dir}/settings.json"
+          rm -rf "${dir}/settings.json"
         fi
         if [ -f "${dir}/keybindings.json" ]; then
-          rm "${dir}/keybindings.json"
+          rm -rf "${dir}/keybindings.json"
         fi
       '';
     };
 
     afterWriteBoundary = {
-      after = [ "writeBoundary" ];
+      after = [ "writeBoundary" "linkGeneration" ];
       before = [ ];
       data = ''
-        cat ${
-          (pkgs.formats.json { }).generate "settings.json" userSettings
-        } > "${dir}/settings.json"
-        cat ${
-          (pkgs.formats.json { }).generate "keybindings.json" keybindings
-        } > "${dir}/keybindings.json"
+        rm -rf ${dir}/settings.json
+        rm -rf ${dir}/keybindings.json
+        cat ${jsonSettings} | ${pkgs.jq}/bin/jq --monochrome-output > "${dir}/settings.json"
+        cat ${jsonBindings} | ${pkgs.jq}/bin/jq --monochrome-output > "${dir}/keybindings.json"
       '';
     };
   };

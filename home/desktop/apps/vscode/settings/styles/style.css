@@ -1,0 +1,218 @@
+.mtk3 {
+  color: #008c7d !important;
+}
+
+.line-numbers {
+  position: relative !important;
+  font-family: 'FiraCode Nerd Font' !important;
+  opacity: 0.3;
+}
+
+/* Code canvas top shadow */
+.monaco-editor .scroll-decoration {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.75) !important;
+  top: -6px !important;
+}
+
+/* Toolbars when tabs are enabled. */
+.monaco-workbench .part.editor > .content .editor-group-container > .title .editor-actions {
+  display: none !important;
+}
+
+/* Side bar */
+.part.sidebar {
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* File Explorer Selected Item */
+.monaco-list.list_id_1 .monaco-list-row.selected {
+  background-color: #4f5971 !important;
+  opacity: 1 !important;
+  border-top: 1px #727b90 solid;
+  border-bottom: 1px #727b90 solid;
+}
+
+/* List item label name */
+.monaco-list.list_id_1 .monaco-list-row.selected .label-name {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+/* File explorer action buttons */
+.monaco-workbench .part.sidebar .title-actions .actions-container {
+  display: none;
+}
+
+/* File Explorer Item Label */
+.monaco-tree .monaco-tree-row .label-name,
+.monaco-list .monaco-list-row .monaco-icon-label .label-name {
+  font-family: 'FiraCode Nerd Font', monospace !important;
+  font-weight: 400 !important;
+  color: #fff !important;
+}
+
+/* Sidebar top shadow */
+.monaco-scrollable-element > .shadow.top {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75) !important;
+  top: -3px !important;
+}
+
+/* Sidebar title */
+.composite.title {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-items: center !important;
+}
+.composite.title h2 {
+  font-weight: bold !important;
+  font-size: 12px !important;
+  text-transform: uppercase;
+  color: #bc9abc !important;
+}
+
+.composite.title h2::before {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 1.1rem;
+  content: '🚀';
+}
+
+/* Scroll Bar */
+.slider {
+  position: absolute !important;
+  right: 1px !important;
+  width: 1px !important;
+  background: #bc9abc !important;
+  left: auto !important;
+}
+
+.codicon-toolbar-more,
+.codicon-word-wrap {
+  display: block !important;
+}
+
+/* Tooltip box style */
+.monaco-editor-hover,
+.monaco-hover {
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.45) !important;
+  padding: 10px !important;
+  background-image: linear-gradient(#3c3c50 0%, #2a2b38 100%) !important;
+  backdrop-filter: blur(3px) !important;
+  border-radius: 20px !important;
+  border: none !important;
+}
+
+/* Project title's style at the top. */
+.monaco-workbench
+  .part.titlebar
+  > .titlebar-container
+  > .titlebar-center
+  > .window-title
+  > .command-center
+  .action-item.command-center-center {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Project Title */
+.titlebar-left {
+  justify-content: flex-start !important;
+  flex-grow: 0 !important;
+  width: auto !important;
+}
+
+/* Search Label */
+.search-label {
+  font-family: 'FiraCode Nerd Font' !important;
+  font-size: 14px !important;
+  color: #fff;
+  display: block;
+}
+
+/* Search icon */
+.search-icon {
+  display: none !important;
+}
+
+.codicon-search::before {
+  display: none !important;
+}
+
+.codicon-arrow-right,
+.codicon-arrow-left {
+  display: none !important;
+}
+
+.titlebar-right > * {
+  display: none !important;
+}
+
+/* Command Palette */
+.quick-input-widget {
+  transform: translateY(-50%) !important;
+  top: 50% !important;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.45) !important;
+  padding: 10px 10px 18px 10px !important;
+  background-image: linear-gradient(#3c3c50 0%, #2a2b38 100%) !important;
+  backdrop-filter: blur(3px) !important;
+  border-radius: 20px !important;
+}
+
+/* Remove background for lists */
+.monaco-list-rows {
+  background: transparent !important;
+}
+
+/* List hover */
+.monaco-list-row:hover {
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+
+.notifications-toasts .monaco-list-row:hover {
+  background: none !important;
+}
+
+/* Command palette text input */
+.quick-input-filter .monaco-inputbox {
+  border-radius: 12px !important;
+  padding: 8px !important;
+  border: none !important;
+  background-color: rgba(34, 34, 34, 0.4) !important;
+  font-family: 'FiraCode Nerd Font' !important;
+  font-size: 14px !important;
+  margin-bottom: 16px !important;
+}
+
+#command-blur {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(8px);
+}
+
+/* Command palette's input box placeholder. */
+.monaco-inputbox input::placeholder {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Container that holds the VS Code home icon. */
+.editor-group-watermark {
+  max-width: none !important;
+}
+
+.command-center-center {
+  width: auto !important;
+}
+
+/* https://www.svgbackgrounds.com/tools/svg-to-css/ */
+.letterpress {
+  background-image: url('data:image/svg+xml,<%3Fxml version="1.0" encoding="UTF-8"%3F><svg enable-background="new" version="1.1" viewBox="0 0 536.39 465.49" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns%23" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns%23" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><linearGradient id="d" x1="213.96" x2="282.26" y1="338.62" y2="515.97" gradientTransform="translate(983.36 601.39)" gradientUnits="userSpaceOnUse"><stop stop-color="%235D6E7A" offset="0"/><stop stop-color="%235D6E7A" offset=".23169"/><stop stop-color="%235D6E7A" offset="1"/></linearGradient><linearGradient id="f" x1="200.6" x2="290.09" y1="351.41" y2="506.19" gradientTransform="translate(70.65 -1055.2)" gradientUnits="userSpaceOnUse"><stop stop-color="%235D6E7A" offset="0"/><stop stop-color="%235D6E7A" offset=".24345"/><stop stop-color="%235D6E7A" offset="1"/></linearGradient><linearGradient id="e" x1="-584.2" x2="-496.3" y1="782.34" y2="937.71" gradientTransform="translate(864.7 -1491.3)" gradientUnits="userSpaceOnUse"><stop stop-color="%235D6E7A" offset="0"/><stop stop-color="%235D6E7A" offset=".23169"/><stop stop-color="%235D6E7A" offset="1"/></linearGradient></defs><metadata><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><cc:license rdf:resource="http://creativecommons.org/licenses/by/4.0/"/></cc:Work><cc:License rdf:about="http://creativecommons.org/licenses/by/4.0/"><cc:permits rdf:resource="http://creativecommons.org/ns%23Reproduction"/><cc:permits rdf:resource="http://creativecommons.org/ns%23Distribution"/><cc:requires rdf:resource="http://creativecommons.org/ns%23Notice"/><cc:requires rdf:resource="http://creativecommons.org/ns%23Attribution"/><cc:permits rdf:resource="http://creativecommons.org/ns%23DerivativeWorks"/></cc:License></rdf:RDF></metadata><g transform="translate(125.51 -151.14)"><g transform="matrix(1.0667 0 0 1.0667 -124.91 151.88)"><g transform="translate(-23.757 -24.85)" display="none"><rect transform="translate(-132.58 958.04)" x="132.58" y="-957.78" width="1543.4" height="483.74" color="%23000000" color-rendering="auto" display="inline" enable-background="accumulate" fill="%23fff" fill-rule="evenodd" image-rendering="auto" shape-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/></g><g transform="translate(-156.34 933.19)" display="none" fill-rule="evenodd" shape-rendering="auto"><rect x="132.65" y="-958.03" width="550.42" height="484.3" color="%23000000" color-rendering="auto" display="inline" enable-background="accumulate" fill="%235c201e" image-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/><rect x="156.12" y="-933.03" width="501.94" height="434.3" color="%23000000" color-rendering="auto" display="inline" enable-background="accumulate" fill="%23c24a46" image-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/><rect x="658.03" y="-958.04" width="24.94" height="24.94" color="%23000000" color-rendering="auto" display="inline" enable-background="accumulate" fill="%23d98d8a" image-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/></g><g transform="translate(-156.34 933.19)"><path d="m309.4-710.25 122.2 211.68-56.157 0.5268-32.624-56.869-32.856 56.565-27.902-0.011-14.291-24.69 46.81-80.49-33.229-57.826z" color="%23000000" color-rendering="auto" enable-background="accumulate" fill="%235D6E7A" fill-rule="evenodd" image-rendering="auto" shape-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/><path d="m353.51-797.44-122.22 211.66-28.535-48.37 32.938-56.688-65.415-0.1719-13.941-24.17 14.236-24.721 93.112 0.2939 33.464-57.69z" color="%23000000" color-rendering="auto" enable-background="accumulate" fill="%235D6E7A" fill-rule="evenodd" image-rendering="auto" shape-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/><path d="m362.89-628.24 244.41 0.012-27.622 48.897-65.562-0.1817 32.559 56.737-13.961 24.158-28.527 0.032-46.301-80.784-66.693-0.1353z" color="%23000000" color-rendering="auto" enable-background="accumulate" fill="%235D6E7A" fill-rule="evenodd" image-rendering="auto" shape-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/><path d="m505.14-720.99-122.2-211.68 56.157-0.5268 32.624 56.869 32.856-56.565 27.902 0.011 14.291 24.69-46.81 80.49 33.229 57.826z" color="%23000000" color-rendering="auto" enable-background="accumulate" fill="%235D6E7A" fill-rule="evenodd" image-rendering="auto" shape-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/><path d="m309.4-710.25 122.2 211.68-56.157 0.5268-32.624-56.869-32.856 56.565-27.902-0.011-14.291-24.69 46.81-80.49-33.229-57.826z" color="%23000000" color-rendering="auto" enable-background="accumulate" fill="%235D6E7A" fill-rule="evenodd" image-rendering="auto" shape-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/><path d="m451.34-803.53-244.41-0.012 27.622-48.897 65.562 0.18175-32.559-56.737 13.961-24.159 28.527-0.0315 46.301 80.784 66.693 0.13524z" color="%23000000" color-rendering="auto" enable-background="accumulate" fill="%235D6E7A" fill-rule="evenodd" image-rendering="auto" shape-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/><path d="m460.87-633.84 122.22-211.66 28.535 48.37-32.938 56.688 65.415 0.1718 13.941 24.17-14.236 24.721-93.112-0.294-33.464 57.69z" color="%23000000" color-rendering="auto" enable-background="accumulate" fill="%235D6E7A" fill-rule="evenodd" image-rendering="auto" shape-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/><g transform="translate(72.039 -1799.4)" display="none"><path d="m460.61 594.73-250.86-1e-5 -125.43-217.26 125.43-217.25 250.86 1e-5 125.43 217.26z" color="%23000000" display="inline" enable-background="accumulate" fill="%235D6E7A" opacity=".236"/><path transform="translate(0 -308.27)" d="m385.59 773.07h-100.83l-50.417-87.326 50.417-87.326 100.83 1e-5 50.417 87.326z" color="%23000000" display="inline" enable-background="accumulate" fill="%235D6E7A"/><path transform="translate(0 -308.27)" d="m1216.6 938.53 123.05 228.14-42.681-1.2616-43.482-79.772-39.651 80.327-32.688-19.798 53.474-100.28-37.116-73.89z" fill="url(%23d)" fill-rule="evenodd"/><rect id="c" transform="rotate(-30)" x="-34.742" y="446.17" width="48.835" height="226.23" color="%23000000" color-rendering="auto" display="inline" enable-background="accumulate" fill="%23c53a3a" image-rendering="auto" opacity=".415" shape-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/><path transform="translate(0 -308.27)" d="m251.99 878.64-14.024 24.291h-28.049l-14.024-24.291 14.024-24.291h28.049z" color="%23000000" color-rendering="auto" display="inline" enable-background="accumulate" fill-rule="evenodd" image-rendering="auto" opacity=".509" shape-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/><use transform="rotate(60 268.3 489.45)" width="100%" height="100%" xlink:href="%23c"/><rect transform="rotate(30 575.24 -154.13)" x="545.71" y="467.07" width="5.3947" height="115.13" color="%23000000" color-rendering="auto" display="inline" enable-background="accumulate" fill-opacity=".65079" fill-rule="evenodd" image-rendering="auto" shape-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/></g></g><g transform="translate(-156.34 933.19)"><path id="a" d="m309.55-710.39 122.2 211.68-56.157 0.5268-32.624-56.869-32.856 56.565-27.902-0.011-14.291-24.69 46.81-80.49-33.229-57.826z" fill="url(%23f)" fill-rule="evenodd"/><use transform="rotate(60 407.11 -715.79)" width="100%" height="100%" xlink:href="%23a"/><use transform="rotate(-60 407.31 -715.7)" width="100%" height="100%" xlink:href="%23a"/><use transform="rotate(180 407.42 -715.76)" width="100%" height="100%" xlink:href="%23a"/><path id="b" d="m309.55-710.39 122.2 211.68-56.157 0.5268-32.624-56.869-32.856 56.565-27.902-0.011-14.291-24.69 46.81-80.49-33.229-57.826z" color="%23000000" color-rendering="auto" enable-background="accumulate" fill="url(%23e)" fill-rule="evenodd" image-rendering="auto" shape-rendering="auto" solid-color="%23000000" style="isolation:auto;mix-blend-mode:normal"/><use transform="rotate(120 407.34 -716.08)" width="100%" height="100%" xlink:href="%23b"/><use transform="rotate(240 407.29 -715.87)" width="100%" height="100%" xlink:href="%23b"/></g></g><g transform="matrix(2.9127 0 0 2.9127 37.818 292.31)" fill="%235D6E7A"><path d="m27.69 34.62-4.85-7.84 0.37-0.36 1.6 1.37a1.5 1.5 0 0 0 0.53 1.93 1.54 1.54 0 0 0 0.81 0.23 1.49 1.49 0 0 0 0.87-0.27l9.98 8.52a0.62 0.62 0 0 0 0.44 0.18 0.64 0.64 0 0 0 0.47-0.21 0.65 0.65 0 0 0 0-0.91l-10.11-8.6 5-7.88a1.49 1.49 0 0 0 0-1.62 2.26 2.26 0 0 0-0.25-0.29l-5.81-6.87a1.5 1.5 0 0 0-1.24-0.66l-7.67 0.07a1.22 1.22 0 0 0-1.07 0.69l-2.37 5.09-0.63-0.54a0.63 0.63 0 0 0-0.9 0 0.64 0.64 0 0 0 0 0.91l0.93 0.8-0.24 0.53a1.52 1.52 0 0 0 0.59 2 1.42 1.42 0 0 0 0.74 0.2 1.51 1.51 0 0 0 1.27-0.7l0.78 0.67-3.53 3.81a2.37 2.37 0 0 0-0.76 1.66l-0.26 8.58-2.33 10.08a2.35 2.35 0 0 0 1.76 2.81 2.48 2.48 0 0 0 0.54 0.06 2.35 2.35 0 0 0 2.29-1.83l2.44-10.53 0.23-7.63 1.4 1 4 6.49-4.38 9.15a2.35 2.35 0 1 0 4.25 2l5.18-10.71a1.37 1.37 0 0 0-0.07-1.38z"/><circle cx="33.46" cy="12.22" r="4.3"/><path d="m61.39 45.33c-1.44-2.1-8.34-15.16-10.12-17s-3.36-2.08-4.44-1.64a6.94 6.94 0 0 0-3 2.24c-1.27 1.73-3 6.91-4.44 9.23a11.08 11.08 0 0 0-0.8 1l-0.08 0.06c-1.06 0.64-4 1.19-5.19 2.4a15.63 15.63 0 0 0-1.92 2.6l-0.18 0.25a8.22 8.22 0 0 1-3.93 3.27v0.32h33.14c0.23 0.02 2.72-0.16 0.96-2.73z"/></g></g></svg>') !important;
+  background-repeat: no-repeat no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  width: 60% !important;
+}

@@ -1,5 +1,5 @@
 {
-  boot.initrd.systemd.enable = true; # ?
+  boot.initrd.systemd.enable = true;
   boot.loader = {
     efi.canTouchEfiVariables = true;
     systemd-boot = {

@@ -7,7 +7,7 @@
       width = 2560;
       height = 1440;
       x = 0;
-      y = 804;
+      y = 720;
       workspace = "3";
     }
     {

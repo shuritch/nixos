@@ -306,23 +306,29 @@ in {
         (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
     };
 
-    # This is order sensitive, so it has to come here.
+    # TODO: Make auto-connect with bluetooth itself
     extraConfig = ''
-      exec-once = nm-applet --indicator
-      exec-once = blueman-applet
+      exec-once=bluetoothctl connect AC:80:0A:E3:3B:CE && pkill blueman-applet
 
-      ${if config.programs.kitty.enable then
-        "exec-once =[workspace 1 silent] kitty"
+      ${if hasPackage "code" then
+        "exec-once =[workspace 1 silent] code"
       else
         ""}
+
 
       ${if hasPackage "firefox" then
         "exec-once =[workspace 2 silent] firefox"
       else
         ""}
 
+
+      ${if config.programs.kitty.enable then
+        "exec-once =[workspace 3 silent] kitty"
+      else
+        ""}
+
       ${if hasPackage "vesktop" then
-        "exec-once =[workspace 3 silent] vesktop"
+        "exec-once = vesktop --start-minimized"
       else
         ""}
 

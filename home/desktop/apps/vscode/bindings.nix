@@ -9,7 +9,7 @@
   }
   {
     "key" = "shift shift";
-    "command" = "workbench.action.toggleZenMode";
+    "command" = "workbench.action.toggleSidebarVisibility";
   }
   {
     "key" = "alt+backspace";

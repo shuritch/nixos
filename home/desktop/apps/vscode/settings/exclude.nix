@@ -17,4 +17,5 @@
   "**/*.nyc_output" = true;
   "**/*.tap" = true;
   "**/.astro" = true;
+  "**/.direnv" = true;
 }

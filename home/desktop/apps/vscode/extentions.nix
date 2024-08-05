@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  # test
   programs.vscode.extensions = with pkgs.vscode-extensions;
     [
       visualstudioexptteam.intellicode-api-usage-examples
@@ -6,7 +7,6 @@
       visualstudioexptteam.vscodeintellicode
       christian-kohler.path-intellisense
       christian-kohler.npm-intellisense
-      ms-ceintl.vscode-language-pack-ru
       kamikillerto.vscode-colorize
       ms-azuretools.vscode-docker
       yzhang.markdown-all-in-one
@@ -18,8 +18,6 @@
       pkief.material-icon-theme
       ms-vscode.makefile-tools
       tamasfe.even-better-toml
-      mechatroner.rainbow-csv
-      oderwat.indent-rainbow
       tabnine.tabnine-vscode
       wix.vscode-import-cost
       esbenp.prettier-vscode
@@ -28,7 +26,6 @@
       usernamehw.errorlens
       ibm.output-colorizer
       svelte.svelte-vscode
-      denoland.vscode-deno
       hediet.vscode-drawio
       irongeek.vscode-env
       mhutchie.git-graph
@@ -43,8 +40,19 @@
       tomoki1207.pdf
       redhat.ansible
       bbenoist.nix
-      # drcika.apc-extension
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "apc-extension";
+        publisher = "drcika";
+        version = "0.3.9";
+        sha256 = "VMUICGvAFWrG/uL3aGKNUIt1ARovc84TxkjgSkXuoME=";
+      }
+      {
+        name = "svelte-intellisense";
+        publisher = "ardenivanov";
+        version = "0.7.1";
+        sha256 = "sha256-/AiGMgwCeD9B3y8LxTe6HoIswLuCnLbmwV7fxwfWSLw=";
+      }
       {
         name = "markdown-pdf";
         publisher = "yzane";
@@ -80,12 +88,6 @@
         publisher = "streetsidesoftware";
         version = "2.2.2";
         sha256 = "sha256-O/NPuehch2Iub4PJYubka06jQaR8jv0BOMuUfBZhuqY=";
-      }
-      {
-        name = "vscode-filesize";
-        publisher = "mkxml";
-        version = "3.1.0";
-        sha256 = "sha256-5485MjY3kMdeq/Z2mYaNjPj1XA+xRHizMrQDWDLWrf8=";
       }
       {
         name = "regexp-preview";
@@ -135,11 +137,11 @@
         version = "0.7.2";
         sha256 = "sha256-mAmncewwAeagVqwWWrmYosMyw2AT3W0sx8jl2mCeimg=";
       }
-      # {
-      #   name = "apc-extension";
-      #   publisher = "drcika";
-      #   version = "0.3.9";
-      #   sha256 = "1hd0xr2lmq28qq9wwwrg380pb2shimi6ixz2zv36l5f0dc40iial";
-      # }
+      {
+        name = "svg-preview";
+        publisher = "SimonSiefke";
+        version = "2.8.3";
+        sha256 = "sha256-hIVe1MmkyuHoDa56ZQUsSAGMlKWABoQ0FBOfgZZDbCw=";
+      }
     ];
 }
