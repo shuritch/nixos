@@ -308,8 +308,6 @@ in {
 
     # TODO: Make auto-connect with bluetooth itself
     extraConfig = ''
-      exec-once=bluetoothctl connect AC:80:0A:E3:3B:CE && pkill blueman-applet
-
       ${if hasPackage "code" then
         "exec-once =[workspace 1 silent] code"
       else

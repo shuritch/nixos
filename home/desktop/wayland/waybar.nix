@@ -1,5 +1,6 @@
 { config, lib, pkgs, inputs, ... }:
 let
+  inherit (config.colorscheme) colors;
   swayCfg = config.wayland.windowManager.sway;
   hyprlandCfg = config.wayland.windowManager.hyprland;
   commonDeps = with pkgs; [ coreutils gnugrep systemd ];
@@ -53,11 +54,18 @@ in {
             "hyprland/language"
           ]) ++ [ "custom/currentplayer" "custom/player" ];
 
-        modules-center =
-          [ "cpu" "custom/gpu" "memory" "disk" "clock" "pulseaudio" "battery" ];
+        modules-center = [
+          "cpu"
+          "custom/gpu"
+          "memory"
+          "disk"
+          "clock"
+          "pulseaudio"
+          "bluetooth"
+          "battery"
+        ];
 
-        modules-right =
-          [ "custom/rfkill" "bluetooth" "network" "tray" "custom/hostname" ];
+        modules-right = [ "custom/rfkill" "network" "tray" "custom/hostname" ];
 
         "hyprland/language" = {
           format-en = "US";
@@ -67,34 +75,56 @@ in {
 
         clock = {
           interval = 1;
-          format = "{:%d/%m %H:%M:%S}";
+          format = "{:%d/%m %H:%M}";
           format-alt = "{:%Y-%m-%d %H:%M:%S %z}";
           on-click-left = "mode";
-          tooltip-format = ''
-            <big>{:%Y %B}</big>
-            <tt><small>{calendar}</small></tt>'';
+          tooltip-format = "<tt><small>{calendar}</small></tt>";
+          calendar = {
+            mode = "month";
+            on-scroll = 1;
+            format = {
+              months = "<span color='${colors.primary}'><b>{}</b></span>";
+              days = "<span color='${colors.on_surface}'><b>{}</b></span>";
+              # weeks = "<span color='${colors.tertiary}'><b>W{}</b></span>";
+              weekdays = "<span color='${colors.secondary}'><b>{}</b></span>";
+              today = "<span color='${colors.primary}'><b>{}</b></span>";
+            };
+          };
+          actions = {
+            on-click-forward = "tz_up";
+            on-click-backward = "tz_down";
+            on-scroll-up = "shift_up";
+            on-scroll-down = "shift_down";
+          };
         };
 
-        cpu = { format = "   {usage}%"; };
+        cpu = {
+          format = "  ";
+          tooltip-format = "{usage}%";
+        };
 
         "custom/gpu" = {
           interval = 30;
           exec = mkScript {
-            script = "cat /sys/class/drm/card0/device/gpu_busy_percent";
+            # script = "cat /sys/class/drm/card0/device/gpu_busy_percent"; # AMD
+            deps = [ "nvidia-smi" ];
+            script = # Nvidia
+              "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
           };
-          format = "󰒋   {}%";
+          format = "󰒋  ";
+          tooltip-format = "{}%";
         };
 
         memory = {
-          format = "   {}%";
+          format = "  ";
           interval = 30;
+          tooltip-format = "{percentage}%";
         };
 
         disk = {
           interval = 30;
-          format = "󰋊   {percentage_used}%";
-          tooltip-format =
-            "({used}/{total})({percentage_used}%) in '{path}', available {free}({percentage_free}%)";
+          format = "󰋊  ";
+          tooltip-format = "{used}/{total}";
         };
 
         pulseaudio = {
