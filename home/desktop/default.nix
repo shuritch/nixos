@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ config, ... }: {
   imports =
     [ ./fonts.nix ./gtk.nix ./kdeconnect.nix ./cursor.nix ./qt.nix ./apps ];
 

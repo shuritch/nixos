@@ -193,8 +193,10 @@ config:
   "javascript.validate.enable" = true;
   "javascript.updateImportsOnFileMove.enabled" = "always";
   "typescript.updateImportsOnFileMove.enabled" = "always";
+  "javascript.suggestionActions.enabled" = false;
   "javascript.suggest.names" = false;
   "json.maxItemsComputed" = 10000;
+  "typescript.suggestionActions.enabled" = false;
   "typescript.inlayHints.functionLikeReturnTypes.enabled" = false;
   "typescript.inlayHints.propertyDeclarationTypes.enabled" = false;
   "typescript.inlayHints.parameterTypes.enabled" = false;

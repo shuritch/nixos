@@ -1,0 +1,11 @@
+{
+  "search.exclude": {
+    "**/result": true
+  },
+  "explorer.autoRevealExclude": {
+    "**/result": true
+  },
+  "files.exclude": {
+    "**/result": true
+  }
+}

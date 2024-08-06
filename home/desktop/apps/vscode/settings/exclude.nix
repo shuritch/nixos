@@ -3,9 +3,9 @@
   "**/.turbo" = true;
   "**/.changes" = true;
   "**/.yarn" = true;
-  "**/.vscode" = true;
+  # "**/.vscode" = true;
   "**/.git" = true;
-  "**/.github" = true;
+  # "**/.github" = true;
   "**/.grit" = true;
   "**/.changeset" = true;
   "**/node_modules" = true;
