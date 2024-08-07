@@ -4,4 +4,5 @@
   shellcolor = import ./shellcolor.nix;
   wallpaper = import ./wallpaper.nix;
   colors = import ./colors.nix;
+  mimetypes = import ./mime.nix;
 }

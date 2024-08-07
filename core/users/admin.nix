@@ -34,6 +34,7 @@ in {
         "wheel"
         "input"
         "libvirtd"
+        "tpws"
       ];
     };
   };

@@ -1,7 +1,4 @@
-{ inputs, config, ... }:
-
-let inherit (config.colorscheme) colors harmonized;
-in {
+{ inputs, config, ... }: {
   home.sessionVariables.EDITOR = "nvim";
   imports = [
     inputs.nixvim.homeManagerModules.nixvim

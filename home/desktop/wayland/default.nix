@@ -4,7 +4,6 @@
     ./swayidle.nix
     ./swaylock.nix
     ./waypipe.nix
-    ./zathura.nix
     ./waybar.nix
     ./wofi.nix
     ./mako.nix
@@ -31,16 +30,10 @@
     wf-recorder
     wl-clipboard
     networkmanagerapplet
-    nemo # File manager
     # Screenshots
     grim
     grimblast
     slurp
     swappy
-    # Media
-    feh # Imager viewer
-    imv # Image viewer
-    vlc # Video player
-    mpv # Video player
   ];
 }

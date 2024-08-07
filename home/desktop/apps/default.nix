@@ -1,11 +1,12 @@
 { pkgs, ... }: {
   imports = [
-    ./discord.nix
-    ./libreoffice.nix
-    ./firefox.nix
     ./vscode
     ./chrome.nix
-
+    ./discord.nix
+    ./documents.nix
+    ./filemanager.nix
+    ./firefox.nix
+    ./media.nix
   ];
 
   home.packages = with pkgs; [

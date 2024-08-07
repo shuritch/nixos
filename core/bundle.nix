@@ -10,5 +10,7 @@
     ./nix.nix
     ./security.nix
     ./xserver.nix
+    ./openssh.nix
+    ./frkn.nix
   ];
 }

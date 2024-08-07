@@ -1,41 +1,53 @@
-{ pkgs, ... }:
-
 {
-  networking.networkmanager.enable = true;
-  networking.firewall.allowedUDPPorts = [ 41641 ];
   services.tailscale.enable = true;
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false; # Harden
-      StreamLocalBindUnlink = "yes"; # Automatically remove stale sockets
-      GatewayPorts = "clientspecified"; # Allow forwarding ports to everywhere
-      AcceptEnv = "WAYLAND_DISPLAY"; # Let WAYLAND_DISPLAY be forwarded
-      X11Forwarding = true;
+  services.tailscale.useRoutingFeatures = "client";
+  systemd.network.wait-online.anyInterface = true;
+  environment.etc.hosts.mode = "0644";
+  networking = {
+    firewall = {
+      logReversePathDrops = true;
+      allowedUDPPorts = [ 41641 ];
     };
 
-    hostKeys = [{
-      path = "/etc/ssh/ssh_host_ed25519_key";
-      type = "ed25519";
-    }];
+    nameservers = [ "127.0.0.1" "::1" ];
+    dhcpcd.extraConfig = "nohook resolv.conf";
+    networkmanager.dns = "systemd-resolved"; # none | systemd-resolved ?
+    networkmanager.enable = true;
+    dhcpcd.enable = false; # NetManager
+    enableIPv6 = false; # No leaks
   };
 
-  # Keep SSH_AUTH_SOCK when sudo'ing
-  security.sudo.extraConfig = ''
-    Defaults env_keep+=SSH_AUTH_SOCK
-  '';
+  services.resolved = {
+    enable = true;
+    fallbackDns = [ ];
+  };
 
-  # Passwordless sudo when SSH'ing with keys
-  security.pam.services.sudo = { config, ... }: {
-    rules.auth.rssh = {
-      order = config.rules.auth.ssh_agent_auth.order - 1;
-      control = "sufficient";
-      modulePath = "${pkgs.pam_rssh}/lib/libpam_rssh.so";
-      settings.authorized_keys_command =
-        pkgs.writeShellScript "get-authorized-keys" ''
-          cat "/etc/ssh/authorized_keys.d/$1"
-        '';
+  services.dnscrypt-proxy2 = {
+    enable = true;
+    settings = {
+      block_ipv6 = true;
+      require_dnssec = true;
+      ipv4_servers = true;
+      ipv6_servers = false;
+      dnscrypt_servers = true;
+      doh_servers = true;
+      require_nolog = true;
+
+      listen_addresses = [ "127.0.0.1:53" "[::1]:53" ];
+      server_names = [ "scaleway-fr" "google" "yandex" "cloudflare" ];
+      sources.public-resolvers = {
+        cache_file = "/var/lib/dnscrypt-proxy2/public-resolvers.md";
+        minisign_key =
+          "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
+        urls = [
+          "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
+          "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
+        ];
+      };
     };
+  };
+
+  systemd.services.dnscrypt-proxy2.serviceConfig = {
+    StateDirectory = "dnscrypt-proxy";
   };
 }
