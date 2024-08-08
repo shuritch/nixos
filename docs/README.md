@@ -39,17 +39,24 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 - `flake.nix`: Entrypoint for hosts and home configurations.
 - `shell.nix`: Exposes a dev shell for bootstrapping.
 - `home`: Home-manager configuration
-- `core`: NixOS Configurations
+- `core`: NixOS Configuration
 - `hosts`: Hardware specific configurations
   - `atlas`: Desktop PC - 32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
   - `hermes`: Laptop - 16GB RAM, i7-1165G7, Iris XE | Hyprland
 - `library`:
-  - `vars`: Global variables, accessible through { myEnv, ... }:
   - `overlays`: Patches and custom overrides for some packages.
   - `modules`: Modules for more accurate customization.
   - `pkgs`: Self hosted packages.
 
-## About colors
+## Details
+
+### Environment | `myEnv` identifier
+
+- To get access to the identifier you can use: `{myEnv, ...}: `;
+- This identifier comes from joining the environments.
+  System wide environment which locates at `./hosts/environment.nix` joins with host specific environment which locates `./hosts/<host>/environment.nix`
+
+### About colors
 
 System _color_ schema will be generated based on all stored wallpapers;
 Each time wallpaper changes color - schema changes too.
@@ -59,7 +66,7 @@ This behavior works thanks to [Mutagen](https://github.com/InioX/matugen).
 
 ![Color scheme](./colors.jpg)
 
-### Keywords to operate with
+#### Keywords to operate with
 
 | keyword                  | keyword                  | keyword                    |
 | ------------------------ | ------------------------ | -------------------------- |
@@ -83,7 +90,7 @@ This behavior works thanks to [Mutagen](https://github.com/InioX/matugen).
 
 </div>
 
-### Tuning example
+#### Tuning example
 
 ```nix
 let
