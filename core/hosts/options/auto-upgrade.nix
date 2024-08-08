@@ -8,6 +8,7 @@ in {
     enable = isClean;
     dates = "hourly";
     flags = [ "--refresh" ];
+    allowReboot = false;
     flake = "git://github.com/${vars.flake-github}?ref=release-${hostName}";
   };
 

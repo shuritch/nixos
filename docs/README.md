@@ -44,8 +44,6 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
   - `hosts`: Hardware specific configurations
     - `atlas`: Desktop PC - 32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
     - `hermes`: Laptop - 16GB RAM, i7-1165G7, Iris XE | Hyprland
-      global: Configurations that are globally applied to all my machines.
-      optional: Opt-in configurations my machines can use.
 - `library`:
   - `vars`: Global variables, accessible through { vars, ... }:
   - `overlays`: Patches and custom overrides for some packages.
