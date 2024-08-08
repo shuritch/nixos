@@ -8,7 +8,7 @@ in {
     ../../core/default.nix
     ./hardware-configuration.nix
     inputs.hardware.nixosModules.common-pc-ssd
-    inputs.hardware.nixosModules.common-gpu-nvidia
+    inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-cpu-intel
     (relative "auto-upgrade.nix")
     (relative "nvidia-gpu.nix")

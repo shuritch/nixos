@@ -61,10 +61,16 @@
         {
           name = "NIX";
           toolbar = true;
-          bookmarks = [{
-            name = "Language manual";
-            url = "https://nix.dev/manual/nix/2.18/language/";
-          }];
+          bookmarks = [
+            {
+              name = "Language manual";
+              url = "https://nix.dev/manual/nix/2.18/language/";
+            }
+            {
+              name = "Library manual";
+              url = "https://ryantm.github.io/nixpkgs";
+            }
+          ];
         }
         {
           name = "SEO";

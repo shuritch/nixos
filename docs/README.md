@@ -13,7 +13,8 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 git clone https://github.com/sashapop10/nixos /mnt/flake
 sudo nixos-generate-config --dir /mnt/config
 mv -f /mnt/config/hardware-configuration.nix /mnt/flake/core/hosts/<hostname>
-sudo nixos-install --flake /mnt/flake#<username>@<hostname>
+sudo nixos-install --flake /mnt/flake#<hostname>
+sudo nixos-install --flake /mnt/flake#<hostname>
 reboot
 ```
 
