@@ -20,9 +20,9 @@ reboot
 # Update
 
 ```bash
-	nix-channel --update
-	nix flake update
-	sudo nixos-rebuild --upgrade switch --flake .#<username>@<hostname>
+nix-channel --update
+nix flake update
+sudo nixos-rebuild --upgrade switch --flake .#<username>@<hostname>
 ```
 
 ## Rebuild
