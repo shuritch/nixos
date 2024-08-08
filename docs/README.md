@@ -1,6 +1,6 @@
 <h1 align="center">Deep dive into declarative configuration</h1>
 
-![Example](./example.png)
+![Example](./example.png "State of 2024-08-09")
 
 ## Installation
 
@@ -8,12 +8,12 @@
 # Working with Live CD
 nix-shell -p curl git
 curl https://raw.githubusercontent.com/sashapop10/nixos/main/core/hosts/<hostname>/disko.nix > /mnt/config/disko.nix
-# Edit disko.nix (replace device with name from lsblk result)
+# Edit disko.nix (Replace device with name from lsblk result at least)
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /mnt/config/disko.nix
 git clone https://github.com/sashapop10/nixos /mnt/flake
 sudo nixos-generate-config --dir /mnt/config
 mv -f /mnt/config/hardware-configuration.nix /mnt/flake/core/hosts/<hostname>
-sudo nixos-install --flake /mnt/flake#<hostname>
+nix-shell
 sudo nixos-install --flake /mnt/flake#<hostname>
 reboot
 ```
