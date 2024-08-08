@@ -92,7 +92,7 @@ This behavior works thanks to [Mutagen](https://github.com/InioX/matugen).
 let
 inherit (config.colorscheme) colors harmonized;
 in {
-	programs.program = {
+  programs.program = {
     enable = true;# Base 16
     colorscheme = {# All colors in #HEX format
       base00 = "${colors.surface}"; # bg
