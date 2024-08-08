@@ -24,6 +24,7 @@
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
       vars = import ./library/vars { inherit inputs outputs lib; };
+      admin = vars.admin.login;
       specialArgs = { inherit vars inputs outputs; };
       forSys = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (system:
@@ -45,9 +46,20 @@
         specialArgs = specialArgs;
       };
 
-      homeConfigurations."sashapop10@atlas" = lib.homeManagerConfiguration {
+      nixosConfigurations.hermes = lib.nixosSystem {
+        modules = [ ./core/hosts/hermes ];
+        specialArgs = specialArgs;
+      };
+
+      homeConfigurations."${admin}@atlas" = lib.homeManagerConfiguration {
         extraSpecialArgs = specialArgs;
         modules = [ ./home/standalone.nix ./home/hosts/atlas.nix ];
+        pkgs = pkgsFor.x86_64-linux;
+      };
+
+      homeConfigurations."${admin}@hermes" = lib.homeManagerConfiguration {
+        extraSpecialArgs = specialArgs;
+        modules = [ ./home/standalone.nix ./home/hosts/hermes.nix ];
         pkgs = pkgsFor.x86_64-linux;
       };
     };

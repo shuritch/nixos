@@ -1,24 +1,56 @@
 <h1 align="center">Deep dive into declarative configuration</h1>
 
+![Example](./example.png)
+
 ## Installation
 
 ```bash
 # Working with Live CD
 nix-shell -p curl git
-curl https://github.com/sashapop10/nixos/disko.nix
+curl https://github.com/sashapop10/nixos/hosts/<hostname>/disko.nix
 # Edit disko.nix (replace device with name from lsblk result)
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disko.nix
 git clone https://github.com/sashapop10/nixos /mnt/flake
-sudo nixos-install --flake /mnt/flake
+mkdir /mnt/flake/generated nixos-generate-config --dir /mnt/flake/generated
+mv -f /mnt/flake/generated/hardware-configuration.nix /mnt/flake/core/hosts/<hostname>
+sudo nixos-install --flake /mnt/flake#<username>@<hostname>
 reboot
 ```
 
-## Update / Rebuild
+# Update
 
 ```bash
-sudo nixos-rebuild switch --flake .#<username>@<hostname> # If Hosts updated
-home-manager switch --flake .#<username>@<hostname> # If Home updated
+	nix-channel --update
+	nix flake update
+	sudo nixos-rebuild --upgrade switch --flake .#<username>@<hostname>
 ```
+
+## Rebuild
+
+```bash
+git add . # Important if new files were created
+sudo nixos-rebuild switch --flake .#<username>@<hostname> # If Hosts updated
+home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
+```
+
+## Structure
+
+- `.vscode`: Makes vscode more performant in this directory.
+- `flake.nix`: Entrypoint for hosts and home configurations.
+- `shell.nix`: Exposes a dev shell for bootstrapping.
+- `home`: Home-manager configuration
+- `core`: NixOS Configurations
+  - `users`: Users configuration
+  - `hosts`: Hardware specific configurations
+    - `atlas`: Desktop PC - 32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
+    - `hermes`: Laptop - 16GB RAM, i7-1165G7, Iris XE | Hyprland
+      global: Configurations that are globally applied to all my machines.
+      optional: Opt-in configurations my machines can use.
+- `library`:
+  - `vars`: Global variables, accessible through { vars, ... }:
+  - `overlays`: Patches and custom overrides for some packages.
+  - `modules`: Modules for more accurate customization.
+  - `pkgs`: Self hosted packages.
 
 ## About colors
 
@@ -30,7 +62,7 @@ This behavior works thanks to [Mutagen](https://github.com/InioX/matugen).
 
 ![Color scheme](./colors.jpg)
 
-### Keywords
+### Keywords to operate with
 
 | keyword                  | keyword                  | keyword                    |
 | ------------------------ | ------------------------ | -------------------------- |
@@ -54,7 +86,7 @@ This behavior works thanks to [Mutagen](https://github.com/InioX/matugen).
 
 </div>
 
-### Example
+### Tuning example
 
 ```nix
 let

@@ -1,13 +1,12 @@
 { pkgs, inputs, vars, ... }: {
-  networking.hostName = "atlas";
+  networking.hostName = "hermes";
   system.stateVersion = vars.origin;
   imports = [
-    inputs.hardware.nixosModules.common-pc-ssd
-    inputs.hardware.nixosModules.common-gpu-nvidia
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
+    inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-cpu-intel
     ./hardware-configuration.nix
     ../options/auto-upgrade.nix
-    ../options/nvidia-gpu.nix
     # ../options/quietboot.nix
     ../options/bluetooth.nix
     ../options/database.nix
@@ -16,7 +15,6 @@
     ../options/coding.nix
     ../options/sound.nix
     ../options/virt.nix
-    ../options/frkn.nix
     ../../default.nix
   ];
 
@@ -26,16 +24,5 @@
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
-  };
-
-  # nix-shell -p lshw --run 'lshw -c display'
-  hardware.nvidia.prime = {
-    sync.enable = true;
-    nvidiaBusId = "PCI:1:0:0";
-    intelBusId = "PCI:0:2:0";
-    offload = {
-      enable = false;
-      # enableOffloadCmd = true;
-    };
   };
 }

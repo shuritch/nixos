@@ -34,7 +34,6 @@
       require_nolog = true;
 
       listen_addresses = [ "127.0.0.1:53" "[::1]:53" ];
-      server_names = [ "scaleway-fr" "google" "yandex" "cloudflare" ];
       sources.public-resolvers = {
         cache_file = "/var/lib/dnscrypt-proxy2/public-resolvers.md";
         minisign_key =
