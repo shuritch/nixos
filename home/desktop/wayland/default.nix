@@ -11,7 +11,6 @@
 
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   services.cliphist.enable = true; # Clip board
-  programs.imv.enable = true; # Image viewer
   xdg.mimeApps.enable = true;
 
   home.sessionVariables = {
