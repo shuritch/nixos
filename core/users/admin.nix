@@ -1,13 +1,13 @@
-{ pkgs, config, vars, ... }:
+{ pkgs, config, myEnv, ... }:
 
 let
-  inherit (vars.admin) login password description;
+  inherit (myEnv.admin) login password description;
   inherit (config.networking) hostName;
   ifTheyExist = groups:
     builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
   services.getty.autologinUser = login;
-  home-manager.users.${login} = import ../../home/hosts/${hostName}.nix;
+  home-manager.users.${login} = import ../../hosts/${hostName}/home.nix;
   users = {
     mutableUsers = false;
     defaultUserShell = pkgs.fish;

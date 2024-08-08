@@ -1,11 +1,11 @@
-{ pkgs, vars, ... }:
+{ pkgs, myEnv, ... }:
 
 {
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
-    userName = vars.admin.description;
-    userEmail = vars.admin.email;
+    userName = myEnv.admin.description;
+    userEmail = myEnv.admin.email;
     ignores = [ ".direnv" "result" ];
     lfs.enable = true;
     extraConfig = {

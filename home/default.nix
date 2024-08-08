@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, vars, ... }:
+{ inputs, outputs, lib, config, pkgs, myEnv, ... }:
 
 let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
 in {
@@ -9,9 +9,9 @@ in {
   programs.git.enable = true;
 
   home = {
-    username = lib.mkDefault vars.admin.login;
+    username = lib.mkDefault myEnv.admin.login;
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    sessionVariables.FLAKE = vars.flake-location;
+    sessionVariables.FLAKE = myEnv.flake-location;
     sessionPath = [ "$HOME/.local/bin" ];
     stateVersion = lib.mkDefault "23.11";
   };

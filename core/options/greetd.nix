@@ -1,8 +1,8 @@
-{ pkgs, lib, config, vars, ... }:
+{ pkgs, lib, config, myEnv, ... }:
 # TODO: Maybe move to home
 let
   homeCfgs = config.home-manager.users;
-  userCfg = homeCfgs.${vars.admin.login};
+  userCfg = homeCfgs.${myEnv.admin.login};
   gtkTheme = userCfg.gtk.theme;
   iconTheme = userCfg.gtk.iconTheme;
   wallpaper = userCfg.wallpaper;

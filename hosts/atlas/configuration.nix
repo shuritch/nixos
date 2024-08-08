@@ -1,23 +1,27 @@
-{ pkgs, inputs, vars, ... }: {
+{ pkgs, inputs, lib, myEnv, ... }:
+
+let relative = lib.path.append ../../core/options;
+in {
   networking.hostName = "atlas";
-  system.stateVersion = vars.origin;
+  system.stateVersion = myEnv.origin;
+
   imports = [
+    ../../core/default.nix
+    ./hardware-configuration.nix
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-cpu-intel
-    ./hardware-configuration.nix
-    ../options/auto-upgrade.nix
-    ../options/nvidia-gpu.nix
-    # ../options/quietboot.nix
-    ../options/bluetooth.nix
-    ../options/database.nix
-    ../options/xserver.nix
-    ../options/greetd.nix
-    ../options/coding.nix
-    ../options/sound.nix
-    ../options/virt.nix
-    ../options/frkn.nix
-    ../../default.nix
+    (relative "auto-upgrade.nix")
+    (relative "nvidia-gpu.nix")
+    # (relative "options/quietboot.nix")
+    (relative "bluetooth.nix")
+    (relative "database.nix")
+    (relative "xserver.nix")
+    (relative "greetd.nix")
+    (relative "coding.nix")
+    (relative "sound.nix")
+    (relative "virt.nix")
+    (relative "frkn.nix")
   ];
 
   nixpkgs.config.permittedInsecurePackages =

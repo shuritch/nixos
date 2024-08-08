@@ -40,12 +40,11 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 - `shell.nix`: Exposes a dev shell for bootstrapping.
 - `home`: Home-manager configuration
 - `core`: NixOS Configurations
-  - `users`: Users configuration
-  - `hosts`: Hardware specific configurations
-    - `atlas`: Desktop PC - 32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
-    - `hermes`: Laptop - 16GB RAM, i7-1165G7, Iris XE | Hyprland
+- `hosts`: Hardware specific configurations
+  - `atlas`: Desktop PC - 32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
+  - `hermes`: Laptop - 16GB RAM, i7-1165G7, Iris XE | Hyprland
 - `library`:
-  - `vars`: Global variables, accessible through { vars, ... }:
+  - `vars`: Global variables, accessible through { myEnv, ... }:
   - `overlays`: Patches and custom overrides for some packages.
   - `modules`: Modules for more accurate customization.
   - `pkgs`: Self hosted packages.

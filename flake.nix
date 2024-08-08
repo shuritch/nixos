@@ -19,48 +19,20 @@
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      vars = import ./library/vars { inherit inputs outputs lib; };
-      admin = vars.admin.login;
-      specialArgs = { inherit vars inputs outputs; };
-      forSys = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs (import systems) (system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        });
+      configs = import ./hosts { inherit inputs outputs lib; };
     in {
       inherit lib;
       overlays = import ./library/overlays { inherit inputs outputs; };
-      devShells = forSys (pkgs: import ./shell.nix { inherit pkgs; });
-      packages = forSys (pkgs: import ./library/pkgs { inherit pkgs; });
+      devShells = configs.forSys (pkgs: import ./shell.nix { inherit pkgs; });
+      packages = configs.forSys (pkgs: import ./library/pkgs { inherit pkgs; });
       homeManagerModules = import ./library/modules/home;
       nixosModules = import ./library/modules/global;
-      formatter = forSys (pkgs: pkgs.nixfmt-classic);
-
-      nixosConfigurations.atlas = lib.nixosSystem {
-        modules = [ ./core/hosts/atlas ];
-        specialArgs = specialArgs;
-      };
-
-      nixosConfigurations.hermes = lib.nixosSystem {
-        modules = [ ./core/hosts/hermes ];
-        specialArgs = specialArgs;
-      };
-
-      homeConfigurations."${admin}@atlas" = lib.homeManagerConfiguration {
-        extraSpecialArgs = specialArgs;
-        modules = [ ./home/standalone.nix ./home/hosts/atlas.nix ];
-        pkgs = pkgsFor.x86_64-linux;
-      };
-
-      homeConfigurations."${admin}@hermes" = lib.homeManagerConfiguration {
-        extraSpecialArgs = specialArgs;
-        modules = [ ./home/standalone.nix ./home/hosts/hermes.nix ];
-        pkgs = pkgsFor.x86_64-linux;
-      };
+      formatter = configs.forSys (pkgs: pkgs.nixfmt-classic);
+      nixosConfigurations = configs.hosts;
+      homeConfigurations = configs.homes;
     };
 }

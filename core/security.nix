@@ -1,10 +1,10 @@
-{ vars, ... }: {
+{ myEnv, ... }: {
   # Enable acme for usage with nginx vhosts
   security = {
     pam.services = { swaylock = { }; };
 
     acme = {
-      defaults.email = vars.admin.email;
+      defaults.email = myEnv.admin.email;
       acceptTerms = true;
     };
 

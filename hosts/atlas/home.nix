@@ -1,5 +1,8 @@
-{ pkgs, ... }: {
-  imports = [ ../desktop/hyprland ../default.nix ];
+{ pkgs, lib, ... }:
+
+let relative = lib.path.append ../../home;
+in {
+  imports = [ (relative "desktop/hyprland") (relative "default.nix") ];
   wallpaper = pkgs.wallpapers.ship-art-dark;
   monitors = [
     {

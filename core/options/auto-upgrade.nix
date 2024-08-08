@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, lib, vars, ... }:
+{ config, inputs, pkgs, lib, myEnv, ... }:
 
 let
   inherit (config.networking) hostName;
@@ -9,7 +9,7 @@ in {
     dates = "hourly";
     flags = [ "--refresh" ];
     allowReboot = false;
-    flake = "git://github.com/${vars.flake-github}?ref=release-${hostName}";
+    flake = "git://github.com/${myEnv.flake-github}?ref=release-${hostName}";
   };
 
   systemd.services.nixos-upgrade = lib.mkIf config.system.autoUpgrade.enable {

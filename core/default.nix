@@ -1,8 +1,8 @@
-{ inputs, outputs, vars, ... }: {
+{ inputs, outputs, myEnv, ... }: {
   imports = [ ./bundle.nix ] ++ (builtins.attrValues outputs.nixosModules);
-  home-manager.extraSpecialArgs = { inherit inputs outputs vars; };
+  home-manager.extraSpecialArgs = { inherit inputs outputs myEnv; };
   home-manager.useGlobalPkgs = true;
-  system.stateVersion = vars.origin;
+  system.stateVersion = myEnv.origin;
   services.printing.enable = true;
   services.upower.enable = true;
   documentation = {
