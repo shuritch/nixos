@@ -21,6 +21,13 @@
   nixpkgs.config.permittedInsecurePackages =
     [ "python-2.7.18.8" "electron-25.9.0" ];
 
+  services.tlp.enable = true;
+  powerManagement.powertop.enable = true;
+  services.logind = {
+    lidSwitch = "suspend";
+    lidSwitchExternalPower = "lock";
+  };
+
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];

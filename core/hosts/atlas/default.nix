@@ -28,6 +28,11 @@
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
+  programs = {
+    adb.enable = true;
+    dconf.enable = true;
+  };
+
   # nix-shell -p lshw --run 'lshw -c display'
   hardware.nvidia.prime = {
     sync.enable = true;

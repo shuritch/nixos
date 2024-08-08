@@ -7,12 +7,12 @@
 ```bash
 # Working with Live CD
 nix-shell -p curl git
-curl https://github.com/sashapop10/nixos/hosts/<hostname>/disko.nix
+curl https://raw.githubusercontent.com/sashapop10/nixos/main/core/hosts/<hostname>/disko.nix > /mnt/config/disko.nix
 # Edit disko.nix (replace device with name from lsblk result)
-sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disko.nix
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /mnt/config/disko.nix
 git clone https://github.com/sashapop10/nixos /mnt/flake
-mkdir /mnt/flake/generated nixos-generate-config --dir /mnt/flake/generated
-mv -f /mnt/flake/generated/hardware-configuration.nix /mnt/flake/core/hosts/<hostname>
+sudo nixos-generate-config --dir /mnt/config
+mv -f /mnt/config/hardware-configuration.nix /mnt/flake/core/hosts/<hostname>
 sudo nixos-install --flake /mnt/flake#<username>@<hostname>
 reboot
 ```
