@@ -1,7 +1,7 @@
 {
   # ? "https://github.com/nix-community/disko/blob/master/docs/quickstart.md"
   disko.devices = {
-    disk = {
+    disk.main = {
       device = "/dev/nvme0n1";
       type = "disk";
       content = {
