@@ -35,6 +35,7 @@ in {
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
+  hardware.intel-gpu-tools.enable = true;
   hardware.opentabletdriver.enable = true;
   programs = {
     adb.enable = true;
