@@ -32,10 +32,6 @@ in {
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
-  services.syncthing.settings.devices.atlas = {
-    id = "4HMQGUC-2F45JJN-JJV646T-M4QHMLI-XQUAND6-VXSNM43-OGKISXD-ANJHWQF";
-  };
-
   programs = {
     adb.enable = true;
     dconf.enable = true;

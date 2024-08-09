@@ -24,6 +24,13 @@ in {
         password = "admin";
       };
 
+      devices = {
+        atlas.id =
+          "4HMQGUC-2F45JJN-JJV646T-M4QHMLI-XQUAND6-VXSNM43-OGKISXD-ANJHWQF";
+        hermes.id =
+          "SG5N6PX-YUDM5CE-LGAY6YG-I3XUO27-BDOGUFW-ALAM7AV-OTHVQ2V-ECQSIQC";
+      };
+
       folders = sync {
         "Documents" = { path = "${home}/Documents"; };
         "Music" = { path = "${home}/Music"; };

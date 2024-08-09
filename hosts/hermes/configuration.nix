@@ -33,10 +33,6 @@ in {
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
-  services.syncthing.settings.devices.hermes = {
-    id = "SG5N6PX-YUDM5CE-LGAY6YG-I3XUO27-BDOGUFW-ALAM7AV-OTHVQ2V-ECQSIQC";
-  };
-
   # services.tlp.enable = true;
   hardware.opentabletdriver.enable = true;
   powerManagement.cpuFreqGovernor = "ondemand";
