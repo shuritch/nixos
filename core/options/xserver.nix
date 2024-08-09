@@ -2,7 +2,13 @@
   services.libinput = {
     enable = true;
     mouse.accelProfile = "adaptive";
-    touchpad.accelProfile = "adaptive";
+    touchpad = {
+      accelProfile = "adaptive";
+      scrollMethod = "twofinger";
+      disableWhileTyping = true;
+      naturalScrolling = false;
+      accelSpeed = "0.2";
+    };
   };
 
   services.xserver = {

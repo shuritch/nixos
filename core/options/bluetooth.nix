@@ -6,7 +6,9 @@
     settings = {
       General = {
         Enable = "Source,Sink,Media,Socket";
+        ControllerMode = "bredr";
         Experimental = true;
+        AutoEnable = true;
       };
     };
   };

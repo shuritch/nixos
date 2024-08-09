@@ -1,5 +1,4 @@
 { pkgs, config, ... }: {
-  # TODO: Test this shit
   console = {
     useXkbConfig = true;
     earlySetup = false;

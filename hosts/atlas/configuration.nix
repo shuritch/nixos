@@ -13,7 +13,7 @@ in {
     inputs.hardware.nixosModules.common-cpu-intel
     (relative "auto-upgrade.nix")
     (relative "nvidia-gpu.nix")
-    # (relative "options/quietboot.nix")
+    (relative "syncthing.nix")
     (relative "bluetooth.nix")
     (relative "database.nix")
     (relative "xserver.nix")
@@ -30,6 +30,10 @@ in {
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+  };
+
+  services.syncthing.settings.devices.atlas = {
+    id = "4HMQGUC-2F45JJN-JJV646T-M4QHMLI-XQUAND6-VXSNM43-OGKISXD-ANJHWQF";
   };
 
   programs = {

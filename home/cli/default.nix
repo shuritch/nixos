@@ -38,6 +38,7 @@
 
   home.sessionVariables.PF_INFO =
     "ascii title os kernel uptime shell de palette";
+
   home.packages = with pkgs; [
     fastfetch
     pfetch-rs
@@ -76,7 +77,7 @@
     mkcert
     mediainfo
     gnupg
-    pkgs.stable.nixfmt-classic
+    stable.nixfmt-classic
     # nil # Nix Language server
     nixd # Nix Language server
     # alejandra # Nix formatter

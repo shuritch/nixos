@@ -1,7 +1,6 @@
 { config, ... }: {
   imports =
     [ ./fonts.nix ./gtk.nix ./kdeconnect.nix ./cursor.nix ./qt.nix ./apps ];
-
   xdg.portal.enable = true;
   services.playerctld = { enable = true; };
   dconf.settings."org/gnome/desktop/interface".color-scheme =

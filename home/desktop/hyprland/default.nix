@@ -6,7 +6,6 @@ let
     value =
       v.config.colorscheme.rawColorscheme.colors.${config.colorscheme.mode};
   }) outputs.homeConfigurations;
-  # rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
   packageNames = map (p: p.pname or p.name or null) config.home.packages;
   hasPackage = name: lib.any (x: x == name) packageNames;
@@ -29,7 +28,6 @@ in {
     enable = true;
     systemd = {
       enable = true;
-      # Same as default, but stop graphical-session too
       extraCommands = lib.mkBefore [
         "systemctl --user stop graphical-session.target"
         "systemctl --user start hyprland-session.target"
@@ -82,7 +80,7 @@ in {
 
       dwindle = {
         split_width_multiplier = 1.35;
-        # preserve_split = true; # you probably want thi
+        # preserve_split = true;
         pseudotile = true;
       };
 
@@ -91,7 +89,6 @@ in {
         close_special_on_empty = true;
         focus_on_activate = true;
         force_default_wallpaper = 0;
-        # Unfullscreen when opening something
         new_window_takes_over_fullscreen = 2;
       };
 
@@ -191,7 +188,7 @@ in {
       gestures = {
         workspace_swipe = true;
         workspace_swipe_fingers = 3;
-        workspace_swipe_invert = false;
+        workspace_swipe_invert = true;
         workspace_swipe_distance = 200;
         workspace_swipe_forever = true;
       };

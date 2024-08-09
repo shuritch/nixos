@@ -70,6 +70,10 @@
               name = "Library manual";
               url = "https://ryantm.github.io/nixpkgs";
             }
+            {
+              name = "Syncthing";
+              url = "http://127.0.0.1:8384";
+            }
           ];
         }
         {
@@ -113,6 +117,7 @@
         "identity.fxaccounts.enabled" = true; # fx accounts
         "signon.rememberSignons" = true; # Disable "save password" prompt
         "browser.download.useDownloadDir" = true; # Don't ask for download dir
+        "network.http.http3.enable" = false; # Disable quic
 
         # Disable irritating first-run stuff
         "browser.disableResetPrompt" = true;

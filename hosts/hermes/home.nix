@@ -9,5 +9,6 @@ in {
     height = 2160;
     primary = true;
     workspace = "1";
+    scale = 2;
   }];
 }
