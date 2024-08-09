@@ -37,7 +37,7 @@ in {
     id = "SG5N6PX-YUDM5CE-LGAY6YG-I3XUO27-BDOGUFW-ALAM7AV-OTHVQ2V-ECQSIQC";
   };
 
-  services.tlp.enable = true;
+  # services.tlp.enable = true;
   hardware.opentabletdriver.enable = true;
   powerManagement.cpuFreqGovernor = "ondemand";
   powerManagement.powertop.enable = true;
