@@ -7,6 +7,30 @@ let
   admin = myEnv.admin.login;
   home = "/home/${admin}";
   port = 8384;
+  ignore = ''
+    **/bin
+    **/.turbo
+    **/.changes
+    **/.yarn
+    **/.git
+    **/.grit
+    **/.changeset
+    **/node_modules
+    **/package.lock.json
+    **/.husky
+    **/dist
+    **/coverage
+    **/.next
+    **/*.tsbuildinfo
+    **/*.nyc_output
+    **/*.tap
+    **/.astro
+    **/.direnv
+    **/OS/result
+    **.rar
+    **.zip
+    **.7zip
+  '';
 in {
   networking.firewall.allowedTCPPorts = [ port 22000 ];
   networking.firewall.allowedUDPPorts = [ 22000 21027 ];
@@ -39,5 +63,11 @@ in {
         "Pictures" = { path = "${home}/Pictures"; };
       };
     };
+  };
+
+  home-manager.users.${admin} = { ... }: {
+    home.file = lib.mapAttrs'
+      (k: v: lib.nameValuePair "${k}/.stignore" { text = ignore; })
+      config.services.syncthing.folders;
   };
 }
