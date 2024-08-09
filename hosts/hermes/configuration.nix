@@ -41,14 +41,14 @@ in {
   hardware.opentabletdriver.enable = true;
   powerManagement.cpuFreqGovernor = "ondemand";
   powerManagement.powertop.enable = true;
-  logind = {
+  services.logind = {
     lidSwitch = "ignore";
     extraConfig = ''
       HandlePowerKey=ignore
     '';
   };
 
-  acpid = {
+  services.acpid = {
     enable = true;
     lidEventCommands = ''
       export PATH=$PATH:/run/current-system/sw/bin
