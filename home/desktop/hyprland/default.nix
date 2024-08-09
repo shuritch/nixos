@@ -307,17 +307,17 @@ in {
     # TODO: Make auto-connect with bluetooth itself
     extraConfig = ''
       ${if config.programs.kitty.enable then
-        "exec-once =[workspace 1 silent] kitty"
+        "exec-once = [workspace special silent] kitty"
       else
         ""}
 
       ${if hasPackage "firefox" then
-        "exec-once =[workspace 2 silent] firefox"
+        "exec-once = [workspace 2 silent] firefox"
       else
         ""}
 
       ${if hasPackage "vscode" then
-        "exec-once =[workspace 3 silent] code"
+        "exec-once = [workspace 1 silent] code"
       else
         ""}
 

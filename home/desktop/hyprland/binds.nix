@@ -22,6 +22,7 @@ in {
       "SUPER,q,killactive"
       "SUPERSHIFT,e,exit"
       "SUPER,l,exit"
+      "SUPERSHIFT,l,poweroff"
 
       "SUPER,s,togglesplit"
       "SUPER,f,fullscreen,1"

@@ -37,7 +37,7 @@
         INIT_APPLY_FW=1
         # --dpi-desync-fooling=badseq
         # NFQWS_OPT_DESYNC="--dpi-desync=fake,split2 --dpi-desync-ttl=4 --dpi-desync-ttl6=2 --dpi-desync-split-pos=1 --wssize 1:6 --dpi-desync-fooling=md5sig"
-        NFQWS_OPT_DESYNC="--dpi-desync=fake,split2  --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1"
+        NFQWS_OPT_DESYNC="--dpi-desync=fake,split2  --dpi-desync-fooling=md5sig --dpi-desync-split-pos=2"
         # NFQWS_OPT_DESYNC_HTTP="--dpi-desync=split --dpi-desync-fooling=md5sig"
         # NFQWS_OPT_DESYNC_HTTPS="--dpi-desync=fake,split --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1"
       '';
