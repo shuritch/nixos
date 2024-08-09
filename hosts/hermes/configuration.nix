@@ -10,11 +10,13 @@ in {
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.hardware.nixosModules.common-gpu-intel
     inputs.hardware.nixosModules.common-cpu-intel
+    (relative "powermanager.nix")
     (relative "auto-upgrade.nix")
     (relative "nvidia-gpu.nix")
     (relative "quietboot.nix")
     (relative "syncthing.nix")
     (relative "bluetooth.nix")
+    (relative "lidswitch.nix")
     (relative "database.nix")
     (relative "xserver.nix")
     (relative "greetd.nix")
@@ -33,37 +35,7 @@ in {
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
-  # services.tlp.enable = true;
   hardware.opentabletdriver.enable = true;
-  powerManagement.cpuFreqGovernor = "ondemand";
-  powerManagement.powertop.enable = true;
-  services.logind = {
-    lidSwitch = "ignore";
-    extraConfig = ''
-      HandlePowerKey=ignore
-    '';
-  };
-
-  services.acpid = {
-    enable = true;
-    lidEventCommands = ''
-      export PATH=$PATH:/run/current-system/sw/bin
-
-      lid_state=$(cat /proc/acpi/button/lid/LID0/state | awk '{print $NF}')
-      if [ $lid_state = "closed" ]; then
-        # Set brightness to zero
-        echo 0  > /sys/class/backlight/acpi_video0/brightness
-      else
-        # Reset the brightness
-        echo 50  > /sys/class/backlight/acpi_video0/brightness
-      fi
-    '';
-
-    powerEventCommands = ''
-      systemctl suspend
-    '';
-  };
-
   programs = {
     adb.enable = true;
     dconf.enable = true;
