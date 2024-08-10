@@ -1,6 +1,6 @@
 <h1 align="center">Deep dive into declarative configuration</h1>
 
-![Example](./example.png "State of 2024-08-09")
+![Example](./assets/example.png "State of 2024-08-09")
 
 ## Installation
 
@@ -64,7 +64,7 @@ This behavior works thanks to [Mutagen](https://github.com/InioX/matugen).
 
 <div align="center">
 
-![Color scheme](./colors.jpg)
+![Color scheme](./assets/colors.jpg)
 
 #### Keywords to operate with
 

@@ -6,6 +6,7 @@
     '';
   };
 
+  programs.light.enable = true;
   services.acpid = {
     enable = true;
     lidEventCommands = ''
@@ -14,10 +15,10 @@
       lid_state=$(cat /proc/acpi/button/lid/LID0/state | awk '{print $NF}')
       if [ $lid_state = "closed" ]; then
         # Set brightness to zero
-        echo 0  > /sys/class/backlight/acpi_video0/brightness
+        light -S 0
       else
         # Reset the brightness
-        echo 50  > /sys/class/backlight/acpi_video0/brightness
+        light -S 100
       fi
     '';
 
