@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> { }, ... }: rec {
-  # Packages with an actual source
-  shellcolord = pkgs.callPackage ./shellcolord.nix { };
+  iio-hyprland = pkgs.callPackage ./iio-hyprland { };
+  shellcolord = pkgs.callPackage ./shellcolord { };
   hyprbars = pkgs.callPackage ./hyprbars.nix { };
   compiz = pkgs.callPackage ./compiz { };
 

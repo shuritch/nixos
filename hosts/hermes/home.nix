@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -17,4 +17,8 @@
     workspace = "1";
     scale = 2;
   }];
+
+  wayland.windowManager.hyprland.extraConfig = lib.mkBefore ''
+    exec-once = ${pkgs.iio-hyprland}/bin/iio-hyprland
+  '';
 }

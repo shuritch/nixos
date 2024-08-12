@@ -309,7 +309,6 @@ in {
         (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
     };
 
-    # TODO: Make auto-connect with bluetooth itself
     extraConfig = ''
       ${if config.programs.kitty.enable then
         "exec-once = [workspace special silent] kitty"
@@ -336,10 +335,7 @@ in {
       else
         ""}
 
-      ${if hasPackage "thunderbird" then
-        "exec-once = thunderbird --headless"
-      else
-        ""}
+      ${if hasPackage "thunderbird" then "exec-once = birdtray" else ""}
 
       # Passthrough mode (e.g. for VNC)
       bind=SUPER,P,submap,passthrough

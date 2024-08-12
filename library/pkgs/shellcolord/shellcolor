@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+SHELLCOLORD_FIFOS_DIR=${SHELLCOLORD_FIFOS_DIR:-${XDG_RUNTIME:-/run/user/$(id -u $USER)}/shellcolord}
+
+if [ -n "$2" ]; then
+    FIFO_PATH="${SHELLCOLORD_FIFOS_DIR}/$2"
+else
+    FIFO_PATH="${SHELLCOLORD_FIFOS_DIR}/*"
+fi
+
+for fifo in $FIFO_PATH; do
+    # Check that fifo exists
+    if [ -p "$fifo" ]; then
+        # Check that it has a corresponding process
+        if kill -0 $(basename "$fifo") &>/dev/null; then
+            echo "$1" > $fifo
+        # Remove it, as its controller is dead
+        else
+            rm "$fifo"
+        fi
+    fi
+done
