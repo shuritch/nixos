@@ -1,15 +1,31 @@
 { linkFarm, pkgs, lib, }:
-{ base00, base01, base02, base03, base04, base05, base06, base07, base08, base09
-, base0A, base0B, base0C, base0D, base0E, base0F, scheme, author, }:
-let
-  pname = "theme";
-  publisher = "Xi";
-  version = "0.0.0"; # Define the version of your extension
+colorscheme:
 
+let
+  inherit (colorscheme) colors harmonized;
+  pname = "theme";
+  publisher = "sashapop10";
+  version = "1.0.0";
   vscodeExtName = "${publisher}.${pname}";
   vscodeExtUniqueId = "${publisher}.${pname}";
   vscodeExtPublisher = "${publisher}";
-
+  rmHash = lib.removePrefix "#";
+  base00 = "${rmHash colors.surface}"; # bg
+  base01 = "${rmHash colors.surface_variant}"; # bg alt 1
+  base02 = "${rmHash colors.tertiary_container}"; # bg alt 2
+  base03 = "${rmHash colors.primary_container}"; # bright bg
+  base04 = "${rmHash colors.on_surface_variant}"; # fg alt 1
+  base05 = "${rmHash colors.on_surface}"; # fg
+  base06 = "${rmHash colors.on_tertiary_container}"; # fg alt 2
+  base07 = "${rmHash colors.on_primary_container}"; # bright fg
+  base08 = "${rmHash harmonized.red}"; # ! red
+  base09 = "${rmHash colors.primary}"; # accent 1
+  base0A = "${rmHash harmonized.yellow}"; # yellow
+  base0B = "${rmHash harmonized.green}"; # * green
+  base0C = "${rmHash harmonized.cyan}"; # ? cyan
+  base0D = "${rmHash harmonized.blue}"; # ? blue
+  base0E = "${rmHash harmonized.magenta}"; # magenta
+  base0F = "${rmHash colors.error}"; # accent 2
   theme = {
     "theme/generated.json" = __toJSON {
       name = "${publisher}'s ${pname}";
@@ -1929,12 +1945,9 @@ in pkgs.stdenv.mkDerivation {
   nativeBuildInputs = [ pkgs.unzip ];
 
   installPhase = ''
-
     runHook preInstall
-
     mkdir -p "$out/$installPrefix"
     find . -mindepth 1 -maxdepth 1 | xargs -d'\n' mv -t "$out/$installPrefix/"
-
     runHook postInstall
   '';
 }

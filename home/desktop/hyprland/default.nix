@@ -204,7 +204,12 @@ in {
       in [
         # Program bindings
         "SUPER,Return,exec,${terminal}"
-        "SUPER,e,exec,${defaultApp "text/plain"}"
+
+        (if hasPackage "vscode" then
+          "SUPER,e,exec,code"
+        else
+          "SUPER,e,exec,${defaultApp "text/plain"}")
+
         "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
         "SUPER,m,exec,${fmanager}"
         # Brightness control (only works if the system has lightd)
@@ -293,8 +298,8 @@ in {
           if m.enabled then
             "${toString m.width}x${toString m.height}@${
               toString m.refreshRate
-            },${toString m.x}x${toString m.y},${toString m.scale},transform,${
-              toString m.rotate
+            },${toString m.x}x${toString m.y},${toString m.scale}${
+              if m.rotate == 0 then "" else ",transform,${toString m.rotate}"
             }"
           else
             "disable"
@@ -328,6 +333,11 @@ in {
 
       ${if hasPackage "telegram-desktop" then
         "exec-once = telegram-desktop -startintray"
+      else
+        ""}
+
+      ${if hasPackage "thunderbird" then
+        "exec-once = thunderbird --headless"
       else
         ""}
 

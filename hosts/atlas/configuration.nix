@@ -8,20 +8,19 @@ in {
   imports = [
     ../../core/default.nix
     ./hardware-configuration.nix
+    inputs.hardware.nixosModules.common-pc
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-cpu-intel
     (relative "auto-upgrade.nix")
-    (relative "nvidia-gpu.nix")
+    (relative "gpu/nvidia.nix")
     (relative "syncthing.nix")
     (relative "bluetooth.nix")
-    (relative "database.nix")
     (relative "xserver.nix")
     (relative "greetd.nix")
-    (relative "coding.nix")
     (relative "sound.nix")
-    (relative "virt.nix")
     (relative "frkn.nix")
+    (relative "dev")
   ];
 
   nixpkgs.config.permittedInsecurePackages =
@@ -44,7 +43,7 @@ in {
     intelBusId = "PCI:0:2:0";
     offload = {
       enable = false;
-      # enableOffloadCmd = true;
+      enableOffloadCmd = false;
     };
   };
 }

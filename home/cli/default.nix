@@ -46,6 +46,7 @@
     distrobox # Nice escape hatch, integrates docker images with my environment
     brightnessctl # Brightness mananger
 
+    nmap
     bc # Calculator
     bottom # System viewer
     ncdu # TUI disk usage

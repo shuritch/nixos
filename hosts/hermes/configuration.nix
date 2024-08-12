@@ -7,24 +7,23 @@ in {
   imports = [
     ../../core/default.nix
     ./hardware-configuration.nix
-    inputs.hardware.nixosModules.common-pc-ssd
-    inputs.hardware.nixosModules.common-gpu-intel
+    inputs.hardware.nixosModules.common-pc-laptop
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
+    inputs.hardware.nixosModules.common-gpu-intel-comet-lake
     inputs.hardware.nixosModules.common-cpu-intel
-    (relative "powermanager.nix")
     (relative "auto-upgrade.nix")
-    (relative "nvidia-gpu.nix")
+    (relative "powermanager.nix")
+    # (relative "gpu/intel.nix")
     (relative "quietboot.nix")
     (relative "syncthing.nix")
     (relative "bluetooth.nix")
     (relative "lidswitch.nix")
-    (relative "database.nix")
     (relative "xserver.nix")
     (relative "greetd.nix")
-    (relative "coding.nix")
     (relative "sound.nix")
-    (relative "virt.nix")
     (relative "zram.nix")
     (relative "frkn.nix")
+    (relative "dev")
   ];
 
   nixpkgs.config.permittedInsecurePackages =
@@ -35,7 +34,7 @@ in {
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
-  hardware.intel-gpu-tools.enable = true;
+  hardware.sensor.iio.enable = true;
   hardware.opentabletdriver.enable = true;
   programs = {
     adb.enable = true;

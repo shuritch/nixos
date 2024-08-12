@@ -1,4 +1,4 @@
-pkgs:
+{ pkgs, ... }:
 pkgs.vscode-utils.extensionsFromVscodeMarketplace [
   # Intelisense
   {

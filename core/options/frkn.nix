@@ -1,10 +1,9 @@
 { pkgs, ... }: {
+  users.groups.tpws = { };
   users.users.tpws = {
     isSystemUser = true;
     group = "tpws";
   };
-
-  users.groups.tpws = { };
 
   systemd.services.zapret = {
     path = with pkgs; [ iptables nftables gawk zapret curl procps ];
@@ -30,9 +29,9 @@
         FWTYPE="nftables"
         # --dpi-desync-fooling=badseq
         # NFQWS_OPT_DESYNC="--dpi-desync=fake,split2 --dpi-desync-ttl=4 --dpi-desync-ttl6=2 --dpi-desync-split-pos=1 --wssize 1:6 --dpi-desync-fooling=md5sig"
-        NFQWS_OPT_DESYNC="--dpi-desync=fake,split2  --dpi-desync-fooling=md5sig --dpi-desync-split-pos=2"
-        # NFQWS_OPT_DESYNC_HTTP="--dpi-desync=split --dpi-desync-fooling=md5sig"
-        # NFQWS_OPT_DESYNC_HTTPS="--dpi-desync=fake,split --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1"
+        # NFQWS_OPT_DESYNC="--dpi-desync=fake,split2  --dpi-desync-fooling=md5sig --dpi-desync-split-pos=2"
+        NFQWS_OPT_DESYNC_HTTP="--dpi-desync=split --dpi-desync-fooling=md5sig"
+        NFQWS_OPT_DESYNC_HTTPS="--dpi-desync=fake,split --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1"
 
         MODE_HTTP=1
         MODE_HTTP_KEEPALIVE=1

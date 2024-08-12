@@ -2,8 +2,7 @@
 
 let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
 in {
-  imports = [ ./cli ./colorscheme.nix ]
-    ++ (builtins.attrValues outputs.homeManagerModules);
+  imports = [ ./color.nix ] ++ (builtins.attrValues outputs.homeManagerModules);
   systemd.user.startServices = "sd-switch";
   programs.home-manager.enable = true;
   programs.git.enable = true;

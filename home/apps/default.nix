@@ -6,12 +6,14 @@
     ./documents.nix
     ./filemanager.nix
     ./firefox.nix
+    ./kdeconnect.nix
     ./media.nix
+    ./telegram.nix
+    ./thundebird.nix
   ];
 
   home.packages = with pkgs; [
-    # obsidian #TODO: Fix drivers
-    telegram-desktop
+    # obsidian
     gromit-mpx # Desktop drawing
     playerctl # Player
     deluge # Torrent

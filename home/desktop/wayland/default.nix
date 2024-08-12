@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   imports = [
-    ./gammastep.nix
     ./swayidle.nix
     ./swaylock.nix
     ./waypipe.nix

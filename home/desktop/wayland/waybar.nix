@@ -208,7 +208,7 @@ in {
           exec = mkScriptJson {
             deps = lib.optional hyprlandCfg.enable hyprlandCfg.package;
             text = "";
-            tooltip = ''$(grep /etc/os-release PRETTY_NAME | cut -d '"' -f2)'';
+            tooltip = ''$(grep PRETTY_NAME /etc/os-release | cut -d '"' -f2)'';
             class = let
               isFullScreen = if hyprlandCfg.enable then
                 "hyprctl activewindow -j | jq -e '.fullscreen' &>/dev/null"

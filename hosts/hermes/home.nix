@@ -1,7 +1,13 @@
-{ pkgs, lib, ... }:
-let relative = lib.path.append ../../home;
-in {
-  imports = [ (relative "desktop/hyprland") (relative "default.nix") ];
+{ pkgs, ... }:
+
+{
+  imports = [
+    ../../home/default.nix
+    ../../home/desktop/hyprland
+    ../../home/apps
+    ../../home/cli
+  ];
+
   wallpaper = pkgs.wallpapers.ship-art-dark;
   monitors = [{ # Integrated monitor
     name = "eDP-1";

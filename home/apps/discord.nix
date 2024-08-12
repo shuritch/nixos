@@ -3,6 +3,8 @@
 let c = config.colorscheme.colors;
 in {
   home.packages = with pkgs; [ vesktop ];
+  xdg.mimeApps.defaultApplications."x-scheme-handler/discord" =
+    [ "vesktop.desktop" ];
   xdg.configFile."vesktop/themes/base16.css".text =
     # css
     ''
