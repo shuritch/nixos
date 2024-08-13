@@ -19,23 +19,4 @@ in prev.vscode.overrideAttrs (attrs: {
     echo "import { install } from './patch.ts'; install({ extensionPath: '${apc-extension}' })" > $out/apc-extension/install.ts
     bun apc-extension/install.ts
   '';
-
-  # desktopItem = let inherit (attrs.passthru) executableName longName;
-  # in prev.makeDesktopItem {
-  #   name = executableName;
-  #   desktopName = longName;
-  #   comment = "Code Editing. Redefined.";
-  #   genericName = "Text Editor";
-  #   exec = "${executableName} %F";
-  #   icon = "vs${executableName}";
-  #   startupNotify = true;
-  #   startupWMClass = "Code";
-  #   categories = [ "Utility" "TextEditor" "Development" "IDE" ];
-  #   keywords = [ "vscode" ];
-  #   actions.new-empty-window = {
-  #     name = "New Empty Window";
-  #     exec = "${executableName} --new-window %F";
-  #     icon = "vs${executableName}";
-  #   };
-  # };
 })

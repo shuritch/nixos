@@ -229,6 +229,12 @@
       "x-scheme-handler/https"
       "x-scheme-handler/about"
       "x-scheme-handler/unknown"
+      "x-scheme-handler/chrome"
+      "application/x-extension-htm"
+      "application/x-extension-html"
+      "application/x-extension-shtml"
+      "application/x-extension-xht"
+      "application/x-extension-xhtml"
     ];
   };
 }

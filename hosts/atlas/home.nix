@@ -4,6 +4,7 @@
   imports = [
     ../../home/default.nix
     ../../home/desktop/hyprland
+    # ../../home/apps/games
     ../../home/apps
     ../../home/cli
   ];

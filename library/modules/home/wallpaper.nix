@@ -6,7 +6,7 @@ in {
     type = types.nullOr types.path;
     default = null;
     description = ''
-      Wallpaper path
+      Wallpaper name from Imgur description
     '';
   };
 }

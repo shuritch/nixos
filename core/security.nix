@@ -1,5 +1,4 @@
 { myEnv, ... }: {
-  # Enable acme for usage with nginx vhosts
   security = {
     pam.services = { swaylock = { }; };
 

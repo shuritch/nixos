@@ -1,3 +1,10 @@
+<div align="center">
+
+[![Built with nix](https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20with%20Nix&color=41439a)](https://builtwithnix.org)
+[![CI](https://github.com/sashapop10/nixos/actions/workflows/ci.yaml/badge.svg)](https://github.com/sashapop10/nixos/actions/workflows/ci.yaml)
+
+</div>
+
 <h1 align="center">Deep dive into declarative configuration</h1>
 
 ![Example](./assets/example.png "State of 2024-08-09")
@@ -35,6 +42,7 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 
 ## Structure
 
+- `.github`: Github actions for CI and automatic updates.
 - `.vscode`: Makes vscode more performant in this directory.
 - `flake.nix`: Entrypoint for hosts and home configurations.
 - `shell.nix`: Exposes a dev shell for bootstrapping.

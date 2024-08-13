@@ -321,12 +321,12 @@ in {
         ""}
 
       ${if hasPackage "vscode" then
-        "exec-once = [workspace 1 silent] code"
+        "exec-once = [workspace 1 silent] sleep 5; code"
       else
         ""}
 
       ${if hasPackage "vesktop" then
-        "exec-once = vesktop --start-minimized"
+        "exec-once = sleep 5; vesktop --start-minimized"
       else
         ""}
 
@@ -335,7 +335,12 @@ in {
       else
         ""}
 
-      ${if hasPackage "thunderbird" then "exec-once = birdtray" else ""}
+      ${if hasPackage "thunderbird" then
+        "exec-once = sleep 5; birdtray"
+      else
+        ""}
+
+      ${if hasPackage "flameshot" then "exec-once = sleep 5; flameshot" else ""}
 
       # Passthrough mode (e.g. for VNC)
       bind=SUPER,P,submap,passthrough

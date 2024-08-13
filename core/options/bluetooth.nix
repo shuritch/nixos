@@ -5,12 +5,13 @@
     enable = true;
     powerOnBoot = true;
     package = pkgs.bluez5-experimental;
-    # disabledPlugins = [ "sap" ];
+    disabledPlugins = [ "sap" ];
     settings.General = {
       # Enable = "Source,Sink,Media,Socket";
+      # ControllerMode = "bredr";
       JustWorksRepairing = "always";
       MultiProfile = "multiple";
-      ControllerMode = "bredr";
+      KernelExperimental = true;
       Experimental = true;
       AutoEnable = true;
     };
