@@ -5,7 +5,7 @@ update:
 	nix-channel --update
 	nix flake update
 	sudo nixos-rebuild --upgrade switch --flake .
-55.751573x37.618999
+
 rebuild:
 	nix flake update
 	sudo nixos-rebuild switch --flake .

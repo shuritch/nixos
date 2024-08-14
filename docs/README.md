@@ -17,19 +17,19 @@ sudo nixos-install --flake /mnt/flake#<hostname>
 # reboot 🚀
 ```
 
-# Update
+## Update
 
 ```bash
 nix-channel --update
 nix flake update
-sudo nixos-rebuild --upgrade switch --flake .#<username>@<hostname>
+sudo nixos-rebuild --upgrade switch --flake .#<hostname>
 ```
 
 ## Rebuild
 
 ```bash
 git add . # Important if new files were created
-sudo nixos-rebuild switch --flake .#<username>@<hostname> # If Hosts updated
+sudo nixos-rebuild switch --flake .#<hostname> # If Hosts updated
 home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 ```
 
