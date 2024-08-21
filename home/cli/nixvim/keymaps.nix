@@ -54,7 +54,7 @@
         "K" = ":m '<-2<CR>gv=gv";
         "J" = ":m '>+1<CR>gv=gv";
       };
-    in config.nixvim.helpers.keymaps.mkKeymaps { options.silent = true; }
+    in config.lib.nixvim.keymaps.mkKeymaps { options.silent = true; }
     (normal ++ visual);
   };
 }
