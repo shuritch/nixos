@@ -2,7 +2,6 @@
   iio-hyprland = pkgs.callPackage ./iio-hyprland { };
   shellcolord = pkgs.callPackage ./shellcolord { };
   hyprbars = pkgs.callPackage ./hyprbars.nix { };
-  compiz = pkgs.callPackage ./compiz { };
 
   # My slightly customized plymouth theme, just makes the blue outline white
   plymouth-spinner-monochrome =

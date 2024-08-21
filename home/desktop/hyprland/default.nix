@@ -222,8 +222,8 @@ in {
         "SHIFT,XF86AudioMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
         ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
         # Screenshotting
-        ",Print,exec,${grimblast} --notify --freeze copy output"
-        "SUPER,Print,exec,${grimblast} --notify --freeze copy area"
+        ",Print,exec,${grimblast} --notify --freeze copy area"
+        "SUPER,Print,exec,${grimblast} --notify --freeze copy output"
         # To OCR
         "ALT,Print,exec,${grimblast} --freeze save area - | ${tesseract} - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
       ] ++ (let

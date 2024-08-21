@@ -17,16 +17,16 @@ let
         sha256 = "sha256-0eCAfm/MWXv6BbCl2vbVbvgv8DiUH09TAUhoKq7Ow0k=";
       };
 
-      buildInputs = with pkgs; [
-        sassc
-        bc
-        which
+      buildInputs = [
         rendersvg
-        meson
-        ninja
-        nodePackages.sass
-        gtk4.dev
-        optipng
+        pkgs.sassc
+        pkgs.bc
+        pkgs.which
+        pkgs.meson
+        pkgs.ninja
+        pkgs.nodePackages.sass
+        pkgs.gtk4.dev
+        pkgs.optipng
       ];
 
       installPhase = ''
@@ -87,8 +87,10 @@ in rec {
     };
 
     iconTheme = {
-      name = "Papirus";
       package = pkgs.papirus-icon-theme;
+      name = "Papirus-${
+          if config.colorscheme.mode == "dark" then "Dark" else "Light"
+        }";
     };
 
     theme = let

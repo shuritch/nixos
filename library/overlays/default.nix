@@ -9,7 +9,6 @@ in {
   additions = final: prev: import ../pkgs { pkgs = final; };
   modifications = final: prev: {
     wl-clipboard = addPatches prev.wl-clipboard [ ./wl-clipboard-secrets.diff ];
-    hyprbars = addPatches prev.hyprbars [ ./hyprbars-color-windowrules.patch ];
     vscode = import ./vscode.nix { inherit final prev; };
     zapret = import ./zapret.nix { inherit final prev; };
   };
