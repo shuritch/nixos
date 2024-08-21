@@ -25,13 +25,13 @@ Name[he]=שבשבת טעינה
 Name[fa]=چرخنده
 Name[fi]=Spinneri
 Name=Spinner
-Description=A theme designed by jimmac that features a simple spinner.
+Description=Simple spinner.
 ModuleName=two-step
 
 [two-step]
 Font=Fira Sans 12
 TitleFont=Fira Sans 30
-ImageDir=/etc/plymouth/themes/spinner-monochrome
+ImageDir=/etc/plymouth/themes/spinner-monochrome/assets
 DialogHorizontalAlignment=.5
 DialogVerticalAlignment=.382
 TitleHorizontalAlignment=.5

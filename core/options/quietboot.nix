@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, lib, ... }: {
   console = {
     useXkbConfig = true;
     earlySetup = false;
@@ -19,9 +19,12 @@
 
     plymouth = {
       enable = true;
-      theme = "spinner-monochrome";
+      theme = lib.mkDefault "arch";
       themePackages = [
-        (pkgs.plymouth-spinner-monochrome.override {
+        pkgs.plymouth-themes.fallout
+        pkgs.plymouth-themes.kali
+        pkgs.plymouth-themes.arch
+        (pkgs.plymouth-themes.spinner-monochrome.override {
           inherit (config.boot.plymouth) logo;
         })
       ];
