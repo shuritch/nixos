@@ -68,6 +68,6 @@ in {
   home-manager.users.${admin} = { ... }: {
     home.file = lib.mapAttrs'
       (k: v: lib.nameValuePair "${k}/.stignore" { text = ignore; })
-      config.services.syncthing.folders;
+      config.services.syncthing.settings.folders;
   };
 }
