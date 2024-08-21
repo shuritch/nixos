@@ -4,21 +4,33 @@ let
   addPatches = pkg: patches:
     pkg.overrideAttrs (attrs: { patches = (attrs.patches or [ ]) ++ patches; });
 in {
-  # pkgs.stable / inputs.nixpkgs-stable.legacyPackages.${pkgs.system}
-  stable = f: _: { stable = inputs.nixpkgs-stable.legacyPackages.${f.system}; };
   additions = final: prev: import ../pkgs { pkgs = final; };
   modifications = final: prev: {
     wl-clipboard = addPatches prev.wl-clipboard [ ./wl-clipboard-secrets.diff ];
     vscode = import ./vscode.nix { inherit final prev; };
     zapret = import ./zapret.nix { inherit final prev; };
+    vscode-langservers-extracted =
+      import ./vscode-langservers.nix { inherit final prev; };
+  };
+
+  # aliases pkgs.stable pkgs.master
+  stable = f: _: {
+    master = import inputs.nixpkgs-master {
+      system = f.system;
+      config.allowUnfree = true;
+    };
+    stable = import inputs.nixpkgs-stable {
+      system = f.system;
+      config.allowUnfree = true;
+    };
   };
 
   #  aliases 'pkgs.inputs.${flake}'
-  flake-inputs = final: _: {
+  flake-inputs = f: _: {
     inputs = builtins.mapAttrs (_: flake:
       let
-        legacyPackages = (flake.legacyPackages or { }).${final.system} or { };
-        packages = (flake.packages or { }).${final.system} or { };
+        legacyPackages = (flake.legacyPackages or { }).${f.system} or { };
+        packages = (flake.packages or { }).${f.system} or { };
       in if legacyPackages != { } then legacyPackages else packages) inputs;
   };
 }

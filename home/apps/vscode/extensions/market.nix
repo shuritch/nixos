@@ -82,22 +82,22 @@ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     sha256 = "VMUICGvAFWrG/uL3aGKNUIt1ARovc84TxkjgSkXuoME=";
   }
   #? Corner cases
-  {
-    name = "vscode-nginx-conf";
-    publisher = "ahmadalli";
-    version = "0.3.5";
-    sha256 = "sha256-6gJtMQH2zanFt+UTaD0Vn1vDq5GY9R1CfelPCklYxYE=";
-  }
-  {
-    name = "nginx-formatter";
-    publisher = "raynigon";
-    version = "0.0.13";
-    sha256 = "sha256-pehpoX3reGE7Y4jXLTuyRSIKZRYuragI0GUIwJf7o0I=";
-  }
-  {
-    name = "vscode-nginx";
-    publisher = "william-voyek";
-    version = "0.7.2";
-    sha256 = "sha256-mAmncewwAeagVqwWWrmYosMyw2AT3W0sx8jl2mCeimg=";
-  }
+  # {
+  #   name = "vscode-nginx-conf";
+  #   publisher = "ahmadalli";
+  #   version = "0.3.5";
+  #   sha256 = "sha256-6gJtMQH2zanFt+UTaD0Vn1vDq5GY9R1CfelPCklYxYE=";
+  # }
+  # {
+  #   name = "nginx-formatter";
+  #   publisher = "raynigon";
+  #   version = "0.0.13";
+  #   sha256 = "sha256-pehpoX3reGE7Y4jXLTuyRSIKZRYuragI0GUIwJf7o0I=";
+  # }
+  # {
+  #   name = "vscode-nginx";
+  #   publisher = "william-voyek";
+  #   version = "0.7.2";
+  #   sha256 = "sha256-mAmncewwAeagVqwWWrmYosMyw2AT3W0sx8jl2mCeimg=";
+  # }
 ]

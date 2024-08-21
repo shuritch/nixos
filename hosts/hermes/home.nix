@@ -9,7 +9,7 @@
     ../../home/cli
   ];
 
-  wallpaper = pkgs.wallpapers.ship-art-dark;
+  wallpaper = pkgs.wallpapers.ship-in-storm;
   monitors = [{ # Integrated monitor
     name = "eDP-1";
     width = 3840;

@@ -1,25 +1,13 @@
-{ pkgs ? import <nixpkgs> { }, ... }: rec {
-  iio-hyprland = pkgs.callPackage ./iio-hyprland { };
-  shellcolord = pkgs.callPackage ./shellcolord { };
-  hyprbars = pkgs.callPackage ./hyprbars.nix { };
+{ pkgs ? import <nixpkgs> { }, ... }:
 
-  # My slightly customized plymouth theme, just makes the blue outline white
-  plymouth-spinner-monochrome =
-    pkgs.callPackage ./plymouth-spinner-monochrome { };
-
-  # My wallpaper collection
-  wallpapers = import ./wallpapers { inherit pkgs; };
-  allWallpapers =
-    pkgs.linkFarmFromDrvs "wallpapers" (pkgs.lib.attrValues wallpapers);
-
-  # And colorschemes based on it
-  generateColorscheme = import ./colorschemes/generator.nix { inherit pkgs; };
-  colorschemes =
-    import ./colorschemes { inherit pkgs wallpapers generateColorscheme; };
-  allColorschemes = let
-    # This is here to help us keep IFD cached (hopefully)
-    combined = pkgs.writeText "colorschemes.json"
-      (builtins.toJSON (pkgs.lib.mapAttrs (_: drv: drv.imported) colorschemes));
-  in pkgs.linkFarmFromDrvs "colorschemes"
-  (pkgs.lib.attrValues colorschemes ++ [ combined ]);
-}
+let
+  inherit (pkgs) callPackage;
+  wallpapers_package = import ./wallpapers pkgs;
+  wallpapers = wallpapers_package.wallpapers;
+  colorschemes_package = import ./colorschemes { inherit pkgs wallpapers; };
+in {
+  plymouth-spinner-monochrome = callPackage ./plymouth-spinner-monochrome { };
+  iio-hyprland = callPackage ./iio-hyprland { };
+  shellcolord = callPackage ./shellcolord { };
+  hyprbars = callPackage ./hyprbars.nix { }; # Non-resident
+} // wallpapers_package // colorschemes_package

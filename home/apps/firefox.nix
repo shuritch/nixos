@@ -102,13 +102,14 @@
       ];
 
       extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-        bitwarden
+        # bitwarden
         plasma-integration
         ublock-origin
-        # wappalyzer
+        (wappalyzer.overrideAttrs { meta.license.free = true; })
         sponsorblock
         simple-translate
-        # grammarly
+        # (grammarly.overrideAttrs { meta.license.free = true; })
+        (languagetool.overrideAttrs { meta.license.free = true; })
         youtube-shorts-block
       ];
 

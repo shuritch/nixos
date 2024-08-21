@@ -35,8 +35,8 @@ in {
     enable = true;
     settings = {
       GTK = {
-        icon_theme_name = "Papirus";
-        theme_name = gtkTheme.name;
+        icon_theme_name = lib.mkForce "Papirus";
+        theme_name = lib.mkForce gtkTheme.name;
       };
       background = {
         path = wallpaper;

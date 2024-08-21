@@ -3,7 +3,7 @@
 let
   apc-extension = builtins.fetchGit {
     url = "https://github.com/drcika/apc-extension.git";
-    rev = "d4cc908bf2869fe354aa0c103bab063aa09fd491";
+    rev = "4d7d3b10ee1814880514728bd18ffac143329642";
   };
 in prev.vscode.overrideAttrs (attrs: {
   buildInputs = attrs.buildInputs ++ [ prev.bun ];
