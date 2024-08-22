@@ -209,12 +209,6 @@ in {
             deps = lib.optional hyprlandCfg.enable hyprlandCfg.package;
             text = "";
             tooltip = ''$(grep PRETTY_NAME /etc/os-release | cut -d '"' -f2)'';
-            class = let
-              isFullScreen = if hyprlandCfg.enable then
-                "hyprctl activewindow -j | jq -e '.fullscreen' &>/dev/null"
-              else
-                "false";
-            in "$(if ${isFullScreen}; then echo fullscreen; fi)";
           };
         };
 
@@ -369,11 +363,6 @@ in {
         padding-left: 1em;
         margin-right: 0;
         border-radius: 0.5em;
-      }
-
-      #custom-menu.fullscreen {
-        background-color: ${colors.primary};
-        color: ${colors.on_primary};
       }
 
       #custom-hostname {

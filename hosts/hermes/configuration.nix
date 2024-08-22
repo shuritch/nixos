@@ -13,7 +13,7 @@ in {
     inputs.hardware.nixosModules.common-cpu-intel
     (relative "auto-upgrade.nix")
     (relative "powermanager.nix")
-    # (relative "gpu/intel.nix")
+    (relative "gpu/intel.nix")
     (relative "quietboot.nix")
     (relative "syncthing.nix")
     (relative "bluetooth.nix")

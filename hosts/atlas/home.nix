@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
-{
+let
+  packageNames = map (p: p.pname or p.name or null) config.home.packages;
+  hasPackage = name: lib.any (x: x == name) packageNames;
+in {
   imports = [
     ../../home/default.nix
     ../../home/desktop/hyprland
@@ -38,4 +41,21 @@
       rotate = 2;
     }
   ];
+
+  wayland.windowManager.hyprland.extraConfig = lib.mkBefore ''
+    ${if config.programs.kitty.enable then
+      "exec-once = [workspace 3 silent] kitty"
+    else
+      ""}
+
+    ${if hasPackage "firefox" then
+      "exec-once = [workspace 2 silent] firefox"
+    else
+      ""}
+
+    ${if hasPackage "vscode" then
+      "exec-once = [workspace 1 silent] sleep 5; code"
+    else
+      ""}
+  '';
 }

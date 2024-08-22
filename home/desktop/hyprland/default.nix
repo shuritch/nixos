@@ -200,17 +200,23 @@ in {
         pactl = lib.getExe' pkgs.pulseaudio "pactl";
         notify-send = lib.getExe' pkgs.libnotify "notify-send";
         defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
-        terminal = defaultApp "x-scheme-handler/terminal";
       in [
         # Program bindings
-        "SUPER,Return,exec,${terminal}"
+        (if hasPackage "kitty" then
+          "SUPER,Return,exec,kitty"
+        else
+          "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}")
 
         (if hasPackage "vscode" then
           "SUPER,e,exec,code"
         else
           "SUPER,e,exec,${defaultApp "text/plain"}")
 
-        "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
+        (if hasPackage "firefox" then
+          "SUPER,b,exec,firefox"
+        else
+          "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}")
+
         "SUPER,m,exec,${fmanager}"
         # Brightness control (only works if the system has lightd)
         ",XF86MonBrightnessUp,exec,light -A 10"
@@ -256,7 +262,8 @@ in {
       # Launcher
       (let wofi = lib.getExe config.programs.wofi.package;
       in lib.optionals config.programs.wofi.enable [
-        "SUPER,s,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
+        # "SUPER,s,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
+        "SUPER,s,exec,${wofi} -S drun"
         "SUPER,x,exec,specialisation ;$(specialisation | ${wofi} -S dmenu)"
         "SUPER,d,exec,${wofi} -S run"
       ] ++ (let
@@ -312,16 +319,6 @@ in {
     extraConfig = ''
       ${if config.programs.kitty.enable then
         "exec-once = [workspace special silent] kitty"
-      else
-        ""}
-
-      ${if hasPackage "firefox" then
-        "exec-once = [workspace 2 silent] firefox"
-      else
-        ""}
-
-      ${if hasPackage "vscode" then
-        "exec-once = [workspace 1 silent] sleep 5; code"
       else
         ""}
 

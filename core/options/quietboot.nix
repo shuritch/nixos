@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ pkgs, lib, ... }: {
   console = {
     useXkbConfig = true;
     earlySetup = false;
@@ -19,15 +19,8 @@
 
     plymouth = {
       enable = true;
-      theme = lib.mkDefault "arch";
-      themePackages = [
-        pkgs.plymouth-themes.fallout
-        pkgs.plymouth-themes.kali
-        pkgs.plymouth-themes.arch
-        (pkgs.plymouth-themes.spinner-monochrome.override {
-          inherit (config.boot.plymouth) logo;
-        })
-      ];
+      theme = lib.mkDefault "fallout";
+      themePackages = pkgs.plymouth-themes;
     };
   };
 }

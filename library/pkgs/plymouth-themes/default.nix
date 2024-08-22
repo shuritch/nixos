@@ -1,7 +1,7 @@
 { lib, stdenv, logo ? null, ... }:
 
 let themes = builtins.readDir ./themes;
-in lib.mapAttrs (k: v:
+in lib.mapAttrsToList (k: _:
   stdenv.mkDerivation {
     meta = { platforms = lib.platforms.all; };
     pname = "plymouth-${k}-theme";
