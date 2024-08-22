@@ -13,6 +13,7 @@
   ];
 
   home.packages = with pkgs; [
+    obsidian
     gromit-mpx # Desktop drawing
     playerctl # Player
     deluge # Torrent

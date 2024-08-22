@@ -1,6 +1,6 @@
 <h1 align="center">Deep dive into declarative configuration</h1>
 
-![Example](./assets/example.png "State of 2024-08-09")
+![Atlas](./assets/atlas.png "State of 2024-08-09")
 
 ## Installation
 

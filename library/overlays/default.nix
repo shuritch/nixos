@@ -7,6 +7,7 @@ in {
   additions = final: prev: import ../pkgs { pkgs = final; };
   modifications = final: prev: {
     wl-clipboard = addPatches prev.wl-clipboard [ ./wl-clipboard-secrets.diff ];
+    obsidian = prev.obsidian.override { electron = final.electron_24; };
     vscode = import ./vscode.nix { inherit final prev; };
     zapret = import ./zapret.nix { inherit final prev; };
     vscode-langservers-extracted =
