@@ -1,18 +1,22 @@
 <h1 align="center">Deep dive into declarative configuration</h1>
 
-<details align="center" open="true">
+<h4 align="center">
+
+<details open="true">
   <summary><b>👉 Atlas</b> <i>"</i>State of 2024-08-09<i>"</i> 👈</summary><br/>
 
 ![Atlas](./assets/atlas.png "State of 2024-08-09")
 
 </details>
 
-<details align="center">
+<details >
   <summary><b>👉 Hermes</b> <i>"</i>State of 2024-08-22<i>"</i> 👈</summary><br/>
 
 ![Hermes](./assets/hermes.jpg "State of 2024-08-22")
 
 </details>
+
+</h4>
 
 ## Installation
 
