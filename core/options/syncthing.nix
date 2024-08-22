@@ -7,6 +7,7 @@ let
   admin = myEnv.admin.login;
   home = "/home/${admin}";
   port = 8384;
+  # **/OS/result
   ignore = ''
     **/bin
     **/.turbo
@@ -26,7 +27,7 @@ let
     **/*.tap
     **/.astro
     **/.direnv
-    **/OS/result
+    **/OS
     **.rar
     **.zip
     **.7zip

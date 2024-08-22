@@ -191,4 +191,5 @@
   background-position: center center !important;
   background-size: contain !important;
   width: 40% !important;
+  opacity: 0.75;
 }
