@@ -22,7 +22,8 @@ in {
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
-      permittedInsecurePackages = [ "python-2.7.18.8" "electron-25.9.0" ];
+      permittedInsecurePackages =
+        [ "python-2.7.18.8" "electron-25.9.0" "electron-24.8.6" ];
     };
   };
 }

@@ -266,6 +266,7 @@ in {
         "SUPER,s,exec,${wofi} -S drun"
         "SUPER,x,exec,specialisation ;$(specialisation | ${wofi} -S dmenu)"
         "SUPER,d,exec,${wofi} -S run"
+        "SUPER,a,exec,wofi-emoji -S run"
       ] ++ (let
         pass-wofi = lib.getExe (pkgs.pass-wofi.override {
           pass = config.programs.password-store.package;

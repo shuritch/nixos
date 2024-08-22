@@ -25,6 +25,7 @@
 
   home.packages = with pkgs; [
     xdragon
+    wofi-emoji
     wf-recorder
     wl-clipboard
     networkmanagerapplet

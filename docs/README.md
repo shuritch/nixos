@@ -1,6 +1,18 @@
 <h1 align="center">Deep dive into declarative configuration</h1>
 
+<details align="center" open="true">
+  <summary><b>👉 Atlas</b> <i>"</i>State of 2024-08-09<i>"</i> 👈</summary><br/>
+
 ![Atlas](./assets/atlas.png "State of 2024-08-09")
+
+</details>
+
+<details align="center">
+  <summary><b>👉 Hermes</b> <i>"</i>State of 2024-08-22<i>"</i> 👈</summary><br/>
+
+![Hermes](./assets/hermes.jpg "State of 2024-08-22")
+
+</details>
 
 ## Installation
 
@@ -35,92 +47,32 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 
 ## Structure
 
-- `.vscode`: Makes vscode more performant in this directory.
-- `flake.nix`: Entrypoint for hosts and home configurations.
-- `shell.nix`: Exposes a dev shell for bootstrapping.
-- `home`: Home-manager configuration
-- `core`: NixOS Configuration
-- `hosts`: Hardware specific configurations
-  - `atlas`: Desktop PC - 32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
-  - `hermes`: Laptop - 16GB RAM, i7-1165G7, Iris XE G7 | Hyprland
-- `library`:
-  - `overlays`: Patches and custom overrides for some packages.
-  - `modules`: Modules for more accurate customization.
-  - `pkgs`: Self hosted packages.
+- `.vscode` Makes vscode more performant in this directory.
+- `flake.nix` Entrypoint for hosts and home configurations.
+- `shell.nix` Exposes a dev shell for bootstrapping.
+- `home` Home-manager configuration
+- `core` NixOS Configuration
+- `hosts` Hardware specific configurations
+  - `atlas` Desktop PC - 32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
+  - `hermes` Laptop - 16GB RAM, i7-1165G7, Iris XE G7 | Hyprland
+- `library`
+  - `overlays` Patches and custom overrides for some packages.
+  - `modules` Modules for more accurate customization.
+  - `pkgs` Self hosted packages.
 
-## Details
+## Highlights
 
-### Environment | `myEnv` identifier
-
-- To get access to the identifier you can use: `{myEnv, ...}: `;
-- This identifier comes from joining the environments.
-  System wide environment which locates at `./hosts/environment.nix` joins with host specific environment which locates `./hosts/<host>/environment.nix`
-
-### About colors
-
-System _color_ schema will be generated based on all stored wallpapers;
-Each time wallpaper changes color - schema changes too.
-This behavior works thanks to [Mutagen](https://github.com/InioX/matugen).
-
-<div align="center">
-
-![Color scheme](./assets/colors.jpg)
-
-#### Keywords to operate with
-
-| keyword                  | keyword                  | keyword                    |
-| ------------------------ | ------------------------ | -------------------------- |
-| primary                  | error                    | secondary                  |
-| on_primary               | on_error                 | on_secondary               |
-| primary_container        | error_container          | secondary_container        |
-| on_primary_container     | on_error_container       | on_secondary_container     |
-| inverse_primary          | surface_dim              | secondary_fixed            |
-| primary_fixed            | surface                  | secondary_fixed_dim        |
-| primary_fixed_dim        | surface_bright           | on_secondary_fixed         |
-| on_primary_fixed         | surface_container_lowest | on_secondary_fixed_variant |
-| on_primary_fixed_variant | surface_container_low    | tertiary                   |
-| surface_container        | surface_container_high   | surface_container_highest  |
-| on_surface               | on_surface_variant       | outline                    |
-| outline_variant          | inverse_surface          | inverse_on_surface         |
-| on_tertiary              | surface_variant          | tertiary_container         |
-| background               | on_tertiary_container    | on_background              |
-| tertiary_fixed           | shadow                   | tertiary_fixed_dim         |
-| scrim                    | on_tertiary_fixed        | on_tertiary_fixed_variant  |
-|                          | source_color             |                            |
-
-</div>
-
-#### Tuning example
-
-```nix
-let
-inherit (config.colorscheme) colors harmonized;
-in {
-  programs.program = {
-    enable = true;# Base 16
-    colorscheme = {# All colors in #HEX format
-      base00 = "${colors.surface}"; # bg
-      base01 = "${colors.surface_variant}"; # bg alt 1
-      base02 = "${colors.tertiary_container}"; # bg alt 2
-      base03 = "${colors.primary_container}"; # bright bg
-      base04 = "${colors.on_surface_variant}"; # fg alt 1
-      base05 = "${colors.on_surface}"; # fg
-      base06 = "${colors.on_tertiary_container}"; # fg alt 2
-      base07 = "${colors.on_primary_container}"; # bright fg
-      base08 = "${harmonized.red}"; # ! red
-      base09 = "${colors.primary}"; # accent 1
-      base0A = "${harmonized.yellow}"; # yellow
-      base0B = "${harmonized.green}"; # * green
-      base0C = "${harmonized.cyan}"; # ? cyan
-      base0D = "${harmonized.blue}"; # ? blue
-      base0E = "${harmonized.magenta}"; # magenta
-      base0F = "${colors.error}"; # accent 2
-    };
-  };
-}
-```
+- Multiple **NixOS configurations**
+- Almost fully **Declarative** / **Self-hosted** stuff
+- Flexible **Home Manager** Configs through **feature flags**
+- Extensively configured wayland environment (**hyprland**) and editor (**nixvim**)
+- **Declarative** **themes** and **wallpapers** with **nix-colors**
+- **DNS** Encryption and **DPI** fooling
+- Host-specific **environment variables**
+- Standalone **Home Manager**
+- Hosts **state syncing**
 
 <p align="center">
-Copyright © 2023 <a href="https://github.com/sashapop10">sashapop10</a>.<br/>
+Copyright © 2023-2024 <a href="https://github.com/sashapop10">sashapop10</a>.<br/>
 This package is <a href="./LICENSE">MIT licensed</a>.<br/>
 </p>

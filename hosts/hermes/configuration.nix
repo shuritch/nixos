@@ -27,7 +27,7 @@ in {
   ];
 
   nixpkgs.config.permittedInsecurePackages =
-    [ "python-2.7.18.8" "electron-25.9.0" ];
+    [ "python-2.7.18.8" "electron-25.9.0" "electron-24.8.6" ];
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
