@@ -19,7 +19,7 @@
 
     plymouth = {
       enable = true;
-      theme = lib.mkDefault "fallout";
+      theme = lib.mkDefault "kali";
       themePackages = pkgs.plymouth-themes;
     };
   };
