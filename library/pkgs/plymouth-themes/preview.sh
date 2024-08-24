@@ -1,5 +1,5 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i bash -p plymouth
+#! nix-shell -i bash -p `plymouth
 
 if [ $EUID -ne 0 ]; then
 	echo ERROR: You must run this as root

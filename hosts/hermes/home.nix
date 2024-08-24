@@ -4,7 +4,6 @@
   imports = [
     ../../home/default.nix
     ../../home/desktop/hyprland
-    ../../home/apps/flameshot.nix
     ../../home/apps
     ../../home/cli
   ];

@@ -338,8 +338,6 @@ in {
       else
         ""}
 
-      ${if hasPackage "flameshot" then "exec-once = sleep 5; flameshot" else ""}
-
       # Passthrough mode (e.g. for VNC)
       bind=SUPER,P,submap,passthrough
       submap=passthrough
