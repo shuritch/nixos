@@ -1,7 +1,6 @@
 { lib, config, ... }:
 
 let
-  swaylock = "${config.programs.swaylock.package}/bin/swaylock";
   w09 = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" ];
   wf1f12 = [ "F1" "F2" "F3" "F4" "F5" "F6" "F7" "F8" "F9" "F10" "F11" "F12" ];
   workspaces = w09 ++ wf1f12;
@@ -22,7 +21,7 @@ in {
       "SUPER,q,killactive"
       "SUPERSHIFT,q,killactive"
       "SUPERSHIFT,e,exit"
-      "SUPER,l,exec,${swaylock} -i ${config.wallpaper} --daemonize --grace 15"
+      "SUPER,l,exec,swaylock -i ${config.wallpaper} --daemonize --grace 15"
       "SUPERSHIFT,l,exit"
       "SUPERSHIFT,p,exec,poweroff"
       "SUPERSHIFT,r,exec,reboot"

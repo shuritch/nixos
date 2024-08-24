@@ -208,8 +208,8 @@ config:
     false;
 
   #? Formatters
-  "[json]"."editor.defaultFormatter" = "vscode.json-language-features";
-  "[jsonc]"."editor.defaultFormatter" = "vscode.json-language-features";
+  "[json]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+  "[jsonc]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
   "[xml]"."editor.defaultFormatter" = "redhat.vscode-xml";
   "[nginx]"."editor.defaultFormatter" = "raynigon.nginx-formatter";
   "[javascript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";

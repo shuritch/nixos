@@ -20,7 +20,7 @@
     gimp # Paint
     zoom-us
     gparted
-    anydesk
+    rustdesk-flutter
     pgadmin
     postman
     cava # Audio vis

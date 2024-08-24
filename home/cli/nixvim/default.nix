@@ -7,6 +7,7 @@
     ./xdg.nix
   ];
 
+  #TODO: Grub something from https://github.com/elythh/nixvim
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
