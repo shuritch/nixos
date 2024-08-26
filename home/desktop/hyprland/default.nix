@@ -37,7 +37,13 @@ in {
     settings = {
       cursor.inactive_timeout = 4;
       binds = { movefocus_cycles_fullscreen = false; };
-      exec = [ "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill" ];
+      exec = [
+        "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"
+        "hyprctl setcursor ${config.gtk.cursorTheme.name} ${
+          toString config.gtk.cursorTheme.size
+        }"
+      ];
+
       general = {
         gaps_in = 15; # 5
         gaps_out = 20;
@@ -218,6 +224,7 @@ in {
           "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}")
 
         "SUPER,m,exec,${fmanager}"
+        "SUPER,`,exec,keybinds-menu" # From scripts
         # Brightness control (only works if the system has lightd)
         ",XF86MonBrightnessUp,exec,light -A 10"
         ",XF86MonBrightnessDown,exec,light -U 10"

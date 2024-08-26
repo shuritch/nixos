@@ -5,16 +5,18 @@
 
     conform-nvim = {
       enable = true;
-      formatOnSave = {
-        lspFallback = true;
-        timeoutMs = 500;
-      };
-      formattersByFt = {
-        lua = [ "stylua" ];
-        python = [ "isort" "black" ];
-        javascript = [[ "prettierd" "prettier" ]];
-        "*" = [ "codespell" ];
-        "_" = [ "trim_whitespace" ];
+      settings = {
+        format_on_save = {
+          lspFallback = true;
+          timeoutMs = 500;
+        };
+        formattersByFt = {
+          lua = [ "stylua" ];
+          python = [ "isort" "black" ];
+          javascript = [[ "prettierd" "prettier" ]];
+          "*" = [ "codespell" ];
+          "_" = [ "trim_whitespace" ];
+        };
       };
     };
 

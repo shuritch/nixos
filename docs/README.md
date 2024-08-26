@@ -35,6 +35,10 @@
 
 ## Installation
 
+> [!CAUTION]
+>
+> Applying custom configurations, especially those related to your operating system, can have unexpected consequences and may interfere with your system's normal behavior. While I have tested these configurations on my own setup, there is no guarantee that they will work flawlessly for you. I am not responsible for any issues that may arise from using this configuration.
+
 ```bash
 # Working with Live CD
 nix-shell -p curl git
@@ -78,13 +82,14 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
   - `overlays` Patches and custom overrides for some packages.
   - `modules` Modules for more accurate customization.
   - `pkgs` Self hosted packages.
+  - `scripts` Shell scripts.
 
 ## Highlights
 
 - Multiple **NixOS configurations**
 - Almost fully **Declarative** / **Self-hosted** stuff
 - Flexible **Home Manager** Configs through **feature flags**
-- Extensively configured wayland environment (**hyprland**) and editor (**nixvim**)
+- Extensively configured wayland environment (**hyprland**) and editors (**nixvim** and **vscode**)
 - **Declarative** **themes** and **wallpapers** with **nix-colors**
 - **DNS** Encryption and **DPI** fooling
 - Host-specific **environment variables**

@@ -86,6 +86,12 @@ in rec {
       size = 12;
     };
 
+    cursorTheme = {
+      name = "Vanilla-DMZ"; # apple-cursor|Bibata-Modern-Ice
+      package = pkgs.vanilla-dmz;
+      size = 24;
+    };
+
     iconTheme = {
       package = pkgs.papirus-icon-theme;
       name = "Papirus-${

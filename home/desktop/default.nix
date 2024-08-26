@@ -1,5 +1,5 @@
 { config, ... }: {
-  imports = [ ./fonts.nix ./gtk.nix ./cursor.nix ./qt.nix ];
+  imports = [ ./fonts.nix ./gtk.nix ./qt.nix ];
   xdg.portal.enable = true;
   services.playerctld.enable = true;
   dconf.settings."org/gnome/desktop/interface".color-scheme =

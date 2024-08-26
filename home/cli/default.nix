@@ -46,7 +46,7 @@
     distrobox # Nice escape hatch, integrates docker images with my environment
     brightnessctl # Brightness mananger
 
-    nmap
+    zoxide # Better cd
     bc # Calculator
     bottom # System viewer
     ncdu # TUI disk usage
@@ -60,31 +60,25 @@
     bar # Better cat
     file # File type
     tree # console.dir
+    btop # Better htop
+    tldr # Man pages examples
+    ntfs3g # Windows subsystem
+    man-pages-posix
+    nmap
     wget
-    tldr
-    # rar
     unrar
     zip
     unzip
-    htop
-    man-pages-posix
     killall
     openssl
-    ntfs3g
     ranger
-    btop
     tmux
-    lazygit
     mkcert
     mediainfo
     gnupg
-    stable.nixfmt-classic
-    # nil # Nix Language server
-    nixd # Nix Language server
-    # alejandra # Nix formatter
-    # nixfmt-classic # Nix formatter
-    #nixpkgs-fmt #  Nix formatter
-    #nixfmt-rfc-style  # Nix formatter
+
+    stable.nixfmt-classic # ? alejandra / nixpkgs-fmt / nixfmt-rfc-style
+    nixd # Nix Language server #? nil
     nvd # Differ
     nix-diff # Differ, more detailed
     nix-output-monitor

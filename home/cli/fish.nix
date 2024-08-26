@@ -5,34 +5,49 @@ let
   packageNames = map (p: p.pname or p.name or null) config.home.packages;
   hasPackage = name: lib.any (x: x == name) packageNames;
   hasRipgrep = hasPackage "ripgrep";
-  hasExa = hasPackage "eza";
   hasSpecialisationCli = hasPackage "specialisation";
   hasNixVim = config.programs.nixvim.enable;
   hasShellColor = config.programs.shellcolor.enable;
   hasKitty = config.programs.kitty.enable;
+  hasEza = hasPackage "eza";
   shellcolor = "${pkgs.shellcolord}/bin/shellcolor";
 in {
   programs.fish = {
     enable = true;
 
     shellAbbrs = {
-      nr = "nixos-rebuild --flake .";
-      nrs = "nixos-rebuild --flake . switch";
-      snr = "sudo nixos-rebuild --flake .";
-      snrs = "sudo nixos-rebuild --flake . switch";
-      hm = "home-manager --flake .";
-      hms = "home-manager --flake . switch";
+      nix-rebuild = "sudo nixos-rebuild --flake $FLAKE";
+      nix-switch = "sudo nixos-rebuild --flake $FLAKE switch";
+      nix-clean = "sudo nix-collect-garbage -d";
+      nix-test = "sudo nixos-rebuild --flake $FLAKE test";
+      home-rebuild = "home-manager --flake $FLAKE";
+      home-switch = "home-manager --flake $FLAKE switch";
+      nix-edit = "code $FLAKE";
+
       v = "nvim";
       vim = "nvim";
-      ll = "ls -l";
+      js = "node";
+      dsize = "du -hs";
+
+      htop = mkIf (hasPackage "btop") "btop";
+      cat = mkIf (hasPackage "bat") "bat";
+      space = mkIf (hasPackage "ncdu") "ncdu";
       s = mkIf hasSpecialisationCli "specialisation";
-      ls = mkIf hasExa "eza";
-      exa = mkIf hasExa "eza";
+      man = mkIf (hasPackage "batman") "batman";
+      cd = mkIf (hasPackage "zoxide") "z";
       cik = mkIf hasKitty "clone-in-kitty --type os-window";
+
+      ls = mkIf hasEza "eza";
+      exa = mkIf hasEza "eza";
+      l = mkIf hasEza "eza --icons  -a --group-directories-first -1";
+      tree = mkIf hasEza "eza --icons --tree --group-directories-first";
+      ll = mkIf hasEza
+        "eza --icons  -a --group-directories-first -1 --no-user --long";
     };
 
     shellAliases = {
       # Clear screen and scrollback
+      c = "printf '\\033[2J\\033[3J\\033[1;1H'";
       clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
     };
 

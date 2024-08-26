@@ -43,11 +43,6 @@ in {
   ];
 
   wayland.windowManager.hyprland.extraConfig = lib.mkBefore ''
-    ${if config.programs.kitty.enable then
-      "exec-once = [workspace 3 silent] kitty"
-    else
-      ""}
-
     ${if hasPackage "firefox" then
       "exec-once = [workspace 2 silent] firefox"
     else

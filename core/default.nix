@@ -5,7 +5,6 @@
   system.stateVersion = myEnv.origin;
   services.fstrim.enable = true;
   services.printing.enable = true;
-  services.upower.enable = true;
   documentation = {
     enable = true;
     dev.enable = true;

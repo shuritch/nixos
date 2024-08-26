@@ -1,12 +1,8 @@
 { pkgs, lib, config, myEnv, ... }:
-# TODO: Maybe move to home
+
 let
   homeCfgs = config.home-manager.users;
   userCfg = homeCfgs.${myEnv.admin.login};
-  gtkTheme = userCfg.gtk.theme;
-  iconTheme = userCfg.gtk.iconTheme;
-  wallpaper = userCfg.wallpaper;
-
   homeSharePaths = lib.mapAttrsToList (_: v: "${v.home.path}/share") homeCfgs;
   variables = ''
     XDG_DATA_DIRS="$XDG_DATA_DIRS:${
@@ -26,22 +22,19 @@ let
     }";
 in {
   users.extraUsers.greeter = {
-    packages = [ gtkTheme.package iconTheme.package ];
-    home = "/tmp/greeter-home"; # For caching and such
+    home = "/tmp/greeter-home";
     createHome = true;
   };
 
   programs.regreet = {
     enable = true;
-    settings = {
-      GTK = {
-        icon_theme_name = lib.mkForce "Papirus";
-        theme_name = lib.mkForce gtkTheme.name;
-      };
-      background = {
-        path = wallpaper;
-        fit = "Cover";
-      };
+    iconTheme = userCfg.gtk.iconTheme;
+    theme = userCfg.gtk.theme;
+    cursorTheme = { inherit (userCfg.gtk.cursorTheme) name package; };
+    font.name = userCfg.fontProfiles.regular.family;
+    settings.background = {
+      path = userCfg.wallpaper;
+      fit = "Cover";
     };
   };
 

@@ -34,6 +34,7 @@ in {
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
+  services.upower.enable = true;
   hardware.sensor.iio.enable = true;
   hardware.opentabletdriver.enable = true;
   programs = {

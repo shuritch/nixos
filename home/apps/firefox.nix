@@ -10,21 +10,22 @@
         order = [ "Google" "Yandex" ];
         engines = {
           "Bing".metaData.hidden = true;
+          "Google".metaData.hidden = true;
           "Yandex" = {
-            definedAliases = [ "@ya" ];
+            definedAliases = [ "@ya" "@yandex" ];
             iconUpdateURL = "https://ya.ru/favicon.ico";
             urls = [{ template = "https://ya.ru/search?text={searchTerms}"; }];
           };
           "Youtube" = {
             iconUpdateURL = "https://youtube.ru/favicon.ico";
-            definedAliases = [ "@you" ];
+            definedAliases = [ "@you" "@youtube" ];
             urls = [{
               template =
                 "https://youtube.com/results?search_query={searchTerms}";
             }];
           };
           "Nix Packages" = {
-            definedAliases = [ "@nixpkgs" ];
+            definedAliases = [ "@pkgs" "@nixpkgs" ];
             iconUpdateURL = "https://nixos.org/favicon.png";
             urls = [{
               template =
@@ -32,14 +33,14 @@
             }];
           };
           "Nix Options" = {
-            definedAliases = [ "@nixopts" ];
+            definedAliases = [ "@opts" "@nixopts" ];
             iconUpdateURL = "https://nixos.org/favicon.png";
             urls = [{
               template = "https://search.nixos.org/options?query={searchTerms}";
             }];
           };
           "Home Manager" = {
-            definedAliases = [ "@home" ];
+            definedAliases = [ "@hm" "@home" ];
             iconUpdateURL = "https://nixos.org/favicon.png";
             urls = [{
               template =
@@ -47,7 +48,7 @@
             }];
           };
           "Github" = {
-            definedAliases = [ "@github" ];
+            definedAliases = [ "@git" "@github" ];
             iconUpdateURL =
               "https://github.githubassets.com/favicons/favicon-dark.svg";
             urls = [{
