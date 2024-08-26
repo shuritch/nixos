@@ -37,7 +37,7 @@
         MODE_HTTP_KEEPALIVE=1
         MODE_HTTPS=1
         MODE_QUIC=0
-        MODE_FILTER=autohostlist
+        MODE_FILTER=none
         DISABLE_IPV6=1
         INIT_APPLY_FW=1
         TMPDIR=/tmp

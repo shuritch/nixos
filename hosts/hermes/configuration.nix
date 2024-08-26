@@ -13,6 +13,7 @@ in {
     inputs.hardware.nixosModules.common-cpu-intel
     (relative "auto-upgrade.nix")
     (relative "powermanager.nix")
+    (relative "netmanager.nix")
     (relative "gpu/intel.nix")
     (relative "quietboot.nix")
     (relative "syncthing.nix")
@@ -23,6 +24,7 @@ in {
     (relative "sound.nix")
     (relative "zram.nix")
     (relative "frkn.nix")
+    (relative "dns.nix")
     (relative "dev")
   ];
 

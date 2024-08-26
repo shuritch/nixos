@@ -1,25 +1,9 @@
 {
-  services.tailscale.enable = true;
-  services.tailscale.useRoutingFeatures = "client";
-  systemd.network.wait-online.anyInterface = true;
-  environment.etc.hosts.mode = "0644";
   networking = {
-    firewall = {
-      logReversePathDrops = true;
-      allowedUDPPorts = [ 41641 ];
-    };
-
     nameservers = [ "127.0.0.1" "::1" ];
     dhcpcd.extraConfig = "nohook resolv.conf";
-    networkmanager.dns = "systemd-resolved"; # none | systemd-resolved ?
-    networkmanager.enable = true;
-    dhcpcd.enable = false; # NetManager
+    networkmanager.dns = "systemd-resolved";
     enableIPv6 = false; # No leaks
-  };
-
-  services.resolved = {
-    enable = true;
-    fallbackDns = [ ];
   };
 
   services.dnscrypt-proxy2 = {
@@ -44,6 +28,11 @@
         ];
       };
     };
+  };
+
+  services.resolved = {
+    enable = true;
+    fallbackDns = [ ];
   };
 
   systemd.services.dnscrypt-proxy2.serviceConfig = {

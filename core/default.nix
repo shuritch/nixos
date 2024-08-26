@@ -5,6 +5,7 @@
   system.stateVersion = myEnv.origin;
   services.fstrim.enable = true;
   services.printing.enable = true;
+  # networking.domain = "";
   documentation = {
     enable = true;
     dev.enable = true;

@@ -10,7 +10,6 @@
         order = [ "Google" "Yandex" ];
         engines = {
           "Bing".metaData.hidden = true;
-          "Google".metaData.hidden = true;
           "Yandex" = {
             definedAliases = [ "@ya" "@yandex" ];
             iconUpdateURL = "https://ya.ru/favicon.ico";

@@ -1,8 +1,8 @@
-{
+{ lib, ... }: {
   services.openssh = {
     enable = true;
     settings = {
-      PermitRootLogin = "no";
+      PermitRootLogin = lib.mkDefault "no";
       PasswordAuthentication = false; # Harden
       StreamLocalBindUnlink = "yes"; # Automatically remove stale sockets
       GatewayPorts = "clientspecified"; # Allow forwarding ports to everywhere

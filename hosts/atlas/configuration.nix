@@ -13,6 +13,7 @@ in {
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-cpu-intel
     (relative "auto-upgrade.nix")
+    (relative "netmanager.nix")
     (relative "gpu/nvidia.nix")
     (relative "syncthing.nix")
     (relative "bluetooth.nix")
@@ -20,6 +21,7 @@ in {
     (relative "greetd.nix")
     (relative "sound.nix")
     (relative "frkn.nix")
+    (relative "dns.nix")
     (relative "dev")
   ];
 

@@ -21,7 +21,7 @@ in {
       "SUPER,q,killactive"
       "SUPERSHIFT,q,killactive"
       "SUPERSHIFT,e,exit"
-      "SUPER,l,exec,swaylock -i ${config.wallpaper} --daemonize --grace 15"
+      "SUPER,l,exec,swaylock -i ${config.wallpaper} --daemonize"
       "SUPERSHIFT,l,exit"
       "SUPERSHIFT,p,exec,poweroff"
       "SUPERSHIFT,r,exec,reboot"

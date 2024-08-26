@@ -1,3 +1,5 @@
+iso-file = $(shell eza ./result/iso/)
+
 cleaning:
 	sudo nix-collect-garbage -d
 
@@ -5,6 +7,12 @@ update:
 	nix-channel --update
 	nix flake update
 	sudo nixos-rebuild --upgrade switch --flake .
+
+iso:
+	nix build .#nixosConfigurations.iso.config.system.build.isoImage
+
+iso-to-usb:
+	dd bs=4M if="./result/iso/${iso-file}" of=/dev/sdX status=progress oflag=sync
 
 rebuild:
 	nix flake update

@@ -1,14 +1,19 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    nemo-with-extensions
-    nemo-emblems
-    nemo-fileroller
-    folder-color-switcher
+    xfce.tumbler
+    ffmpegthumbnailer
     xarchiver
+    (xfce.thunar.override {
+      thunarPlugins = [
+        xfce.thunar-volman
+        xfce.thunar-archive-plugin
+        xfce.thunar-media-tags-plugin
+      ];
+    })
   ];
 
   xdg.mimeApps.inverted.defaultApplications = {
-    "nemo.desktop" = [ "inode/directory" ];
+    "thunar.desktop" = [ "inode/directory" ];
     "xarchiver.desktop" = [
       "application/bzip2"
       "application/gzip"

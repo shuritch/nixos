@@ -8,23 +8,27 @@ in {
       # Fix for https://todo.sr.ht/~scoopta/wofi/174
       patches = (oa.patches or [ ]) ++ [ ./wofi-run-shell.patch ];
     });
+
     settings = {
       image_size = 48;
       columns = 3;
       allow_images = true;
-      stylesheet = "style.css";
       insensitive = true;
       run-always_parse_args = true;
       run-cache_file = "/dev/null";
       run-exec_search = true;
       matching = "multi-contains";
     };
+
     style = ''
+      * {
+        font-family: "Fira Code", monospace;
+      }
+
       window {
-        font-family: "${config.fontProfiles.monospace.family}";
         border-radius: 7px;
         background: ${config.colorscheme.colors.surface};
-        border: 3px solid ${rgba config.colorscheme.colors.primary "aa"};
+        border: 1px solid ${rgba config.colorscheme.colors.primary "aa"};
       }
     '';
   };

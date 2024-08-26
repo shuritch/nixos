@@ -12,6 +12,11 @@ let
   hasEza = hasPackage "eza";
   shellcolor = "${pkgs.shellcolord}/bin/shellcolor";
 in {
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   programs.fish = {
     enable = true;
 
@@ -33,8 +38,6 @@ in {
       cat = mkIf (hasPackage "bat") "bat";
       space = mkIf (hasPackage "ncdu") "ncdu";
       s = mkIf hasSpecialisationCli "specialisation";
-      man = mkIf (hasPackage "batman") "batman";
-      cd = mkIf (hasPackage "zoxide") "z";
       cik = mkIf hasKitty "clone-in-kitty --type os-window";
 
       ls = mkIf hasEza "eza";

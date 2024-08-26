@@ -1,4 +1,4 @@
-{ pkgs, config, myEnv, ... }:
+{ pkgs, config, myEnv, lib, ... }:
 
 let
   inherit (myEnv.admin) login password description;
@@ -6,7 +6,7 @@ let
   ifTheyExist = groups:
     builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
-  services.getty.autologinUser = login;
+  services.getty.autologinUser = lib.mkDefault login;
   home-manager.users.${login} = import ../../hosts/${hostName}/home.nix;
   users = {
     mutableUsers = false;

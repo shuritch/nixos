@@ -11,7 +11,7 @@ let
   hasPackage = name: lib.any (x: x == name) packageNames;
 in {
   imports = [ ../default.nix ../wayland ./binds.nix ./hyprbars.nix ];
-  home.packages = with pkgs; [ grimblast hyprpicker ];
+  home.packages = with pkgs; [ grimblast hyprpicker scripts.keybinds-menu ];
 
   xdg.portal = let
     hyprland = config.wayland.windowManager.hyprland.package;
@@ -202,29 +202,20 @@ in {
       bind = let
         grimblast = lib.getExe pkgs.grimblast;
         tesseract = lib.getExe pkgs.tesseract;
-        fmanager = lib.getExe pkgs.nemo;
         pactl = lib.getExe' pkgs.pulseaudio "pactl";
         notify-send = lib.getExe' pkgs.libnotify "notify-send";
-        defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
+        defaultApp = type: "${lib.getExe pkgs.handlr} launch ${type}";
       in [
         # Program bindings
-        (if hasPackage "kitty" then
-          "SUPER,Return,exec,kitty"
-        else
-          "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}")
-
         (if hasPackage "vscode" then
           "SUPER,e,exec,code"
         else
           "SUPER,e,exec,${defaultApp "text/plain"}")
 
-        (if hasPackage "firefox" then
-          "SUPER,b,exec,firefox"
-        else
-          "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}")
-
-        "SUPER,m,exec,${fmanager}"
-        "SUPER,`,exec,keybinds-menu" # From scripts
+        "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
+        "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
+        "SUPER,m,exec,${defaultApp "inode/directory"}"
+        "SUPER,n,exec,keybinds-menu"
         # Brightness control (only works if the system has lightd)
         ",XF86MonBrightnessUp,exec,light -A 10"
         ",XF86MonBrightnessDown,exec,light -U 10"

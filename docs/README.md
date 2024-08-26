@@ -78,6 +78,7 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 - `hosts` Hardware specific configurations
   - `atlas` Desktop PC - 32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
   - `hermes` Laptop - 16GB RAM, i7-1165G7, Iris XE G7 | Hyprland
+  - `iso` Minimal ISO image configuration for bootable USB
 - `library`
   - `overlays` Patches and custom overrides for some packages.
   - `modules` Modules for more accurate customization.
@@ -95,6 +96,8 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 - Host-specific **environment variables**
 - Standalone **Home Manager**
 - Hosts **state syncing**
+
+<hr/>
 
 <p align="center">
 Copyright © 2023-2024 <a href="https://github.com/sashapop10">sashapop10</a>.<br/>

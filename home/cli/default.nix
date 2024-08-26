@@ -1,52 +1,30 @@
 { pkgs, ... }: {
   imports = [
-    ./nixvim
+    ./shellcolor.nix
+    ./nix-index.nix
+    ./starship.nix
     ./fish.nix
     ./git.nix
-    ./kitty.nix
-    ./nix-index.nix
-    ./shellcolor.nix
-    ./starship.nix
+    ./bat.nix
+    ./fzf.nix
+    ./gh.nix
+    ./nixvim
   ];
 
-  programs.bash.enable = true;
   programs.ssh.enable = true;
-  programs.bat = {
-    enable = true;
-    config.theme = "base16";
-  };
-
-  programs.fzf = {
-    enable = true;
-    defaultOptions = [ "--color 16" ];
-  };
-
-  programs.gh = {
-    enable = true;
-    extensions = with pkgs; [ gh-markdown-preview ];
-    settings = {
-      version = "1";
-      git_protocol = "ssh";
-      prompt = "enabled";
-    };
-  };
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
-  home.sessionVariables.PF_INFO =
-    "ascii title os kernel uptime shell de palette";
-
+  programs.bash.enable = true;
   home.packages = with pkgs; [
-    fastfetch
-    pfetch-rs
+    stable.nixfmt-classic # ? alejandra / nixpkgs-fmt / nixfmt-rfc-style
+    nixd # Nix Language server #? nil
+    nvd # Differ
+    nix-diff # Differ, more detailed
+    nix-output-monitor
+    nh # Nice wrapper for NixOS and HM
+    ltex-ls # Spell checking LSP
     comma # Install and run programs by sticking a , before them
     distrobox # Nice escape hatch, integrates docker images with my environment
     brightnessctl # Brightness mananger
 
-    zoxide # Better cd
     bc # Calculator
     bottom # System viewer
     ncdu # TUI disk usage
@@ -76,13 +54,5 @@
     mkcert
     mediainfo
     gnupg
-
-    stable.nixfmt-classic # ? alejandra / nixpkgs-fmt / nixfmt-rfc-style
-    nixd # Nix Language server #? nil
-    nvd # Differ
-    nix-diff # Differ, more detailed
-    nix-output-monitor
-    nh # Nice wrapper for NixOS and HM
-    ltex-ls # Spell checking LSP
   ];
 }
