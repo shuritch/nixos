@@ -1,7 +1,7 @@
 if [ -n "$1" ]; then
   theme="$1"
 else
-  current="$(${lib.getExe pkgs.jq} -re '.mode' "$HOME/.colorscheme.json")"
+  current="$(jq -re '.mode' "$HOME/.colorscheme.json")"
   if [ "$current" = "light" ]; then
     theme="dark"
   else
