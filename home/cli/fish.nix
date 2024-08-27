@@ -37,6 +37,7 @@ in {
       htop = mkIf (hasPackage "btop") "btop";
       cat = mkIf (hasPackage "bat") "bat";
       space = mkIf (hasPackage "ncdu") "ncdu";
+      cd = mkIf (hasPackage "zoxide") "z";
       s = mkIf hasSpecialisationCli "specialisation";
       cik = mkIf hasKitty "clone-in-kitty --type os-window";
 

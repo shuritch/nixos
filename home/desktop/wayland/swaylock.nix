@@ -6,9 +6,9 @@ in {
     enable = true;
     package = pkgs.swaylock-effects;
     settings = {
-      font = config.fontProfiles.regular.family;
+      font = config.fontProfiles.regular.name;
+      font-size = config.fontProfiles.regular.size + 3;
       effect-blur = "20x3";
-      font-size = 15;
       fade-in = 0.1;
 
       line-uses-inside = true;

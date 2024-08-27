@@ -2,7 +2,7 @@
 
 let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
 in {
-  imports = [ ./color.nix ] ++ (builtins.attrValues outputs.homeManagerModules);
+  imports = [ ] ++ (builtins.attrValues outputs.homeManagerModules);
   systemd.user.startServices = "sd-switch";
   programs.home-manager.enable = true;
   programs.git.enable = true;
@@ -10,6 +10,7 @@ in {
   home = {
     username = lib.mkDefault myEnv.admin.login;
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
+    packages = lib.mapAttrsToList (_: v: v) pkgs.scripts;
     sessionVariables.FLAKE = myEnv.flake-location;
     sessionPath = [ "$HOME/.local/bin" ];
     stateVersion = lib.mkDefault "23.11";
@@ -26,5 +27,12 @@ in {
   home.sessionVariables = {
     NIX_PATH = lib.concatStringsSep ":"
       (lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs);
+  };
+
+  colorscheme.mode = lib.mkOverride 1499 "dark";
+  home.file.".colorscheme.json".text = builtins.toJSON config.colorscheme;
+  specialisation = {
+    dark.configuration.colorscheme.mode = lib.mkOverride 1498 "dark";
+    light.configuration.colorscheme.mode = lib.mkOverride 1498 "light";
   };
 }

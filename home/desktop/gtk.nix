@@ -1,12 +1,10 @@
 { config, pkgs, lib, ... }:
 let
   inherit (builtins) hashString toJSON;
-  rendersvg = pkgs.runCommand "rendersvg" { } ''
-    mkdir -p $out/bin
-    ln -s ${pkgs.resvg}/bin/resvg $out/bin/rendersvg
-  '';
+  inherit (config.colorscheme) mode colors;
 
-  materiaTheme = name: colors:
+  name = "generated-${hashString "md5" (toJSON colors)}-${mode}";
+  theme = name: colors:
     pkgs.stdenv.mkDerivation {
       name = "generated-gtk-theme";
       phases = [ "unpackPhase" "installPhase" ];
@@ -18,7 +16,6 @@ let
       };
 
       buildInputs = [
-        rendersvg
         pkgs.sassc
         pkgs.bc
         pkgs.which
@@ -27,6 +24,10 @@ let
         pkgs.nodePackages.sass
         pkgs.gtk4.dev
         pkgs.optipng
+        (pkgs.runCommand "rendersvg" { } ''
+          mkdir -p $out/bin
+          ln -s ${pkgs.resvg}/bin/resvg $out/bin/rendersvg
+        '')
       ];
 
       installPhase = ''
@@ -71,20 +72,10 @@ let
 in rec {
   home.packages = [ pkgs.dconf ];
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  services.xsettingsd = {
-    enable = true;
-    settings = {
-      "Net/ThemeName" = "${gtk.theme.name}";
-      "Net/IconThemeName" = "${gtk.iconTheme.name}";
-    };
-  };
-
   gtk = {
     enable = true;
-    font = {
-      name = config.fontProfiles.regular.family;
-      size = 12;
-    };
+
+    font = { inherit (config.fontProfiles.regular) name size; };
 
     cursorTheme = {
       name = "Vanilla-DMZ"; # apple-cursor|Bibata-Modern-Ice
@@ -94,18 +85,20 @@ in rec {
 
     iconTheme = {
       package = pkgs.papirus-icon-theme;
-      name = "Papirus-${
-          if config.colorscheme.mode == "dark" then "Dark" else "Light"
-        }";
+      name = "Papirus-${if mode == "dark" then "Dark" else "Light"}";
     };
 
-    theme = let
-      inherit (config.colorscheme) mode colors;
-      name = "generated-${hashString "md5" (toJSON colors)}-${mode}";
-    in {
+    theme = {
       inherit name;
-      package =
-        materiaTheme name (lib.mapAttrs (_: v: lib.removePrefix "#" v) colors);
+      package = theme name (lib.mapAttrs (_: v: lib.removePrefix "#" v) colors);
+    };
+  };
+
+  services.xsettingsd = {
+    enable = true;
+    settings = {
+      "Net/ThemeName" = "${gtk.theme.name}";
+      "Net/IconThemeName" = "${gtk.iconTheme.name}";
     };
   };
 }

@@ -9,7 +9,6 @@ in {
     '')
   ];
 
-  # I prefer to use ssh -M explicitly, thanks.
   xdg.configFile."kitty/ssh.conf".text = ''
     share_connections no
   '';
@@ -21,18 +20,14 @@ in {
 
   programs.kitty = {
     enable = true;
-    font = {
-      name = config.fontProfiles.monospace.family;
-      size = 12;
-    };
-
+    font = { inherit (config.fontProfiles.monospace) name size; };
     keybindings = {
       "ctrl+enter" = "send_text normal clone-in-kitty --type os-window\\r";
     };
 
     settings = {
       editor = config.home.sessionVariables.EDITOR;
-      shell_integration = "no-rc"; # I prefer to do it manually
+      shell_integration = "no-rc";
       scrollback_lines = 4000;
       scrollback_pager_history_size = 100000;
       window_padding_width = 15;

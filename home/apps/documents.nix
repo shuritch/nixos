@@ -1,13 +1,15 @@
 { pkgs, config, ... }:
 
-let inherit (config.colorscheme) colors;
+let
+  inherit (config.colorscheme) colors;
+  font = config.fontProfiles.regular;
 in {
   home.packages = with pkgs; [ hunspell hunspellDicts.ru_RU libreoffice-qt ];
   programs.zathura = {
     enable = true;
     options = {
       selection-clipboard = "clipboard";
-      font = "${config.fontProfiles.regular.family} 12";
+      font = "${font.name} ${toString font.size}";
       recolor = true;
       default-bg = "${colors.surface}";
       default-fg = "${colors.surface_bright}";

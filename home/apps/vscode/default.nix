@@ -3,10 +3,8 @@
 let
   userSettings = import ./settings config;
   keybindings = import ./bindings.nix;
-  jsonSettings =
-    pkgs.writeText "tmp_vscode_settings" (builtins.toJSON userSettings);
-  jsonBindings =
-    pkgs.writeText "tmp_vscode_settings" (builtins.toJSON keybindings);
+  jsonSettings = pkgs.writeText "tmp_code_opts" (builtins.toJSON userSettings);
+  jsonBindings = pkgs.writeText "tmp_code_binds" (builtins.toJSON keybindings);
   dir = "$HOME/.config/Code/User";
 in {
   imports = [ ./extensions ];

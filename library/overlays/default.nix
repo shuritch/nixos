@@ -5,6 +5,7 @@ let
     pkg.overrideAttrs (attrs: { patches = (attrs.patches or [ ]) ++ patches; });
 in {
   additions = final: prev: import ../pkgs { pkgs = final; };
+
   modifications = final: prev: {
     wl-clipboard = addPatches prev.wl-clipboard [ ./wl-clipboard-secrets.diff ];
     obsidian = prev.obsidian.override { electron = final.electron_24; };
@@ -15,7 +16,7 @@ in {
   };
 
   # aliases pkgs.stable pkgs.master
-  stable = f: _: {
+  branches = f: _: {
     master = import inputs.nixpkgs-master {
       system = f.system;
       config.allowUnfree = true;

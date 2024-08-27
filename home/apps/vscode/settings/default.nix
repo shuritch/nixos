@@ -65,7 +65,7 @@ config:
 
   #? Terminal
   "terminal.integrated.enableMultiLinePasteWarning" = false;
-  "terminal.integrated.fontFamily" = config.fontProfiles.monospace.family;
+  "terminal.integrated.fontFamily" = config.fontProfiles.monospace.name;
   "terminal.integrated.smoothScrolling" = true;
   "terminal.integrated.defaultProfile.osx" = "/bin/fish";
   "terminal.integrated.defaultProfile.linux" = "fish";
@@ -112,7 +112,7 @@ config:
   "editor.formatOnType" = false;
   "editor.formatOnSave" = true;
   "editor.defaultFormatter" = "esbenp.prettier-vscode";
-  "editor.fontFamily" = config.fontProfiles.monospace.family;
+  "editor.fontFamily" = config.fontProfiles.monospace.name;
   "editor.stickyScroll.enabled" = true;
   "editor.multiCursorModifier" = "ctrlCmd";
   "editor.hideCursorInOverviewRuler" = true;

@@ -11,7 +11,7 @@ let
   hasPackage = name: lib.any (x: x == name) packageNames;
 in {
   imports = [ ../default.nix ../wayland ./binds.nix ./hyprbars.nix ];
-  home.packages = with pkgs; [ grimblast hyprpicker scripts.keybinds-menu ];
+  home.packages = with pkgs; [ grimblast hyprpicker ];
 
   xdg.portal = let
     hyprland = config.wayland.windowManager.hyprland.package;
@@ -247,9 +247,10 @@ in {
       # Screen lock
       (let swaylock = lib.getExe config.programs.swaylock.package;
       in lib.optionals config.programs.swaylock.enable [
-        ",XF86Launch5,exec,${swaylock} -S --grace 2"
-        ",XF86Launch4,exec,${swaylock} -S --grace 2"
-        "SUPER,backspace,exec,${swaylock} -S --grace 2"
+        ",XF86Launch5,exec,${swaylock} -S"
+        ",XF86Launch4,exec,${swaylock} -S"
+        "SUPER,backspace,exec,${swaylock} -S "
+        "SUPER,l,exec,${swaylock} -S "
       ]) ++
       # Notification manager
       (let makoctl = lib.getExe' config.services.mako.package "makoctl";
@@ -328,11 +329,6 @@ in {
 
       ${if hasPackage "telegram-desktop" then
         "exec-once = telegram-desktop -startintray"
-      else
-        ""}
-
-      ${if hasPackage "thunderbird" then
-        "exec-once = sleep 5; birdtray"
       else
         ""}
 

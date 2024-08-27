@@ -1,6 +1,6 @@
 config:
 
-let mono-font = config.fontProfiles.monospace.family;
+let mono-font = config.fontProfiles.monospace.name;
 in {
   "apc.imports" = [ (builtins.toString ./style.css) ];
   "apc.electron" = { "frame" = false; };

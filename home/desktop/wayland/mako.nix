@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-let inherit (config.colorscheme) colors mode;
+let
+  inherit (config.colorscheme) colors mode;
+  font = config.fontProfiles.regular;
 in {
   home.packages = with pkgs; [ libnotify ];
   services.mako = {
@@ -9,7 +11,7 @@ in {
       "${config.gtk.iconTheme.package}/share/icons/Papirus-Dark"
     else
       "${config.gtk.iconTheme.package}/share/icons/Papirus-Light";
-    font = "${config.fontProfiles.regular.family} 12";
+    font = "${font.name} ${toString font.size}";
     padding = "10,20";
     anchor = "top-center";
     width = 400;

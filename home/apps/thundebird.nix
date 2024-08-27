@@ -13,8 +13,7 @@ let
     "lightningcalendartabs@jlx.84" = "12d48e41-412e-4d09-835a-fa6fb8c180eb";
   };
 in {
-  home.packages = with pkgs; [ birdtray thunderbird ];
-
+  home.packages = with pkgs; [ thunderbird ];
   programs.thunderbird = {
     enable = true;
     profiles.${myEnv.admin.login} = {

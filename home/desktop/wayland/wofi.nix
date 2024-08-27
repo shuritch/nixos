@@ -1,7 +1,4 @@
-{ config, lib, pkgs, ... }:
-
-let rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
-in {
+{ config, lib, pkgs, ... }: {
   programs.wofi = {
     enable = true;
     package = pkgs.wofi.overrideAttrs (oa: {
@@ -22,13 +19,12 @@ in {
 
     style = ''
       * {
-        font-family: "Fira Code", monospace;
+        font-family: ${config.fontProfiles.regular.name}, ${config.fontProfiles.monospace.name};
       }
 
       window {
         border-radius: 7px;
-        background: ${config.colorscheme.colors.surface};
-        border: 1px solid ${rgba config.colorscheme.colors.primary "aa"};
+        border: 1px solid ${config.colorscheme.colors.primary};
       }
     '';
   };

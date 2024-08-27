@@ -31,7 +31,7 @@ in {
     iconTheme = userCfg.gtk.iconTheme;
     theme = userCfg.gtk.theme;
     cursorTheme = { inherit (userCfg.gtk.cursorTheme) name package; };
-    font.name = userCfg.fontProfiles.regular.family;
+    font = userCfg.fontProfiles.regular;
     settings.background = {
       path = userCfg.wallpaper;
       fit = "Cover";
