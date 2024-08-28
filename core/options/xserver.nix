@@ -7,7 +7,7 @@
       scrollMethod = "twofinger";
       disableWhileTyping = true;
       naturalScrolling = true;
-      accelSpeed = "0.8";
+      accelSpeed = "0.7";
     };
   };
 
@@ -16,7 +16,6 @@
     xkb.layout = "us,ru";
     xkb.variant = "lang";
     xkb.options = "grp:alt_shift_toggle";
-    # windowManager.herbstluftwm.enable = true; # Titles ?
-    deviceSection = ''Option "TearFree" "True"''; # Vsync ?
+    deviceSection = ''Option "TearFree" "True"'';
   };
 }

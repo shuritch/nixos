@@ -6,29 +6,29 @@ with myLib; {
   monitors = [
     { # DELL WE
       name = "HDMI-A-3";
+      workspace = "1";
+      primary = true;
       width = 3440;
       height = 1440;
       x = 2560;
       y = 0;
-      workspace = "1";
-      primary = true;
     }
     { # DELL W
       name = "HDMI-A-5";
+      workspace = "2";
       width = 3440;
       height = 1440;
       x = 2560;
       y = 1440;
-      workspace = "2";
-      rotate = 2;
+      rotate = 2; # n * 90
     }
     { # BENQ
       name = "HDMI-A-4";
+      workspace = "3";
       width = 2560;
       height = 1440;
       x = 0;
       y = 720;
-      workspace = "3";
     }
   ];
 

@@ -26,7 +26,7 @@ in {
 
   homes = genAttrs (forEach (env.hosts) (h: "${env.admin.login}@${h}")) (name:
     homeManagerConfiguration rec {
-      modules = [ (import ../home true) ]; # Standalone
+      modules = [ (import ../home true) ]; # 👈 Standalone
       extraSpecialArgs = createArgs (last (splitString "@" name));
       pkgs = pkgsFor.${extraSpecialArgs.myEnv.platform};
     });

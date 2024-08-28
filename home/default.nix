@@ -14,13 +14,12 @@ in {
   home = {
     username = mkDefault myEnv.admin.login;
     homeDirectory = mkDefault "/home/${config.home.username}";
-    # packages = mapAttrsToList (_: v: v) pkgs.scripts;
     sessionPath = [ "$HOME/.local/bin" ];
-    stateVersion = mkDefault "23.11";
+    stateVersion = mkDefault myEnv.origin;
     sessionVariables = {
       FLAKE = myEnv.flake-location;
     } // (attrsets.optionalAttrs alone {
-      NIX_PATH = mkIf alone (concatStringsSep ":"
+      NIX_PATH = (concatStringsSep ":"
         (mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs));
     });
   };
@@ -30,6 +29,7 @@ in {
     package = mkDefault pkgs.nix;
     settings = {
       experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
+      flake-registry = mkIf alone ""; # Disable global flake registry
       warn-dirty = false;
     };
   };

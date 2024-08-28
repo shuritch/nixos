@@ -9,6 +9,6 @@ in {
   plymouth-themes = callPackage ./plymouth-themes { };
   iio-hyprland = callPackage ./iio-hyprland { };
   shellcolord = callPackage ./shellcolord { };
-  hyprbars = callPackage ./hyprbars.nix { }; # Non-resident
-  scripts = import ../scripts { inherit pkgs; };
+  hyprbars = callPackage ./hyprbars.nix { };
+  scripts = import ./scripts { inherit pkgs; };
 } // wallpapers_package // colorschemes_package

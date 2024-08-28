@@ -14,6 +14,7 @@ in {
   networking.hostName = lib.mkDefault myEnv.host;
   system.stateVersion = lib.mkDefault myEnv.origin;
   nixpkgs.hostPlatform = lib.mkDefault myEnv.platform;
+  services.upower.enable = true;
   services.fstrim.enable = true;
   services.printing.enable = true;
   documentation = {

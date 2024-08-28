@@ -70,8 +70,8 @@ let
       '';
     };
 in rec {
-  home.packages = [ pkgs.dconf ];
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
   gtk = {
     enable = true;
 

@@ -23,7 +23,6 @@ in {
 
   wayland.windowManager.hyprland = {
     package = pkgs.hyprland.override { wrapRuntimeDeps = false; };
-    # nvidiaPatches = true;
     xwayland.enable = true;
     enable = true;
     systemd = {

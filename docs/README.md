@@ -83,7 +83,6 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
   - `overlays` Patches and custom overrides for some packages.
   - `modules` Modules for more accurate customization.
   - `pkgs` Self hosted packages.
-  - `scripts` Shell scripts.
 
 ## Highlights
 
