@@ -10,10 +10,10 @@ let
   createArgs = host:
     let
       loc = path.append ./. "${host}/environment.nix";
-      env = if (pathExists loc) then (env // (import loc lib)) else env;
+      myEnv = if (pathExists loc) then (env // (import loc lib)) else env;
       myArgs = {
         inherit inputs outputs myLib myArgs;
-        myEnv = env // { inherit host; };
+        myEnv = myEnv // { inherit host; };
       };
     in myArgs;
 in {

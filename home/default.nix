@@ -14,7 +14,7 @@ in {
   home = {
     username = mkDefault myEnv.admin.login;
     homeDirectory = mkDefault "/home/${config.home.username}";
-    packages = mapAttrsToList (_: v: v) pkgs.scripts;
+    # packages = mapAttrsToList (_: v: v) pkgs.scripts;
     sessionPath = [ "$HOME/.local/bin" ];
     stateVersion = mkDefault "23.11";
     sessionVariables = {

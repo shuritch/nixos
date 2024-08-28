@@ -1,7 +1,7 @@
 { outputs, lib, myEnv, myLib, ... }:
 
 let
-  global = myLib.dotNixFromDirRecursive ./.;
+  global = myLib.dotNixFromDirRecursive ./global;
   main = ../hosts/${myEnv.host}/configuration.nix;
   hardware = ../hosts/${myEnv.host}/hardware-configuration.nix;
   hardwareExists = lib.pathExists hardware;
