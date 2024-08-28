@@ -51,6 +51,7 @@ in {
         # no_cursor_warps = false;
         "col.active_border" = rgba config.colorscheme.colors.primary "aa";
         "col.inactive_border" = rgba config.colorscheme.colors.surface "aa";
+        allow_tearing = true;
       };
 
       env = [
@@ -102,12 +103,15 @@ in {
         sweethome3d-tooltips =
           "title:^(win[0-9])$,class:^(com-eteks-sweethome3d-SweetHome3DBootstrap)$";
         steam = "title:^()$,class:^(steam)$";
+        steamGame = "class:^(steam_app_[0-9]*)$";
         kdeconnect-pointer = "class:^(kdeconnect.daemon)$";
       in [
         "nofocus, ${sweethome3d-tooltips}"
 
         "stayfocused, ${steam}"
         "minsize 1 1, ${steam}"
+
+        "immediate, ${steamGame}"
 
         "size 100% 110%, ${kdeconnect-pointer}"
         "center, ${kdeconnect-pointer}"

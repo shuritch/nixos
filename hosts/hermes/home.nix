@@ -14,7 +14,5 @@ with myLib; {
 
   wayland.windowManager.hyprland.extraConfig = lib.mkBefore ''
     exec-once = ${pkgs.iio-hyprland}/bin/iio-hyprland
-    exec-once = [workspace f1 silent] thunderbird"
-    exec-once = [workspace f2 silent] firefox"
   '';
 }
