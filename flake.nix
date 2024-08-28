@@ -20,20 +20,22 @@
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
     let
       inherit (self) outputs;
+      inherit (configs) hosts homes myLib;
       lib = nixpkgs.lib // home-manager.lib;
       configs = import ./hosts { inherit inputs outputs lib; };
+      forSys = f: lib.genAttrs (import systems) (sys: f myLib.pkgsFor.${sys});
     in {
       inherit lib;
       overlays = import ./library/overlays { inherit inputs outputs; };
-      devShells = configs.forSys (pkgs: import ./shell.nix { inherit pkgs; });
-      packages = configs.forSys (pkgs: import ./library/pkgs { inherit pkgs; });
+      devShells = forSys (pkgs: import ./shell.nix { inherit pkgs; });
+      packages = forSys (pkgs: import ./library/pkgs { inherit pkgs; });
       homeManagerModules = import ./library/modules/home;
       nixosModules = import ./library/modules/global;
-      formatter = configs.forSys (pkgs: pkgs.nixfmt-classic);
-      nixosConfigurations = configs.hosts;
-      homeConfigurations = configs.homes;
+      formatter = forSys (pkgs: pkgs.nixfmt-classic);
+      nixosConfigurations = hosts;
+      homeConfigurations = homes;
     };
 }

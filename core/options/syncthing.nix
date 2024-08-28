@@ -7,7 +7,6 @@ let
   admin = myEnv.admin.login;
   home = "/home/${admin}";
   port = 8384;
-  # **/OS/result
   ignore = ''
     **/bin
     **/.turbo
@@ -33,8 +32,11 @@ let
     **.7zip
   '';
 in {
-  networking.firewall.allowedTCPPorts = [ port 22000 ];
-  networking.firewall.allowedUDPPorts = [ 22000 21027 ];
+  networking.firewall = {
+    allowedTCPPorts = [ port 22000 ];
+    allowedUDPPorts = [ 22000 21027 ];
+  };
+
   services.syncthing = {
     enable = true;
     user = admin;

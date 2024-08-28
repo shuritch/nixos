@@ -1,13 +1,7 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, myLib, ... }:
 
-{
-  imports = [
-    ../../home/default.nix
-    ../../home/desktop/hyprland
-    ../../home/apps
-    ../../home/cli
-  ];
-
+with myLib; {
+  imports = pfxPaths ../../home/options [ "desktop/hyprland" "apps" "cli" ];
   wallpaper = pkgs.wallpapers.tropical-paradise;
   monitors = [{ # Integrated monitor
     name = "eDP-1";
@@ -20,5 +14,7 @@
 
   wayland.windowManager.hyprland.extraConfig = lib.mkBefore ''
     exec-once = ${pkgs.iio-hyprland}/bin/iio-hyprland
+    exec-once = [workspace f1 silent] thunderbird"
+    exec-once = [workspace f2 silent] firefox"
   '';
 }

@@ -1,38 +1,52 @@
+alone:
 { inputs, outputs, lib, config, pkgs, myEnv, ... }:
 
-let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+with lib;
+let
+  flakeInputs = filterAttrs (_: isType "flake") inputs;
+  main = ../hosts/${myEnv.host}/home.nix;
 in {
-  imports = [ ] ++ (builtins.attrValues outputs.homeManagerModules);
+  imports = [ main ] ++ (builtins.attrValues outputs.homeManagerModules);
   systemd.user.startServices = "sd-switch";
   programs.home-manager.enable = true;
   programs.git.enable = true;
 
   home = {
-    username = lib.mkDefault myEnv.admin.login;
-    homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    packages = lib.mapAttrsToList (_: v: v) pkgs.scripts;
-    sessionVariables.FLAKE = myEnv.flake-location;
+    username = mkDefault myEnv.admin.login;
+    homeDirectory = mkDefault "/home/${config.home.username}";
+    packages = mapAttrsToList (_: v: v) pkgs.scripts;
     sessionPath = [ "$HOME/.local/bin" ];
-    stateVersion = lib.mkDefault "23.11";
+    stateVersion = mkDefault "23.11";
+    sessionVariables = {
+      FLAKE = myEnv.flake-location;
+    } // (attrsets.optionalAttrs alone {
+      NIX_PATH = mkIf alone (concatStringsSep ":"
+        (mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs));
+    });
   };
 
   nix = {
-    package = lib.mkDefault pkgs.nix;
+    registry = mkIf alone (mapAttrs (_: flake: { inherit flake; }) flakeInputs);
+    package = mkDefault pkgs.nix;
     settings = {
       experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
       warn-dirty = false;
     };
   };
 
-  home.sessionVariables = {
-    NIX_PATH = lib.concatStringsSep ":"
-      (lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs);
+  nixpkgs = mkIf alone {
+    overlays = builtins.attrValues outputs.overlays;
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+      permittedInsecurePackages = myEnv.myEnv.permitedInsecurePackages;
+    };
   };
 
-  colorscheme.mode = lib.mkOverride 1499 "dark";
+  colorscheme.mode = mkOverride 1499 "dark";
   home.file.".colorscheme.json".text = builtins.toJSON config.colorscheme;
   specialisation = {
-    dark.configuration.colorscheme.mode = lib.mkOverride 1498 "dark";
-    light.configuration.colorscheme.mode = lib.mkOverride 1498 "light";
+    dark.configuration.colorscheme.mode = mkOverride 1498 "dark";
+    light.configuration.colorscheme.mode = mkOverride 1498 "light";
   };
 }

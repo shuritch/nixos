@@ -1,11 +1,21 @@
-{ inputs, outputs, myEnv, ... }: {
-  imports = [ ./bundle.nix ] ++ (builtins.attrValues outputs.nixosModules);
-  home-manager.extraSpecialArgs = { inherit inputs outputs myEnv; };
-  home-manager.useGlobalPkgs = true;
-  system.stateVersion = myEnv.origin;
+{ outputs, lib, myEnv, myLib, ... }:
+
+let
+  global = myLib.dotNixFromDirRecursive ./.;
+  main = ../hosts/${myEnv.host}/configuration.nix;
+  hardware = ../hosts/${myEnv.host}/hardware-configuration.nix;
+  hardwareExists = lib.pathExists hardware;
+in {
+  imports = [ ./users/admin.nix main ] ++ global
+    ++ (lib.optionals hardwareExists [ hardware ])
+    ++ (builtins.attrValues outputs.nixosModules);
+
+  networking.useDHCP = lib.mkDefault true;
+  networking.hostName = lib.mkDefault myEnv.host;
+  system.stateVersion = lib.mkDefault myEnv.origin;
+  nixpkgs.hostPlatform = lib.mkDefault myEnv.platform;
   services.fstrim.enable = true;
   services.printing.enable = true;
-  # networking.domain = "";
   documentation = {
     enable = true;
     dev.enable = true;
@@ -17,6 +27,7 @@
     nixos.enable = true;
   };
 
+  nixpkgs.config.permittedInsecurePackages = myEnv.permitedInsecurePackages;
   hardware.enableRedistributableFirmware = true;
   environment.profileRelativeSessionVariables = {
     QT_PLUGIN_PATH = [ "/lib/qt-6/plugins" ];

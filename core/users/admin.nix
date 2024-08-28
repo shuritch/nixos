@@ -1,22 +1,16 @@
+# Configuration for Admin user declared with environment
 { pkgs, config, myEnv, lib, ... }:
 
-let
-  inherit (myEnv.admin) login password description;
-  inherit (config.networking) hostName;
-  ifTheyExist = groups:
-    builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+let inherit (builtins) filter hasAttr;
 in {
-  services.getty.autologinUser = lib.mkDefault login;
-  home-manager.users.${login} = import ../../hosts/${hostName}/home.nix;
+  services.getty.autologinUser = lib.mkDefault myEnv.admin.login;
   users = {
     mutableUsers = false;
     defaultUserShell = pkgs.fish;
-    users.${login} = {
+    users.${myEnv.admin.login} = {
       isNormalUser = true;
-      description = description;
-      hashedPassword = password;
-      packages = [ pkgs.home-manager ];
-      extraGroups = ifTheyExist [
+      inherit (myEnv.admin) description hashedPassword;
+      extraGroups = filter (group: hasAttr group config.users.groups) [
         "audio"
         "deluge"
         "git"

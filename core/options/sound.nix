@@ -1,4 +1,5 @@
 { pkgs, lib, ... }: {
+  environment.systemPackages = with pkgs; [ pamixer pavucontrol ];
   hardware.pulseaudio.enable = lib.mkForce false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -8,7 +9,4 @@
     pulse.enable = true;
     jack.enable = true;
   };
-
-  environment.systemPackages =
-    builtins.attrValues { inherit (pkgs) pamixer pavucontrol; };
 }

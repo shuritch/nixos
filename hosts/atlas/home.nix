@@ -1,29 +1,11 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, myLib, ... }:
 
-let
-  packageNames = map (p: p.pname or p.name or null) config.home.packages;
-  hasPackage = name: lib.any (x: x == name) packageNames;
-in {
-  imports = [
-    ../../home/default.nix
-    ../../home/desktop/hyprland
-    # ../../home/apps/games
-    ../../home/apps
-    ../../home/cli
-  ];
-
+with myLib; {
+  imports = pfxPaths ../../home/options [ "desktop/hyprland" "apps" "cli" ];
   wallpaper = pkgs.wallpapers.ship-in-storm;
   monitors = [
-    {
-      name = "HDMI-A-4"; # BENQ
-      width = 2560;
-      height = 1440;
-      x = 0;
-      y = 720;
-      workspace = "3";
-    }
-    {
-      name = "HDMI-A-3"; # DELL WE
+    { # DELL WE
+      name = "HDMI-A-3";
       width = 3440;
       height = 1440;
       x = 2560;
@@ -31,8 +13,8 @@ in {
       workspace = "1";
       primary = true;
     }
-    {
-      name = "HDMI-A-5"; # DELL W
+    { # DELL W
+      name = "HDMI-A-5";
       width = 3440;
       height = 1440;
       x = 2560;
@@ -40,17 +22,19 @@ in {
       workspace = "2";
       rotate = 2;
     }
+    { # BENQ
+      name = "HDMI-A-4";
+      width = 2560;
+      height = 1440;
+      x = 0;
+      y = 720;
+      workspace = "3";
+    }
   ];
 
   wayland.windowManager.hyprland.extraConfig = lib.mkBefore ''
-    ${if hasPackage "firefox" then
-      "exec-once = [workspace 2 silent] firefox"
-    else
-      ""}
-
-    ${if hasPackage "vscode" then
-      "exec-once = [workspace 1 silent] sleep 5; code"
-    else
-      ""}
+    exec-once = [workspace 2 silent] firefox
+    exec-once = [workspace f1 silent] thunderbird
+    exec-once = [workspace 1 silent] silent-code
   '';
 }

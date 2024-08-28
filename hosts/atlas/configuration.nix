@@ -1,32 +1,21 @@
-{ pkgs, inputs, lib, myEnv, ... }:
-
-let relative = lib.path.append ../../core/options;
-in {
-  networking.hostName = "atlas";
-  system.stateVersion = myEnv.origin;
-
-  imports = [
-    ../../core/default.nix
-    ./hardware-configuration.nix
+{ pkgs, inputs, myLib, ... }: {
+  imports = myLib.pfxPaths ../../core/options [
     inputs.hardware.nixosModules.common-pc
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-cpu-intel
-    (relative "auto-upgrade.nix")
-    (relative "netmanager.nix")
-    (relative "gpu/nvidia.nix")
-    (relative "syncthing.nix")
-    (relative "bluetooth.nix")
-    (relative "xserver.nix")
-    (relative "greetd.nix")
-    (relative "sound.nix")
-    (relative "frkn.nix")
-    (relative "dns.nix")
-    (relative "dev")
+    "auto-upgrade.nix"
+    "netmanager.nix"
+    "gpu/nvidia.nix"
+    "syncthing.nix"
+    "bluetooth.nix"
+    "xserver.nix"
+    "greetd.nix"
+    "sound.nix"
+    "frkn.nix"
+    "dns.nix"
+    "dev"
   ];
-
-  nixpkgs.config.permittedInsecurePackages =
-    [ "python-2.7.18.8" "electron-25.9.0" "electron-24.8.6" ];
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
