@@ -29,11 +29,11 @@
       forSys = f: lib.genAttrs (import systems) (sys: f myLib.pkgsFor.${sys});
     in {
       inherit lib;
+      packages = forSys (pkgs: import ./library/pkgs { inherit pkgs; });
       overlays = import ./library/overlays { inherit inputs outputs; };
       devShells = forSys (pkgs: import ./shell.nix { inherit pkgs; });
-      packages = forSys (pkgs: import ./library/pkgs { inherit pkgs; });
       homeManagerModules = import ./library/modules/home;
-      nixosModules = import ./library/modules/global;
+      nixosModules = import ./library/modules/core;
       formatter = forSys (pkgs: pkgs.nixfmt-classic);
       nixosConfigurations = hosts;
       homeConfigurations = homes;

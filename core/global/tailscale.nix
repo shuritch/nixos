@@ -5,8 +5,6 @@
     extraUpFlags = [ ];
   };
 
-  systemd.network.wait-online.anyInterface = true;
-  environment.etc.hosts.mode = "0644";
   networking.firewall = {
     logReversePathDrops = true;
     allowedUDPPorts = [ 41641 ];

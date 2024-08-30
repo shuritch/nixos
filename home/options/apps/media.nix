@@ -1,6 +1,5 @@
 { pkgs, ... }: {
-  # programs.imv.enable = true; # Image viewer
-  home.packages = with pkgs; [ mpv oculante ]; # ? vlc / oculante | feh / imv
+  home.packages = with pkgs; [ mpv oculante ];
   xdg.mimeApps.inverted.defaultApplications = {
     "oculante.desktop" = [
       "image/bmp"

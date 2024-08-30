@@ -1,4 +1,4 @@
-{ ... }: {
+{
   boot.initrd.kernelModules = [ "i915" ];
   services.xserver.videoDrivers = [ "modesetting" ];
   environment.variables.VDPAU_DRIVER = "va_gl";

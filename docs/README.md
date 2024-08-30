@@ -2,16 +2,16 @@
 
 <h5 align="center">
   <a href="https://github.com/sashapop10/nixos/issues">
-    <img src="https://img.shields.io/github/issues/sashapop10/nixos?color=dd5c89&labelColor=303446&style=for-the-badge">
+    <img src="https://img.shields.io/github/issues/sashapop10/nixos?color=dd5c89&labelColor=282828&style=for-the-badge&logo=sparkfun&logoColor=dd5c89">
   </a>
   <a href="https://github.com/sashapop10/nixos/stargazers">
-    <img src="https://img.shields.io/github/stars/sashapop10/nixos?color=00b557&labelColor=303446&style=for-the-badge">
+    <img src="https://img.shields.io/github/repo-size/sashapop10/nixos?color=9c76ef&labelColor=282828&style=for-the-badge&logo=github&logoColor=9c76ef">
   </a>
   <a href="https://github.com/sashapop10/nixos">
-    <img src="https://img.shields.io/github/repo-size/sashapop10/nixos?color=2ba1f6&labelColor=303446&style=for-the-badge">
+    <img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=282828&logo=NixOS&logoColor=2ba1f6&color=2ba1f6">
   </a>
   <a href="https://github.com/sashapop10/nixos/blob/main/.github/LICENCE">
-    <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=ca9ee6&colorA=313244&colorB=9c76ef"/>
+    <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&colorA=282828&colorB=00b557&logo=unlicense&logoColor=00b557&"/>
   </a>
 </h5>
 

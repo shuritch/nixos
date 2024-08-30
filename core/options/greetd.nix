@@ -28,8 +28,8 @@ in {
 
   programs.regreet = {
     enable = true;
-    iconTheme = userCfg.gtk.iconTheme;
     theme = userCfg.gtk.theme;
+    iconTheme = userCfg.gtk.iconTheme;
     cursorTheme = { inherit (userCfg.gtk.cursorTheme) name package; };
     font = userCfg.fontProfiles.regular;
     settings.background = {

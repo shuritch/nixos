@@ -6,7 +6,8 @@ let
   hardware = ../hosts/${myEnv.host}/hardware-configuration.nix;
   hardwareExists = lib.pathExists hardware;
 in {
-  imports = [ ./users/admin.nix main ] ++ global
+  imports = [ ./users/settings main ] ++ global
+    ++ (map (user: ./users/${user}.nix) myEnv.users)
     ++ (lib.optionals hardwareExists [ hardware ])
     ++ (builtins.attrValues outputs.nixosModules);
 
@@ -14,6 +15,8 @@ in {
   networking.hostName = lib.mkDefault myEnv.host;
   system.stateVersion = lib.mkDefault myEnv.origin;
   nixpkgs.hostPlatform = lib.mkDefault myEnv.platform;
+  systemd.network.wait-online.anyInterface = true;
+  environment.etc.hosts.mode = "0644";
   services.upower.enable = true;
   services.fstrim.enable = true;
   services.printing.enable = true;

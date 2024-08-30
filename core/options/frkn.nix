@@ -26,14 +26,11 @@
       # curl --http3-only -v4s -o/dev/null -k --connect-to ::google.com -k -H Host:\ metsalehti-staging-s4uzwwd6nq-lz.a.run.app https://test.googlevideo.com/app/uploads/2021/11/2022-mediakortti.pdf -w %{speed_download}
       EnvironmentFile = pkgs.writeText "zapret-environment" ''
         MODE="nfqws"
-        FWTYPE="nftables"
-        # --dpi-desync-fooling=badseq
-        # NFQWS_OPT_DESYNC="--dpi-desync=fake,split2 --dpi-desync-ttl=4 --dpi-desync-ttl6=2 --dpi-desync-split-pos=1 --wssize 1:6 --dpi-desync-fooling=md5sig"
-        # NFQWS_OPT_DESYNC="--dpi-desync=fake,split2  --dpi-desync-fooling=md5sig --dpi-desync-split-pos=2"
-        NFQWS_OPT_DESYNC_HTTP="--dpi-desync=split --dpi-desync-fooling=md5sig"
         NFQWS_OPT_DESYNC_HTTPS="--dpi-desync=fake,split --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1"
+        NFQWS_OPT_DESYNC_HTTP="--dpi-desync=split --dpi-desync-fooling=md5sig"
 
         MODE_HTTP=1
+        FWTYPE="nftables"
         MODE_HTTP_KEEPALIVE=1
         MODE_HTTPS=1
         MODE_QUIC=0

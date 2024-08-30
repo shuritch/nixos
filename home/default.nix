@@ -1,10 +1,10 @@
-alone:
 { inputs, outputs, lib, config, pkgs, myEnv, ... }:
 
 with lib;
 let
   flakeInputs = filterAttrs (_: isType "flake") inputs;
   main = ../hosts/${myEnv.host}/home.nix;
+  alone = myEnv.is-hm-standalone;
 in {
   imports = [ main ] ++ (builtins.attrValues outputs.homeManagerModules);
   systemd.user.startServices = "sd-switch";
