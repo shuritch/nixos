@@ -40,6 +40,14 @@
 > Applying custom configurations, especially those related to your operating system, can have unexpected consequences and may interfere with your system's normal behavior. While I have tested these configurations on my own setup, there is no guarantee that they will work flawlessly for you. I am not responsible for any issues that may arise from using this configuration.
 
 ```bash
+# Automatic installation
+# Working with Live CD
+nix-shell -p curl git
+./install.sh
+```
+
+```bash
+# Manual installation
 # Working with Live CD
 nix-shell -p curl git
 curl https://raw.githubusercontent.com/sashapop10/nixos/main/core/hosts/<hostname>/disko.nix > /mnt/config/disko.nix
@@ -95,6 +103,7 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 - Host-specific **environment variables**
 - Standalone **Home Manager**
 - Hosts **state syncing**
+- **Auto**matic installation
 
 <hr/>
 

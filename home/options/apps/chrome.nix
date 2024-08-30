@@ -1,11 +1,7 @@
 { ... }: {
   programs.chromium = {
-    enable = true;
-    # package = pkgs.brave;
-
+    enable = true; # ? Unfortunately brave are to buggy on hyprland now...
     commandLineArgs = [ "--no-default-browser-check" "--restore-last-sesion" ];
-
-    # { id = "ibplnjkanclpjokhdolnendpplpjiace"; } # Simple Translate
     extensions = [
       { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
       { id = "oldceeleldhonbafppcapldpdifcinji"; } # Grammar

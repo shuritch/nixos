@@ -4,11 +4,11 @@ let
   global = myLib.dotNixFromDirRecursive ./global;
   main = ../hosts/${myEnv.host}/configuration.nix;
   hardware = ../hosts/${myEnv.host}/hardware-configuration.nix;
-  hardwareExists = lib.pathExists hardware;
+  parseUser = u: ./users/${if (u == myEnv.admin.login) then "admin" else u}.nix;
 in {
   imports = [ ./users/settings main ] ++ global
-    ++ (map (user: ./users/${user}.nix) myEnv.users)
-    ++ (lib.optionals hardwareExists [ hardware ])
+    ++ (map (user: parseUser user) myEnv.users)
+    ++ (lib.optionals (lib.pathExists hardware) [ hardware ])
     ++ (builtins.attrValues outputs.nixosModules);
 
   networking.useDHCP = lib.mkDefault true;

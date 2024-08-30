@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+pkgs:
+
 with pkgs.vscode-extensions; [
   # Intellisense
   visualstudioexptteam.intellicode-api-usage-examples

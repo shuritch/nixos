@@ -1,15 +1,15 @@
-with builtins;
+{ lib, ... }@input:
 
-lib:
+with builtins;
 let
   hosts = attrNames (lib.filterAttrs (_: t: (t == "directory")) (readDir ./.));
-  global = {
+  global = rec {
     flake-github = "sashapop10/nixos"; # For auto-upgrade module
     flake-location = "$HOME/Desktop/OS"; # $FLAKE Variable
     is-hm-standalone = false; # Will be replaced by hm loader
     origin = "24.05"; # Replace by latest
     platform = "x86_64-linux";
-    users = [ "admin" ];
+    users = [ admin.login ];
 
     admin = {
       login = "sashapop10";
@@ -25,5 +25,5 @@ let
 in lib.genAttrs hosts (host:
   let
     path = lib.path.append ./. "${host}/environment.nix";
-    env = lib.optionalAttrs (lib.pathExists path) import path lib;
+    env = lib.optionalAttrs (lib.pathExists path) (import path input);
   in global // env // { inherit host hosts; })

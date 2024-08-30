@@ -1,1 +1,1 @@
-{ users = [ "nixos" ]; }
+{ ... }: { users = [ "nixos" ]; }

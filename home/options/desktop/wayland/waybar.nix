@@ -4,7 +4,6 @@ let
   swayCfg = config.wayland.windowManager.sway;
   hyprlandCfg = config.wayland.windowManager.hyprland;
   commonDeps = with pkgs; [ coreutils gnugrep systemd ];
-  # Function to simplify making waybar outputs
   mkScript = { name ? "script", deps ? [ ], script ? "", }:
     lib.getExe (pkgs.writeShellApplication {
       inherit name;
@@ -12,7 +11,6 @@ let
       runtimeInputs = commonDeps ++ deps;
     });
 
-  # Specialized for JSON outputs
   mkScriptJson = { name ? "script", deps ? [ ], pre ? "", text ? ""
     , tooltip ? "", alt ? "", class ? "", percentage ? "", }:
     mkScript {
@@ -30,7 +28,6 @@ let
       '';
     };
 in {
-  # Let it try to start a few more times
   systemd.user.services.waybar = { Unit.StartLimitBurst = 30; };
   programs.waybar = {
     enable = true;
@@ -85,7 +82,6 @@ in {
             format = {
               months = "<span color='${colors.primary}'><b>{}</b></span>";
               days = "<span color='${colors.on_surface}'><b>{}</b></span>";
-              # weeks = "<span color='${colors.tertiary}'><b>W{}</b></span>";
               weekdays = "<span color='${colors.secondary}'><b>{}</b></span>";
               today = "<span color='${colors.primary}'><b>{}</b></span>";
             };
@@ -183,16 +179,9 @@ in {
           # "format-device-preference": [ "device1", "device2" ], # preference list deciding the displayed device
 
           tooltip-format-disabled = "bluetooth off";
-          tooltip-format = ''
-            {controller_alias}	{controller_address} ({status})
-
-            {num_connections} connected'';
-
+          tooltip-format = "{controller_alias}	{controller_address} ({status})";
           tooltip-format-connected = ''
             {controller_alias}	{controller_address} ({status})
-
-            {num_connections} connected
-
             {device_enumerate}'';
 
           tooltip-format-enumerate-connected =

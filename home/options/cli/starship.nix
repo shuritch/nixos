@@ -52,14 +52,14 @@ in {
       custom = {
         nix_inspect = {
           when = "test -z $IN_NIX_SHELL";
+          format = "[($output <- )$symbol]($style) ";
+          style = "bold blue";
+          symbol = " ";
           command = lib.getExe (pkgs.writeShellApplication {
             name = "nix-inspect";
             runtimeInputs = with pkgs; [ perl gnugrep findutils ];
             text = builtins.readFile ./nix-inspect-path.sh;
           });
-          format = "[($output <- )$symbol]($style) ";
-          symbol = " ";
-          style = "bold blue";
         };
       };
 

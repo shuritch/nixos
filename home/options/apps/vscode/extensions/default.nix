@@ -1,7 +1,7 @@
 { pkgs, ... }@input:
 
 let
-  market = import ./market.nix input;
-  native = import ./native.nix input;
   custom = import ./custom input;
+  market = import ./market.nix pkgs;
+  native = import ./native.nix pkgs;
 in { programs.vscode.extensions = [ ] ++ native ++ market ++ custom; }

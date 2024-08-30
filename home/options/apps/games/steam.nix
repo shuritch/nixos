@@ -18,6 +18,7 @@ let
       pkgs.mangohud
     ];
   };
+
   steam-session = let
     gamescope = lib.concatStringsSep " " [
       (lib.getExe pkgs.gamescope)
@@ -30,9 +31,7 @@ let
       "--hdr-enabled"
       "--steam"
     ];
-  in pkgs.writeTextDir "share/wayland-sessions/steam-sesson.desktop" # ini
-
-  ''
+  in pkgs.writeTextDir "share/wayland-sessions/steam-sesson.desktop" ''
     [Desktop Entry]
     Name=Steam Session
     Exec=${gamescope} -- ${steam}

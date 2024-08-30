@@ -47,7 +47,6 @@ in {
         gaps_in = 15; # 5
         gaps_out = 20;
         border_size = 2; # 3
-        # no_cursor_warps = false;
         "col.active_border" = rgba config.colorscheme.colors.primary "aa";
         "col.inactive_border" = rgba config.colorscheme.colors.surface "aa";
         allow_tearing = true;
@@ -109,7 +108,6 @@ in {
 
         "stayfocused, ${steam}"
         "minsize 1 1, ${steam}"
-
         "immediate, ${steamGame}"
 
         "size 100% 110%, ${kdeconnect-pointer}"
@@ -128,17 +126,13 @@ in {
       layerrule = [
         "animation fade,hyprpicker"
         "animation fade,selection"
-
         "animation fade,waybar"
         "blur,waybar"
         "ignorezero,waybar"
-
         "blur,notifications"
         "ignorezero,notifications"
-
         "blur,wofi"
         "ignorezero,wofi"
-
         "noanim,wallpaper"
       ];
 
@@ -147,6 +141,11 @@ in {
         inactive_opacity = 0.85;
         fullscreen_opacity = 1.0;
         rounding = 7;
+        drop_shadow = true;
+        shadow_range = 12;
+        shadow_offset = "3 3";
+        "col.shadow" = "0x44000000";
+        "col.shadow_inactive" = "0x66000000";
         blur = {
           enabled = true;
           size = 4;
@@ -155,11 +154,6 @@ in {
           ignore_opacity = true;
           popups = true;
         };
-        drop_shadow = true;
-        shadow_range = 12;
-        shadow_offset = "3 3";
-        "col.shadow" = "0x44000000";
-        "col.shadow_inactive" = "0x66000000";
       };
 
       animations = {
@@ -167,10 +161,8 @@ in {
         bezier = [
           "easein,0.1, 0, 0.5, 0"
           "easeinback,0.35, 0, 0.95, -0.3"
-
           "easeout,0.5, 1, 0.9, 1"
           "easeoutback,0.35, 1.35, 0.65, 1"
-
           "easeinout,0.45, 0, 0.55, 1"
         ];
 
@@ -179,12 +171,10 @@ in {
           "fadeLayersIn,1,3,easeoutback"
           "layersIn,1,3,easeoutback,slide"
           "windowsIn,1,3,easeoutback,slide"
-
           "fadeLayersOut,1,3,easeinback"
           "fadeOut,1,3,easein"
           "layersOut,1,3,easeinback,slide"
           "windowsOut,1,3,easeinback,slide"
-
           "border,1,3,easeout"
           "fadeDim,1,3,easeinout"
           "fadeShadow,1,3,easeinout"
@@ -214,11 +204,10 @@ in {
           "SUPER,e,exec,code"
         else
           "SUPER,e,exec,${defaultApp "text/plain"}")
-
         "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
         "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
         "SUPER,m,exec,${defaultApp "inode/directory"}"
-        "SUPER,n,exec,keybinds-menu"
+        ",f1,exec,keybinds-menu"
         # Brightness control (only works if the system has lightd)
         ",XF86MonBrightnessUp,exec,light -A 10"
         ",XF86MonBrightnessDown,exec,light -U 10"
@@ -231,14 +220,16 @@ in {
         # Screenshotting
         ",Print,exec,${grimblast} --notify --freeze copy area"
         "SUPER,Print,exec,${grimblast} --notify --freeze copy output"
-        # To OCR
+        # Copy Text from screenshot
         "ALT,Print,exec,${grimblast} --freeze save area - | ${tesseract} - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
-      ] ++ (let
+      ] ++
+
+      # Media control
+      (let
         playerctl = lib.getExe' config.services.playerctld.package "playerctl";
         playerctld =
           lib.getExe' config.services.playerctld.package "playerctld";
       in lib.optionals config.services.playerctld.enable [
-        # Media control
         ",XF86AudioNext,exec,${playerctl} next"
         ",XF86AudioPrev,exec,${playerctl} previous"
         ",XF86AudioPlay,exec,${playerctl} play-pause"
@@ -247,6 +238,7 @@ in {
         "SHIFT,XF86AudioPrev,exec,${playerctld} unshift"
         "SHIFT,XF86AudioPlay,exec,systemctl --user restart playerctld"
       ]) ++
+
       # Screen lock
       (let swaylock = lib.getExe config.programs.swaylock.package;
       in lib.optionals config.programs.swaylock.enable [
@@ -255,32 +247,23 @@ in {
         "SUPER,backspace,exec,${swaylock} -S "
         "SUPER,l,exec,${swaylock} -S "
       ]) ++
+
       # Notification manager
       (let makoctl = lib.getExe' config.services.mako.package "makoctl";
       in lib.optionals config.services.mako.enable [
         "SUPER,w,exec,${makoctl} dismiss"
         "SUPERSHIFT,w,exec,${makoctl} restore"
       ]) ++
+
       # Launcher
       (let wofi = lib.getExe config.programs.wofi.package;
       in lib.optionals config.programs.wofi.enable [
         # "SUPER,s,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
         "SUPER,s,exec,${wofi} -S drun"
-        "SUPER,x,exec,specialisation ;$(specialisation | ${wofi} -S dmenu)"
         "SUPER,d,exec,${wofi} -S run"
-        "SUPER,a,exec,wofi-emoji -S run"
-      ] ++ (let
-        pass-wofi = lib.getExe (pkgs.pass-wofi.override {
-          pass = config.programs.password-store.package;
-        });
-      in lib.optionals config.programs.password-store.enable [
-        ",Scroll_Lock,exec,${pass-wofi}" # fn+k
-        ",XF86Calculator,exec,${pass-wofi}" # fn+f12
-        "SUPER,semicolon,exec,${pass-wofi}"
-        "SHIFT,Scroll_Lock,exec,${pass-wofi} fill" # fn+k
-        "SHIFT,XF86Calculator,exec,${pass-wofi} fill" # fn+f12
-        "SHIFTSUPER,semicolon,exec,${pass-wofi} fill"
-      ]) ++ (let cliphist = lib.getExe config.services.cliphist.package;
+        ",f3,exec,specialisation ;$(specialisation | ${wofi} -S dmenu)"
+        ",f2,exec,wofi-emoji -S run"
+      ] ++ (let cliphist = lib.getExe config.services.cliphist.package;
       in lib.optionals config.services.cliphist.enable [
         ''
           SUPER,c,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
@@ -319,6 +302,7 @@ in {
         (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
     };
 
+    # Default Apps & Passthrough
     extraConfig = ''
       ${if config.programs.kitty.enable then
         "exec-once = [workspace special silent] kitty"

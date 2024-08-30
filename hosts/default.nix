@@ -5,7 +5,7 @@ with lib;
 let
   inherit (inputs) nixpkgs systems;
   myLib = import ./library.nix lib;
-  environments = import ./environment.nix lib;
+  environments = import ./environment.nix { inherit lib myLib; };
   pkgsFor = myLib.pkgsFor { inherit nixpkgs systems; };
   createArgs = myEnv: extraEnv:
     let

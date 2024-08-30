@@ -5,12 +5,7 @@ let
   extensions = toJSON { } {
     "default-theme@mozilla.org" = "5787f490-29b8-436e-a111-640da8590790";
     "google@search.mozilla.org" = "cc340383-7068-4b32-a10f-9f19334bfebc";
-    "ddg@search.mozilla.org" = "0c340210-f7ab-48e8-9778-600ed5d00160";
-    "amazondotcom@search.mozilla.org" = "881d8fdf-5772-4e33-81ff-faac2d1fa92c";
-    "wikipedia@search.mozilla.org" = "7ea3d39d-3eea-430f-9bd7-f902d8124d45";
-    "bing@search.mozilla.org" = "f480cce8-68af-4082-908e-f8996153352b";
     "addon@darkreader.org" = "71d6c69d-55f9-4c56-888c-abdcf6efd73d";
-    "lightningcalendartabs@jlx.84" = "12d48e41-412e-4d09-835a-fa6fb8c180eb";
   };
 in {
   home.packages = with pkgs; [ thunderbird ];
