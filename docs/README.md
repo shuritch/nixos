@@ -80,6 +80,7 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 
 - `.vscode` Makes vscode more performant in this directory.
 - `flake.nix` Entrypoint for hosts and home configurations.
+- `install.sh` Shell script for automatic installation.
 - `shell.nix` Exposes a dev shell for bootstrapping.
 - `home` Home-manager configuration
 - `core` NixOS Configuration
