@@ -90,8 +90,8 @@ function main {
   echo -en "Edit$GREEN ./flake/environment.nix$NORMAL before continuing"
   read -n 1 -r
   sudo nixos-install --no-root-password --root /mnt --flake ./flake#$HOST
-
   log "Installation$GREEN successful"
+
   confirm ok false "Do you want to initialize user directory ? "
   if [[ $ok ]]; then
     prompt USER "Enter user$GREEN login$NORMAL:  $YELLOW"
@@ -104,9 +104,9 @@ function main {
     mkdir -p /mnt/home/$USER/Downloads
     log "Moving$GREEN flake$NORMAL to desktop directory"
     cp -r ./flake /mnt/home/$USER/Desktop/OS
+    log "Initialization$GREEN successful"
   fi
 
-  log "Initialization$GREEN successful"
   log "Thank you for using$BLUE NixOS by sashapop10"
 }
 
