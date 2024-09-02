@@ -14,6 +14,7 @@
 
   home.packages = with pkgs; [
     obsidian
+    wireshark
     gromit-mpx # Desktop drawing
     playerctl # Player
     deluge # Torrent

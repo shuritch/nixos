@@ -12,30 +12,33 @@
     hardware.url = "github:nixos/nixos-hardware";
     #################### Utilities ####################
     nix-gl.url = "github:nix-community/nixgl";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     nix-gl.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.url = "github:misterio77/nix-colors";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
-    let
-      inherit (self) outputs;
-      inherit (configs) hosts homes myLib;
-      lib = nixpkgs.lib // home-manager.lib;
-      configs = import ./hosts { inherit inputs outputs lib; };
-      forSys = f: lib.genAttrs (import systems) (sys: f myLib.pkgsFor.${sys});
-    in {
-      inherit lib;
-      packages = forSys (pkgs: import ./library/pkgs { inherit pkgs; });
-      overlays = import ./library/overlays { inherit inputs outputs; };
-      devShells = forSys (pkgs: import ./shell.nix { inherit pkgs; });
-      homeManagerModules = import ./library/modules/home;
-      nixosModules = import ./library/modules/core;
-      formatter = forSys (pkgs: pkgs.nixfmt-classic);
-      nixosConfigurations = hosts;
-      homeConfigurations = homes;
+  outputs = { self, systems, flake-parts, ... }@inputs:
+    let inherit (self) outputs;
+    in flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [ ./hosts ./hooks.nix ];
+      systems = import systems;
+
+      flake = {
+        overlays = import ./library/overlays { inherit inputs outputs; };
+        homeManagerModules = import ./library/modules/home;
+        nixosModules = import ./library/modules/core;
+      };
+
+      perSystem = { pkgs, ... }: {
+        packages = import ./library/pkgs { inherit pkgs; };
+        devShells = import ./shell.nix { inherit pkgs; };
+        formatter = pkgs.nixfmt-classic;
+      };
     };
 }
