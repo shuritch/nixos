@@ -1,4 +1,5 @@
 { config, lib, pkgs, ... }:
+
 let
   cfg = config.programs.shellcolor;
   package = pkgs.shellcolord;

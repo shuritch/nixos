@@ -1,8 +1,8 @@
-{ pkgs, lib, myLib, ... }:
+{ lib, myLib, pkgs, ... }:
 
 with myLib; {
   imports = pfxPaths ../../home/options [ "desktop/hyprland" "apps" "cli" ];
-  wallpaper = pkgs.wallpapers.ship-in-storm;
+  wallpaper = pkgs.wallpaper-ship-in-storm;
   monitors = [
     { # DELL WE
       name = "HDMI-A-3";

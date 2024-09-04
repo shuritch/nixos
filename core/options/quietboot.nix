@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ lib, ... }: {
   console = {
     useXkbConfig = true;
     earlySetup = false;
@@ -16,11 +16,11 @@
       "rd.udev.log_level=3"
       "vt.global_cursor_default=0"
     ];
+  };
 
-    plymouth = {
-      enable = true;
-      theme = lib.mkDefault "arch";
-      themePackages = pkgs.plymouth-themes;
-    };
+  plymouth = {
+    enable = true;
+    customTheme = true;
+    theme = lib.mkDefault "arch";
   };
 }

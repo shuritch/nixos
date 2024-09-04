@@ -1,4 +1,4 @@
-{ pkgs, myLib, ... }: {
+{ myLib, pkgs, ... }: {
   imports = myLib.pfxPaths ../../home/options [ "cli" ];
-  wallpaper = pkgs.wallpapers.nixos-blue;
+  wallpaper = pkgs.wallpaper-nixos-blue;
 }

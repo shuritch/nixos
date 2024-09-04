@@ -2,7 +2,7 @@
 
 with myLib; {
   imports = pfxPaths ../../home/options [ "desktop/hyprland" "apps" "cli" ];
-  wallpaper = pkgs.wallpapers.tropical-paradise;
+  wallpaper = pkgs.wallpaper-tropical-paradise;
   monitors = [{ # Integrated monitor
     name = "eDP-1";
     width = 3840;

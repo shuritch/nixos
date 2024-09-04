@@ -1,6 +1,8 @@
 lib:
 
 with lib; rec {
+  importPaths = args: paths: map (p: import p args) paths;
+
   dotNixFromDir = p:
     let
       filter = k: v:
@@ -27,14 +29,16 @@ with lib; rec {
         folders;
     in (flatten parsedFolders) ++ parsedFiles;
 
-  pfxPaths = pfx: arr: map (path: pfxPath pfx path) arr;
-  pfxPath = pfx: p:
-    if (isString p && !(hasPrefix "/" p)) then path.append pfx p else p;
+  # pkgsFor = inputs: system:
+  #   import inputs.nixpkgs {
+  #     config.allowUnfree = true;
+  #     inherit system;
+  #   };
 
-  pkgsFor = { systems, nixpkgs }:
-    genAttrs (import systems) (system:
-      import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      });
+  # forEachSystem = inputs: f:
+  #   genAttrs (import inputs.systems) (system:
+  #     f {
+  #       inherit inputs lib system;
+  #       pkgs = pkgsFor system;
+  #     });
 }

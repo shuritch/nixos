@@ -3,10 +3,8 @@
 with lib;
 
 let
-  inherit (inputs) nixpkgs systems;
-  myLib = import ./library.nix lib;
+  myLib = import ../library/utils lib;
   environments = import ./environment.nix { inherit lib myLib; };
-  pkgsFor = myLib.pkgsFor { inherit nixpkgs systems; };
   createArgs = myEnv: extraEnv:
     let
       myArgs = {
@@ -14,15 +12,21 @@ let
         myEnv = myEnv // extraEnv;
       };
     in myArgs;
+
+  pkgsFor = genAttrs (import inputs.systems) (system:
+    import inputs.nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    });
 in {
-  inherit mylib;
-  hosts = mapAttrs (_: env:
+  inherit pkgsFor;
+  nixosConfigurations = mapAttrs (_: env:
     nixosSystem {
       modules = [ ../core ];
       specialArgs = createArgs env { };
     }) environments;
 
-  homes = foldlAttrs (acc: host: env:
+  homeConfigurations = foldlAttrs (acc: host: env:
     acc // (genAttrs (map (user: "${host}@${user}") env.users) (_:
       homeManagerConfiguration {
         modules = [ ../home ];

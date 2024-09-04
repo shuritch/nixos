@@ -1,12 +1,14 @@
-{ inputs, outputs, lib, config, pkgs, myEnv, ... }:
+{ inputs, outputs, lib, config, pkgs, myEnv, myLib, ... }:
 
 with lib;
 let
+  global = myLib.dotNixFromDirRecursive ./global;
   flakeInputs = filterAttrs (_: isType "flake") inputs;
-  main = ../hosts/${myEnv.host}/home.nix;
   alone = myEnv.is-hm-standalone;
 in {
-  imports = [ main ] ++ (builtins.attrValues outputs.homeManagerModules);
+  imports = [ ../hosts/${myEnv.host}/home.nix ] ++ global
+    ++ (builtins.attrValues outputs.homeManagerModules);
+
   systemd.user.startServices = "sd-switch";
   programs.home-manager.enable = true;
   programs.git.enable = true;

@@ -23,19 +23,17 @@
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
     let
       inherit (self) outputs;
-      inherit (configs) hosts homes myLib;
+      inherit (configs) pkgsFor;
       lib = nixpkgs.lib // home-manager.lib;
       configs = import ./hosts { inherit inputs outputs lib; };
-      forSys = f: lib.genAttrs (import systems) (sys: f myLib.pkgsFor.${sys});
+      forSys = f: lib.genAttrs (import systems) (sys: f pkgsFor.${sys});
     in {
-      inherit lib;
-      packages = forSys (pkgs: import ./library/pkgs { inherit pkgs; });
+      inherit (configs) nixosConfigurations homeConfigurations;
+      packages = forSys (pkgs: import ./library/pkgs { inherit pkgs lib; });
       overlays = import ./library/overlays { inherit inputs outputs; };
       devShells = forSys (pkgs: import ./shell.nix { inherit pkgs; });
       homeManagerModules = import ./library/modules/home;
       nixosModules = import ./library/modules/core;
       formatter = forSys (pkgs: pkgs.nixfmt-classic);
-      nixosConfigurations = hosts;
-      homeConfigurations = homes;
     };
 }

@@ -1,11 +1,11 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.colorscheme;
+  generate = import ../../utils/colorscheme-generator.nix pkgs;
   inherit (lib) types mkOption;
+  cfg = config.colorscheme;
 
   hexColor = types.strMatching "#([0-9a-fA-F]{3}){1,2}";
-
   removeFilterPrefixAttrs = prefix: attrs:
     lib.mapAttrs' (n: v: {
       name = lib.removePrefix prefix n;
@@ -25,14 +25,13 @@ in {
     };
 
     type = mkOption {
-      type = types.enum (pkgs.generateColorscheme null null).schemeTypes;
+      type = types.enum (generate null null).schemeTypes;
       default = "fruit-salad";
     };
 
     generatedDrv = mkOption {
       type = types.package;
-      default =
-        pkgs.generateColorscheme (cfg.source.name or "default") cfg.source;
+      default = generate (cfg.source.name or "default") cfg.source;
     };
 
     rawColorscheme = mkOption {

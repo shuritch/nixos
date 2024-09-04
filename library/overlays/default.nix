@@ -4,7 +4,11 @@ let
   addPatches = pkg: patches:
     pkg.overrideAttrs (attrs: { patches = (attrs.patches or [ ]) ++ patches; });
 in {
-  additions = final: prev: import ../pkgs { pkgs = final; };
+  additions = final: prev:
+    import ../pkgs {
+      pkgs = final;
+      lib = prev.lib;
+    };
 
   modifications = final: prev: {
     wl-clipboard = addPatches prev.wl-clipboard [ ./wl-clipboard-secrets.diff ];
@@ -16,23 +20,23 @@ in {
   };
 
   # aliases pkgs.stable pkgs.master
-  branches = f: _: {
+  branches = final: prev: {
     master = import inputs.nixpkgs-master {
-      system = f.system;
+      system = final.system;
       config.allowUnfree = true;
     };
     stable = import inputs.nixpkgs-stable {
-      system = f.system;
+      system = final.system;
       config.allowUnfree = true;
     };
   };
 
   #  aliases 'pkgs.inputs.${flake}'
-  flake-inputs = f: _: {
+  flake-inputs = final: prev: {
     inputs = builtins.mapAttrs (_: flake:
       let
-        legacyPackages = (flake.legacyPackages or { }).${f.system} or { };
-        packages = (flake.packages or { }).${f.system} or { };
+        legacyPackages = (flake.legacyPackages or { }).${final.system} or { };
+        packages = (flake.packages or { }).${final.system} or { };
       in if legacyPackages != { } then legacyPackages else packages) inputs;
   };
 }

@@ -2,6 +2,7 @@
 let inherit (lib) mkOption types;
 in {
   options.monitors = mkOption {
+    default = [ ];
     type = types.listOf (types.submodule {
       options = {
         name = mkOption {
@@ -50,7 +51,6 @@ in {
         };
       };
     });
-    default = [ ];
   };
 
   config = {

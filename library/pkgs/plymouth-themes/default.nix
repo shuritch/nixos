@@ -1,19 +1,15 @@
-{ lib, stdenv, logo ? null, ... }:
+{ lib, pkgs, ... }:
 
-let themes = builtins.readDir ./themes;
-in lib.mapAttrsToList (k: _:
-  stdenv.mkDerivation {
-    meta = { platforms = lib.platforms.all; };
+with lib;
+let themes = filterAttrs (_: v: v == "directory") (builtins.readDir ./themes);
+in mapAttrs' (k: _:
+  nameValuePair "plymouth-custom-${k}-theme" (pkgs.stdenv.mkDerivation {
+    meta = { platforms = platforms.all; };
     pname = "plymouth-${k}-theme";
     src = ./themes/${k};
     version = "1.0";
-
-    buildPhase = lib.optionalString (logo != null) ''
-      ln -s ${logo} assets/watermark.png
-    '';
-
     installPhase = ''
       mkdir -p $out/share/plymouth/themes
       cp -rT . $out/share/plymouth/themes/${k}
     '';
-  }) themes
+  })) themes

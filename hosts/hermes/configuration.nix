@@ -16,8 +16,6 @@
     "greetd.nix"
     "sound.nix"
     "zram.nix"
-    "frkn.nix"
-    "dns.nix"
     "dev"
   ];
 

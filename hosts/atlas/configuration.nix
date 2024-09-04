@@ -12,8 +12,8 @@
     "xserver.nix"
     "greetd.nix"
     "sound.nix"
-    "frkn.nix"
-    "dns.nix"
+    # "frkn.nix"
+    # "dns.nix"
     "dev"
   ];
 

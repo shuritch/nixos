@@ -1,20 +1,27 @@
-pkgs:
+{ pkgs, lib, ... }:
+
+with lib;
 
 let
-  inherit (lib) splitString mapAttrs' attrValues nameValuePair;
-  inherit (pkgs) lib stdenv linkFarmFromDrvs;
   inherit (builtins) readDir head;
-  inherit (stdenv) mkDerivation;
+  inherit (pkgs.stdenv) mkDerivation;
   data = readDir ./data;
-  parseName = name: head (splitString "." name);
+  paperName = name: "wallpaper-${head (splitString "." name)}";
+  schemeName = name: "colorscheme-${head (splitString "." name)}";
+  parseScheme = name: generate name wallpapers.${paperName name};
   parseFile = name:
     mkDerivation {
       inherit name;
-      buildCommand = ''
-        cp ${./data}/${name} $out
-      '';
+      buildCommand = "cp ${./data}/${name} $out";
     };
-in rec {
-  wallpapers = mapAttrs' (n: _: nameValuePair (parseName n) (parseFile n)) data;
-  wallpapersDerivations = linkFarmFromDrvs "wallpapers" (attrValues wallpapers);
+
+  generate = import ../../utils/colorscheme-generator.nix pkgs;
+  wallpapers = mapAttrs' (n: _: nameValuePair (paperName n) (parseFile n)) data;
+  schemes = mapAttrs' (n: _: nameValuePair (schemeName n) (parseScheme n)) data;
+in wallpapers // schemes // {
+  wallpapersDrvs = pkgs.linkFarmFromDrvs "wallpapers" (attrValues wallpapers);
+  colorschemesDrvs = let
+    combined = pkgs.writeText "colorschemes.json"
+      (builtins.toJSON (mapAttrs (_: drv: drv.imported) schemes));
+  in pkgs.linkFarmFromDrvs "colorschemes" (attrValues schemes ++ [ combined ]);
 }
