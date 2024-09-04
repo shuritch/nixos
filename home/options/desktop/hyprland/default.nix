@@ -207,7 +207,6 @@ in {
         "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
         "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
         "SUPER,m,exec,${defaultApp "inode/directory"}"
-        ",f1,exec,keybinds-menu"
         # Brightness control (only works if the system has lightd)
         ",XF86MonBrightnessUp,exec,light -A 10"
         ",XF86MonBrightnessDown,exec,light -U 10"
@@ -261,8 +260,9 @@ in {
         # "SUPER,s,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
         "SUPER,s,exec,${wofi} -S drun"
         "SUPER,d,exec,${wofi} -S run"
-        ",f3,exec,specialisation ;$(specialisation | ${wofi} -S dmenu)"
-        ",f2,exec,wofi-emoji -S run"
+        "ALT,f3,exec,specialisation ;$(specialisation | ${wofi} -S dmenu)"
+        "ALT,f2,exec,wofi-emoji -S run"
+        "ALT,f1,exec,keybinds-menu"
       ] ++ (let cliphist = lib.getExe config.services.cliphist.package;
       in lib.optionals config.services.cliphist.enable [
         ''
