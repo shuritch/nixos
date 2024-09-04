@@ -1,7 +1,6 @@
-{ lib, inputs, outputs, ... }:
+{ inputs, outputs, lib, ... }:
 
 with lib;
-
 let
   myLib = import ../library/utils lib;
   environments = import ./environment.nix { inherit lib myLib; };

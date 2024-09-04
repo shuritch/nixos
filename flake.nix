@@ -12,6 +12,7 @@
     hardware.url = "github:nixos/nixos-hardware";
     #################### Utilities ####################
     nix-gl.url = "github:nix-community/nixgl";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     nix-gl.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.url = "github:misterio77/nix-colors";
     nixvim.url = "github:nix-community/nixvim";
