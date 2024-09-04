@@ -76,24 +76,6 @@ sudo nixos-rebuild switch --flake .#<hostname> # If Hosts updated
 home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 ```
 
-## Structure
-
-- `.vscode` Makes vscode more performant in this directory.
-- `flake.nix` Entrypoint for hosts and home configurations.
-- `install.sh` Shell script for automatic installation.
-- `shell.nix` Exposes a dev shell for bootstrapping.
-- `home` Home-manager configuration
-- `core` NixOS Configuration
-- `hosts` Hardware specific configurations
-  - `atlas` Desktop PC - 32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
-  - `hermes` Laptop - 16GB RAM, i7-1165G7, Iris XE G7 | Hyprland
-  - `iso` Minimal ISO image configuration for bootable USB
-- `library`
-  - `overlays` Patches and custom overrides for some packages.
-  - `modules` Modules for more accurate customization.
-  - `utils` Utilities for Nix language.
-  - `pkgs` Self hosted packages.
-
 ## Highlights
 
 - Multiple **NixOS configurations**
@@ -107,7 +89,42 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 - Hosts **state syncing**
 - **Auto**matic installation
 
-<hr/>
+## Structure
+
+```graphql
+/flake.nix                           # Entrypoint
+/shell.nix                           # Exposes a dev shell for bootstrapping.
+/install.sh                          # Shell script for automatic installation.
+/.vscode                             # Makes vscode more performant in this directory.
+/.github                             # Docs, assets, workflows
+/core
+  ├─ /global                         # Global NixOS configurations (auto-imported)
+  ├─ /users                          # Users configuration (auto-imported)
+  ├─ /options                        # Optional configurations (access via host/configuration.nix)
+  └─ /default.nix                    # Loader, imported by hosts/default.nix
+/home
+  ├─ /global                         # Global Home-manager configurations (auto-imported)
+  ├─ /options                        # Optional configurations (access via host/home.nix)
+  └─ /default.nix                    # Loader, imported by hosts/default.nix
+/hosts
+  ├─ /atlas                          # Desktop  32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
+  ├─ /hermes                         # Laptop   16GB RAM, i7-1165G7, Iris XE G7 | Hyprland
+  ├─ /iso                            # Minimal ISO image configuration for bootable USB
+  ├─ /example
+  │  ├─ /configuration.nix           # NixOS Configuration
+  │  ├─ /home.nix                    # Home-manager configuration
+  │  ├─ /disko.nix                   # Disko configuration       (optional)
+  │  ├─ /hardware-configuration.nix  # Hardware configuration    (optional)
+  │  ├─ /environment.nix             # Host specific environment (optional)
+  │  └─ /host_ed25519.pub            # Ssh ed25519 public key    (optional)
+  ├─ /environment.nix                # Global environment
+  └─ /default.nix                    # Loader
+/library
+  ├─ /overlays                       # Patches and custom overrides for some packages.
+  ├─ /modules                        # Modules for more accurate customization.
+  ├─ /utils                          # Utilities for Nix language.
+  └─ /pkgs                           # Self hosted packages
+```
 
 <p align="center">
 Copyright © 2023-2024 <a href="https://github.com/sashapop10">sashapop10</a>.<br/>

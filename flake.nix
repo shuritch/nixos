@@ -24,10 +24,14 @@
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
     let
       inherit (self) outputs;
-      inherit (configs) pkgsFor;
       lib = nixpkgs.lib // home-manager.lib;
-      configs = import ./hosts { inherit inputs outputs lib; };
+      configs = import ./hosts { inherit inputs outputs lib pkgsFor; };
       forSys = f: lib.genAttrs (import systems) (sys: f pkgsFor.${sys});
+      pkgsFor = lib.genAttrs (import inputs.systems) (system:
+        import inputs.nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        });
     in {
       inherit (configs) nixosConfigurations homeConfigurations;
       packages = forSys (pkgs: import ./library/pkgs { inherit pkgs lib; });

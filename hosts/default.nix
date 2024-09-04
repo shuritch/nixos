@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, ... }:
+{ inputs, outputs, lib, pkgsFor, ... }:
 
 with lib;
 let
@@ -11,14 +11,7 @@ let
         myEnv = myEnv // extraEnv;
       };
     in myArgs;
-
-  pkgsFor = genAttrs (import inputs.systems) (system:
-    import inputs.nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    });
 in {
-  inherit pkgsFor;
   nixosConfigurations = mapAttrs (_: env:
     nixosSystem {
       modules = [ ../core ];
