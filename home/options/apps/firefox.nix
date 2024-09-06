@@ -109,6 +109,7 @@
         # bitwarden
         plasma-integration
         ublock-origin
+        return-youtube-dislikes
         (wappalyzer.overrideAttrs { meta.license.free = true; })
         sponsorblock
         simple-translate

@@ -7,7 +7,7 @@
       configurationLimit = 25;
       efiSupport = true;
       useOSProber = true;
-      theme = lib.mkDefault pkgs.grub-custom-distro-theme;
+      theme = lib.mkDefault pkgs.grub-custom-fallout-theme;
     };
   };
 }

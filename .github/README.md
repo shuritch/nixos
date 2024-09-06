@@ -112,11 +112,11 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
   ├─ /iso                            # Minimal ISO image configuration for bootable USB
   ├─ /example
   │  ├─ /configuration.nix           # NixOS Configuration
-  │  ├─ /home.nix                    # Home-manager config       (optional if home-manager is not in use)
-  │  ├─ /disko.nix                   # Disko configuration       (optional)
-  │  ├─ /hardware-configuration.nix  # Hardware configuration    (optional)
-  │  ├─ /environment.nix             # Host specific environment (optional)
-  │  └─ /host_ed25519.pub            # Ssh ed25519 public key    (optional)
+  │  ├─ /home.nix                    # Home-manager config       (optional, if home-manager is not in use)
+  │  ├─ /disko.nix                   # Disko configuration       (optional, only for standalone disko run)
+  │  ├─ /hardware-configuration.nix  # Hardware configuration    (optional, res of nixos-generate-config)
+  │  ├─ /environment.nix             # Host specific environment (optional, for default env overriding)
+  │  └─ /host_ed25519.pub            # Ssh ed25519 public key    (optional, if accessible via network)
   ├─ /environment.nix                # Global environment
   └─ /default.nix                    # Loader
 /library
