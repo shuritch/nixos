@@ -1,8 +1,12 @@
-{ pkgs, inputs, lib, config, ... }: {
+{ pkgs, inputs, lib, ... }: {
   programs.firefox = {
     enable = true;
-    # package = pkgs.firefox-devedition-bin;
-    profiles.${config.home.username} = {
+    package = pkgs.firefox-devedition-bin;
+    profiles.dev-edition-default = {
+      id = 0;
+      name = "dev-edition-default";
+      isDefault = true;
+
       search = {
         force = true;
         default = "Google";

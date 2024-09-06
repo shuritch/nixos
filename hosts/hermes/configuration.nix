@@ -4,6 +4,8 @@
     inputs.hardware.nixosModules.common-pc-laptop-ssd
     inputs.hardware.nixosModules.common-gpu-intel-comet-lake
     inputs.hardware.nixosModules.common-cpu-intel
+    "systemd-boot.nix"
+    "home-manager.nix"
     "auto-upgrade.nix"
     "powermanager.nix"
     "netmanager.nix"
@@ -24,8 +26,10 @@
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
+  services.printing.enable = true;
   hardware.sensor.iio.enable = true;
   hardware.opentabletdriver.enable = true;
+  services.fstrim.enable = true;
   programs = {
     adb.enable = true;
     dconf.enable = true;

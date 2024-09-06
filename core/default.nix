@@ -18,8 +18,6 @@ in {
   systemd.network.wait-online.anyInterface = true;
   environment.etc.hosts.mode = "0644";
   services.upower.enable = true;
-  services.fstrim.enable = true;
-  services.printing.enable = true;
   documentation = {
     enable = true;
     dev.enable = true;

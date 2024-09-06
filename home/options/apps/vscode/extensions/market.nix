@@ -47,6 +47,12 @@ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     sha256 = "sha256-aiifZgHXC4GUEbkKAbLc0p/jUZxp1jF/J1Y/KIyvLIE=";
   }
   {
+    name = "ts-worksheet";
+    publisher = "chwoerz";
+    version = "0.8.25";
+    sha256 = "sha256-zWhpwWtqd+dlcVcLHrHBkrJPFOK1VK2OgCVfdHBVhe0=";
+  }
+  {
     name = "vscode-gutter-preview";
     publisher = "kisstkondoros";
     version = "0.31.2";

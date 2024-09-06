@@ -112,7 +112,7 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
   ├─ /iso                            # Minimal ISO image configuration for bootable USB
   ├─ /example
   │  ├─ /configuration.nix           # NixOS Configuration
-  │  ├─ /home.nix                    # Home-manager configuration
+  │  ├─ /home.nix                    # Home-manager config       (optional if home-manager is not in use)
   │  ├─ /disko.nix                   # Disko configuration       (optional)
   │  ├─ /hardware-configuration.nix  # Hardware configuration    (optional)
   │  ├─ /environment.nix             # Host specific environment (optional)

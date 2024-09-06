@@ -19,10 +19,13 @@ in {
     }) environments;
 
   homeConfigurations = foldlAttrs (acc: host: env:
-    acc // (genAttrs (map (user: "${host}@${user}") env.users) (_:
-      homeManagerConfiguration {
-        modules = [ ../home ];
-        extraSpecialArgs = createArgs env { is-hm-standalone = true; };
-        pkgs = pkgsFor.${env.platform};
-      }))) { } environments;
+    acc // (if builtins.pathExists (path.append ./. "${host}/home.nix") then
+      genAttrs (map (user: "${host}@${user}") env.users) (_:
+        homeManagerConfiguration {
+          modules = [ ../home ];
+          extraSpecialArgs = createArgs env { is-hm-standalone = true; };
+          pkgs = pkgsFor.${env.platform};
+        })
+    else
+      { })) { } environments;
 }

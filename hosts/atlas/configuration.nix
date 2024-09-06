@@ -5,6 +5,7 @@
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-cpu-intel
     "auto-upgrade.nix"
+    "home-manager.nix"
     "netmanager.nix"
     "gpu/nvidia.nix"
     "syncthing.nix"
@@ -12,8 +13,9 @@
     "xserver.nix"
     "greetd.nix"
     "sound.nix"
-    # "frkn.nix"
-    # "dns.nix"
+    "frkn.nix"
+    "grub.nix"
+    "dns.nix"
     "dev"
   ];
 
@@ -22,6 +24,8 @@
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
+  services.printing.enable = true;
+  services.fstrim.enable = true;
   programs = {
     adb.enable = true;
     dconf.enable = true;
