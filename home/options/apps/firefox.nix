@@ -227,7 +227,7 @@
   };
 
   xdg.mimeApps.inverted.defaultApplications = {
-    "firefox.desktop" = [
+    "firefox-developer-edition.desktop" = [
       "text/html"
       "text/xml"
       "x-scheme-handler/http"

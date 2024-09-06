@@ -1,17 +1,13 @@
 { lib, pkgs, ... }: {
   boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
-    };
-
+    efi.canTouchEfiVariables = true;
     grub = {
       enable = true;
       device = "nodev";
       configurationLimit = 25;
       efiSupport = true;
       useOSProber = true;
-      theme = lib.mkDefault pkgs.grub-custom-fallout-theme;
+      theme = lib.mkDefault pkgs.grub-custom-distro-theme;
     };
   };
 }

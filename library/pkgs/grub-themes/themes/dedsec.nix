@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   icon = "white"; # color | white
@@ -42,5 +42,10 @@ in builtins.listToAttrs (map (style: {
       cp -r assets/fonts/${resolution}/* $out/
       cp -r base/${resolution}/* $out/
     '';
+
+    meta = with lib; {
+      license = licenses.unlicense;
+      platforms = platforms.all;
+    };
   };
 }) styles)

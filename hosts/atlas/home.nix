@@ -35,6 +35,7 @@ with myLib; {
   wayland.windowManager.hyprland.extraConfig = lib.mkBefore ''
     exec-once = [workspace name:0 silent] thunderbird
     exec-once = [workspace 1 silent] silent-code
-    exec-once = [workspace 2 silent] firefox
+    exec-once = [workspace 2 silent] firefox-developer-edition
+    exec-once = bluetoothctl connect AC:80:0A:E3:3B:CE
   '';
 }
