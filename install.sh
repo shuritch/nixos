@@ -84,7 +84,8 @@ function main {
     confirm ok true "Do you want to update $GREEN hardware$NORMAL configuration ? "
   fi
   if [[ $ok ]]; then
-    sudo nixos-generate-config --dir ./flake/hosts/$HOST
+    sudo nixos-generate-config --dir ./tmp-config
+    cp -f ./tmp-config/hardware-configuration.nix ./flake/hosts/$HOST
   fi
 
   echo -en "Edit$GREEN ./flake/environment.nix$NORMAL before continuing"

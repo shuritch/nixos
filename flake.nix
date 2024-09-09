@@ -28,7 +28,7 @@
       configs = import ./hosts { inherit inputs outputs lib pkgsFor; };
       forSys = f: lib.genAttrs (import systems) (sys: f pkgsFor.${sys});
       pkgsFor = lib.genAttrs (import inputs.systems) (system:
-        import inputs.nixpkgs {
+        import inputs.nixpkgs { # Will be mutated by overlays
           inherit system;
           config.allowUnfree = true;
         });

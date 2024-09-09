@@ -60,7 +60,7 @@ sudo nixos-install --flake /mnt/flake#<hostname>
 # reboot 🚀
 ```
 
-## Update
+## Updates
 
 ```bash
 nix-channel --update
@@ -68,7 +68,7 @@ nix flake update
 sudo nixos-rebuild --upgrade switch --flake .#<hostname>
 ```
 
-## Rebuild
+## Rebuilding
 
 ```bash
 git add . # Important if new files were created
@@ -76,18 +76,22 @@ sudo nixos-rebuild switch --flake .#<hostname> # If Hosts updated
 home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 ```
 
-## Highlights
+## Some of Highlights
 
-- Multiple **NixOS configurations**
-- Almost fully **Declarative** / **Self-hosted** stuff
-- Flexible **Home Manager** Configs through **feature flags**
-- Extensively configured wayland environment (**hyprland**) and editors (**nixvim** and **vscode**)
-- **Declarative** **themes** and **wallpapers** with **nix-colors**
-- **DNS** Encryption and **DPI** fooling
-- Host-specific **environment variables**
-- Standalone **Home Manager**
-- Hosts **state syncing**
-- **Auto**matic installation
+| Brief                                            | Description                                                                                                                                                                                      |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Host-specific environment                        | Every module will receive extra argument: `{ myEnv, ... }:`. This variable contains environment variables pulled from **hosts/environment.nix,** and **hosts/${host}/environment.nix** if exists |
+| User-specific configuration                      | Define your users with environment `users = [ "${userA-login}" "${userB-login}" ]` and add new user at **/core/users/${login}** if needed, configuration will do the rest.                       |
+| Declarative&nbsp;themes&nbsp;and&nbsp;wallpapers | Automatic colorscheme generation based on configured wallpaper. Accessible with `config.wallpaper` and `config.colorscheme` at home-manager.                                                     |
+| Automatic installation                           | Repository contains **install.sh** script which allows me to install this configuration with minimal effort.                                                                                     |
+| State synchronization                            | Syncing some directories between multiple hosts with **syncthing**.                                                                                                                              |
+| Extensively configured                           | Extensively configured wayland environment (**hyprland**) and editors (**nixvim** and **vscode**)                                                                                                |
+| Flexible configuration                           | Extend **nixos** and **home-manager** configurations through **feature flags**. This policy allow me to make heavy and thin configurations.                                                      |
+| Dualboot support                                 | Pre-configured grub and systemd for **dualboot** and **dualdrive** boot.                                                                                                                         |
+| Standalone Home-manager                          | Update home-manager configuration with `nixos-rebuild` and separately with `home-manager switch`.                                                                                                |
+| Privacy and Security                             | DNS Encryption with **dnsencrypt** and DPI fooling with **bol-van/zapret**.                                                                                                                      |
+| Lightweight ISO                                  | Bare-bones or most minimal and optimized **NixOS ISO**.                                                                                                                                          |
+| Easy to manage                                   | Host specific configuration doesn't contain any unnecessary or repeated logic. Also i put a lot of effort to make it automatic as possible.                                                      |
 
 ## Structure
 
@@ -112,11 +116,11 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
   ├─ /iso                            # Minimal ISO image configuration for bootable USB
   ├─ /example
   │  ├─ /configuration.nix           # NixOS Configuration
+  │  ├─ /hardware-configuration.nix  # Hardware configuration    (optional, result of nixos-generate-config)
+  │  ├─ /environment.nix             # Host specific environment (optional, if no need of overriding the env)
   │  ├─ /home.nix                    # Home-manager config       (optional, if home-manager is not in use)
   │  ├─ /disko.nix                   # Disko configuration       (optional, only for standalone disko run)
-  │  ├─ /hardware-configuration.nix  # Hardware configuration    (optional, res of nixos-generate-config)
-  │  ├─ /environment.nix             # Host specific environment (optional, for default env overriding)
-  │  └─ /host_ed25519.pub            # Ssh ed25519 public key    (optional, if accessible via network)
+  │  └─ /host_ed25519.pub            # Ssh ed25519 public key    (optional, if not accessible via network)
   ├─ /environment.nix                # Global environment
   └─ /default.nix                    # Loader
 /library

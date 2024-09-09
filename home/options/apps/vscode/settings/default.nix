@@ -57,13 +57,13 @@ config:
   "workbench.editor.limit.value" = 5;
   "workbench.enableExperiments" = false;
   "workbench.statusBar.feedback.visible" = false;
-  "workbench.panel.defaultLocation" = "right";
   "workbench.sideBar.location" = "left";
   "workbench.tree.enableStickyScroll" = false;
   "workbench.editor.enablePreview" = false;
   "workbench.tree.indent" = 12;
 
   #? Terminal
+  "workbench.panel.defaultLocation" = "bottom";
   "terminal.integrated.enableMultiLinePasteWarning" = false;
   "terminal.integrated.fontFamily" = config.fontProfiles.monospace.name;
   "terminal.integrated.smoothScrolling" = true;

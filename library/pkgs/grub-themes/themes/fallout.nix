@@ -6,7 +6,7 @@ pkgs.stdenv.mkDerivation {
   src = pkgs.fetchFromGitHub {
     owner = "sashapop10";
     repo = "fallout-grub-theme";
-    rev = "f31af75167cf8162dea1f17789aba630b0511f75";
+    rev = "b607c1ba65990116b683edce7f2178b7d1b6a48f";
     hash = "sha256-JFckfwquaFGRWRYK0sUaGH6nZ0cG6lvRmVdVw6cybuE=";
   };
 

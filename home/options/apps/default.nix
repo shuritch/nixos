@@ -13,8 +13,8 @@
   ];
 
   home.packages = with pkgs; [
+    # gromit-mpx # Desktop drawing
     obsidian
-    gromit-mpx # Desktop drawing
     playerctl # Player
     deluge # Torrent
     gimp # Paint
@@ -23,6 +23,5 @@
     rustdesk-flutter
     pgadmin
     postman
-    cava # Audio vis
   ];
 }

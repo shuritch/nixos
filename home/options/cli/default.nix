@@ -14,8 +14,8 @@
   programs.ssh.enable = true;
   programs.bash.enable = true;
   home.packages = with pkgs; [
-    stable.nixfmt-classic # ? alejandra / nixpkgs-fmt / nixfmt-rfc-style
-    nixd # Nix Language server #? nil
+    stable.nixfmt-classic # Nix formatter
+    nixd # Nix Language server
     nvd # Differ
     nix-diff # Differ, more detailed
     nix-output-monitor
@@ -42,7 +42,6 @@
     tldr # Man pages examples
     ntfs3g # Windows subsystem
     man-pages-posix
-    nmap
     wget
     unrar
     zip
@@ -50,8 +49,6 @@
     killall
     openssl
     ranger
-    tmux
-    mkcert
     mediainfo
     gnupg
   ];

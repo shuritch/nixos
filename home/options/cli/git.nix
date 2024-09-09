@@ -23,24 +23,9 @@
 
   programs.fish.shellAbbrs = {
     g = "lazygit";
-    gadd = "git add";
-    gall = "git add --all";
-    gstatus = "git status";
-    gbranch = "git branch";
-    gmerge = "git merge";
-    gdiff = "git diff";
-    gpull = "git pull origin";
-    gpullorg = "git pull origin";
-    gpush = "git push";
-    gpushorg = "git push origin";
-    gpushtags = "git push --follow-tags";
-    gclone = "git clone";
-    gccommit = "git commit -m";
+    gadd = "git add --all";
     gcommit = "git add --all && git commit -m";
     gtag = "git tag -ma";
-    gcheck = "git checkout";
-    gcheckb = "git checkout -b";
-
     glog = "git log --oneline --decorate --graph";
     glogall =
       "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all";

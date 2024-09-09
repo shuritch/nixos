@@ -15,6 +15,7 @@
     nodejs_latest.pkgs.vscode-langservers-extracted
     nodejs_latest.pkgs.dockerfile-language-server-nodejs
     nodePackages.npm-check-updates
+    mkcert
     act
   ];
 }

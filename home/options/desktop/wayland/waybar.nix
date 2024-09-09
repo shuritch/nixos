@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, myEnv, ... }:
 let
   inherit (config.colorscheme) colors;
   swayCfg = config.wayland.windowManager.sway;
@@ -51,16 +51,14 @@ in {
             "hyprland/language"
           ]) ++ [ "custom/currentplayer" "custom/player" ];
 
-        modules-center = [
-          "cpu"
-          "custom/gpu"
-          "memory"
-          "disk"
-          "clock"
-          "pulseaudio"
-          "bluetooth"
-          "battery"
-        ];
+        modules-center = let
+          config = ../../../../hosts/${myEnv.host}/configuration.nix;
+          includes = t: lib.hasInfix "gpu/${t}.nix" (builtins.readFile config);
+        in [ "cpu" ]
+        ++ (lib.optionals (includes "nvidia") [ "custom/gpu-nvidia" ])
+        ++ (lib.optionals (includes "intel") [ "custom/gpu-intel" ])
+        ++ (lib.optionals (includes "amd") [ "custom/gpu-amd" ])
+        ++ [ "memory" "disk" "clock" "pulseaudio" "bluetooth" "battery" ];
 
         modules-right = [ "custom/rfkill" "network" "tray" "custom/hostname" ];
 
@@ -87,8 +85,6 @@ in {
             };
           };
           actions = {
-            on-click-forward = "tz_up";
-            on-click-backward = "tz_down";
             on-scroll-up = "shift_up";
             on-scroll-down = "shift_down";
           };
@@ -99,12 +95,31 @@ in {
           tooltip-format = "{usage}%";
         };
 
-        "custom/gpu" = {
+        "custom/gpu-amd" = {
           interval = 30;
           exec = mkScript {
-            # script = "cat /sys/class/drm/card0/device/gpu_busy_percent"; # AMD
+            script = "cat /sys/class/drm/card0/device/gpu_busy_percent";
+          };
+          format = "󰒋  ";
+          tooltip-format = "{}%";
+        };
+
+        "custom/gpu-nvidia" = {
+          interval = 30;
+          exec = mkScript {
             deps = [ "nvidia-smi" ];
-            script = # Nvidia
+            script =
+              "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
+          };
+          format = "󰒋  ";
+          tooltip-format = "{}%";
+        };
+
+        "custom/gpu-intel" = {
+          interval = 30;
+          exec = mkScript {
+            deps = [ "intel-gpu-tools" ];
+            script =
               "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
           };
           format = "󰒋  ";
