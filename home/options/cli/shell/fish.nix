@@ -12,6 +12,8 @@ in {
   imports = [ ./settings/starship.nix ];
   programs.fish = {
     enable = true;
+    shellAbbrs = config.shell.abbrs;
+    shellAliases = config.shell.aliases;
     functions = {
       fish_greeting = ""; # Disable greeting
       nvimrg = # Grep using ripgrep and pass to nvim
