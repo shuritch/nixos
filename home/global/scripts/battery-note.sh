@@ -16,8 +16,8 @@ while [[ 0 -eq 0 ]]; do
 	battery_status="$(cat /sys/class/power_supply/BAT0/status)"
 	battery_charge="$(cat /sys/class/power_supply/BAT0/capacity)"
 
-	if [[ $battery_status == 'Discharging' && $battery_charge -le 20 ]];
-		if   [[ $battery_charge -le 10 ]]; then
+	if [[ $battery_status == 'Discharging' && $battery_charge -le 20 ]]; then
+		if [[ $battery_charge -le 10 ]]; then
 			notify-send --urgency=critical "Battery critical!" "󰁺 ${battery_charge}%"
 		else
 			notify-send "Battery low!" "󰁼 ${battery_charge}%"
