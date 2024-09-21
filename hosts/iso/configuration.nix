@@ -17,11 +17,10 @@
     loader.systemd-boot.enable = lib.mkForce false;
     supportedFilesystems =
       lib.mkForce [ "btrfs" "vfat" "f2fs" "xfs" "ntfs" "cifs" ];
-  };
-
-  initrd.systemd = {
-    enable = lib.mkImageMediaOverride false;
-    emergencyAccess = lib.mkImageMediaOverride true;
+    initrd.systemd = {
+      enable = lib.mkImageMediaOverride false;
+      emergencyAccess = lib.mkImageMediaOverride true;
+    };
   };
 
   xdg = {
