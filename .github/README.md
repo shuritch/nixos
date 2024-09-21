@@ -97,43 +97,43 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 
 ```graphql
 .
-│   # Core
-│ ╭─╼ global                         # Global NixOS configurations (auto-imported)
-├─┼─╼ users                          # Users configuration (auto-imported)
-│ ├─╼ options                        # Optional configurations (access via host/configuration.nix)
-│ ╰─╼ default.nix                    # Loader, imported by hosts/default.nix
+│  # Core
+│ ╭> global                         # Global NixOS configurations (auto-imported)
+├─┼> users                          # Users configuration (auto-imported)
+│ ├> options                        # Optional configurations (access via host/configuration.nix)
+│ ╰> default.nix                    # Loader, imported by hosts/default.nix
 │
-│   # Home
-│ ╭─> global                         # Global Home-manager configurations (auto-imported)
-├─┼─> options                        # Optional configurations (access via host/home.nix)
-│ ╰─> default.nix                    # Loader, imported by hosts/default.nix
+│  # Home
+│ ╭> global                         # Global Home-manager configurations (auto-imported)
+├─┼> options                        # Optional configurations (access via host/home.nix)
+│ ╰> default.nix                    # Loader, imported by hosts/default.nix
 │
-│   # Hosts
-│ ╭─╼ atlas                          # Desktop  32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
-│ ├─╼ hermes                         # Laptop   16GB RAM, i7-1165G7, Iris XE G7 | Hyprland
-│ ├─╼ iso                            # Minimal ISO image configuration for bootable USB
-│ ├─╼ environment.nix                # Global environment
-│ ├─╼ default.nix                    # Loader
+│  # Hosts
+│ ╭> atlas                          # Desktop  32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
+│ ├> hermes                         # Laptop   16GB RAM, i7-1165G7, Iris XE G7 | Hyprland
+│ ├> iso                            # Minimal ISO image configuration for bootable USB
+│ ├> environment.nix                # Global environment
+│ ├> default.nix                    # Loader
 ├─┤
-│ │   # Example of Host configuration
-│ │ ┌─╼ configuration.nix            # NixOS Configuration
-│ │ ├─╼ hardware-configuration.nix   # Hardware configuration    (optional, result of nixos-generate-config)
-│ ╰─┼─╼ environment.nix              # Host specific environment (optional, if no need of overriding the env)
-│   ├─╼ home.nix                     # Home-manager config       (optional, if home-manager is not in use)
-│   ├─╼ disko.nix                    # Disko configuration       (optional, only for standalone disko run)
-│   ╰─╼ host_ed25519.pub             # Ssh ed25519 public key    (optional, if not accessible via network)
+│ │  # Host configuration
+│ │ ╭> configuration.nix            # NixOS Configuration
+│ │ ├> hardware-configuration.nix   # Hardware configuration    (optional, result of nixos-generate-config)
+│ └─┼> environment.nix              # Host specific environment (optional, if no need of overriding the env)
+│   ├> home.nix                     # Home-manager config       (optional, if home-manager is not in use)
+│   ├> disko.nix                    # Disko configuration       (optional, only for standalone disko run)
+│   ╰> host_ed25519.pub             # Ssh ed25519 public key    (optional, if not accessible via network)
 │
-│   # Library
-│ ╭─╼ overlays                       # Patches and custom overrides for some packages.
-├─┼─╼ modules                        # Modules for more accurate customization.
-│ ├─╼ utils                          # Utilities for Nix language.
-│ ╰─╼ pkgs                           # Self hosted packages
+│  # Library
+│ ╭> overlays                       # Patches and custom overrides for some packages.
+├─┼> modules                        # Modules for more accurate customization.
+│ ├> utils                          # Utilities for Nix language.
+│ ╰> pkgs                           # Self hosted packages
 │
-├─╼ .github                          # Docs, assets, workflows
-├─╼ .vscode                          # Makes vscode more performant in this directory.
-├─╼ install.sh                       # Shell script for automatic installation.
-├─╼ shell.nix                        # Exposes a dev shell for bootstrapping.
-╰─╼ flake.nix                        # Entrypoint
+├> .github                          # Docs, assets, workflows
+├> .vscode                          # Makes vscode more performant in this directory.
+├> install.sh                       # Shell script for automatic installation.
+├> shell.nix                        # Exposes a dev shell for bootstrapping.
+╰> flake.nix                        # Entrypoint
 ```
 
 <p align="center">
