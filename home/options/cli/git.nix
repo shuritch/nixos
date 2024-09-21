@@ -21,7 +21,7 @@
     };
   };
 
-  programs.fish.shellAbbrs = {
+  shell.abbrs = {
     g = "lazygit";
     gadd = "git add --all";
     gcommit = "git add --all && git commit -m";

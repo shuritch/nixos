@@ -5,62 +5,16 @@ let
   packageNames = map (p: p.pname or p.name or null) config.home.packages;
   hasPackage = name: lib.any (x: x == name) packageNames;
   hasRipgrep = hasPackage "ripgrep";
-  hasSpecialisationCli = hasPackage "specialisation";
   hasNixVim = config.programs.nixvim.enable;
   hasShellColor = config.programs.shellcolor.enable;
-  hasKitty = config.programs.kitty.enable;
-  hasEza = hasPackage "eza";
   shellcolor = "${pkgs.shellcolord}/bin/shellcolor";
 in {
-  programs.zoxide = {
-    enable = true;
-    enableFishIntegration = true;
-  };
-
+  imports = [ ./settings/starship.nix ];
   programs.fish = {
     enable = true;
-
-    shellAbbrs = {
-      nix-rebuild = "sudo nixos-rebuild --flake $FLAKE";
-      nix-switch = "sudo nixos-rebuild --flake $FLAKE switch";
-      nix-clean = "sudo nix-collect-garbage -d";
-      nix-test = "sudo nixos-rebuild --flake $FLAKE test";
-      home-rebuild = "home-manager --flake $FLAKE";
-      home-switch = "home-manager --flake $FLAKE switch";
-      nix-edit = "code $FLAKE";
-
-      v = "nvim";
-      vim = "nvim";
-      js = "node";
-      dsize = "du -hs";
-
-      htop = mkIf (hasPackage "btop") "btop";
-      cat = mkIf (hasPackage "bat") "bat";
-      space = mkIf (hasPackage "ncdu") "ncdu";
-      cd = mkIf (hasPackage "zoxide") "z";
-      s = mkIf hasSpecialisationCli "specialisation";
-      cik = mkIf hasKitty "clone-in-kitty --type os-window";
-
-      ls = mkIf hasEza "eza";
-      exa = mkIf hasEza "eza";
-      l = mkIf hasEza "eza --icons  -a --group-directories-first -1";
-      tree = mkIf hasEza "eza --icons --tree --group-directories-first";
-      ll = mkIf hasEza
-        "eza --icons  -a --group-directories-first -1 --no-user --long";
-    };
-
-    shellAliases = {
-      # Clear screen and scrollback
-      c = "printf '\\033[2J\\033[3J\\033[1;1H'";
-      clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
-    };
-
     functions = {
-      # Disable greeting
-      fish_greeting = "";
-
-      # Grep using ripgrep and pass to nvim
-      nvimrg =
+      fish_greeting = ""; # Disable greeting
+      nvimrg = # Grep using ripgrep and pass to nvim
         mkIf (hasNixVim && hasRipgrep) "nvim -q (rg --vimgrep $argv | psub)";
 
       # Merge history upon doing up-or-search

@@ -1,6 +1,5 @@
 { config, ... }: {
-  imports = [ ./fonts.nix ./gtk.nix ./qt.nix ];
-  xdg.portal.enable = true;
+  imports = [ ./fonts.nix ./gtk.nix ./qt.nix ./xdg.nix ];
   services.playerctld.enable = true;
   dconf.settings."org/gnome/desktop/interface".color-scheme =
     if config.colorscheme.mode == "dark" then

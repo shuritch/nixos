@@ -1,18 +1,9 @@
 { pkgs, ... }: {
-  imports = [
-    ./shellcolor.nix
-    ./nix-index.nix
-    ./starship.nix
-    ./fish.nix
-    ./git.nix
-    ./bat.nix
-    ./fzf.nix
-    ./gh.nix
-    ./nixvim
-  ];
+  imports =
+    [ ./nixdb.nix ./git.nix ./bat.nix ./fzf.nix ./gh.nix ./shell ./nvim ];
 
   programs.ssh.enable = true;
-  programs.bash.enable = true;
+  programs.zoxide.enable = true; # Better cd
   home.packages = with pkgs; [
     stable.nixfmt-classic # Nix formatter
     nixd # Nix Language server

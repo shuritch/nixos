@@ -3,7 +3,7 @@
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./keymaps.nix
-    ./plugins
+    ./plugins-old
     ./xdg.nix
   ];
 

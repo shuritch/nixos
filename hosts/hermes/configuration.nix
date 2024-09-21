@@ -26,6 +26,7 @@
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
+  security.sudo.wheelNeedsPassword = false;
   services.printing.enable = true;
   hardware.sensor.iio.enable = true;
   hardware.opentabletdriver.enable = true;

@@ -11,7 +11,6 @@
 
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   services.cliphist.enable = true; # Clip board
-  xdg.mimeApps.enable = true;
 
   home.sessionVariables = {
     NIXOS_OZONE_WL = 1;

@@ -76,7 +76,7 @@ sudo nixos-rebuild switch --flake .#<hostname> # If Hosts updated
 home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 ```
 
-## Some of Highlights
+## Highlights
 
 | Brief                                            | Description                                                                                                                                                                                      |
 | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -89,45 +89,46 @@ home-manager switch --flake .#<username>@<hostname> # If ONLY Home updated
 | Flexible configuration                           | Extend **nixos** and **home-manager** configurations through **feature flags**. This policy allow me to make heavy and thin configurations.                                                      |
 | Dualboot support                                 | Pre-configured grub and systemd for **dualboot** and **dualdrive** boot.                                                                                                                         |
 | Standalone Home-manager                          | Update home-manager configuration with `nixos-rebuild` and separately with `home-manager switch`.                                                                                                |
-| Privacy and Security                             | DNS Encryption with **dnsencrypt** and DPI fooling with **bol-van/zapret**.                                                                                                                      |
+| Privacy and Security                             | DNS Encryption with **dnscrypt-proxy** and DPI fooling with **bol-van/zapret**.                                                                                                                  |
 | Lightweight ISO                                  | Bare-bones or most minimal and optimized **NixOS ISO**.                                                                                                                                          |
 | Easy to manage                                   | Host specific configuration doesn't contain any unnecessary or repeated logic. Also i put a lot of effort to make it automatic as possible.                                                      |
 
 ## Structure
 
 ```graphql
-/flake.nix                           # Entrypoint
-/shell.nix                           # Exposes a dev shell for bootstrapping.
-/install.sh                          # Shell script for automatic installation.
-/.vscode                             # Makes vscode more performant in this directory.
-/.github                             # Docs, assets, workflows
-/core
-  ├─ /global                         # Global NixOS configurations (auto-imported)
-  ├─ /users                          # Users configuration (auto-imported)
-  ├─ /options                        # Optional configurations (access via host/configuration.nix)
-  └─ /default.nix                    # Loader, imported by hosts/default.nix
-/home
-  ├─ /global                         # Global Home-manager configurations (auto-imported)
-  ├─ /options                        # Optional configurations (access via host/home.nix)
-  └─ /default.nix                    # Loader, imported by hosts/default.nix
-/hosts
-  ├─ /atlas                          # Desktop  32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
-  ├─ /hermes                         # Laptop   16GB RAM, i7-1165G7, Iris XE G7 | Hyprland
-  ├─ /iso                            # Minimal ISO image configuration for bootable USB
-  ├─ /example
-  │  ├─ /configuration.nix           # NixOS Configuration
-  │  ├─ /hardware-configuration.nix  # Hardware configuration    (optional, result of nixos-generate-config)
-  │  ├─ /environment.nix             # Host specific environment (optional, if no need of overriding the env)
-  │  ├─ /home.nix                    # Home-manager config       (optional, if home-manager is not in use)
-  │  ├─ /disko.nix                   # Disko configuration       (optional, only for standalone disko run)
-  │  └─ /host_ed25519.pub            # Ssh ed25519 public key    (optional, if not accessible via network)
-  ├─ /environment.nix                # Global environment
-  └─ /default.nix                    # Loader
-/library
-  ├─ /overlays                       # Patches and custom overrides for some packages.
-  ├─ /modules                        # Modules for more accurate customization.
-  ├─ /utils                          # Utilities for Nix language.
-  └─ /pkgs                           # Self hosted packages
+.
+├─> .vscode                         # Makes vscode more performant in this directory.
+├─> .github                         # Docs, assets, workflows
+├─> core
+│├─>> global                        # Global NixOS configurations (auto-imported)
+│├─>> users                         # Users configuration (auto-imported)
+│├─>> options                       # Optional configurations (access via host/configuration.nix)
+│└─>> default.nix                   # Loader, imported by hosts/default.nix
+├─> home
+│├─>> global                        # Global Home-manager configurations (auto-imported)
+│├─>> options                       # Optional configurations (access via host/home.nix)
+│└─>> default.nix                   # Loader, imported by hosts/default.nix
+├─> hosts
+│├─>> atlas                         # Desktop  32GB RAM, i9-9900k, RTX 2080S & UHD630 | Hyprland
+│├─>> hermes                        # Laptop   16GB RAM, i7-1165G7, Iris XE G7 | Hyprland
+│├─>> iso                           # Minimal ISO image configuration for bootable USB
+│├─>> example
+││├─>>> configuration.nix           # NixOS Configuration
+││├─>>> hardware-configuration.nix  # Hardware configuration    (optional, result of nixos-generate-config)
+││├─>>> environment.nix             # Host specific environment (optional, if no need of overriding the env)
+││├─>>> home.nix                    # Home-manager config       (optional, if home-manager is not in use)
+││├─>>> disko.nix                   # Disko configuration       (optional, only for standalone disko run)
+││└─>>> host_ed25519.pub            # Ssh ed25519 public key    (optional, if not accessible via network)
+│├─>> environment.nix               # Global environment
+│└─>> default.nix                   # Loader
+├─> library
+│├─>> overlays                      # Patches and custom overrides for some packages.
+│├─>> modules                       # Modules for more accurate customization.
+│├─>> utils                         # Utilities for Nix language.
+│└─>> pkgs                          # Self hosted packages
+├─> flake.nix                       # Entrypoint
+├─> shell.nix                       # Exposes a dev shell for bootstrapping.
+└─> install.sh                      # Shell script for automatic installation.
 ```
 
 <p align="center">

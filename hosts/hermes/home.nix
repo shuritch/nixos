@@ -14,5 +14,6 @@ with myLib; {
 
   wayland.windowManager.hyprland.extraConfig = lib.mkBefore ''
     exec-once = ${pkgs.iio-hyprland}/bin/iio-hyprland
+    exec-once = battery-note
   '';
 }

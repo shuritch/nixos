@@ -13,12 +13,9 @@ in {
   imports = [ ../default.nix ../wayland ./binds.nix ./hyprbars.nix ];
   home.packages = with pkgs; [ grimblast hyprpicker ];
 
-  xdg.portal = let
-    hyprland = config.wayland.windowManager.hyprland.package;
-    xdph = pkgs.xdg-desktop-portal-hyprland.override { inherit hyprland; };
-  in {
-    extraPortals = [ xdph ];
-    configPackages = [ hyprland ];
+  xdg.portal = {
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+    config.hyprland = { default = [ "wlr" "gtk" ]; };
   };
 
   wayland.windowManager.hyprland = {
@@ -102,7 +99,7 @@ in {
           "title:^(win[0-9])$,class:^(com-eteks-sweethome3d-SweetHome3DBootstrap)$";
         steam = "title:^()$,class:^(steam)$";
         steamGame = "class:^(steam_app_[0-9]*)$";
-        kdeconnect-pointer = "class:^(kdeconnect.daemon)$";
+        kdeconnect-pointer = "class:^(org.kdeconnect.daemon)$";
       in [
         "nofocus, ${sweethome3d-tooltips}"
 
@@ -220,7 +217,8 @@ in {
         ",Print,exec,${grimblast} --notify --freeze copy area"
         "SUPER,Print,exec,${grimblast} --notify --freeze copy output"
         # Copy Text from screenshot
-        "ALT,Print,exec,${grimblast} --freeze save area - | ${tesseract} - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
+        "ALTSHIFT,Print,exec,${grimblast} --freeze save area - | ${tesseract} - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
+        "ALT,Print,exec,${grimblast} --freeze save area - | ${tesseract} -l rus - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
       ] ++
 
       # Media control
@@ -241,10 +239,10 @@ in {
       # Screen lock
       (let swaylock = lib.getExe config.programs.swaylock.package;
       in lib.optionals config.programs.swaylock.enable [
-        ",XF86Launch5,exec,${swaylock} -S"
-        ",XF86Launch4,exec,${swaylock} -S"
-        "SUPER,backspace,exec,${swaylock} -S "
-        "SUPER,l,exec,${swaylock} -S "
+        ",XF86Launch5,exec,${swaylock} -S --grace 2 --grace-no-mouse"
+        ",XF86Launch4,exec,${swaylock} -S --grace 2 --grace-no-mouse"
+        "SUPER,backspace,exec,${swaylock} -S --grace 2 --grace-no-mouse"
+        "SUPER,l,exec,${swaylock} -S --grace 2 --grace-no-mouse"
       ]) ++
 
       # Notification manager

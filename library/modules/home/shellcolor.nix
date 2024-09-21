@@ -21,6 +21,7 @@ in {
         Whether to enable Bash integration.
       '';
     };
+
     enableZshIntegration = lib.mkOption {
       default = true;
       type = lib.types.bool;
@@ -28,11 +29,20 @@ in {
         Whether to enable Zsh integration.
       '';
     };
+
     enableFishIntegration = lib.mkOption {
       default = true;
       type = lib.types.bool;
       description = ''
         Whether to enable Fish integration.
+      '';
+    };
+
+    enableNushellIntegration = lib.mkOption {
+      default = true;
+      type = lib.types.bool;
+      description = ''
+        Whether to enable Nushell integration.
       '';
     };
 
@@ -43,6 +53,7 @@ in {
         Whether to enable SSH integration by replacing ssh with a bash function.
       '';
     };
+
     enableFishSshFunction = lib.mkOption {
       default = false;
       type = lib.types.bool;
@@ -97,6 +108,11 @@ in {
     programs.fish.interactiveShellInit = lib.mkIf cfg.enableFishIntegration
       (lib.mkBefore ''
         ${package}/bin/shellcolord $fish_pid & disown
+      '');
+
+    programs.nushell.configFile.text = lib.mkIf cfg.enableNushellIntegration
+      (lib.mkBefore ''
+        ${pkgs.bash}/bin/bash -c $"${package}/bin/shellcolord ($nu.pid) & disown"
       '');
 
     programs.fish.functions.ssh = lib.mkIf cfg.enableFishSshFunction ''

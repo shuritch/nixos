@@ -15,7 +15,6 @@ let
       pkgs.libkrb5
       pkgs.keyutils
       pkgs.gamescope
-      pkgs.mangohud
     ];
   };
 
@@ -38,11 +37,6 @@ let
     Type=Application
   '';
 in {
-  home.packages = [
-    steam-with-pkgs
-    steam-session
-    pkgs.gamescope
-    pkgs.mangohud
-    pkgs.protontricks
-  ];
+  home.packages =
+    [ steam-with-pkgs steam-session pkgs.gamescope pkgs.protontricks ];
 }

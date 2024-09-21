@@ -7,7 +7,7 @@ pkgs.stdenv.mkDerivation {
     owner = "sashapop10";
     repo = "fallout-grub-theme";
     rev = "b607c1ba65990116b683edce7f2178b7d1b6a48f";
-    hash = "sha256-JFckfwquaFGRWRYK0sUaGH6nZ0cG6lvRmVdVw6cybuE=";
+    hash = "sha256-A5YSdKVncshvmPkgRguBcPuQrmZN81Etr+QfnajQpMo=";
   };
 
   installPhase = ''

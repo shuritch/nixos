@@ -15,8 +15,6 @@ in {
     obsidian = prev.obsidian.override { electron = final.electron_24; };
     vscode = import ./vscode.nix { inherit final prev; };
     zapret = import ./zapret.nix { inherit final prev; };
-    vscode-langservers-extracted =
-      import ./vscode-langservers.nix { inherit final prev; };
   };
 
   # aliases pkgs.stable pkgs.master

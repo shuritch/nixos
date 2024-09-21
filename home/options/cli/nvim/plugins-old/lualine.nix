@@ -2,13 +2,13 @@
   programs.nixvim.plugins.lualine = {
 
     enable = true;
-    globalstatus = true;
+    settings.options.globalstatus = true;
 
     # +-------------------------------------------------+
     # | A | B | C                             X | Y | Z |
     # +-------------------------------------------------+
 
-    sections = {
+    settings.sections = {
       lualine_a = [ "mode" ];
       lualine_b = [ "branch" ];
       lualine_c = [ "filename" "diff" ];

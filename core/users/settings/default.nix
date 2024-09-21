@@ -5,6 +5,8 @@
       pkgs.fish
     else if config.programs.zsh.enable then
       pkgs.zsh
+    else if config.programs.nushell.enable then
+      pkgs.nushell
     else
       pkgs.bash;
   };
