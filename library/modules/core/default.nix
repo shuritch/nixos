@@ -1,1 +1,0 @@
-{ plymouth = import ./plymouth.nix; }

@@ -1,0 +1,31 @@
+config:
+
+let inherit (builtins) filter hasAttr;
+in filter (group: hasAttr group config.users.groups) [
+  "nix"
+  "wheel"
+  "network"
+  "networkmanager"
+  "systemd-journal"
+  "audio"
+  "pipewire"
+  "video"
+  "input"
+  "plugdev"
+  "lp"
+  "i2c"
+  "tss"
+  "power"
+  "git"
+  "acme"
+  "tpws"
+  "mysql"
+  "tcpcryptd"
+  "deluge"
+  "minecraft"
+  "wireshark"
+  "libvirtd"
+  "podman"
+  "docker"
+  "lxd"
+]

@@ -1,5 +1,5 @@
 {
-  description = "<My NixOS configuration>";
+  description = "<Shuritch NixOS configuration>";
 
   inputs = {
     #################### Official NixOS and HM Package Sources ####################
@@ -9,36 +9,63 @@
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    hardware.url = "github:nixos/nixos-hardware";
     #################### Utilities ####################
-    nix-gl.url = "github:nix-community/nixgl";
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    nix-gl.inputs.nixpkgs.follows = "nixpkgs";
-    nix-colors.url = "github:misterio77/nix-colors";
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nix-colors.url = "github:misterio77/nix-colors";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
+  outputs = { ... }@inputs:
     let
-      inherit (self) outputs;
-      lib = nixpkgs.lib // home-manager.lib;
-      configs = import ./hosts { inherit inputs outputs lib pkgsFor; };
-      forSys = f: lib.genAttrs (import systems) (sys: f pkgsFor.${sys});
-      pkgsFor = lib.genAttrs (import inputs.systems) (system:
-        import inputs.nixpkgs { # Will be mutated by overlays
-          inherit system;
-          config.allowUnfree = true;
-        });
+      inherit (inputs.self) outputs;
+      lib = inputs.nixpkgs.lib // inputs.home-manager.lib;
+      myLib = import ./src/library { inherit inputs lib; };
+      inherit (myLib) pkgsForSys mkSystem forSys;
     in {
-      inherit (configs) nixosConfigurations homeConfigurations;
-      packages = forSys (pkgs: import ./library/pkgs { inherit pkgs lib; });
-      overlays = import ./library/overlays { inherit inputs outputs; };
-      devShells = forSys (pkgs: import ./shell.nix { inherit pkgs; });
-      homeManagerModules = import ./library/modules/home;
-      nixosModules = import ./library/modules/core;
-      formatter = forSys (pkgs: pkgs.nixfmt-classic);
+      packages = pkgsForSys (pkgs: import ./src/packages { inherit pkgs lib; });
+      checks = forSys (data: import ./hooks.nix (data // { inherit inputs; }));
+      overlays = import ./src/overlays { inherit inputs outputs lib; };
+      devShells = pkgsForSys (pkgs: import ./shell.nix { inherit pkgs; });
+      formatter = pkgsForSys (pkgs: pkgs.nixfmt-classic);
+      templates = import ./src/templates;
+
+      /* *
+         Yes i know i can do it automatically with
+         `builtins.readDir ./cluster` but i prefer
+         to do this manually, as it is more clear.
+      */
+
+      nixosConfigurations.atlas = mkSystem "atlas" {
+        extraArguments = { inherit myLib inputs outputs; };
+        roles = [ "nodejs-devkit" ];
+        platform = "x86_64-linux";
+        home-manager = true;
+        admin = "shuritch";
+        class = "desktop";
+      };
+
+      nixosConfigurations.hermes = mkSystem "hermes" {
+        extraArguments = { inherit myLib inputs outputs; };
+        roles = [ "nodejs-devkit" ];
+        platform = "x86_64-linux";
+        home-manager = true;
+        admin = "shuritch";
+        class = "laptop";
+      };
+
+      nixosConfigurations.pandora = mkSystem "pandora" {
+        extraArguments = { inherit myLib inputs outputs; };
+        roles = [ "headless" "iso" ];
+        platform = "x86_64-linux";
+        home-manager = false;
+        admin = "nixos";
+        class = "iso";
+      };
     };
 }

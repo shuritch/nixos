@@ -1,0 +1,29 @@
+{ pkgs, config, lib, ... }: {
+  config = lib.mkIf config.my.home.desktop.enable {
+    qt = {
+      enable = true;
+      platformTheme = {
+        name = "gtk3";
+        package = [
+          (pkgs.libsForQt5.qtstyleplugins.overrideAttrs (o: {
+            patches = (o.patches or [ ]) ++ [ ./qtstyleplugins-gtk3-key.patch ];
+          }))
+          (pkgs.qt6.qtbase.override {
+            # https://codereview.qt-project.org/c/qt/qtbase/+/547252
+            patches = [ ./qtbase-gtk3-xdp.patch ];
+            qttranslations = null;
+          })
+        ];
+      };
+    };
+
+    home.sessionVariables = {
+      QT_AUTO_SCREEN_SCALE_FACTOR = "1"; # No scaling
+      QT_QPA_PLATFORM = lib.mkDefault "wayland;xcb"; # -> Wayland -> xcb
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1"; # Disable decorations
+      DISABLE_QT5_COMPAT = "0"; # backwards compatible
+      CALIBRE_USE_DARK_PALETTE =
+        if config.my.home.colorscheme.mode == "dark" then "1" else "0";
+    };
+  };
+}
