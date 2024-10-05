@@ -1,18 +1,21 @@
 { pkgs ? import <nixpkgs> { }, ... }:
 
-let features = "nix-command flakes ca-derivations";
+let
+  aids = "auto-allocate-uids cgroups recursive-nix";
+  features = "nix-command flakes ca-derivations " + aids;
 in {
   default = pkgs.mkShell {
     NIX_CONFIG = "extra-experimental-features = ${features}";
     nativeBuildInputs = with pkgs; [
       nix
-      home-manager
       gnumake
+      ripgrep
       httpie
       git
       curl
       wget
       jq
+      nh
     ];
   };
 }

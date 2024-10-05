@@ -1,5 +1,7 @@
+#!/usr/bin/env bash
+
 function GLOBAL {
-  REPO=sashapop10/nixos
+  REPO=shuritch/nixos
 
   NORMAL=$(tput sgr0)
   WHITE=$(tput setaf 7)
@@ -21,18 +23,16 @@ about() {
       |  \| | \ \/ / | | / __|  | || '_ \/ __| __/ _\` | | |/ _ \ '__|
       | |\  | |>  <| |_| \__ \  | || | | \__ \ || (_| | | |  __/ |
       |_|_\_|_/_/\_\\\\___/|___/ |___|_| |_|___/\__\__,_|_|_|\___|_|
+           ____              _                _ _       _
+          | __ ) _   _   ___| |__  _   _ _ __(_) |_ ___| |__
+          |  _ \| | | | / __| '_ \| | | | '__| | __/ __| '_ \\
+          | |_) | |_| | \__ \ | | | |_| | |  | | || (__| | | |
+          |____/ \__, | |___/_| |_|\__,_|_|  |_|\__\___|_| |_|
+                 |___/
 
-       ____                        _                             _  ___
-      | __ ) _   _   ___  __ _ ___| |__   __ _ _ __   ___  _ __ / |/ _ \\
-      |  _ \| | | | / __|/ _\` / __| '_ \ / _\` | '_ \ / _ \| '_ \| | | | |
-      | |_) | |_| | \__ \ (_| \__ \ | | | (_| | |_) | (_) | |_) | | |_| |
-      |____/ \__, | |___/\__,_|___/_| |_|\__,_| .__/ \___/| .__/|_|\___/
-             |___/                            |_|         |_|
-
-
-               $BLUE$UNDERLINE https://github.com/sashapop10$NORMAL -> $GREEN'"./install.sh"'
-          $RED  ! Make sure that your root partition mounted as $BLUE/mnt$RED !
-     $NORMAL"
+            $BLUE$UNDERLINE https://github.com/shuritch$NORMAL -> $GREEN'"./install.sh"'
+       $RED  ! Make sure that your root partition mounted as $BLUE/mnt$RED !
+  $NORMAL"
 }
 
 function log {
@@ -64,7 +64,7 @@ function main {
   GLOBAL
   about
 
-  log "Available hosts: $GREEN$(eza -D ./hosts)"
+  log "Available hosts: $GREEN$(eza -D ./cluster)"
   prompt HOST "Choose$GREEN host$NORMAL: $YELLOW"
   FLAKE=$REPO#$HOST
 
@@ -72,43 +72,30 @@ function main {
 
   confirm ok true "Do you want to use$GREEN disko$NORMAL ? "
   if [[ $ok ]]; then
-    log "Downloading$GREEN https://github.com/$REPO/$HOST/disko.nix"
-    curl --progress-bar https://raw.githubusercontent.com/$REPO/main/hosts/$HOST/disko.nix > ./disko.nix
+    log "Downloading$GREEN https://github.com/$REPO/main/src/disko/default.nix"
+    curl --progress-bar https://raw.githubusercontent.com/$REPO/main/src/disko/default.nix > ./disko.nix
     echo -en "Edit$GREEN ./disko.nix$NORMAL before continuing"
     read -n 1 -r
     sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disko.nix
   fi
 
-  git clone https://github.com/sashapop10/nixos ./flake
+  git clone https://github.com/shuritch/nixos ./flake
+
   if [[ !$ok ]]; then
     confirm ok true "Do you want to update $GREEN hardware$NORMAL configuration ? "
   fi
   if [[ $ok ]]; then
     sudo nixos-generate-config --dir ./tmp-config
-    cp -f ./tmp-config/hardware-configuration.nix ./flake/hosts/$HOST
+    cp -f ./tmp-config/hardware-configuration.nix ./flake/cluster/$HOST/hardware-configuration.nix
   fi
 
-  echo -en "Edit$GREEN ./flake/environment.nix$NORMAL before continuing"
+  echo -en "Edit$GREEN $HOST$NORMAL before continuing"
   read -n 1 -r
   sudo nixos-install --no-root-password --root /mnt --flake ./flake#$HOST
-  log "Installation$GREEN successful"
+  cp -r ./flake /mnt/etc/nixos/flake
 
-  confirm ok false "Do you want to initialize user directory ? "
-  if [[ $ok ]]; then
-    prompt USER "Enter user$GREEN login$NORMAL:  $YELLOW"
-    log "Initializing $GREEN home$NORMAL directory"
-    mkdir -p /mnt/home/$USER/Desktop
-    mkdir -p /mnt/home/$USER/Music
-    mkdir -p /mnt/home/$USER/Videos
-    mkdir -p /mnt/home/$USER/Pictures
-    mkdir -p /mnt/home/$USER/Documents
-    mkdir -p /mnt/home/$USER/Downloads
-    log "Moving$GREEN flake$NORMAL to desktop directory"
-    cp -r ./flake /mnt/home/$USER/Desktop/OS
-    log "Initialization$GREEN successful"
-  fi
-
-  log "Thank you for using$BLUE NixOS by sashapop10"
+  log "  -----  Installation$GREEN successful$NORMAL  -----  "
+  log "Thank you for using$BLUE NixOS$NORMAL by shuritch"
 }
 
 main && exit 0
