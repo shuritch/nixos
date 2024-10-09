@@ -18,16 +18,16 @@
 <h5 align="center">
 
 <details open="true">
-  <summary><b>👉 Atlas</b> <i>"</i>State of 2024-08-09<i>"</i> 👈</summary><br/>
+  <summary><b>👉 Atlas</b> <i>"</i>State of 2024-10-09<i>"</i> 👈</summary><br/>
 
-![Atlas](./assets/atlas.png "State of 2024-08-09")
+![Atlas](./assets/2024-10-09-atlas.png "State of 2024-10-09")
 
 </details>
 
 <details >
   <summary><b>👉 Hermes</b> <i>"</i>State of 2024-08-22<i>"</i> 👈</summary><br/>
 
-![Hermes](./assets/hermes.jpg "State of 2024-08-22")
+![Hermes](./assets/2024-08-22-hermes.jpg "State of 2024-08-22")
 
 </details>
 
@@ -103,10 +103,9 @@ sudo nixos-rebuild switch --flake .#<hostname> # If Hosts updated
 │ ├> pandora                        # ISO     │ Bootable USB                            │ TTY
 ├─┤
 │ │  # 👇 Host configuration (example)
-│ │ ╭> default.nix                  # Configuration entry point.
-│ │ ├> hardware-configuration.nix   # Hardware configuration.
-│ └─┼> environment.nix              # Host specific environment.
-│   ├> disko.nix                    # Disko configuration.
+│ │ ╭> config                       # Separated configuration
+│ │ ├> hardware-configuration.nix   # Generated hardware configuration.
+│ └─┼> default.nix                  # Configuration entry point.
 │   ╰> host_ed25519.pub             # Ssh ed25519 public key.
 │
 │   ╭> home                         # Modules written to isolate Home-manager configuration.
@@ -120,7 +119,7 @@ sudo nixos-rebuild switch --flake .#<hostname> # If Hosts updated
 ├─┼> library                        # Utilities for Nix language.
 │ ├> packages                       # Self hosted packages.
 │ ╰> disko                          # Disko presets.
-│  # 👆SRC
+│  # 👆 SRC
 │
 ├> .github                          # Docs, assets, workflows
 ├> .vscode                          # Makes vscode more performant in this directory.
