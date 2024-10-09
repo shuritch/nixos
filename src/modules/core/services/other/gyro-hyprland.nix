@@ -7,13 +7,12 @@
     systemd.services.gyro-hyprland = {
       enable = true;
       name = "gyro-hyprland.service";
-      path = with pkgs; [ hyprland ];
+      path = with pkgs; [ lib.getExe' hyprland "hyprctl" ];
       description = "Enables gyro-hyprland";
       wantedBy = [ "graphical.target" ];
       after = [ "graphical.target" ];
       serviceConfig = {
         Type = "oneshot";
-        Restart = "no";
         ExecStart = "${pkgs.gyro-hyprland}/bin/gyro-hyprland";
       };
     };

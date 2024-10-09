@@ -93,7 +93,7 @@ in {
         };
 
         username = {
-          format = "[$user]($style) ";
+          format = "[$user]($style)";
           show_always = true;
         };
 

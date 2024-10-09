@@ -4,12 +4,12 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot = {
-    kernelModules = [ ];
+    kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
     initrd = {
       kernelModules = [ ];
       availableKernelModules =
-        [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+        [ "xhci_pci" "thunderbolt" "vmd" "nvme" "rtsx_pci_sdmmc" ];
     };
   };
 

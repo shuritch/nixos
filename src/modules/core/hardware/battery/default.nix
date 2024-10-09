@@ -7,12 +7,9 @@
       enable = true;
       path = with pkgs; [ procps gnugrep libnotify ];
       description = "Battery capacity alerts.";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "multi-user.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        Restart = "no";
-      };
+      wantedBy = [ "graphical.target" ];
+      after = [ "graphical.target" ];
+      serviceConfig = { Type = "oneshot"; };
 
       script = ''
         #!/usr/bin/env bash
