@@ -7,7 +7,7 @@
     systemd.services.gyro-hyprland = {
       enable = true;
       name = "gyro-hyprland.service";
-      path = with pkgs; [ lib.getExe' hyprland "hyprctl" ];
+      path = with pkgs; [ (lib.getExe' hyprland "hyprctl") ];
       description = "Enables gyro-hyprland";
       wantedBy = [ "graphical.target" ];
       after = [ "graphical.target" ];
