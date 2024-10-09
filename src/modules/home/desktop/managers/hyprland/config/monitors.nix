@@ -6,7 +6,7 @@ let
   bar = config.programs.waybar.settings.primary; # TODO
   cfgh = config.wayland.windowManager.hyprland.settings;
   gap = cfgh.general.gaps_out - cfgh.general.gaps_in;
-  space = lib.mapAttrs (k: toString) {
+  space = lib.mapAttrs (_: toString) {
     top = if (bar.position == "top") then bar.height + gap else 0;
     bottom = if (bar.position == "bottom") then bar.height + gap else 0;
     left = if (bar.position == "left") then bar.width + gap else 0;

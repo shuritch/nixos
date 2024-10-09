@@ -61,7 +61,7 @@
 
       nixosConfigurations.pandora = mkSystem "pandora" {
         extraArguments = { inherit myLib inputs outputs; };
-        roles = [ "headless" "iso" ];
+        roles = [ "headless" ];
         platform = "x86_64-linux";
         home-manager = false;
         admin = "nixos";

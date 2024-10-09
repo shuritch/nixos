@@ -2,7 +2,7 @@
 
 let
   cfg = config.my.system.users;
-  users = builtins.attrNames (lib.filterAttrs (k: v: v.home != null) cfg);
+  users = builtins.attrNames (lib.filterAttrs (_: v: v.home != null) cfg);
 in {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
   config = lib.mkIf ((builtins.length users) != 0) {

@@ -3,6 +3,7 @@
     enable = true;
     startWhenNeeded = true;
     openFirewall = true;
+    allowSFTP = false;
     ports = [ 22 ];
     hostKeys = [{
       path = "/etc/ssh/ssh_host_ed25519_key";
@@ -15,7 +16,7 @@
       StreamLocalBindUnlink = "yes"; # Automatically remove stale sockets
       GatewayPorts = "clientspecified"; # Allow forwarding ports to everywhere
       AcceptEnv = "WAYLAND_DISPLAY"; # Let WAYLAND_DISPLAY be forwarded
-      KbdInteractiveAuthentication = lib.mkDefault false;
+      KbdInteractiveAuthentication = false;
       ChallengeResponseAuthentication = "no";
       AuthenticationMethods = "publickey";
       X11Forwarding = myLib.isPC config;

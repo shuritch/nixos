@@ -4,11 +4,11 @@ in {
   imports = [ ./config ];
 
   config = lib.mkIf (cfg.enable && cfg.manager == "hyprland") {
-    home.packages = with pkgs; [ grimblast hyprpicker ];
+    home.packages = with pkgs; [ grimblast hyprpicker xwaylandvideobridge ];
 
     xdg.portal = {
       extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
-      config.hyprland = { default = [ "wlr" ]; };
+      config.hyprland = { default = [ "wlr" "gtk" ]; };
       config.common = { default = [ "gtk" ]; };
     };
 

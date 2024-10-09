@@ -66,7 +66,7 @@ in {
     settings = lib.mkOption {
       description = "Options for shellcolord config file. Colors (without #)";
       type = lib.types.attrsOf lib.types.str;
-      default = lib.mapAttrs (k: rmHash) base16colors;
+      default = lib.mapAttrs (_: rmHash) base16colors;
     };
   };
 

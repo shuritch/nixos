@@ -20,7 +20,7 @@ in {
     ];
 
   # Aliases
-  aliases = final: prev: {
+  aliases = final: _: {
     # pkgs.master
     master = import inputs.nixpkgs-master {
       system = final.system;

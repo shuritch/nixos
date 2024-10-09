@@ -47,12 +47,6 @@ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
   }
   # Other
   {
-    name = "markdown-pdf";
-    publisher = "yzane";
-    version = "1.5.0";
-    sha256 = "sha256-aiifZgHXC4GUEbkKAbLc0p/jUZxp1jF/J1Y/KIyvLIE=";
-  }
-  {
     name = "ts-worksheet";
     publisher = "chwoerz";
     version = "0.8.25";

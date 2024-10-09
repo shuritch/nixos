@@ -31,6 +31,12 @@ in {
 
       "nofocus, ${sweethome3d-tooltips}"
 
+      "opacity 0.0 override, class:^(xwaylandvideobridge)$"
+      "noanim, class:^(xwaylandvideobridge)$"
+      "noinitialfocus, class:^(xwaylandvideobridge)$"
+      "maxsize 1 1, class:^(xwaylandvideobridge)$"
+      "noblur, class:^(xwaylandvideobridge)$"
+
       "stayfocused, ${steam}"
       "minsize 1 1, ${steam}"
       "immediate, ${steamGame}"

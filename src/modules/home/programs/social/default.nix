@@ -1,10 +1,11 @@
 {
   imports = [
     ./discord.nix
+    ./teamspeak.nix
     ./telegram.nix
-    ./whatsapp.nix
     ./thunderbird.nix
+    ./whatsapp.nix
+    ./zapzap.nix
     ./zoom.nix
-    ./franz.nix
   ];
 }

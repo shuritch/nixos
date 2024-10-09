@@ -27,6 +27,6 @@ in {
     pkgs.diffsitter # Better diff
     pkgs.httpie # Better curl
     pkgs.ncdu # TUI disk usage
-    pkgs.curl
+    pkgs.curlHTTP3 # With quic support
   ]);
 }

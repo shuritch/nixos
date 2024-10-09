@@ -2,7 +2,7 @@ name: Bump Flake Inputs
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 0" # Every Sunday Midnight
+    - cron: "0 0 * * 6" # Every Saturday Midnight
 
 jobs:
   update-lockfile:
@@ -19,6 +19,8 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
         with:
           logger: pretty
+          extra-conf: |
+            experimental-features = nix-command flakes ca-derivations auto-allocate-uids cgroups recursive-nix
 
       - name: Update Lockfile
         uses: DeterminateSystems/update-flake-lock@main

@@ -33,6 +33,28 @@
 
 </h5>
 
+<h2 >Highlights</h2>
+<h4 align="center">
+
+<code>📦&nbsp;Userland&nbsp;Isolation</code>
+<code>🍙&nbsp;Declarative</code>
+<code>🌱&nbsp;Reproducible</code>
+<code>👁️‍🗨️&nbsp;Private</code>
+<code>🛡️&nbsp;Secure</code>
+<code>🏗️&nbsp;Custom&nbsp;Installer</code>
+<code>🧪&nbsp;CI</code>
+<code>🎨&nbsp;Colorscheme&nbsp;based&nbsp;on&nbsp;wallpaper</code>
+<code>🔧&nbsp;Extensively&nbsp;configured</code>
+<code>🐧&nbsp;Minimal&nbsp;when&nbsp;needed</code>
+<code>🧳&nbsp;Role&nbsp;based&nbsp;configuration</code>
+<code>🚀&nbsp;Class&nbsp;based&nbsp;configuration</code>
+<code>⚡&nbsp;Easy&nbsp;to&nbsp;manage</code>
+<code>🖇️&nbsp;D️ualboot&nbsp;support</code>
+<code>🔃&nbsp;State&nbsp;synchronization</code>
+<code>🗿&nbsp;User&nbsp;specific&nbsp;configuration</code>
+
+</h5>
+
 ## Installation
 
 > [!CAUTION]
@@ -79,7 +101,7 @@ sudo nixos-rebuild switch --flake .#<hostname> # If Hosts updated
 │  # Cluster
 │ ╭> atlas                          # Desktop │ 32GB RAM, i9-9900k , RTX 2080S & UHD630 │ Hyprland
 │ ├> hermes                         # Laptop  │ 16GB RAM, i7-1165G7, Iris XE G7         │ Hyprland
-│ ├> pandora                        # ISO     │ Bootable USB                            │ VTY
+│ ├> pandora                        # ISO     │ Bootable USB                            │ TTY
 ├─┤
 │ │  # Host configuration (example)
 │ │ ╭> default.nix                  # Configuration entry point.

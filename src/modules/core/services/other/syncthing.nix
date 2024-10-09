@@ -69,7 +69,7 @@ in {
       '';
     in {
       home.file = lib.mapAttrs'
-        (k: v: lib.nameValuePair "${k}/.stignore" { text = ignore; })
+        (k: _: lib.nameValuePair "${k}/.stignore" { text = ignore; })
         config.services.syncthing.settings.folders;
     };
   };

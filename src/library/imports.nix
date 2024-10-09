@@ -3,8 +3,8 @@
 with lib; rec {
   filterNixFiles = k: v: v == "regular" && hasSuffix ".nix" k;
   filterNixFilesAndDirs = k: v: (filterNixFiles k v) || v == "directory";
-  filterFiles = k: v: v == "regular";
-  filterDirs = k: v: v == "directory";
+  filterFiles = _: v: v == "regular";
+  filterDirs = _: v: v == "directory";
 
   groupAttrsByValue = v:
     foldlAttrs

@@ -1,1 +1,1 @@
-{ imports = [ ./blocker.nix ./dnscrypt.nix ./frkn.nix ./tcpcrypt.nix ]; }
+{ imports = [ ./blocker.nix ./dnscrypt.nix ./frkn ./tcpcrypt.nix ]; }

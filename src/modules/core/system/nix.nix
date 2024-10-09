@@ -5,7 +5,7 @@ in {
   nix = {
     # https://git.lix.systems/lix-project/lix/src/branch/main/doc/manual/rl-next
     # https://docs.lix.systems/manual/lix/nightly/release-notes/rl-next.html
-    package = pkgs.lix; # pkgs.nixVersions.nix_2_22; # ? Maybe lix ?
+    package = pkgs.nixVersions.nix_2_24; # pkgs.nixVersions.nix_2_22 / lix
     registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     # Make builds run with a low priority, keeping the system fast
@@ -25,7 +25,7 @@ in {
     };
 
     extraOptions = ''
-      experimental-features = nix-command flakes ca-derivations auto-allocate-uids cgroups recursive-nix;
+      experimental-features = nix-command flakes ca-derivations auto-allocate-uids recursive-nix
     '';
 
     settings = {
@@ -45,7 +45,7 @@ in {
       http-connections = 50;
       keep-derivations = true;
       keep-outputs = true;
-      use-cgroups = true;
+      # use-cgroups = true;
       warn-dirty = false;
 
       experimental-features = [
@@ -53,7 +53,7 @@ in {
         "flakes"
         "ca-derivations"
         "auto-allocate-uids"
-        "cgroups"
+        # "cgroups"
         "recursive-nix"
       ];
 
@@ -63,7 +63,7 @@ in {
         "flakes" # enables flakes
         "ca-derivations" # allow nix to build derivations
         "auto-allocate-uids" # Allows Nix to automatically pick UIDs for builds
-        "cgroups" # allows Nix to execute builds inside cgroups
+        # "cgroups" # allows Nix to execute builds inside cgroups
         "recursive-nix" # allow nix to call itself
       ];
     };

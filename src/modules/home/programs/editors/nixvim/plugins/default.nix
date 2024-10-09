@@ -1,4 +1,3 @@
 {
-  imports = [ ./lualine.nix ./luasnip.nix ./completion ./treesitter ./ui ];
-
+  imports = [ ./cmp ./git ./lsp ./snippets ./statusline ./treesitter ./utils ];
 }

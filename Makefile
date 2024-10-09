@@ -9,7 +9,7 @@ update:
 	sudo nixos-rebuild --upgrade switch --flake .
 
 iso:
-	nix build .#nixosConfigurations.iso.config.system.build.isoImage
+	nix build .#nixosConfigurations.pandora.config.system.build.isoImage
 
 iso-to-usb:
 	dd bs=4M if="./result/iso/${iso-file}" of=/dev/sdX status=progress oflag=sync

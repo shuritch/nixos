@@ -5,6 +5,7 @@
     webcam = true;
     audio = true;
     zram = true;
+    lid = true;
 
     battery = {
       enable = true;
@@ -33,7 +34,7 @@
       width = 3840;
       height = 2160;
       primary = true;
-      workspaces = "1";
+      workspaces = [ "1" ];
       scale = 2;
     }];
   };

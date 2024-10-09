@@ -5,7 +5,7 @@ with lib; rec {
   mkSystem = hostName: cfg:
     lib.nixosSystem {
       specialArgs = selfRef "myExtraArgs" cfg.extraArguments // {
-        # All custom arguments begin with `my` prefix
+        myClass = cfg.class;
         myRoles = cfg.roles;
       };
 
@@ -16,7 +16,7 @@ with lib; rec {
         (singleton {
           networking.hostName = hostName;
           nixpkgs.hostPlatform = mkDefault cfg.platform;
-          my.system = { inherit (cfg) class admin; };
+          my.system = { inherit (cfg) class admin roles; };
         })
 
         (optionals (cfg.class == "iso") [

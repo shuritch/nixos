@@ -23,6 +23,8 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
         with:
           logger: pretty
+          extra-conf: |
+            experimental-features = nix-command flakes ca-derivations auto-allocate-uids cgroups recursive-nix
 
       - name: Check Flake
         run: nix flake check --accept-flake-config

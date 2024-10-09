@@ -1,7 +1,8 @@
-{ lib, config, myLib, ... }:
+{ lib, config, ... }:
 
-let cfg = config.my.security;
-in {
+# let cfg = config.my.security;
+# in
+{
   imports = [
     ./login
     ./apparmor.nix

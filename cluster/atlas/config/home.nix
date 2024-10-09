@@ -19,12 +19,19 @@
       };
 
       exec = [
-        "[workspace special silent] kitty"
+        # Trash apps without tray flag
+        "[workspace name:0 silent] zapzap ; sleep 2; hyprctl dispatch closewindow zapzap"
         "[workspace name:0 silent] thunderbird"
-        "[workspace name:0 silent] franz"
+
+        # Worspace bound apps
+        "[workspace special silent] kitty"
         "[workspace 1 silent] silent-code"
         "[workspace 2 silent] firefox-developer-edition"
+
+        # XM4 Autoconnect fix
         ''sleep 2 && echo "connect AC:80:0A:E3:3B:CE" | bluetoothctl''
+
+        # Tray apps
         "sleep 5; vesktop --start-minimized"
         "telegram-desktop -startintray"
         "thunder -startintray"
@@ -47,7 +54,7 @@
       firefox.enable = true;
       chrome.enable = true;
       # Social
-      franz.enable = true;
+      zapzap.enable = true;
       discord.enable = true;
       thunderbird.enable = true;
       telegram.enable = true;
@@ -72,3 +79,5 @@
     };
   };
 }
+
+#

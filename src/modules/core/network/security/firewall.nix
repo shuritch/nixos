@@ -8,7 +8,7 @@ in {
     package = lib.mkOption {
       description = "One of iptables / nftables.";
       type = lib.types.package;
-      default = pkgs.nftables;
+      default = pkgs.iptables;
     };
   };
 

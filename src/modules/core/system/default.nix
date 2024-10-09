@@ -1,4 +1,4 @@
-{ lib, myLib, config, ... }:
+{ lib, config, ... }:
 
 let cfg = config.my.system;
 in {
@@ -13,18 +13,10 @@ in {
     ./nixpkgs.nix
   ];
 
-  options.my.system = {
-    stateVersion = lib.mkOption {
-      description = "NixOs Release born with.";
-      default = "23.05"; # From flake
-      type = lib.types.str;
-    };
-
-    class = lib.mkOption {
-      default = null;
-      description = "Class of device";
-      type = lib.types.enum myLib.DEVICE_LIST;
-    };
+  options.my.system.stateVersion = lib.mkOption {
+    description = "NixOs Release born with.";
+    default = "23.05"; # From flake
+    type = lib.types.str;
   };
 
   config.system = {

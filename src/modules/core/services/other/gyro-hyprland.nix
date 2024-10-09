@@ -6,11 +6,11 @@
     hardware.sensor.iio.enable = true;
     systemd.services.gyro-hyprland = {
       enable = true;
-      name = "gyro-hyprland";
+      name = "gyro-hyprland.service";
       description = "Enables gyro-hyprland";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical.target" ];
+      wants = [ "graphical.target" ];
+      after = [ "graphical.target" ];
       serviceConfig = {
         Type = "oneshot";
         Restart = "no";
