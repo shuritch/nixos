@@ -22,9 +22,9 @@ in {
         # Special keys
         "+XF86MonBrightnessUp" = "light -A 10";
         "+XF86MonBrightnessDown" = "light -U 10";
-        "+XF86AudioRaiseVolume" = "${pactl} set-link-volume @DEFAULT_SINK@ +5%";
-        "+XF86AudioLowerVolume" = "${pactl} set-link-volume @DEFAULT_SINK@ -5%";
-        "+XF86AudioMute" = "${pactl} set-source-mute @DEFAULT_SOURCE@ toggle";
+        "+XF86AudioRaiseVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
+        "+XF86AudioLowerVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
+        "+XF86AudioMute" = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
         "+XF86AudioMicMute" =
           "${pactl} set-source-mute @DEFAULT_SOURCE@ toggle";
       }

@@ -16,25 +16,14 @@
   swapDevices = [ ];
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/1c5f93d0-b78c-4bd9-bf54-c869ba5e0e7a";
+      device = "/dev/disk/by-uuid/eb23161a-f704-483b-92cd-a29c68570cd2";
       fsType = "ext4";
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/CEEC-5381";
+      device = "/dev/disk/by-uuid/4CF1-3564";
+      options = [ "fmask=0022" "dmask=0022" ];
       fsType = "vfat";
-    };
-
-    "/mnt/windows" = {
-      device = "/dev/disk/by-uuid/8CC2B90BC2B8FB12";
-      options = [ "rw" "uid=1000" ];
-      fsType = "ntfs-3g";
-    };
-
-    "/mnt/windows-extra" = {
-      device = "/dev/disk/by-uuid/0CD85DE0D85DC91A";
-      options = [ "rw" "uid=1000" ];
-      fsType = "ntfs-3g";
     };
   };
 }

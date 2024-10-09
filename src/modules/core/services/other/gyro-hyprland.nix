@@ -7,9 +7,9 @@
     systemd.services.gyro-hyprland = {
       enable = true;
       name = "gyro-hyprland.service";
+      path = with pkgs; [ hyprland ];
       description = "Enables gyro-hyprland";
       wantedBy = [ "graphical.target" ];
-      wants = [ "graphical.target" ];
       after = [ "graphical.target" ];
       serviceConfig = {
         Type = "oneshot";

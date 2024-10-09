@@ -1,10 +1,11 @@
-{ lib, config, ... }: {
+{ lib, pkgs, config, ... }: {
   imports = [ ./cpufreq.nix ./undervolt.nix ./upower.nix ];
   options.my.hardware.battery.enable = lib.mkEnableOption "Enable battery api.";
   options.my.hardware.battery.alert = lib.mkEnableOption "Enable power alert.";
   config = lib.mkIf config.my.hardware.battery.alert {
     systemd.services.battery-alert = {
       enable = true;
+      path = with pkgs; [ procps gnugrep libnotify ];
       description = "Battery capacity alerts.";
       wantedBy = [ "multi-user.target" ];
       after = [ "multi-user.target" ];
