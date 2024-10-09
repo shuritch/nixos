@@ -8,10 +8,6 @@ on:
       - "**.lock"
       - ".github/workflows/ci.yml"
 
-concurrency:
-  group: ci-${{ github.ref }}-check
-  cancel-in-progress: true
-
 jobs:
   check-flake:
     runs-on: ubuntu-latest

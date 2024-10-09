@@ -5,9 +5,7 @@ on:
   schedule:
     - cron: "0 0 * * 0" # Every Sunday Midnight
 
-concurrency:
-  group: ci-${{ github.ref }}-publish
-  cancel-in-progress: true
+concurrency: build
 
 jobs:
   build-images:
@@ -46,7 +44,7 @@ jobs:
 
       - name: Build ISO Images
         shell: bash
-        run: nix build .#images.${{ matrix.image }} -o ${{ matrix.image }} --print-build-logs
+        run: nix build .#nixosConfigurations.${{ matrix.image }}.config.system.build.isoImage -o ${{ matrix.image }} --print-build-logs
 
       - uses: actions/upload-artifact@v4
         with:
@@ -73,34 +71,20 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
 
-      - name: Calculate Checksums
-        run: |
-          calculate_checksum() {
-            sha256sum "$1" | awk '{print $1}'
-          }
-
-          iso_files=$(find . -maxdepth 1 -type f -name "*.iso")
-
-          # write checksums
-          for file in $iso_files; do
-            checksum=$(calculate_checksum "$file")
-            echo "$file $checksum" >> checksums.txt
-          done
-
       - name: Get current date
         id: get-date
-        run: echo "date=$(date +'%Y-%m-%d@%H:%M:%S')" >> "${GITHUB_OUTPUT}"
+        run: echo "date=$(date +'%Y-%m-%d#%H-%M-%S')" >> "${GITHUB_OUTPUT}"
 
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
-          name: "iso-${{ steps.get-date.outputs.date }}"
-          tag_name: "iso-${{ steps.get-date.outputs.date }}"
+          name: "Pandora ${{ steps.get-date.outputs.date }}"
+          tag_name: "ISO#${{ steps.get-date.outputs.date }}"
           files: |
             *.iso
           body: |
-            ## Weekly Release of `${{ steps.get-date.outputs.date }}`
+            ## Weekly Release | `${{ steps.get-date.outputs.date }}`
 
             Weekly automated ISO releases for my Portable NixOS workstation.
             - [pandora](https://github.com/shuritch/nixos/blob/main/cluster/pandora/default.nix): Minimal & Headless Installation Media
