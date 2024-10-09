@@ -10,8 +10,7 @@ in {
     shellAliases = cfg.aliases;
     functions = {
       fish_greeting = ""; # Disable greeting
-      nvimrg = # Grep using ripgrep and pass to nvim
-        lib.mkIf
+      nvimrg = lib.mkIf # Grep using ripgrep and pass to nvim
         (config.programs.nixvim.enable && config.programs.ripgrep.enable)
         "nvim -q (rg --vimgrep $argv | psub)";
 

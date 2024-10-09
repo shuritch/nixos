@@ -1,9 +1,6 @@
-{ config, lib, pkgs, ... }:
-
-# https://github.com/someone-stole-my-name/yaml-companion.nvim
-let cfg = config.programs.nixvim;
-in {
-  config.programs.nixvim = lib.mkIf cfg.enable {
+{ pkgs, ... }: {
+  # https://github.com/someone-stole-my-name/yaml-companion.nvim
+  config.programs.nixvim = {
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
         pname = "yaml-companion";

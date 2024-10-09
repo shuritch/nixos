@@ -48,24 +48,30 @@
     programs = {
       # Editors
       vscode.enable = true;
-      nixvim.enable = true;
       micro.enable = true;
+      nixvim.enable = true;
+
       # Browsers
       firefox.enable = true;
       chrome.enable = true;
+
       # Social
       zapzap.enable = true;
       discord.enable = true;
       thunderbird.enable = true;
       telegram.enable = true;
+
       # Documents
       libreoffice.enable = true;
       zathura.enable = true;
+
       # Media
       oculante.enable = true;
       mpv.enable = true;
+
       # Dev
       postman.enable = true;
+
       # Other
       obsidian.enable = true;
       rustdesk.enable = true;

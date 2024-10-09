@@ -1,18 +1,18 @@
-{ config, lib, ... }:
-
-# https://github.com/hrsh7th/nvim-cmp/
-let cfg = config.programs.nixvim;
-in {
+{
+  # https://github.com/hrsh7th/nvim-cmp/
   imports = [ ./codecompanion.nix ./lspkind.nix ./schemastore.nix ];
-  config.programs.nixvim = lib.mkIf cfg.enable {
+  config.programs.nixvim = {
     plugins = {
       cmp-emoji.enable = true;
-      cmp-nvim-lsp.enable = true; # lsp
+      cmp-nvim-lsp.enable = true;
+      cmp-nvim-lua.enable = true;
+      cmp-rg.enable = true;
       cmp-buffer.enable = true;
       cmp-path.enable = true; # file system paths
       cmp_luasnip.enable = true; # snippets
       cmp-cmdline.enable = true; # autocomplete for cmdline
-      cmp-tabnine.enable = true; # Copilot
+      cmp-git.enable = true; # git commit messages
+      # cmp-tabnine.enable = false; # Copilot
 
       cmp = {
         enable = true;
@@ -29,11 +29,12 @@ in {
           formatting.fields = [ "kind" "abbr" "menu" ];
           sources = [
             # { name = "copilot"; }
-            { name = "cmp_tabnine"; }
+            # { name = "cmp_tabnine"; }
             { name = "nvim_lsp"; }
             { name = "nvim_lua"; }
             { name = "emoji"; }
             { name = "rg"; }
+            { name = "git"; }
             { # text within current buffer
               name = "buffer";
               option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";

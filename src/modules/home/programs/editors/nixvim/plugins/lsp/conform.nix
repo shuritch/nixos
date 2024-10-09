@@ -1,10 +1,7 @@
-{ config, lib, ... }:
-
-# Formatter
-# https://github.com/stevearc/conform.nvim/
-let cfg = config.programs.nixvim;
-in {
-  programs.nixvim.plugins.conform-nvim = lib.mkIf cfg.enable {
+{
+  # Formatter
+  # https://github.com/stevearc/conform.nvim/
+  config.programs.nixvim.plugins.conform-nvim = {
     enable = true;
     settings = {
       formatOnSave = {

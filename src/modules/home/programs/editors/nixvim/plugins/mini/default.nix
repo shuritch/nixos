@@ -1,11 +1,8 @@
-{ config, lib, ... }:
-
-# QOL
-# https://github.com/echasnovski/mini.nvim/
-let cfg = config.programs.nixvim;
-in {
+{
+  # QOL
+  # https://github.com/echasnovski/mini.nvim/
   imports = [ ./clue.nix ./diff.nix ./files.nix ./surround.nix ];
-  config.programs.nixvim.plugins.mini = lib.mkIf cfg.enable {
+  config.programs.nixvim.plugins.mini = {
     mockDevIcons = true;
     enable = true;
 

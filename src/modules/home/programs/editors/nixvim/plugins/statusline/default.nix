@@ -1,1 +1,1 @@
-{ imports = [ ./staline.nix ]; }
+{ imports = [ ./lualine.nix ]; }

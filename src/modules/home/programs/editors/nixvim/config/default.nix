@@ -1,5 +1,5 @@
 { pkgs, lib, config, ... }: {
-  imports = [ ./autocmd.nix ./keymaps.nix ./options.nix ./theme.nix ./xdg.nix ];
+  imports = [ ./autocmd.nix ./keymaps.nix ./options.nix ./xdg.nix ];
   programs.nixvim = {
     performance.byteCompileLua = {
       enable = true;

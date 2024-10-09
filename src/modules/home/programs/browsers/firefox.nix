@@ -136,6 +136,7 @@ in {
 
         extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
           # bitwarden
+          sidebery
           plasma-integration
           ublock-origin
           return-youtube-dislikes

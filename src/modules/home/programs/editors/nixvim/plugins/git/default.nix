@@ -1,1 +1,1 @@
-{ imports = [ ./gitlinker.nix ./gitsigns.nix ./lazygit.nix ./worktree.nix ]; }
+{ imports = [ ./gitblame.nix ./gitlinker.nix ./lazygit.nix ./worktree.nix ]; }

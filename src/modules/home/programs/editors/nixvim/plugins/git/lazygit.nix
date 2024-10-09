@@ -1,9 +1,6 @@
-{ config, lib, ... }:
-
-# https://github.com/kdheepak/lazygit.nvim
-let cfg = config.programs.nixvim;
-in {
-  config = lib.mkIf cfg.enable {
+{
+  # https://github.com/kdheepak/lazygit.nvim
+  config.programs.nixvim = {
     plugins.lazygit.enable = true;
     extraConfigLua = ''
       require("telescope").load_extension("lazygit")

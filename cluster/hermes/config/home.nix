@@ -28,27 +28,23 @@
 
     programs = {
       # Editors
-      vscode.enable = true;
       nixvim.enable = true;
-      micro.enable = true;
+
       # Browsers
       firefox.enable = true;
-      chrome.enable = true;
-      # Social
-      franz.enable = true;
-      discord.enable = true;
-      thunderbird.enable = true;
-      telegram.enable = true;
+
       # Documents
       libreoffice.enable = true;
       zathura.enable = true;
+
       # Media
       oculante.enable = true;
       mpv.enable = true;
+
       # Dev
       postman.enable = true;
+
       # Other
-      gparted.enable = true;
       obsidian.enable = true;
       rustdesk.enable = true;
       gimp.enable = true;

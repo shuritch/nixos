@@ -1,9 +1,6 @@
-{ config, lib, pkgs, ... }:
-
-# https://github.com/L3MON4D3/LuaSnip
-let cfg = config.programs.nixvim;
-in {
-  config.programs.nixvim.plugins.luasnip = lib.mkIf cfg.enable {
+{ pkgs, ... }: {
+  # https://github.com/L3MON4D3/LuaSnip
+  config.programs.nixvim.plugins.luasnip = {
     enable = true;
     settings = {
       enable_autosnippets = true;

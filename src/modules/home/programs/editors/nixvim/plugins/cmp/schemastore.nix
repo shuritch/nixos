@@ -1,9 +1,6 @@
-{ config, lib, ... }:
-
-# https://github.com/b0o/SchemaStore.nvim/
-let cfg = config.programs.nixvim;
-in {
-  programs.nixvim.plugins.schemastore = lib.mkIf cfg.enable {
+{
+  # https://github.com/b0o/SchemaStore.nvim/
+  programs.nixvim.plugins.schemastore = {
     enable = true;
     yaml.enable = true;
     json.enable = true;

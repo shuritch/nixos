@@ -8,7 +8,7 @@
     expandtab = true; # Expand <Tab> to spaces in Insert mode
     tabstop = 2;
     softtabstop = 2;
-    showtabline = 2;
+    showtabline = 0;
 
     smartindent = true; # Enable auto indenting and set it to spaces
     shiftwidth = 2; # Number of spaces used for each step
@@ -20,7 +20,7 @@
     completeopt = [ "menuone" "noselect" "noinsert" ]; # CMP
     # completeopt = [ "menu" "menuone" "noselect" ]; # CMP
     termguicolors = true; # Enable 24-bit colors
-    cursorline = true; # Highlight the line where the cursor is located
+    cursorline = false; # Highlight the line where the cursor is located
     scrolloff = 8; # Number of screen lines to show around the cursor
     timeoutlen = 10; # Reduce which-key timeout to 10ms
     cmdheight = 0; # More space in the neovim cli for displaying messages

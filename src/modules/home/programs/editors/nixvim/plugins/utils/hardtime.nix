@@ -1,10 +1,7 @@
-{ config, lib, ... }:
-
-# Enforces to use right vim motions
-# https://github.com/m4xshen/hardtime.nvim/
-let cfg = config.programs.nixvim;
-in {
-  config.programs.nixvim.plugins.hardtime = lib.mkIf cfg.enable {
+{
+  # Enforces to use right vim motions
+  # https://github.com/m4xshen/hardtime.nvim/
+  config.programs.nixvim.plugins.hardtime = {
     enable = true;
     settings = {
       enabled = true;

@@ -1,10 +1,7 @@
-{ lib, config, ... }:
-
-# Search panel
-# https://github.com/nvim-pack/nvim-spectre/
-let cfg = config.programs.nixvim;
-in {
-  config.programs.nixvim = lib.mkIf cfg.enable {
+{
+  # Search panel
+  # https://github.com/nvim-pack/nvim-spectre/
+  config.programs.nixvim = {
     plugins.spectre.enable = true;
     keymaps = [{
       mode = "n";

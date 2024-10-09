@@ -1,12 +1,15 @@
-{ config, lib, ... }:
+{
+  imports = [
+    ./conform.nix
+    ./fidget.nix
+    # ./hlchunk.nix
+    ./lspsaga.nix
+    ./none-ls.nix
 
-let cfg = config.programs.nixvim.enable;
-in {
-  imports =
-    [ ./conform.nix ./fidget.nix ./hlchunk.nix ./lspsaga.nix ./none-ls.nix ];
+  ];
 
   # https://neovim.io/doc/user/lsp.html
-  programs.nixvim.plugins = lib.mkIf cfg.enable {
+  programs.nixvim.plugins = {
     trouble.enable = true;
     lsp-format.enable = true;
     lsp = {
@@ -22,7 +25,7 @@ in {
         eslint.enable = true;
         html.enable = true;
         cssls.enable = true;
-        ts-ls.nable = false;
+        ts-ls.enable = false;
         svelte.enable = true;
         marksman.enable = true;
         sqls.enable = true;
@@ -39,7 +42,6 @@ in {
         cmake.enable = false;
         clangd.enable = false;
         pyright.enable = false;
-        gopl.enable = false;
         zls.enable = false;
       };
 

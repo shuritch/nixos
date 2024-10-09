@@ -2,21 +2,23 @@
   # substituters to use
   nix.settings = {
     substituters = [
-      "https://cache.nixos.org" # funny binary cache
-      "https://nix-community.cachix.org" # nix-community cache
-      "https://cache.privatevoid.net" # for nix-super
-      "https://nixpkgs-wayland.cachix.org" # automated builds of *some* wayland packages
-      "https://hyprland.cachix.org" # hyprland
-      "https://nixpkgs-unfree.cachix.org" # unfree-package cache
-      "https://numtide.cachix.org" # another unfree package cache
-      "https://anyrun.cachix.org" # anyrun program launcher
-      "https://nyx.cachix.org" # cached stuff from my flake outputs
-      "https://neovim-flake.cachix.org" # a cache for my neovim flake
-      "https://cache.notashelf.dev" # raf's binary cache, served over https
-      "https://ags.cachix.org" # ags
+      "https://shuritch-nixos.cachix.org" # My cache
+      "https://cache.nixos.org" # Funny binary cache
+      "https://nix-community.cachix.org" # Nix-community cache
+      "https://cache.privatevoid.net" # For nix-super
+      "https://nixpkgs-wayland.cachix.org" # Automated builds of *some* wayland packages
+      "https://hyprland.cachix.org" # Hyprland
+      "https://nixpkgs-unfree.cachix.org" # Unfree-package cache
+      "https://numtide.cachix.org" # Another unfree package cache
+      "https://anyrun.cachix.org" # Anyrun program launcher
+      "https://nyx.cachix.org" # Cached stuff from my flake outputs
+      "https://neovim-flake.cachix.org" # A cache for my neovim flake
+      "https://cache.notashelf.dev" # Raf's binary cache, served over https
+      "https://ags.cachix.org" # Ags
     ];
 
     trusted-public-keys = [
+      "shuritch-nixos.cachix.org-1:zyYff3kQmaqUMIpKT1epk2Opzuo8htxFDo94hHUNixM="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cache.privatevoid.net:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg="

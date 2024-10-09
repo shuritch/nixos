@@ -1,10 +1,7 @@
-{ lib, config, ... }:
-
-# Undo history visualizer
-# https://github.com/mbbill/undotree/
-let cfg = config.programs.nixvim;
-in {
-  config.programs.nixvim = lib.mkIf cfg.enable {
+{
+  # Undo history visualizer
+  # https://github.com/mbbill/undotree/
+  config.programs.nixvim = {
     plugins.undotree = {
       enable = true;
       settings = {

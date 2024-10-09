@@ -1,8 +1,13 @@
 name: Bump Flake Inputs
+
 on:
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * 6" # Every Saturday Midnight
+
+concurrency:
+  group: ci-${{ github.ref }}-update
+  cancel-in-progress: true
 
 jobs:
   update-lockfile:
@@ -19,8 +24,6 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
         with:
           logger: pretty
-          extra-conf: |
-            experimental-features = nix-command flakes ca-derivations auto-allocate-uids cgroups recursive-nix
 
       - name: Update Lockfile
         uses: DeterminateSystems/update-flake-lock@main

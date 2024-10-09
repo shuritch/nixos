@@ -1,15 +1,13 @@
-{ config, lib, ... }:
-
-# Git blame
-# https://github.com/lewis6991/gitsigns.nvim
-let cfg = config.programs.nixvim;
-in {
-  config.programs.nixvim = lib.mkIf cfg.enable {
+{
+  # https://github.com/lewis6991/gitsigns.nvim
+  config.programs.nixvim = {
     plugins.gitsigns = {
       enable = true;
       settings = {
         trouble = true;
         current_line_blame = true;
+        current_line_blame_formatter =
+          "   <author>, <committer_time:%R> • <summary>";
         signs = {
           add.text = "│";
           change.text = "│";

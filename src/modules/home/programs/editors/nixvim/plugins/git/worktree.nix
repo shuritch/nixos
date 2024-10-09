@@ -1,9 +1,6 @@
-{ config, lib, ... }:
-
-# https://github.com/ThePrimeagen/git-worktree.nvim
-let cfg = config.programs.nixvim;
-in {
-  config.programs.nixvim.plugins.git-worktree = lib.mkIf cfg.enable {
+{
+  # https://github.com/ThePrimeagen/git-worktree.nvim
+  config.programs.nixvim.plugins.git-worktree = {
     enableTelescope = true;
     enable = true;
   };

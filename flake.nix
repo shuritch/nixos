@@ -21,7 +21,7 @@
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { ... }@inputs:
+  outputs = inputs:
     let
       inherit (inputs.self) outputs;
       lib = inputs.nixpkgs.lib // inputs.home-manager.lib;

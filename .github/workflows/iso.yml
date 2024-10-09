@@ -5,7 +5,9 @@ on:
   schedule:
     - cron: "0 0 * * 0" # Every Sunday Midnight
 
-concurrency: build
+concurrency:
+  group: ci-${{ github.ref }}-publish
+  cancel-in-progress: true
 
 jobs:
   build-images:
@@ -38,9 +40,6 @@ jobs:
         uses: cachix/install-nix-action@master
         with:
           install_url: https://nixos.org/nix/install
-          extra_nix_config: |
-            experimental-features = nix-command flakes ca-derivations auto-allocate-uids cgroups recursive-nix
-            allow-import-from-derivation = false
 
       - name: Nix Magic Cache
         uses: DeterminateSystems/magic-nix-cache-action@main

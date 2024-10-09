@@ -1,9 +1,6 @@
-{ pkgs, lib, config, ... }:
-
-# https://github.com/tamton-aquib/staline.nvim
-let cfg = config.programs.nixvim;
-in {
-  config.programs.nixvim = lib.mkIf cfg.enable {
+{ pkgs, ... }: {
+  # https://github.com/tamton-aquib/staline.nvim
+  config.programs.nixvim = {
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
         pname = "staline.nvim";

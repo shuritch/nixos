@@ -1,3 +1,13 @@
 {
-  imports = [ ./cmp ./git ./lsp ./snippets ./statusline ./treesitter ./utils ];
+  imports = [
+    ./cmp
+    ./git
+    ./lsp
+    ./mini
+    ./snippets
+    ./statusline
+    ./treesitter
+    ./ui
+    ./utils
+  ];
 }

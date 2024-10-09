@@ -1,6 +1,8 @@
-{ lib, inputs, config, pkgs, ... }: {
+{ lib, inputs, config, pkgs, myClass, ... }:
+
+lib.optionalAttrs (myClass == "wsl") {
   imports = [ inputs.nixos-wsl.nixosModules.wsl ];
-  config = lib.mkIf (config.my.system.class == "wsl") {
+  config = {
     wsl = {
       enable = true;
       defaultUser = config.my.system.admin;

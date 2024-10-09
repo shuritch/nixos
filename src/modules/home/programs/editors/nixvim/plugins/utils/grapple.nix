@@ -1,10 +1,7 @@
-{ pkgs, lib, config, ... }:
-
-# Moving between tags
-# https://github.com/cbochs/grapple.nvim
-let cfg = config.programs.nixvim;
-in {
-  config.programs.nixvim = lib.mkIf cfg.enable {
+{ pkgs, ... }: {
+  # Moving between tags
+  # https://github.com/cbochs/grapple.nvim
+  config.programs.nixvim = {
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
         pname = "grapple.nvim";

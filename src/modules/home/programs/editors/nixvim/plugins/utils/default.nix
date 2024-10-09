@@ -1,16 +1,16 @@
 {
   imports = [
-    ./autopairs.nix
+    # ./autopairs.nix
     ./colorizer.nix
     ./comment-box.nix
     ./comment.nix
-    ./flash.nix
+    # ./flash.nix
     ./grapple.nix
-    ./hardtime.nix
-    ./harpoon.nix
+    # ./hardtime.nix
+    # ./harpoon.nix
     ./illuminate.nix
     ./markview.nix
-    ./oil.nix
+    # ./oil.nix
     ./spectre.nix
     ./ufo.nix
     ./undotree.nix

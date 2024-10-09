@@ -1,10 +1,7 @@
-{ config, lib, pkgs, ... }:
-
-# AI Chat
-# https://github.com/olimorris/codecompanion.nvim
-let cfg = config.programs.nixvim;
-in {
-  config = lib.mkIf cfg.enable {
+{ pkgs, ... }: {
+  # AI Chat
+  # https://github.com/olimorris/codecompanion.nvim
+  config.programs.nixvim = {
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
         pname = "codecompanion";

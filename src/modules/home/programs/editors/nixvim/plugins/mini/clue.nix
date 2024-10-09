@@ -1,10 +1,8 @@
-{ config, lib, ... }:
+{ config, ... }:
 
-let
-  colors = config.my.home.colorscheme.base16colors;
-  cfg = config.programs.nixvim;
+let inherit (config.my.home.programs.nixvim) colors;
 in {
-  config.programs.nixvim = lib.mkIf cfg.enable {
+  config.programs.nixvim = {
     plugins.mini.modules.clue = {
       window = {
         delay = 500;

@@ -1,10 +1,7 @@
-{ config, lib, ... }:
-
-# Ui notifications
-# https://github.com/j-hui/fidget.nvim
-let cfg = config.programs.nixvim;
-in {
-  programs.nixvim.plugins.fidget = lib.mkIf cfg.enable {
+{
+  # Ui notifications
+  # https://github.com/j-hui/fidget.nvim
+  config.programs.nixvim.plugins.fidget = {
     enable = true;
     logger = {
       level = "warn";

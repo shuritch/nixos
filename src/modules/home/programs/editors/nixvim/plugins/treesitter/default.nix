@@ -1,9 +1,6 @@
-{ config, lib, pkgs, ... }:
-
-# https://github.com/nvim-treesitter/nvim-treesitter/
-let cfg = config.programs.nivim;
-in {
-  config.programs.nixvim = lib.mkIf cfg.enable {
+{ pkgs, ... }: {
+  # https://github.com/nvim-treesitter/nvim-treesitter/
+  config.programs.nixvim = {
     filetype.extension.liq = "liquidsoap";
     plugins.treesitter = {
       grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;

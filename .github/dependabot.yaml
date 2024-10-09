@@ -1,6 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: github-actions
+    open-pull-requests-limit: 10
     directory: "/"
     schedule:
       interval: weekly
@@ -10,3 +11,5 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
+    reviewers:
+      - shuritch

@@ -1,9 +1,6 @@
-{ config, lib, ... }:
-
-# https://github.com/onsails/lspkind.nvim
-let cfg = config.programs.nixvim;
-in {
-  programs.nixvim.plugins.lspkind = lib.mkIf cfg.enable {
+{
+  # https://github.com/onsails/lspkind.nvim
+  programs.nixvim.plugins.lspkind = {
     enable = true;
     symbolMap = {
       Copilot = "";

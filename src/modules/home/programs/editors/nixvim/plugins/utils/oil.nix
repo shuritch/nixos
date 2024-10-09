@@ -1,10 +1,7 @@
-{ lib, config, ... }:
-
-# File explorer
-# https://github.com/stevearc/oil.nvim/
-let cfg = config.programs.nixvim;
-in {
-  config.programs.nixvim = lib.mkIf cfg.enable {
+{
+  # File explorer
+  # https://github.com/stevearc/oil.nvim/
+  config.programs.nixvim = {
     plugins.oil = {
       enable = true;
       settings = {

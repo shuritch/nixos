@@ -1,9 +1,6 @@
-{ config, lib, ... }:
-
-# https://github.com/ThePrimeagen/harpoon/tree/harpoon2
-let cfg = config.programs.nixvim;
-in {
-  config.programs.nixvim.plugins.harpoon = lib.mkIf cfg.enable {
+{
+  # https://github.com/ThePrimeagen/harpoon/tree/harpoon2
+  config.programs.nixvim.plugins.harpoon = {
     enable = true;
     enableTelescope = true;
     keymapsSilent = true;

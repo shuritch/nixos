@@ -33,8 +33,7 @@
 
 </h5>
 
-<h2 >Highlights</h2>
-<h4 align="center">
+<h5 align="center">
 
 <code>📦&nbsp;Userland&nbsp;Isolation</code>
 <code>🍙&nbsp;Declarative</code>
@@ -49,7 +48,7 @@
 <code>🧳&nbsp;Role&nbsp;based&nbsp;configuration</code>
 <code>🚀&nbsp;Class&nbsp;based&nbsp;configuration</code>
 <code>⚡&nbsp;Easy&nbsp;to&nbsp;manage</code>
-<code>🖇️&nbsp;D️ualboot&nbsp;support</code>
+<code>🖇️&nbsp;Dualboot&nbsp;support</code>
 <code>🔃&nbsp;State&nbsp;synchronization</code>
 <code>🗿&nbsp;User&nbsp;specific&nbsp;configuration</code>
 
@@ -98,30 +97,30 @@ sudo nixos-rebuild switch --flake .#<hostname> # If Hosts updated
 
 ```graphql
 .
-│  # Cluster
+│  # 👇 Cluster
 │ ╭> atlas                          # Desktop │ 32GB RAM, i9-9900k , RTX 2080S & UHD630 │ Hyprland
 │ ├> hermes                         # Laptop  │ 16GB RAM, i7-1165G7, Iris XE G7         │ Hyprland
 │ ├> pandora                        # ISO     │ Bootable USB                            │ TTY
 ├─┤
-│ │  # Host configuration (example)
+│ │  # 👇 Host configuration (example)
 │ │ ╭> default.nix                  # Configuration entry point.
 │ │ ├> hardware-configuration.nix   # Hardware configuration.
 │ └─┼> environment.nix              # Host specific environment.
 │   ├> disko.nix                    # Disko configuration.
 │   ╰> host_ed25519.pub             # Ssh ed25519 public key.
 │
-│  # SRC
-│ ╭> overlays                       # Patches and custom overrides for some packages.
+│   ╭> home                         # Modules written to isolate Home-manager configuration.
+│ ┌─┼> core                         # Modules written to isolate Nixos configuration.
+│ │ ├> class                        # Presets based on device class (server, desktop, etc).
+│ │ ╰> roles                        # Presets based on chosen roles (headless, dev-kit, etc).
+│ │  # 👆 Modules
+│ │
+│ ├> overlays                       # Patches and custom overrides for some packages.
 │ ├> templates                      # Language based templates.
 ├─┼> library                        # Utilities for Nix language.
 │ ├> packages                       # Self hosted packages.
-│ ├> disko                          # Disko presets.
-│ │
-│ │  # Modules
-│ │ ╭> home                         # Modules written to isolate Home-manager configuration.
-│ └─┼> core                         # Modules written to isolate Nixos configuration.
-│   ├> class                        # Presets based on device class (server, desktop, etc).
-│   ╰> roles                        # Presets based on chosen roles (headless, dev-kit, etc).
+│ ╰> disko                          # Disko presets.
+│  # 👆SRC
 │
 ├> .github                          # Docs, assets, workflows
 ├> .vscode                          # Makes vscode more performant in this directory.

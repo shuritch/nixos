@@ -6,8 +6,8 @@ let
   release = config.system.nixos.release;
   rev = inputs.self.shortRev or "dirty";
   name = "${hostname}-${release}-${rev}-${processor}";
-in {
-  config = lib.optionalAttrs (myClass == "iso") {
+in lib.optionalAttrs (myClass == "iso") {
+  config = {
     systemd.services.sshd.wantedBy = lib.mkForce [ "multi-user.target" ];
     my.system.docs = lib.mkForce false;
     system.switch.enable = false;

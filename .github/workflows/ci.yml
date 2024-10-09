@@ -6,7 +6,11 @@ on:
     paths:
       - "**.nix"
       - "**.lock"
-      - ".github/workflows/check.yml"
+      - ".github/workflows/ci.yml"
+
+concurrency:
+  group: ci-${{ github.ref }}-check
+  cancel-in-progress: true
 
 jobs:
   check-flake:
@@ -23,8 +27,9 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
         with:
           logger: pretty
-          extra-conf: |
-            experimental-features = nix-command flakes ca-derivations auto-allocate-uids cgroups recursive-nix
+
+      - name: Nix Magic Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: Check Flake
         run: nix flake check --accept-flake-config

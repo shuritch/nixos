@@ -1,12 +1,10 @@
-{ config, lib, ... }:
+{
 
-# Moving between search
-# https://github.com/folke/flash.nvim/
-let cfg = config.programs.nixvim;
-in {
-  config.programs.nixvim = lib.mkIf cfg.enable {
+  # Moving between search
+  # https://github.com/folke/flash.nvim/
+  config.programs.nixvim = {
     plugins.flash = {
-      enable = true;
+      enable = false;
       settings = {
         jump.autojump = true;
         search.mode = "fuzzy";

@@ -1,0 +1,47 @@
+name: Cache
+
+on:
+  push:
+    paths:
+      - "**.nix"
+      - "**.lock"
+      - ".github/workflows/cache.yml"
+
+concurrency:
+  group: ci-${{ github.ref }}-cache
+  cancel-in-progress: true
+
+jobs:
+  cache:
+    name: Cache
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        hostname:
+          - atlas
+          - hermes
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          fetch-depth: 1
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          logger: pretty
+
+      - name: Nix Magic Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: shuritch-nixos
+          extraPullNames: "nix-community"
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      - name: Build Derivation
+        run: "nix build .#nixosConfigurations.${{ matrix.hostname }}.config.system.build.toplevel"
