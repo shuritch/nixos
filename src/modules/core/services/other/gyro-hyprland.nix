@@ -11,10 +11,8 @@
       description = "Enables gyro-hyprland";
       wantedBy = [ "graphical.target" ];
       after = [ "graphical.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.gyro-hyprland}/bin/gyro-hyprland";
-      };
+      script = "${pkgs.gyro-hyprland}/bin/gyro-hyprland";
+      serviceConfig = { Type = "oneshot"; };
     };
   };
 }

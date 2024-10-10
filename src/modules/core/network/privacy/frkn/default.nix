@@ -2,29 +2,8 @@
 
 let cfg = config.my.network.frkn;
 in {
-  options.my.network.frkn = {
-    enable = lib.mkEnableOption "Enable bolvan/zapret DPI fulling.";
-
-    mode = lib.mkOption {
-      type = lib.types.enum [ "nfqws" "tpws" ];
-      description = "Firewall type to use.";
-      default = "nfqws";
-    };
-
-    fwtype = lib.mkOption {
-      type = lib.types.enum [ "iptables" "nftables" ];
-      description = "Firewall type to use.";
-      default =
-        lib.head (lib.splitString "-" config.networking.firewall.package.name);
-    };
-
-    fulling = lib.mkOption {
-      description = "Fulling flags.";
-      type = lib.types.str;
-      default =
-        "--dpi-desync=fake,split --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1";
-    };
-  };
+  options.my.network.frkn.enable =
+    lib.mkEnableOption "Enable bolvan/zapret DPI fulling.";
 
   config = lib.mkIf cfg.enable {
     users.groups.tpws = { };
@@ -57,13 +36,13 @@ in {
               "--dpi-desync=fake,split --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1 "
               "--dpi-desync-any-protocol --dpi-desync-ttl=5 --dpi-desync-fake-tls=0x00000000 "
               "--new --dpi-desync-any-protocol --hostlist=${./googlevideo.txt} "
-              "--dpi-desync=fake,split2 --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1 --dpi-desync-ttl=6 "
+              "--dpi-desync=fake,split2 --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1 "
               "--dpi-desync-fake-tls=${./hello_google_com.bin} "
             ]
           }
 
           FWTYPE="nftables"
-          MODE="${cfg.mode}"
+          MODE="nfqws"
           MODE_FILTER=none
 
           MODE_HTTP=0
