@@ -2,7 +2,7 @@
   imports = [ ./cpufreq.nix ./undervolt.nix ./upower.nix ];
   options.my.hardware.battery.enable = lib.mkEnableOption "Enable battery api.";
   config = lib.mkIf (myLib.testHM config "desktop.enable") {
-    home.packages = [
+    environment.systemPackages = [
       (pkgs.writeScriptBin "battery-notify" ''
         #!/usr/bin/env bash
         while true; do
