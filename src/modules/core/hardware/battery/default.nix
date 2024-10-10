@@ -8,7 +8,10 @@
       description = "Battery capacity alerts.";
       wantedBy = [ "graphical.target" ];
       after = [ "graphical.target" ];
-      serviceConfig = { Type = "oneshot"; };
+      serviceConfig = {
+        Type = "oneshot";
+        PassEnvironment = [ "DISPLAY" "DBUS_SESSION_BUS_ADDRESS" ];
+      };
 
       script = ''
         #!/usr/bin/env bash

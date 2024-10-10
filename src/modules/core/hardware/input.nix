@@ -1,4 +1,4 @@
-{ config, lib, myLib, ... }:
+{ config, lib, ... }:
 
 let cfg = config.my.hardware;
 in {
@@ -54,10 +54,6 @@ in {
     (lib.mkIf cfg.input.gyroscope {
       hardware.sensor.iio.enable = true;
       hardware.opentabletdriver.enable = true;
-      hardware.gyro-hyprland = lib.mkIf ((myLib.testHM config "desktop.enable")
-        && (myLib.checkHM config "desktop.manager" "hyprland")) {
-          enable = true;
-        };
     })
   ];
 }

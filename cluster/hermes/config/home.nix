@@ -12,7 +12,6 @@
       launcher = "wofi";
       notifier = "mako";
       idle = "swayidle";
-
       fonts = {
         monospace.size = 14;
         regular.size = 14;
