@@ -118,7 +118,7 @@ in {
           format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
           format = "{icon} {capacity}%";
           format-charging = " {capacity}%";
-          format-plugged = " {capacity}%";
+          format-discharging = "{icon} {capacity}%";
           format-alt = "{time} {icon}";
           onclick = "";
           states = {

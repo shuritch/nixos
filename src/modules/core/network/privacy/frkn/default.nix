@@ -34,7 +34,7 @@ in {
           NFQWS_OPT_DESYNC=${
             lib.concatStrings [
               "--dpi-desync=fake,split --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1 "
-              "--dpi-desync-any-protocol --dpi-desync-ttl=5 --dpi-desync-fake-tls=0x00000000 "
+              # "--dpi-desync-any-protocol --dpi-desync-ttl=5 --dpi-desync-fake-tls=0x00000000 "
               "--new --dpi-desync-any-protocol --hostlist=${./googlevideo.txt} "
               "--dpi-desync=fake,split2 --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1 "
               "--dpi-desync-fake-tls=${./hello_google_com.bin} "
