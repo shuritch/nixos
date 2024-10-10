@@ -6,11 +6,13 @@
     systemd.services.battery-alert = {
       enable = true;
       description = "Battery capacity alerts.";
+      serviceConfig = { Type = "oneshot"; };
       wantedBy = [ "graphical.target" ];
       after = [ "graphical.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        PassEnvironment = [ "DISPLAY" "DBUS_SESSION_BUS_ADDRESS" ];
+
+      environment = {
+        DISPLAY = ":0";
+        DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1001/bus";
       };
 
       script = ''
