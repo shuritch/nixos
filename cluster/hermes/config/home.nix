@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, lib, ... }: {
   my.system.users.${config.my.system.admin}.home = {
     desktop = {
       enable = true;
@@ -12,6 +12,8 @@
       launcher = "wofi";
       notifier = "mako";
       idle = "swayidle";
+
+      exec = [ (lib.getExe pkgs.iio-hyprland) "battery-notify" ];
       fonts = {
         monospace.size = 14;
         regular.size = 14;

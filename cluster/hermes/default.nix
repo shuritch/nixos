@@ -20,7 +20,6 @@
 
   my.services = {
     seatd.enable = true;
-    iio-hyprland.enable = true;
     polkit-agent.enable = true;
     earlyroom.enable = true;
     syncthing = {

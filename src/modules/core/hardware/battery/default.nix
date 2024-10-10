@@ -1,21 +1,9 @@
 { lib, pkgs, config, ... }: {
   imports = [ ./cpufreq.nix ./undervolt.nix ./upower.nix ];
   options.my.hardware.battery.enable = lib.mkEnableOption "Enable battery api.";
-  options.my.hardware.battery.alert = lib.mkEnableOption "Enable power alert.";
-  config = lib.mkIf config.my.hardware.battery.alert {
-    systemd.services.battery-alert = {
-      enable = true;
-      description = "Battery capacity alerts.";
-      serviceConfig = { Type = "oneshot"; };
-      wantedBy = [ "graphical.target" ];
-      after = [ "graphical.target" ];
-
-      environment = {
-        DISPLAY = ":0";
-        DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/1001/bus";
-      };
-
-      script = ''
+  config = lib.mkIf config.my.desktop.enable {
+    home.packages = [
+      (pkgs.writeScriptBin "battery-notify" ''
         #!/usr/bin/env bash
         while true; do
         	battery_status="$(cat /sys/class/power_supply/BAT*/status)"
@@ -31,7 +19,7 @@
 
           sleep 600
         done
-      '';
-    };
+      '')
+    ];
   };
 }

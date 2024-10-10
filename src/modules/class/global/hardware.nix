@@ -2,7 +2,7 @@
   my.hardware = {
     bluetooth = lib.mkDefault (myLib.isSuitablePC config);
     thunderbolt = lib.mkDefault (myLib.isSuitablePC config);
-    battery.enable = lib.mkDefault (myLib.isPC config);
+    battery.enable = lib.mkDefault (myLib.isSuitablePC config);
     lid = lib.mkDefault (myLib.isSuitablePC config);
     audio = lib.mkDefault (myLib.isPC config);
     zram = lib.mkDefault (myLib.isPC config);

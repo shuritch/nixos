@@ -9,7 +9,6 @@
 
     battery = {
       enable = true;
-      alert = true;
       undervolt.enable = true;
       upower.enable = true;
       cpufreq = {
