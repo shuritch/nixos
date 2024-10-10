@@ -1,7 +1,7 @@
-{ lib, pkgs, config, ... }: {
+{ lib, pkgs, config, myLib, ... }: {
   imports = [ ./cpufreq.nix ./undervolt.nix ./upower.nix ];
   options.my.hardware.battery.enable = lib.mkEnableOption "Enable battery api.";
-  config = lib.mkIf config.my.home.desktop.enable {
+  config = lib.mkIf (myLib.testHM config "desktop.enable") {
     home.packages = [
       (pkgs.writeScriptBin "battery-notify" ''
         #!/usr/bin/env bash
