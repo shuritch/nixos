@@ -16,10 +16,10 @@ in {
 
     theme = lib.mkOption {
       description = "Choose a colorscheme for nixvim.";
-      default = "paradise";
+      default = "system-enhanced";
       type = lib.types.enum [
-        "system"
-        "system-enhanced"
+        "system-enhanced" # This one uses lua
+        "system" # This one uses base16 color
         "aquarium"
         "decay"
         "edge-dark"
@@ -30,6 +30,7 @@ in {
         "mountain"
         "paradise"
         "tokyonight"
+        "oxocarbon"
       ];
     };
   };

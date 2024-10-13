@@ -1,7 +1,8 @@
 {
   imports = [
+    ./auto-session.nix
     # ./autopairs.nix
-    ./colorizer.nix
+    # ./colorizer.nix
     ./comment-box.nix
     ./comment.nix
     # ./flash.nix
@@ -14,7 +15,7 @@
     ./spectre.nix
     ./ufo.nix
     ./undotree.nix
-    ./whichkey.nix
+    # ./whichkey.nix
     ./yaml-companion.nix
   ];
 }

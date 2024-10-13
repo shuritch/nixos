@@ -11,7 +11,6 @@
 
       notifyOnError = true;
       formatters_by_ft = {
-        liquidsoap = [ "liquidsoap-prettier" ];
         html = [[ "prettierd" "prettier" ]];
         css = [[ "prettierd" "prettier" ]];
         javascript = [[ "prettierd" "prettier" ]];
@@ -27,8 +26,6 @@
         markdown = [[ "prettierd" "prettier" ]];
         yaml = [ "yamllint" "yamlfmt" ];
         json = [ "fixjson" ];
-        "*" = [ "codespell" ];
-        "_" = [ "trim_whitespace" ];
       };
     };
   };

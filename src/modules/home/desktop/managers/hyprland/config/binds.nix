@@ -46,7 +46,7 @@ in {
           "SUPER,f,fullscreen,1"
           "SUPERSHIFT,f,fullscreen,0"
           "SUPERSHIFT,space,togglefloating"
-          "SUPERALT,p,exec,hyprpicker"
+          "SUPERALT,p,exec,wl-copy $(hyprpicker)"
 
           "SUPER,minus,splitratio,-0.25"
           "SUPERSHIFT,minus,splitratio,-0.3333333"

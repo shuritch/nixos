@@ -23,7 +23,7 @@
     # Enable spellcheck for some filetypes
     {
       event = "FileType";
-      pattern = [ "tex" "latex" "markdown" ];
+      pattern = [ "tex" "latex" "markdown" "js" "nix" "ts" "svelte" ];
       command = "setlocal spell spelllang=en,ru";
     }
 

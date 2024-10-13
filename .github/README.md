@@ -1,6 +1,10 @@
-<h1 align="center">Deep dive into declarative configuration</h1>
+![Atlas](./assets/2024-10-09-atlas.png "State of 2024-10-09")
 
-<h5 align="center">
+<h1 align="center">
+Deep dive into declarative configuration
+</h1>
+
+<!-- <div align="center">
   <a href="https://github.com/shuritch/nixos/issues">
     <img src="https://img.shields.io/github/issues/shuritch/nixos?color=dd5c89&labelColor=282828&style=for-the-badge&logo=sparkfun&logoColor=dd5c89">
   </a>
@@ -10,31 +14,30 @@
   <a href="https://github.com/shuritch/nixos">
     <img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=282828&logo=NixOS&logoColor=2ba1f6&color=2ba1f6">
   </a>
+    <a href="https://github.com/shuritch/nixos/pulse">
+    <img alt="Last commit" src="https://img.shields.io/github/last-commit/shuritch/nixos?style=for-the-badge&logo=starship&color=04B29F&logoColor=04B29F&labelColor=302D41"/>
+  </a>
   <a href="https://github.com/shuritch/nixos/blob/main/.github/LICENCE">
     <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&colorA=282828&colorB=00b557&logo=unlicense&logoColor=00b557&"/>
   </a>
-</h5>
+    <a href="https://github.com/shuritch/nixos/releases/latest">
+    <img alt="Latest release" src="https://img.shields.io/github/v/release/shuritch/nixos?style=for-the-badge&logo=nixos&color=C0C9D5&logoColor=C0C9D5&labelColor=302D41" />
+  </a>
+</div> -->
 
-<h5 align="center">
+<div align="center">
+<p>
 
-<details open="true">
-  <summary><b>👉 Atlas</b> <i>"</i>State of 2024-10-09<i>"</i> 👈</summary><br/>
+**[<kbd><br>&nbsp;Installation&nbsp;<br><br></kbd>](#installation)**
+**[<kbd><br>&nbsp;Structure&nbsp;<br><br></kbd>](#structure)**
+**[<kbd><br>&nbsp;Flake&nbsp;<br><br></kbd>](../flake.nix)**
+**[<kbd><br>&nbsp;Assets&nbsp;and&nbsp;Preview&nbsp;<br><br></kbd>](./assets/)**
+**[<kbd><br>&nbsp;Cluster&nbsp;<br><br></kbd>](../cluster/)**
+**[<kbd><br>&nbsp;Modules&nbsp;<br><br></kbd>](../src/modules/)**
+**[<kbd><br>&nbsp;Workflows&nbsp;<br><br></kbd>](./workflows/)**
 
-![Atlas](./assets/2024-10-09-atlas.png "State of 2024-10-09")
-
-</details>
-
-<details >
-  <summary><b>👉 Hermes</b> <i>"</i>State of 2024-08-22<i>"</i> 👈</summary><br/>
-
-![Hermes](./assets/2024-08-22-hermes.jpg "State of 2024-08-22")
-
-</details>
-
-</h5>
-
-<h5 align="center">
-
+</p>
+<p align="center">
 <code>📦&nbsp;Userland&nbsp;Isolation</code>
 <code>🍙&nbsp;Declarative</code>
 <code>🌱&nbsp;Reproducible</code>
@@ -51,8 +54,8 @@
 <code>🖇️&nbsp;Dualboot&nbsp;support</code>
 <code>🔃&nbsp;State&nbsp;synchronization</code>
 <code>🗿&nbsp;User&nbsp;specific&nbsp;configuration</code>
-
-</h5>
+</p>
+</div>
 
 ## Installation
 
@@ -129,7 +132,7 @@ sudo nixos-rebuild switch --flake .#<hostname> # If Hosts updated
 ```
 
 <p align="center">
-Copyright © 2022-2024 <a href="https://github.com/shuritch">shuritch</a>.<br/>
+Copyright © 2022-2024 <a href="https://github.com/shuritch">Alexander Ivanov</a>.<br/>
 This package is <a href="./LICENSE">MIT licensed</a>.<br/>
 </p>
 

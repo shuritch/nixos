@@ -8,7 +8,7 @@ let
   else
     null;
 in {
-  imports = [ ./chrome.nix ./firefox.nix ];
+  imports = [ ./chrome.nix ./firefox ];
   config = lib.mkIf (defaultBrowser != null) {
     home.sessionVariables.BROWSER = defaultBrowser;
     xdg.mimeApps.inverted.defaultApplications."${defaultBrowser}.desktop" = [

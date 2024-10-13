@@ -13,7 +13,7 @@ in {
     ./fzf.nix
     ./ripgrep.nix
     ./tealdeer.nix
-    ./thefuck.nix
+    # ./thefuck.nix Broken ?
     ./zoxide.nix
   ];
 

@@ -1,26 +1,18 @@
 {
-  imports = [
-    ./conform.nix
-    ./fidget.nix
-    # ./hlchunk.nix
-    ./lspsaga.nix
-    ./none-ls.nix
-
-  ];
-
   # https://neovim.io/doc/user/lsp.html
+  imports = [ ./conform.nix ./lspsaga.nix ./none-ls.nix ];
   programs.nixvim.plugins = {
-    trouble.enable = true;
+    trouble.enable = true; # https://github.com/folke/trouble.nvim/
     lsp-format.enable = true;
     lsp = {
       enable = true;
       servers = {
         nixd.enable = true;
         bashls.enable = true;
-        lua-ls.enable = true;
+        # lua-ls.enable = true;
         jsonls.enable = true;
         yamlls.enable = true;
-        nushell.enable = true;
+        # nushell.enable = true;
 
         eslint.enable = true;
         html.enable = true;
@@ -32,17 +24,6 @@
 
         dockerls.enable = true;
         docker-compose-language-service.enable = true;
-
-        terraformls.enable = false;
-        rust-analyzer.enable = false;
-        nginx-language-server.enable = false;
-        htmx.enable = false;
-        graphql.enable = false;
-        denols.enable = false;
-        cmake.enable = false;
-        clangd.enable = false;
-        pyright.enable = false;
-        zls.enable = false;
       };
 
       keymaps = {

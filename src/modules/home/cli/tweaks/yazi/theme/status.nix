@@ -13,7 +13,7 @@ in {
     # Mode;
     mode_normal = {
       fg = colors.base00;
-      bg = colors.base0E;
+      bg = colors.base09;
       bold = true;
     };
 
@@ -25,14 +25,14 @@ in {
 
     mode_unset = {
       fg = colors.base00;
-      bg = colors.base0E;
+      bg = colors.base09;
       bold = true;
     };
 
     # Progress;
     progress_label = { bold = true; };
     progress_normal = {
-      fg = colors.base0E;
+      fg = colors.base09;
       bg = colors.base00;
     };
 
@@ -42,7 +42,7 @@ in {
     };
 
     # Permissions;
-    permissions_t = { fg = colors.base0E; };
+    permissions_t = { fg = colors.base09; };
     permissions_r = { fg = colors.base0A; };
     permissions_w = { fg = colors.base08; };
     permissions_x = { fg = colors.base0B; };

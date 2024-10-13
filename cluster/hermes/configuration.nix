@@ -2,7 +2,7 @@
   imports = [ ./hardware-configuration.nix ./config ];
 
   my.system = {
-    stateVersion = "23.11";
+    stateVersion = "24.05";
     users.${config.my.system.admin} = {
       description = "Alexander Ivanov";
       email = "sashapop10@yandex.ru";
@@ -14,19 +14,13 @@
   my.programs = { nh.enable = true; };
   my.network = {
     wirelessBackend = "iwd";
-    dnscrypt.enable = true;
-    blocker.enable = true;
-    frkn.enable = true;
     firewall.ui = true;
     optimizeTcp = true;
   };
 
   my.services = {
-    polkit-agent.enable = true;
-    podman.enable = true;
     seatd.enable = true;
-    postgresql.enable = false;
-    printing.enable = true;
+    polkit-agent.enable = true;
     earlyroom.enable = true;
     syncthing = {
       enable = true;
@@ -40,6 +34,10 @@
       folders = {
         "dev" = {
           path = "/home/${config.my.system.admin}/dev";
+          devices = [ "atlas" "hermes" ];
+        };
+        "sync" = {
+          path = "/home/${config.my.system.admin}/sync";
           devices = [ "atlas" "hermes" ];
         };
         "documents" = {

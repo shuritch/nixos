@@ -16,7 +16,7 @@
     autoindent = true; # Do clever autoindenting
 
     breakindent = true; # Enable smart indenting
-    wrap = true; # ? Enable text wrap
+    wrap = true; # Enable text wrap
     completeopt = [ "menuone" "noselect" "noinsert" ]; # CMP
     # completeopt = [ "menu" "menuone" "noselect" ]; # CMP
     termguicolors = true; # Enable 24-bit colors

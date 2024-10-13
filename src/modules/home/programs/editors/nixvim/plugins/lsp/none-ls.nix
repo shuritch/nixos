@@ -22,7 +22,6 @@
         formatting = {
           shfmt.enable = true;
           sqlformat.enable = true;
-          codespell.enable = true;
           stylua.enable = true;
           yamlfmt.enable = true;
           hclfmt.enable = true;

@@ -2,6 +2,7 @@
 
 let inherit (config.my.home.programs.nixvim) colors;
 in {
+  # HELP
   config.programs.nixvim = {
     plugins.mini.modules.clue = {
       window = {

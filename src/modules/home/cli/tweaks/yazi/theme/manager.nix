@@ -3,17 +3,17 @@
 let colors = config.my.home.colorscheme.base16colors;
 in {
   programs.yazi.theme.manager = {
-    cwd = { fg = colors.base0E; };
+    cwd = { fg = colors.base09; };
 
     # Hovered
     hovered = {
       fg = colors.base00;
-      bg = colors.base0E;
+      bg = colors.base09;
     };
 
     preview_hovered = {
       fg = colors.base00;
-      bg = colors.base0E;
+      bg = colors.base09;
     };
 
     # Find
@@ -23,7 +23,7 @@ in {
     };
 
     find_position = {
-      fg = colors.base0E;
+      fg = colors.base09;
       bg = "reset";
       italic = true;
     };
@@ -47,7 +47,7 @@ in {
     # Tab
     tab_active = {
       fg = colors.base00;
-      bg = colors.base0E;
+      bg = colors.base09;
     };
 
     tab_inactive = {
@@ -59,7 +59,7 @@ in {
 
     # Border;
     border_symbol = "│";
-    border_style = { fg = colors.base0E; };
+    border_style = { fg = colors.base09; };
 
     # Offset;
     folder_offset = [ 1 0 1 0 ];

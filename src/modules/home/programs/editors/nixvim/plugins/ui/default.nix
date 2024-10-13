@@ -1,18 +1,18 @@
 {
   imports = [
     ./alpha.nix
-    ./bufferline.nix
+    # ./bufferline.nix
     ./dressing.nix
+    # ./hlchunk.nix
+    ./lualine.nix
     ./noice.nix
-    ./notify.nix
+    # ./notify.nix
     ./smart-splits.nix
     ./telescope.nix
   ];
 
-  programs.nixvim = {
-    # https://github.com/tris203/precognition.nvim/
-    plugins.precognition.enable = true; # Motions
-    # https://github.com/lukas-reineke/indent-blankline.nvim/
-    plugins.indent-blankline.enable = true;
+  programs.nixvim.plugins = {
+    # precognition.enable = true; # Motions | https://github.com/tris203/precognition.nvim/
+    indent-blankline.enable = true; # lukas-reineke/indent-blankline.nvim
   };
 }

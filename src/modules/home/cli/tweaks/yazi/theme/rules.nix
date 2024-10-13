@@ -7,7 +7,7 @@ in {
       # Images and videos
       {
         mime = "image/*";
-        fg = colors.base0C;
+        fg = colors.base0F;
       }
       {
         mime = "video/*";
@@ -21,41 +21,41 @@ in {
       # Archives
       {
         mime = "application/zip";
-        fg = colors.base09;
+        fg = colors.base0F;
       }
       {
         mime = "application/gzip";
-        fg = colors.base09;
+        fg = colors.base0F;
       }
       {
         mime = "application/x-tar";
-        fg = colors.base09;
+        fg = colors.base0F;
       }
       {
         mime = "application/x-bzip";
-        fg = colors.base09;
+        fg = colors.base0F;
       }
       {
         mime = "application/x-bzip2";
-        fg = colors.base09;
+        fg = colors.base0F;
       }
       {
         mime = "application/x-7z-compressed";
-        fg = colors.base09;
+        fg = colors.base0F;
       }
       {
         mime = "application/x-rar";
-        fg = colors.base09;
+        fg = colors.base0F;
       }
 
       # Fallback
       {
         name = "*";
-        fg = colors.base0A;
+        fg = colors.base0F;
       }
       {
         name = "*/";
-        fg = colors.base0E;
+        fg = colors.base09;
       }
     ];
   };

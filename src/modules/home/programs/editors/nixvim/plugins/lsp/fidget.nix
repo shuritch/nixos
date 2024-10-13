@@ -1,5 +1,5 @@
 {
-  # Ui notifications
+  # Ui LSP notifications
   # https://github.com/j-hui/fidget.nvim
   config.programs.nixvim.plugins.fidget = {
     enable = true;

@@ -17,7 +17,7 @@
       };
 
       pickers.colorscheme.enable_preview = true;
-      mappings.n = { # This is not working, use Alt + the key instead 🤷
+      mappings.n = { # This is not working, use Alt + the key instead
         "d".__raw = "require('telescope.actions').delete_buffer";
         "q".__raw = "require('telescope.actions').close";
       };

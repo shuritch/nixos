@@ -9,8 +9,7 @@
       symbolInWinbar.enable = true; # Breadcrumbs
 
       ui = {
-        border =
-          "rounded"; # One of none, single, double, rounded, solid, shadow
+        border = "rounded";
         codeAction = "💡"; # Can be any symbol you want 💡
       };
 

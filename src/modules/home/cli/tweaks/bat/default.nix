@@ -1,12 +1,12 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let cfg = config.my.home.cli;
 in {
   config.programs.bat = lib.mkIf cfg.enableTweaks {
-    themes.custom.src = import ./theme.nix config;
-    # themes.custom.file = "custom.tmTheme";
+    themes.myTheme.src = import ./theme.nix { inherit config pkgs; };
+    # themes.myTheme.file = "myTheme.tmTheme";
     config.pager = "less -FR";
-    config.theme = "custom";
+    config.theme = "myTheme";
     enable = true;
   };
 }

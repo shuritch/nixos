@@ -3,16 +3,16 @@
   imports = [ ./codecompanion.nix ./lspkind.nix ./schemastore.nix ];
   config.programs.nixvim = {
     plugins = {
-      cmp-emoji.enable = true;
+      # cmp-emoji.enable = true;
+      # cmp-nvim-lua.enable = true;
       cmp-nvim-lsp.enable = true;
-      cmp-nvim-lua.enable = true;
       cmp-rg.enable = true;
       cmp-buffer.enable = true;
       cmp-path.enable = true; # file system paths
       cmp_luasnip.enable = true; # snippets
       cmp-cmdline.enable = true; # autocomplete for cmdline
       cmp-git.enable = true; # git commit messages
-      # cmp-tabnine.enable = false; # Copilot
+      cmp-tabnine.enable = true; # Copilot
 
       cmp = {
         enable = true;
@@ -29,10 +29,10 @@
           formatting.fields = [ "kind" "abbr" "menu" ];
           sources = [
             # { name = "copilot"; }
-            # { name = "cmp_tabnine"; }
+            # { name = "nvim_lua"; }
+            # { name = "emoji"; }
+            { name = "cmp_tabnine"; }
             { name = "nvim_lsp"; }
-            { name = "nvim_lua"; }
-            { name = "emoji"; }
             { name = "rg"; }
             { name = "git"; }
             { # text within current buffer

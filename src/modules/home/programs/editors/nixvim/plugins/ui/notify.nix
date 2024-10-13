@@ -3,7 +3,7 @@
   # https://github.com/rcarriga/nvim-notify
   programs.nixvim = {
     plugins.notify = {
-      enable = false;
+      enable = true;
       backgroundColour = "#000000";
       fps = 60;
       render = "default";
@@ -11,14 +11,14 @@
       topDown = true;
     };
 
-    # keymaps = [{
-    #   mode = "n";
-    #   key = "<leader>un";
-    #   action = ''
-    #     <cmd>lua require("notify").dismiss({ silent = true, pending = true })<cr>
-    #   '';
-    #   options = { desc = "Dismiss All Notifications"; };
-    # }];
+    keymaps = [{
+      mode = "n";
+      key = "<leader>un";
+      action = ''
+        <cmd>lua require("notify").dismiss({ silent = true, pending = true })<cr>
+      '';
+      options = { desc = "Dismiss All Notifications"; };
+    }];
 
     # extraConfigLua = ''
     #   local notify = require("notify")

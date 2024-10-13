@@ -1,9 +1,9 @@
-{ inputs, system, ... }:
+{ inputs, pkgs, ... }:
 
 # https://github.com/cachix/git-hooks.nix
 let hooks = inputs.pre-commit-hooks;
 in {
-  pre-commit-check = hooks.lib.${system}.run {
+  pre-commit-check = hooks.lib.${pkgs.system}.run {
     default_stages = [ "pre-commit" ];
     src = ./.;
     hooks = {
@@ -45,9 +45,10 @@ in {
         name = "destroyed-symlinks";
         types = [ "symlink" ];
         description = "Detects symlinks which are changed to regular files.";
-        package = hooks.checks.${system}.pre-commit-hooks;
-        entry =
-          "${hooks.checks.${system}.pre-commit-hooks}/bin/destroyed-symlinks";
+        package = hooks.checks.${pkgs.system}.pre-commit-hooks;
+        entry = "${
+            hooks.checks.${pkgs.system}.pre-commit-hooks
+          }/bin/destroyed-symlinks";
       };
     };
   };

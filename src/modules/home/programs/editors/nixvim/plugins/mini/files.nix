@@ -1,5 +1,6 @@
 {
   config.programs.nixvim = {
+    # File explorer
     plugins.mini.modules.files = {
       content = {
         filter.__raw = ''

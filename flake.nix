@@ -26,10 +26,10 @@
       inherit (inputs.self) outputs;
       lib = inputs.nixpkgs.lib // inputs.home-manager.lib;
       myLib = import ./src/library { inherit inputs lib; };
-      inherit (myLib) pkgsForSys mkSystem forSys;
+      inherit (myLib) pkgsForSys mkSystem;
     in {
       packages = pkgsForSys (pkgs: import ./src/packages { inherit pkgs lib; });
-      checks = forSys (data: import ./hooks.nix (data // { inherit inputs; }));
+      checks = pkgsForSys (pkgs: import ./hooks.nix { inherit inputs pkgs; });
       overlays = import ./src/overlays { inherit inputs outputs lib; };
       devShells = pkgsForSys (pkgs: import ./shell.nix { inherit pkgs; });
       formatter = pkgsForSys (pkgs: pkgs.nixfmt-classic);
@@ -43,6 +43,7 @@
 
       nixosConfigurations.atlas = mkSystem "atlas" {
         extraArguments = { inherit myLib inputs outputs; };
+        source = ./cluster/atlas/configuration.nix;
         roles = [ "nodejs-devkit" ];
         platform = "x86_64-linux";
         home-manager = true;
@@ -52,6 +53,7 @@
 
       nixosConfigurations.hermes = mkSystem "hermes" {
         extraArguments = { inherit myLib inputs outputs; };
+        source = ./cluster/hermes/configuration.nix;
         roles = [ "nodejs-devkit" ];
         platform = "x86_64-linux";
         home-manager = true;
@@ -61,6 +63,7 @@
 
       nixosConfigurations.pandora = mkSystem "pandora" {
         extraArguments = { inherit myLib inputs outputs; };
+        source = ./cluster/pandora/configuration.nix;
         roles = [ "headless" ];
         platform = "x86_64-linux";
         home-manager = false;

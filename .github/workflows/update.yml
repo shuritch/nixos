@@ -3,7 +3,7 @@ name: Bump Flake Inputs
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * 6" # Every Saturday Midnight
+    - cron: "0 0 * * 0" # Every Sunday Midnight
 
 concurrency:
   group: ci-${{ github.ref }}-update
