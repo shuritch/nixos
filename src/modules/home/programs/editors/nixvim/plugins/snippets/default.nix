@@ -8,7 +8,7 @@
     };
 
     fromVscode = [{
-      lazyLoad = true;
+      lazyLoad = true; # https://github.com/rafamadriz/friendly-snippets
       paths = "${pkgs.vimPlugins.friendly-snippets}";
     }];
   };

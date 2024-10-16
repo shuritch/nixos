@@ -28,5 +28,6 @@ in {
     pkgs.httpie # Better curl
     pkgs.ncdu # TUI disk usage
     pkgs.curlHTTP3 # With quic support
+    pkgs.wormhole-rs # Files exchange
   ]);
 }

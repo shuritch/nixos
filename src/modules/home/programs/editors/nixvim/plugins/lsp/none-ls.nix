@@ -23,8 +23,16 @@
           shfmt.enable = true;
           sqlformat.enable = true;
           stylua.enable = true;
-          yamlfmt.enable = true;
           hclfmt.enable = true;
+
+          yamlfmt = {
+            enable = true;
+            settings = ''
+              {
+                extra_args = { "--preserve-quote" },
+              }
+            '';
+          };
 
           nixfmt = {
             enable = true;

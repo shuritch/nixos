@@ -53,6 +53,9 @@ in {
             (mkButton "f"
               "<CMD>lua require('telescope.builtin').find_files({hidden = true})<CR>"
               "🔍 Find File" "Operator")
+            (mkButton "n" ":ene <BAR> startinsert <CR>" "📁 New File" "Operator")
+            (mkButton "r" ":Telescope oldfiles <CR>" "📜 Recent Files"
+              "Operator")
             (mkButton "q" "<CMD>qa<CR>" "💣 Quit Neovim" "String")
           ];
         }

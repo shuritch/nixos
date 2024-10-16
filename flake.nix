@@ -35,7 +35,7 @@
       formatter = pkgsForSys (pkgs: pkgs.nixfmt-classic);
       templates = import ./src/templates;
 
-      /* *
+      /* *                                       * *\
          Yes i know i can do it automatically with
          `builtins.readDir ./cluster` but i prefer
          to do this manually, as it is more clear.

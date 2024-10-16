@@ -62,6 +62,10 @@
           url =
             "https://developers.google.com/search/docs/appearance/structured-data/search-gallery";
         }
+        {
+          name = "Dorks";
+          url = "https://habr.com/ru/companies/postuf/articles/510766/";
+        }
       ];
     }
   ];
