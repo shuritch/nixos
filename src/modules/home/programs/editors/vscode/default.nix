@@ -11,7 +11,7 @@ in {
     programs.vscode = {
       inherit userSettings keybindings;
       extensions = import ./extensions input;
-      enableExtensionUpdateCheck = true;
+      enableExtensionUpdateCheck = false;
       mutableExtensionsDir = true;
       enableUpdateCheck = false;
       package = pkgs.vscode;
