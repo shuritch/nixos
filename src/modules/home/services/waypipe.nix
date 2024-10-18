@@ -1,6 +1,9 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, ... }:
+
+let cfg = config.my.home.services;
+in {
   options.my.home.services.waypipe.enable = lib.mkEnableOption "Enable waypipe";
-  config = lib.mkIf config.my.home.services.waypipe.enable {
+  config = lib.mkIf cfg.waypipe.enable {
     home.packages = [ pkgs.waypipe ];
     systemd.user.services = {
       waypipe-client = {

@@ -1,7 +1,10 @@
-{ lib, pkgs, config, ... }: {
+{ lib, pkgs, config, ... }:
+
+let cfg = config.my.services;
+in {
+  # https://dataswamp.org/~solene/2022-09-28-earlyoom.html
   options.my.services.earlyroom.enable = lib.mkEnableOption "Enable earlyroom";
-  config.services = lib.mkIf config.my.services.earlyroom.enable {
-    # https://dataswamp.org/~solene/2022-09-28-earlyoom.html
+  config.services = lib.mkIf cfg.earlyroom.enable {
     systembus-notify.enable = lib.mkForce true;
     earlyoom = {
       enable = true;
@@ -55,6 +58,5 @@
         echo "Process $EARLYOOM_NAME ($EARLYOOM_PID) was killed"
       '';
     };
-
   };
 }

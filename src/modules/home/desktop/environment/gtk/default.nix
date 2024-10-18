@@ -4,15 +4,12 @@ let cfg = config.my.home.desktop;
 in {
   imports = [ ./theme.nix ];
   config = lib.mkIf cfg.enable {
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    home.sessionVariables.GTK_USE_PORTAL = "1";
-
     gtk = {
       enable = true;
-      font = ({
+      font = {
         inherit (cfg.fonts.regular) name;
         inherit (cfg.fonts.regular) size;
-      });
+      };
 
       iconTheme = {
         package = pkgs.papirus-icon-theme;

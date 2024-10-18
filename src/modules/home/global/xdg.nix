@@ -34,7 +34,6 @@ in {
 
     xdg = {
       enable = true;
-      portal.enable = (builtins.length config.xdg.portal.extraPortals) != 0;
       cacheHome = "${home}/.cache";
       configHome = "${home}/.config";
       dataHome = "${home}/.local/share";

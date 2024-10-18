@@ -1,7 +1,4 @@
-{ lib, config, ... }:
-
-let cfg = config.my.system;
-in {
+{
   imports = [
     ./activation.nix
     ./cache.nix
@@ -13,14 +10,7 @@ in {
     ./nixpkgs.nix
   ];
 
-  options.my.system.stateVersion = lib.mkOption {
-    description = "NixOs Release born with.";
-    default = "23.05"; # From flake
-    type = lib.types.str;
-  };
-
   config.system = {
-    stateVersion = cfg.stateVersion;
     disableInstallerTools = false;
     # disableInstallerTools = config.programs.nh.enable;
     configurationRevision = null; # OS Revision

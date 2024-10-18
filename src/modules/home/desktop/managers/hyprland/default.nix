@@ -1,17 +1,9 @@
 { lib, config, pkgs, ... }:
 let cfg = config.my.home.desktop;
 in {
-  imports = [ ./config ];
-
+  imports = [ ./config ./plugins ];
   config = lib.mkIf (cfg.enable && cfg.manager == "hyprland") {
-    home.packages = with pkgs; [ grimblast hyprpicker xwaylandvideobridge ];
-
-    xdg.portal = {
-      extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
-      config.hyprland = { default = [ "wlr" "gtk" ]; };
-      config.common = { default = [ "gtk" ]; };
-    };
-
+    home.packages = with pkgs; [ grimblast hyprpicker ];
     wayland.windowManager.hyprland = {
       package = pkgs.hyprland.override { wrapRuntimeDeps = false; };
       xwayland.enable = true;
@@ -51,5 +43,4 @@ in {
       '';
     };
   };
-
 }

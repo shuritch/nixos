@@ -25,7 +25,7 @@ in {
 
   config = {
     home.sessionVariables.SHELL = cfg.type;
-    my.home.cli.shell.abbrs = {
+    my.home.cli.shell.aliases = {
       c = "printf '\\033[2J\\033[3J\\033[1;1H'";
       clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
       ":q" = "exit";
@@ -35,7 +35,7 @@ in {
       "....." = "cd ../../../..";
     };
 
-    my.home.cli.shell.aliases = lib.mkMerge [
+    my.home.cli.shell.abbrs = lib.mkMerge [
       {
         clean-switch =
           "sudo systemctl stop zapret.service; sudo nixos-rebuild switch --flake $FLAKE";

@@ -1,9 +1,1 @@
-{
-  imports = [
-    ./earlyroom.nix
-    ./polkit-agent.nix
-    ./printing.nix
-    ./seatd.nix
-    ./syncthing.nix
-  ];
-}
+{ imports = [ ./earlyroom.nix ./printing.nix ./seatd.nix ./syncthing.nix ]; }

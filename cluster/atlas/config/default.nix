@@ -1,1 +1,10 @@
-{ imports = [ ./boot.nix ./hardware.nix ./security.nix ./home.nix ]; }
+{
+  imports = [
+    ./boot.nix
+    ./hardware.nix
+    ./home.nix
+    ./network.nix
+    ./security.nix
+    ./services.nix
+  ];
+}

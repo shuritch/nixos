@@ -3,6 +3,7 @@
 let cfg = config.my.home;
 in {
   imports = [
+    ./theme.nix
     ./annoyances.nix
     ./bookmarks.nix
     ./engines.nix

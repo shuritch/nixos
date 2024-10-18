@@ -12,7 +12,9 @@ with lib; rec {
 
   mkSystem = hostName:
     { roles ? [ ], class ? "desktop", admin ? "nixos", platform ? "x86_64-linux"
-    , source ? mkSourcePath hostName, extraArguments ? { }, ... }:
+    , source ? mkSourcePath hostName, extraArguments ? { }, origin ? "23.05"
+    , home-manager ? false }:
+
     lib.nixosSystem {
       specialArgs = selfRef "myExtraArgs" extraArguments // {
         myRoles = roles;
@@ -20,15 +22,16 @@ with lib; rec {
       };
 
       modules = concatLists [
-        [
-          source
-          ../modules/core
-          ../modules/home
-          ../modules/roles
-          ../modules/class
-        ]
+        [ source ../modules/core ../modules/roles ../modules/class ]
+
+        (if home-manager then
+          [ ../modules/home ]
+        else [{
+          options.home-manager = extraArguments.myLib.mkStubOption "HM";
+        }])
 
         (singleton {
+          system.stateVersion = origin;
           networking.hostName = hostName;
           nixpkgs.hostPlatform = mkDefault platform;
           my.system = { inherit class admin roles; };

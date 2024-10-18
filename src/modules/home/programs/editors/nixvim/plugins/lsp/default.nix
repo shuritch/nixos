@@ -17,13 +17,13 @@
         eslint.enable = true;
         html.enable = true;
         cssls.enable = true;
-        ts-ls.enable = false;
+        ts_ls.enable = false;
         svelte.enable = true;
         marksman.enable = true;
         sqls.enable = true;
 
         dockerls.enable = true;
-        docker-compose-language-service.enable = true;
+        docker_compose_language_service.enable = true;
       };
 
       keymaps = {

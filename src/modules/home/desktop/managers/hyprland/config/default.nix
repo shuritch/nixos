@@ -10,7 +10,6 @@ in {
     ./binds.nix
     ./decorations.nix
     ./exec.nix
-    ./hyprbar.nix
     ./inputs.nix
     ./misc.nix
     ./monitors.nix

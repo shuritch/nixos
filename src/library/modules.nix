@@ -48,7 +48,7 @@ with lib; rec {
 
     size = lib.mkOption {
       type = lib.types.int;
-      default = default.size or 12;
+      default = default.size or 14;
       description = "Size in pixels for ${kind} font profile";
       example = "14";
     };

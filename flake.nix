@@ -49,6 +49,7 @@
         home-manager = true;
         admin = "shuritch";
         class = "desktop";
+        origin = "23.11";
       };
 
       nixosConfigurations.hermes = mkSystem "hermes" {
@@ -59,6 +60,7 @@
         home-manager = true;
         admin = "shuritch";
         class = "laptop";
+        origin = "24.05";
       };
 
       nixosConfigurations.pandora = mkSystem "pandora" {
@@ -69,6 +71,7 @@
         home-manager = false;
         admin = "nixos";
         class = "iso";
+        origin = "24.05";
       };
     };
 }

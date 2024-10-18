@@ -5,10 +5,10 @@
       platformTheme = {
         name = "gtk3";
         package = [
-          (pkgs.libsForQt5.qtstyleplugins.overrideAttrs (o: {
+          (pkgs.stable.libsForQt5.qtstyleplugins.overrideAttrs (o: {
             patches = (o.patches or [ ]) ++ [ ./qtstyleplugins-gtk3-key.patch ];
           }))
-          (pkgs.qt6.qtbase.override {
+          (pkgs.stable.qt6.qtbase.override {
             # https://codereview.qt-project.org/c/qt/qtbase/+/547252
             patches = [ ./qtbase-gtk3-xdp.patch ];
             qttranslations = null;

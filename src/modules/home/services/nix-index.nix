@@ -1,8 +1,11 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, ... }:
+
+let cfg = config.my.home.services;
+in {
   options.my.home.services.nix-index.enable =
     lib.mkEnableOption "Enable nix-index database.";
 
-  config = lib.mkIf config.my.home.services.nix-index.enable {
+  config = lib.mkIf cfg.nix-index.enable {
     home.packages = with pkgs; [ comma ];
     programs.nix-index.enable = true;
     systemd.user.services.nix-index-database-sync = {

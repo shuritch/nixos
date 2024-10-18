@@ -11,7 +11,7 @@ in {
       users = lib.genAttrs users (login: import ./setup.nix login);
       extraSpecialArgs = myExtraArgs // { osConfig = config; };
       backupFileExtension = "bak";
-      useUserPackages = true;
+      useUserPackages = false;
       useGlobalPkgs = true;
       sharedModules = [ ];
       verbose = true;

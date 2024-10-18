@@ -1,8 +1,11 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, ... }:
+
+let cfg = config.my.home.services;
+in {
   options.my.home.services.kdeconnect.enable =
     lib.mkEnableOption "Enable kdeconnect.";
 
-  config = lib.mkIf config.my.home.services.kdeconnect.enable {
+  config = lib.mkIf cfg.kdeconnect.enable {
     services.kdeconnect = {
       package = pkgs.kdePackages.kdeconnect-kde;
       indicator = true;

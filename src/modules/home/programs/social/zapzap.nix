@@ -6,6 +6,6 @@ in {
     lib.mkEnableOption "Enable whatsapp.";
 
   config = lib.mkIf (cfg.desktop.enable && cfg.programs.zapzap.enable) {
-    home.packages = with pkgs; [ zapzap ];
+    home.packages = with pkgs.stable; [ zapzap ];
   };
 }

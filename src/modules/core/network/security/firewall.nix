@@ -1,6 +1,6 @@
 { lib, pkgs, config, myLib, ... }:
 
-let cfg = config.my.network;
+let cfg = config.my.network.firewall;
 in {
   options.my.network.firewall = {
     allowPing = lib.mkEnableOption "Allow servers to be pinged.";
@@ -13,10 +13,11 @@ in {
   };
 
   config = {
-    services.opensnitch.enable = cfg.firewall.ui;
+    environment.systemPackages = lib.optionals cfg.ui [ pkgs.opensnitch-ui ];
+    services.opensnitch.enable = cfg.ui;
     networking.firewall = {
       enable = true;
-      inherit (cfg.firewall) package allowPing;
+      inherit (cfg) package allowPing;
       checkReversePath = lib.mkForce false; # Don't filter DHCP packets
       logReversePathDrops = true; # Better logs
       logRefusedConnections = false;

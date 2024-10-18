@@ -1,7 +1,7 @@
 { pkgs, config, lib, myLib, ... }:
 
 let
-  homeCfgs = config.home-manager.users;
+  homeCfgs = config.home-manager.users or { };
   userCfg = homeCfgs.${config.my.system.admin} or null;
   homeSharePaths = lib.mapAttrsToList (_: v: "${v.home.path}/share") homeCfgs;
   variables = ''

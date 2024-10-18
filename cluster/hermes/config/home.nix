@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ pkgs, config, ... }: {
   my.system.users.${config.my.system.admin}.home = {
     desktop = {
       enable = true;
@@ -12,12 +12,6 @@
       launcher = "wofi";
       notifier = "mako";
       idle = "swayidle";
-
-      exec = [ (lib.getExe pkgs.iio-hyprland) "battery-notify" ];
-      fonts = {
-        monospace.size = 14;
-        regular.size = 14;
-      };
     };
 
     cli = {
@@ -28,30 +22,21 @@
     };
 
     programs = {
-      # Editors
       nixvim.enable = true;
-
-      # Browsers
       firefox.enable = true;
-
-      # Documents
       libreoffice.enable = true;
       zathura.enable = true;
-
-      # Media
       oculante.enable = true;
       mpv.enable = true;
-
-      # Dev
       postman.enable = true;
-
-      # Other
       obsidian.enable = true;
       rustdesk.enable = true;
       gimp.enable = true;
     };
 
     services = {
+      battery-alert.enable = true;
+      polkit-agent.enable = true;
       nix-index.enable = true;
       waypipe.enable = true;
     };

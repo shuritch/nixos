@@ -11,9 +11,10 @@
     ./qt
     ./gtk
 
-    ./fonts.nix
-    ./wallpaper.nix
     ./binds.nix
     ./exec.nix
+    ./fonts.nix
+    ./wallpaper.nix
+    ./wayland.nix
   ];
 }
