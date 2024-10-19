@@ -1,5 +1,5 @@
 {
-  # Search panel
+  # Search and replace
   # https://github.com/nvim-pack/nvim-spectre/
   config.programs.nixvim = {
     plugins.spectre.enable = true;

@@ -28,10 +28,10 @@ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     sha256 = "sha256-LEgKH3FhKQJG1bpKxlHidaY86OqWRMpM0x92B3y8OR0=";
   }
   {
-    name = "shell-format";
-    publisher = "foxundermoon";
-    version = "7.2.5";
-    sha256 = "sha256-kfpRByJDcGY3W9+ELBzDOUMl06D/vyPlN//wPgQhByk=";
+    name = "shfmt";
+    publisher = "mkhl";
+    version = "1.3.1";
+    sha256 = "sha256-V7pXPwabmUJLC/T0X4dsc52IZa7SaN70zd4mCjqk4X4=";
   }
   {
     name = "vs-code-prettier-eslint";

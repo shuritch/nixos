@@ -1,4 +1,5 @@
 {
+  # Better nvim UI
   # https://github.com/folke/noice.nvim
   programs.nixvim.plugins.noice = {
     enable = true;
@@ -14,7 +15,7 @@
     };
 
     lsp = {
-      message.enabled = true;
+      message.enabled = false;
       progress = {
         enabled = false;
         view = "mini";
@@ -50,6 +51,19 @@
           "%s*s:%w*:%s*"
           ":%s*s!%w*!%s*"
           ":%s*s/%w*/%s*"
+        ];
+      };
+
+      range = {
+        icon = "";
+        lang = "regex";
+        pattern = [
+          ":%s*%%s*s:%w*:%w*:%s*"
+          ":%s*%%s*s!%w*!%w*!%s*"
+          ":%s*%%s*s/%w*/%w*/%s*"
+          "%s*s:%w*:%w*:%s*"
+          ":%s*s!%w*!%w*!%s*"
+          ":%s*s/%w*/%w*/%s*"
         ];
       };
     };

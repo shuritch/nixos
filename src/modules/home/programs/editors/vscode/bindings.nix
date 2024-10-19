@@ -26,15 +26,4 @@
     "command" = "cursorHome";
     "when" = "textInputFocus";
   }
-  # Unbind
-  {
-    "key" = "ctrl+shift+k";
-    "command" = "-editor.action.deleteLines";
-    "when" = "textInputFocus";
-  }
-  {
-    "key" = "ctrl+shift+k";
-    "command" = "-cursorHome";
-    "when" = "textInputFocus";
-  }
 ]

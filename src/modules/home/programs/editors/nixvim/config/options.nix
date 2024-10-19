@@ -1,25 +1,21 @@
-{ config, ... }: {
+{
   programs.nixvim.opts = {
-    # Appearance
-    guifont =
-      "${config.my.home.desktop.fonts.monospace.name}:h14:Medium:i"; # fontname:fontsize
-    guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,n-v-i:blinkon0";
-    hidden = true; # Keep closed buffer open in the background
-    laststatus = 0; # Display status line always
+    # # Appearance
+    # hidden = true; # Keep closed buffer open in the background
+    # laststatus = 0; # Display status line always
     termguicolors = true; # Enable 24-bit colors
     cursorline = false; # Highlight the line where the cursor is located
     showmode = true; # We don't need to see things like INSERT anymore
     showmatch = true; # highlight matching braces
     cmdheight = 0; # More space in the neovim cli for displaying messages
-    # ruler = true; # show current line and column
 
-    # Scroll
+    # # Scroll
     scrolloff = 8; # Number of screen lines to show around the cursor
-    sidescrolloff = 15;
-    sidescroll = 1;
+    # sidescrolloff = 15;
+    # sidescroll = 1;
 
     # Enable relative line numbers
-    number = true;
+    number = false;
     relativenumber = true;
 
     # Number of spaces a <Tab>
@@ -30,20 +26,20 @@
 
     # Indenting
     smartindent = true; # Enable auto indenting and set it to spaces
-    autoindent = true; # Do clever autoindenting
+    # autoindent = true; # Do clever autoindenting
     breakindent = true; # Enable smart indenting
     shiftwidth = 2; # Number of spaces used for each step
     wrap = false; # Enable text wrap
     # linebreak = true; # Wrap lines at convenient points
-    cindent = true; # automatically indent braces
-    smarttab = true;
+    # cindent = true; # automatically indent braces
+    # smarttab = true;
 
     # Search
     hlsearch = true;
     incsearch = true;
     ignorecase = true;
     smartcase = true;
-    inccommand = "split";
+    # inccommand = "split";
     grepprg = "rg --vimgrep";
     grepformat = "%f:%l:%c:%m";
 
@@ -53,7 +49,7 @@
 
     # Mouse
     mouse = "a";
-    mousemodel = "extend";
+    # mousemodel = "extend";
 
     # Enable persistent undo history
     swapfile = false;
@@ -62,10 +58,10 @@
     undofile = true;
 
     # fold settings: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
-    foldexpr = "v:lua.vim.treesitter.foldexpr()";
-    foldnestmax = 3; # deepest fold is 3 levels
+    # foldexpr = "v:lua.vim.treesitter.foldexpr()";
+    # foldnestmax = 3; # deepest fold is 3 levels
     foldlevelstart = 99;
-    foldmethod = "expr";
+    # foldmethod = "expr";
     foldenable = true;
     foldcolumn = "0";
     foldlevel = 99;
@@ -75,9 +71,9 @@
     fileencoding = "utf-8";
 
     # Enable chars list
-    list = true; # Show invisible characters (tabs, eol, ...)
-    listchars =
-      "eol:↲,tab:|->,lead:·,space: ,trail:•,extends:→,precedes:←,nbsp:␣";
+    # list = true; # Show invisible characters (tabs, eol, ...)
+    # listchars =
+    #   "eol:↲,tab:|->,lead:·,space: ,trail:•,extends:→,precedes:←,nbsp:␣";
 
     # Columns
     # signcolumn = "yes"; # Whether to show the signcolumn
@@ -90,8 +86,8 @@
     # completeopt = [ "menu" "menuone" "noselect" ]; # CMP
     timeoutlen = 10; # Reduce which-key timeout to 10ms
     spell = true; # Highlight spelling mistakes (local to window)
-    lazyredraw = true; # Redraw only when needed
-    visualbell = true; # No sounds
+    # lazyredraw = true; # Redraw only when needed
+    # visualbell = true; # No sounds
 
     # textwidth = 0; # Maximum width of text that is being inserted.
     # modeline = true; # Tags such as 'vim:ft=sh'

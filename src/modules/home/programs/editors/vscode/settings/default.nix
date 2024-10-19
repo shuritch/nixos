@@ -223,10 +223,7 @@ config:
   "[python]"."editor.defaultFormatter" = "ms-python.black-formatter";
   "[toml]"."editor.defaultFormatter" = "tamasfe.even-better-toml";
   "[nix]"."editor.defaultFormatter" = "brettm12345.nixfmt-vscode";
-  "[sh]"."editor.defaultFormatter" = "foxundermoon.shell-format";
-  "[.gitignore]"."editor.defaultFormatter" = "foxundermoon.shell-format";
-  "[.dockerignore]"."editor.defaultFormatter" = "foxundermoon.shell-format";
-  "[.properties]"."editor.defaultFormatter" = "foxundermoon.shell-format";
+  "[sh]"."editor.defaultFormatter" = "mkhl.shfmt";
 
   #? Plugins
   "eslint.run" = "onSave";

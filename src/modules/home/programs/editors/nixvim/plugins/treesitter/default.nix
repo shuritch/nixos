@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./context.nix ./textobjects.nix ];
+  imports = [ ./textobjects.nix ];
   # https://github.com/nvim-treesitter/nvim-treesitter/
   config.programs.nixvim.plugins.treesitter = {
     grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;

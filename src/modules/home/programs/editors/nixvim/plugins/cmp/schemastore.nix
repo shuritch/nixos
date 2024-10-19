@@ -1,4 +1,5 @@
 {
+  # JSON schema integration
   # https://github.com/b0o/SchemaStore.nvim/
   programs.nixvim.plugins.schemastore = {
     enable = true;

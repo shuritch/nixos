@@ -1,4 +1,5 @@
 {
+  # vscode-like pictograms for neovim lsp completion items
   # https://github.com/onsails/lspkind.nvim
   programs.nixvim.plugins.lspkind = {
     enable = true;

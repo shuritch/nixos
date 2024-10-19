@@ -1,41 +1,35 @@
 {
   programs.nixvim.autoCmd = [
-    # Vertically center document when entering insert mode
-    {
+    { # Vertically center document when entering insert mode
       event = "InsertEnter";
       command = "norm zz";
     }
 
-    # Open help in a vertical split
-    {
+    { # Open help in a vertical split
       event = "FileType";
       pattern = "help";
       command = "wincmd L";
     }
 
-    # Close Telescope prompt in insert mode by clicking escape
-    {
+    { # Close Telescope prompt in insert mode by clicking escape
       event = [ "FileType" ];
       pattern = "TelescopePrompt";
       command = "inoremap <buffer><silent> <ESC> <ESC>:close!<CR>";
     }
 
-    # Enable spellcheck for some filetypes
-    {
+    { # Enable spellcheck for some filetypes
       event = "FileType";
       pattern = [ "tex" "latex" "markdown" "js" "nix" "ts" "svelte" ];
       command = "setlocal spell spelllang=en,ru";
     }
 
-    # Hilight yank text
-    {
+    { # Hilight yank text
       event = "TextYankPost";
       pattern = "*";
       command = "lua vim.highlight.on_yank{timeout=500}";
     }
 
-    # Enter git buffer in insert mode
-    {
+    { # Enter git buffer in insert mode
       event = "FileType";
       pattern = [ "gitcommit" "gitrebase" ];
       command = "startinsert | 1";

@@ -1,5 +1,5 @@
 {
-  # Shares code by links
+  # Generate shareable file permalinks
   # https://github.com/ruifm/gitlinker.nvim
   config.programs.nixvim.plugins.gitlinker = {
     enable = true;

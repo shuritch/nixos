@@ -1,5 +1,5 @@
 {
-  # Formatter
+  # Formatter plugin
   # https://github.com/stevearc/conform.nvim/
   config.programs.nixvim.plugins.conform-nvim = {
     enable = true;
@@ -18,7 +18,6 @@
         typescript = [[ "prettierd" "prettier" ]];
         typescriptreact = [[ "prettierd" "prettier" ]];
         svelte = [[ "prettierd" "prettier" ]];
-        python = [ "black" ];
         toml = [ "taplo" ];
         lua = [ "stylua" ];
         sh = [ "shfmt" ];

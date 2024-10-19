@@ -11,6 +11,7 @@
 - `space` + `s` + `C` | Available Commands
 - `space` + `s` + `D` | Warnings, Errors
 - `space` + `r` + `s` | Extended search menu
+- `space` + `c` + `f` | Format
 
 # Comments
 

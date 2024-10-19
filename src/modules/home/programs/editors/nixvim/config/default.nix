@@ -10,11 +10,9 @@
 
     clipboard = { # Use system clipboard
       register = "unnamedplus";
-      providers = {
-        wl-copy = lib.mkIf config.my.home.desktop.isWayland {
-          package = pkgs.wl-clipboard;
-          enable = true;
-        };
+      providers.wl-copy = lib.mkIf config.my.home.desktop.isWayland {
+        package = pkgs.wl-clipboard;
+        enable = true;
       };
     };
 

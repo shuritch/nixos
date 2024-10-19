@@ -1,5 +1,5 @@
 {
-  # QOL
+  # QOL LSP features
   # https://nvimdev.github.io/lspsaga/
   programs.nixvim = {
     plugins.lspsaga = {

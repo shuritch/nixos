@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  # AI Chat
+  # AI Chat | Zed AI like
   # https://github.com/olimorris/codecompanion.nvim
   config.programs.nixvim = {
     extraPlugins = [

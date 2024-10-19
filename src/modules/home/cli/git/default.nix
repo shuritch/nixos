@@ -5,7 +5,6 @@ in {
   imports = [ ./aliases.nix ./ignores.nix ./tweaks.nix ];
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.gitFull;
     userName = admin.description;
     userEmail = admin.email;
 

@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  # Snippet engine
   # https://github.com/L3MON4D3/LuaSnip
   config.programs.nixvim.plugins.luasnip = {
     enable = true;

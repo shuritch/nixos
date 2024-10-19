@@ -1,18 +1,20 @@
 {
+  # Completion plugin for nvim
   # https://github.com/hrsh7th/nvim-cmp/
   imports = [ ./codecompanion.nix ./lspkind.nix ./schemastore.nix ];
   config.programs.nixvim = {
     plugins = {
-      # cmp-emoji.enable = true;
-      # cmp-nvim-lua.enable = true;
+      cmp-nvim-lua.enable = true;
       cmp-nvim-lsp.enable = true;
-      cmp-rg.enable = true;
+      cmp_luasnip.enable = true;
+      cmp-cmdline.enable = true;
+      cmp-emoji.enable = true;
       cmp-buffer.enable = true;
-      cmp-path.enable = true; # file system paths
-      cmp_luasnip.enable = true; # snippets
-      cmp-cmdline.enable = true; # autocomplete for cmdline
-      cmp-git.enable = true; # git commit messages
-      cmp-tabnine.enable = true; # Copilot
+      cmp-path.enable = true;
+      cmp-rg.enable = true;
+      cmp-git.enable = true;
+
+      cmp-tabnine.enable = true;
 
       cmp = {
         enable = true;
@@ -29,10 +31,10 @@
           formatting.fields = [ "kind" "abbr" "menu" ];
           sources = [
             # { name = "copilot"; }
-            # { name = "nvim_lua"; }
-            # { name = "emoji"; }
             { name = "cmp_tabnine"; }
+            { name = "nvim_lua"; }
             { name = "nvim_lsp"; }
+            { name = "emoji"; }
             { name = "rg"; }
             { name = "git"; }
             { # text within current buffer

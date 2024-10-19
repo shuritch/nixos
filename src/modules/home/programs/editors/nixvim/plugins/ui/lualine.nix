@@ -23,34 +23,36 @@ in {
         lualine_a = [{
           __unkeyed = "mode";
           fmt = "string.lower";
+          separator.right = "";
+          separator.left = "";
           color = {
             fg = colors.base04;
             bg = "nil";
           };
-          separator.left = "";
-          separator.right = "";
         }];
 
         lualine_b = [
           {
             __unkeyed = "branch";
             icon.__unkeyed = "";
+            separator.right = "";
+            separator.left = "";
             color = {
               fg = colors.base04;
               bg = "nil";
             };
-            separator.left = "";
-            separator.right = "";
           }
           {
             __unkeyed = "diff";
-            separator.left = "";
             separator.right = "";
+            separator.left = "";
           }
         ];
 
         lualine_c = [{
           __unkeyed = "diagnostic";
+          separator.right = "";
+          separator.left = "";
           symbols = {
             error = " ";
             warn = " ";
@@ -61,20 +63,20 @@ in {
             fg = colors.base08;
             bg = "nil";
           };
-          separator.left = "";
-          separator.right = "";
         }];
 
         lualine_x = [ "" ];
         lualine_y = [
           {
             __unkeyed = "filetype";
-            icon_only = true;
-            separator.left = "";
             separator.right = "";
+            separator.left = "";
+            icon_only = true;
           }
           {
             __unkeyed = "filename";
+            separator.right = "";
+            separator.left = "";
             symbols = {
               modified = "";
               readonly = "👁️";
@@ -84,19 +86,17 @@ in {
               fg = colors.base05;
               bg = "nil";
             };
-            separator.left = "";
-            separator.right = "";
           }
         ];
 
         lualine_z = [{
           __unkeyed = "location";
+          separator.right = "";
+          separator.left = "";
           color = {
             fg = colors.base0B;
             bg = "nil";
           };
-          separator.left = "";
-          separator.right = "";
         }];
       };
     };

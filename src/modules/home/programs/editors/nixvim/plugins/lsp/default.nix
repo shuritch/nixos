@@ -9,7 +9,7 @@
       servers = {
         nixd.enable = true;
         bashls.enable = true;
-        # lua-ls.enable = true;
+        lua_ls.enable = true;
         jsonls.enable = true;
         yamlls.enable = true;
         # nushell.enable = true;
@@ -54,34 +54,9 @@
             desc = "Type Definition";
           };
 
-          K = {
-            action = "hover";
-            desc = "Hover";
-          };
-
-          "<leader>cw" = {
-            action = "workspace_symbol";
-            desc = "Workspace Symbol";
-          };
-
           "<leader>cr" = {
             action = "rename";
             desc = "Rename";
-          };
-        };
-
-        diagnostic = {
-          "<leader>cd" = {
-            action = "open_float";
-            desc = "Line Diagnostics";
-          };
-          "[d" = {
-            action = "goto_next";
-            desc = "Next Diagnostic";
-          };
-          "]d" = {
-            action = "goto_prev";
-            desc = "Previous Diagnostic";
           };
         };
       };

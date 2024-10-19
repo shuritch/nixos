@@ -1,29 +1,28 @@
 { config, ... }:
 
-let
-  inherit (config.my.home.programs.nixvim) colors;
-  nixFlake = [
-    " ███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗ "
-    " ████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║ "
-    " ██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║ "
-    " ██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║ "
-    " ██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║ "
-    " ╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝ "
-    "            github:shuritch/nixos             "
-  ];
+# Dashboard
+# https://github.com/goolord/alpha-nvim
+let inherit (config.my.home.programs.nixvim) colors;
 in {
   programs.nixvim = {
     plugins.alpha = {
       enable = true;
-
       layout = [
         {
           type = "padding";
           val = 4;
         }
         {
+          val = [
+            " ███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗ "
+            " ████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║ "
+            " ██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║ "
+            " ██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║ "
+            " ██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║ "
+            " ╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝ "
+            "            github:shuritch/nixos             "
+          ];
           type = "text";
-          val = nixFlake;
           opts = {
             hl = "AlphaHeader";
             position = "center";

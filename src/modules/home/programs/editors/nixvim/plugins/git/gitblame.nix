@@ -1,4 +1,5 @@
 {
+  # Inline git blame
   # https://github.com/f-person/git-blame.nvim/
   programs.nixvim = {
     plugins.gitblame = {

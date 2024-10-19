@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  # Moving between tags
+  # Quickly switch between buffers (Harpoon replacement)
   # https://github.com/cbochs/grapple.nvim
   config.programs.nixvim = {
     extraPlugins = [

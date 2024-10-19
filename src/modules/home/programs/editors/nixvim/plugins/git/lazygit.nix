@@ -1,4 +1,5 @@
 {
+  # The best git TUI, as a neovim plugin
   # https://github.com/kdheepak/lazygit.nvim
   config.programs.nixvim = {
     plugins.lazygit.enable = true;

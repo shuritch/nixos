@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{
+  # null-ls replacement
   # https://github.com/nvimtools/none-ls.nvim/
   config.programs.nixvim = {
     plugins.none-ls = {
@@ -6,60 +7,16 @@
       enableLspFormat = true;
       settings.updateInInsert = false;
       sources = {
-        code_actions = {
-          # gitsigns.enable = true;
-          statix.enable = true;
-        };
-
+        formatting = { };
+        code_actions.statix.enable = true;
         diagnostics = {
-          statix.enable = true;
-          yamllint.enable = true;
+          actionlint.enable = true;
+          # markdownlint.enable = true;
+          # stylelint.enable = true;
           codespell.enable = true;
+          yamllint.enable = true;
           deadnix.enable = true;
-          markdownlint.enable = true;
-        };
-
-        formatting = {
-          shfmt.enable = true;
-          sqlformat.enable = true;
-          stylua.enable = true;
-          hclfmt.enable = true;
-
-          yamlfmt = {
-            enable = true;
-            settings = ''
-              {
-                extra_args = { "--preserve-quote" },
-              }
-            '';
-          };
-
-          nixfmt = {
-            enable = true;
-            package = pkgs.nixfmt-classic;
-          };
-
-          black = {
-            enable = true;
-            settings = ''
-              {
-                extra_args = { "--fast" },
-              }
-            '';
-          };
-
-          prettier = {
-            enable = true;
-            disableTsServerFormatter = true;
-            settings = ''
-              {
-                extra_args = {
-                  "--no-semi",
-                  "--single-quote"
-                },
-              }
-            '';
-          };
+          statix.enable = true;
         };
       };
     };
