@@ -4,17 +4,7 @@
   imports = [ ./codecompanion.nix ./lspkind.nix ./schemastore.nix ];
   config.programs.nixvim = {
     plugins = {
-      cmp-nvim-lua.enable = true;
-      cmp-nvim-lsp.enable = true;
-      cmp_luasnip.enable = true;
       cmp-cmdline.enable = true;
-      cmp-emoji.enable = true;
-      cmp-buffer.enable = true;
-      cmp-path.enable = true;
-      cmp-rg.enable = true;
-      cmp-git.enable = true;
-
-      cmp-tabnine.enable = true;
 
       cmp = {
         enable = true;
@@ -30,13 +20,17 @@
           snippet.expand = "luasnip";
           formatting.fields = [ "kind" "abbr" "menu" ];
           sources = [
-            # { name = "copilot"; }
             { name = "cmp_tabnine"; }
             { name = "nvim_lua"; }
-            { name = "nvim_lsp"; }
             { name = "emoji"; }
-            { name = "rg"; }
+            { name = "nvim_lsp"; }
             { name = "git"; }
+            {
+              name = "rg";
+              keyword_length = 3;
+              option.additional_arguments =
+                "--max-depth 6 --one-file-system --ignore-file ${./ignore.rg}";
+            }
             { # text within current buffer
               name = "buffer";
               option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";

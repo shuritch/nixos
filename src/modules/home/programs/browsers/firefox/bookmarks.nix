@@ -68,5 +68,13 @@
         }
       ];
     }
+    {
+      name = "Other";
+      toolbar = true;
+      bookmarks = [{
+        name = "WebRTC";
+        url = "https://mozilla.github.io/webrtc-landing/";
+      }];
+    }
   ];
 }

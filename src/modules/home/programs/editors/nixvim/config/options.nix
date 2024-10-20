@@ -9,6 +9,9 @@
     showmatch = true; # highlight matching braces
     cmdheight = 0; # More space in the neovim cli for displaying messages
 
+    langmap = # Russian language support
+      "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz";
+
     # # Scroll
     scrolloff = 8; # Number of screen lines to show around the cursor
     # sidescrolloff = 15;

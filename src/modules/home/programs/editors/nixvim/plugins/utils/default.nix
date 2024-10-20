@@ -1,6 +1,5 @@
 {
   imports = [
-    ./auto-session.nix
     ./colorizer.nix
     ./comment-box.nix
     ./comment.nix

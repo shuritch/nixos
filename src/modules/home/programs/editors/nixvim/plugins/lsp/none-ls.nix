@@ -10,12 +10,12 @@
         formatting = { };
         code_actions.statix.enable = true;
         diagnostics = {
-          actionlint.enable = true;
+          # actionlint.enable = true;
           # markdownlint.enable = true;
           # stylelint.enable = true;
-          codespell.enable = true;
+          # codespell.enable = true;
+          # deadnix.enable = true;
           yamllint.enable = true;
-          deadnix.enable = true;
           statix.enable = true;
         };
       };

@@ -20,10 +20,10 @@
         ts_ls.enable = false;
         svelte.enable = true;
         marksman.enable = true;
-        sqls.enable = true;
+        # sqls.enable = true;
 
-        dockerls.enable = true;
-        docker_compose_language_service.enable = true;
+        # dockerls.enable = true;
+        # docker_compose_language_service.enable = true;
       };
 
       keymaps = {
