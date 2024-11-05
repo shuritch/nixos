@@ -14,31 +14,22 @@
     };
 
     monitors = [
-      { # DELL WE (primary)
+      { # DELL WE
         name = "HDMI-A-3";
         workspaces = [ "0" "1" ];
         primary = true;
         width = 3440;
         height = 1440;
-        x = 2560;
+        x = 0;
         y = 0;
       }
-      { # DELL W (secondary)
-        name = "HDMI-A-5";
-        workspaces = [ "2" ];
-        width = 3440;
-        height = 1440;
-        rotate = 2; # n * 90
-        x = 2560;
-        y = 1440;
-      }
-      { # BENQ (ternary)
+      { # BENQ
         name = "HDMI-A-4";
-        workspaces = [ "3" ];
+        workspaces = [ "2" "3" ];
         width = 2560;
         height = 1440;
-        x = 0;
-        y = 720;
+        x = -2560;
+        y = 0;
       }
     ];
   };
