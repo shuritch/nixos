@@ -71,10 +71,16 @@
     {
       name = "Other";
       toolbar = true;
-      bookmarks = [{
-        name = "WebRTC";
-        url = "https://mozilla.github.io/webrtc-landing/";
-      }];
+      bookmarks = [
+        {
+          name = "WebRTC";
+          url = "https://mozilla.github.io/webrtc-landing/";
+        }
+        {
+          name = "Firefox playground";
+          url = "chrome://browser/content/browser.xhtml";
+        }
+      ];
     }
   ];
 }

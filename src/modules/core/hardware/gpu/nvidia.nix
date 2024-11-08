@@ -41,7 +41,7 @@ in {
         nvidia = {
           package = config.boot.kernelPackages.nvidiaPackages.production;
           modesetting.enable = lib.mkForce true;
-          forceFullCompositionPipeline = true;
+          # forceFullCompositionPipeline = true;
           nvidiaPersistenced = true;
           nvidiaSettings = false;
           open = false;

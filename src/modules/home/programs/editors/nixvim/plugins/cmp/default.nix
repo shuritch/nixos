@@ -2,127 +2,118 @@
   # Completion plugin for nvim
   # https://github.com/hrsh7th/nvim-cmp/
   imports = [ ./codecompanion.nix ./lspkind.nix ./schemastore.nix ];
-  config.programs.nixvim = {
-    plugins = {
-      cmp-cmdline.enable = true;
+  config.programs.nixvim.plugins.cmp = {
+    enable = true;
+    settings = {
+      autoEnableSources = true;
+      experimental.ghost_text = true;
+      formatting.fields = [ "kind" "abbr" "menu" ];
+      preselect = "cmp.PreselectMode.None";
+      performance = {
+        debounce = 60;
+        fetchingTimeout = 200;
+        maxViewEntries = 30;
+      };
 
-      cmp = {
-        enable = true;
-        settings = {
-          autoEnableSources = true;
-          experimental.ghost_text = true;
-          performance = {
-            debounce = 60;
-            fetchingTimeout = 200;
-            maxViewEntries = 30;
-          };
+      snippet.expand =
+        "function(args) require('luasnip').lsp_expand(args.body) end";
 
-          snippet.expand = "luasnip";
-          formatting.fields = [ "kind" "abbr" "menu" ];
-          sources = [
-            { name = "cmp_tabnine"; }
-            { name = "nvim_lua"; }
-            { name = "emoji"; }
-            { name = "nvim_lsp"; }
-            { name = "git"; }
-            {
-              name = "rg";
-              keyword_length = 3;
-              option.additional_arguments =
-                "--max-depth 6 --one-file-system --ignore-file ${./ignore.rg}";
-            }
-            { # text within current buffer
-              name = "buffer";
-              option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
-              keywordLength = 3;
-            }
-            { # file system paths
-              name = "path";
-              keywordLength = 3;
-            }
-            { # snippets
-              name = "luasnip";
-              keywordLength = 3;
-            }
-          ];
+      sources = let
+        getBuff = ''
+          function()
+            local buf_size_limit = 1024 * 1024 -- 1MB size limit
+            local bufs = vim.api.nvim_list_bufs()
+            local valid_bufs = {}
+            for _, buf in ipairs(bufs) do
+              if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf)) < buf_size_limit then
+                table.insert(valid_bufs, buf)
+              end
+            end
+            return valid_bufs
+          end
+        '';
+      in [
+        {
+          name = "nvim_lsp";
+          option.get_bufnrs.__raw = getBuff;
+          priority = 1000;
+        }
+        {
+          name = "nvim_lsp_document_symbol";
+          option.get_bufnrs.__raw = getBuff;
+          priority = 1000;
+        }
+        {
+          name = "treesitter";
+          option.get_bufnrs.__raw = getBuff;
+          priority = 850;
+        }
+        {
+          name = "luasnip";
+          priority = 750;
+        }
+        {
+          name = "buffer";
+          option.get_bufnrs.__raw = getBuff;
+          priority = 500;
+        }
+        {
+          name = "cmp_tabnine";
+          priority = 400;
+        }
+        {
+          name = "rg";
+          priority = 300;
+          option.additional_arguments =
+            "--max-depth 6 --one-file-system --ignore-file ${./ignore.rg}";
+        }
+        {
+          name = "path";
+          priority = 300;
+        }
+        {
+          name = "cmdline";
+          priority = 300;
+        }
+        {
+          name = "spell";
+          priority = 300;
+        }
+        {
+          name = "git";
+          priority = 250;
+        }
+        {
+          name = "fish";
+          priority = 250;
+        }
+        {
+          name = "calc";
+          priority = 150;
+        }
+        {
+          name = "emoji";
+          priority = 100;
+        }
+      ];
 
-          window = {
-            completion.border = "solid";
-            documentation.border = "solid";
-          };
+      window = {
+        completion.__raw = "cmp.config.window.bordered()";
+        documentation.__raw = "cmp.config.window.bordered()";
+      };
 
-          mapping = {
-            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-            "<C-j>" = "cmp.mapping.select_next_item()";
-            "<C-k>" = "cmp.mapping.select_prev_item()";
-            "<C-e>" = "cmp.mapping.abort()";
-            "<C-b>" = "cmp.mapping.scroll_docs(-4)";
-            "<C-f>" = "cmp.mapping.scroll_docs(4)";
-            "<C-Space>" = "cmp.mapping.complete()";
-            "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<S-CR>" =
-              "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
-          };
-        };
+      mapping = {
+        "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+        "<C-f>" = "cmp.mapping.scroll_docs(4)";
+        "<C-Space>" = "cmp.mapping.complete()";
+        "<C-e>" = "cmp.mapping.close()";
+        "<Tab>" =
+          "cmp.mapping(cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Select}), {'i', 's'})";
+        "<S-Tab>" =
+          "cmp.mapping(cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select}), {'i', 's'})";
+        "<CR>" =
+          "cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace })";
       };
     };
-
-    extraConfigLua = ''
-      luasnip = require("luasnip")
-      kind_icons = {
-        Text = "󰊄",
-        Method = "",
-        Function = "󰡱",
-        Constructor = "",
-        Field = "",
-        Variable = "󱀍",
-        Class = "",
-        Interface = "",
-        Module = "󰕳",
-        Property = "",
-        Unit = "",
-        Value = "",
-        Enum = "",
-        Keyword = "",
-        Snippet = "",
-        Color = "",
-        File = "",
-        Reference = "",
-        Folder = "",
-        EnumMember = "",
-        Constant = "",
-        Struct = "",
-        Event = "",
-        Operator = "",
-        TypeParameter = "",
-      }
-
-      local cmp = require'cmp'
-
-      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline({'/', "?" }, {
-        sources = {
-          { name = 'buffer' }
-        }
-      })
-
-      -- Set configuration for specific filetype.
-        cmp.setup.filetype('gitcommit', {
-          sources = cmp.config.sources({
-            { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-          }, {
-            { name = 'buffer' },
-          })
-        })
-
-      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline(':', {
-        sources = cmp.config.sources({
-          { name = 'path' }
-        }, {
-          { name = 'cmdline' }
-        })
-      })
-    '';
   };
 }

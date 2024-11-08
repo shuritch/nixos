@@ -15,8 +15,8 @@ in {
     in lib.foldl (a: b: a // b) { } [
       { wl-clipboard = patch prev.wl-clipboard [ ./patches/wl-clip.diff ]; }
       { obsidian = prev.obsidian.override { electron = final.electron_24; }; }
+      (import ./updates/cliphist.nix mod-args) # Tmp fix
       (import ./updates/vscode.nix mod-args) # Adds support of APC
-      (import ./updates/cliphist.nix mod-args) # Temp fix
       (import ./updates/zapret.nix mod-args) # Startup fix
     ];
 
