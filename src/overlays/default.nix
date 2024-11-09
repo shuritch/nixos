@@ -15,23 +15,22 @@ in {
     in lib.foldl (a: b: a // b) { } [
       { wl-clipboard = patch prev.wl-clipboard [ ./patches/wl-clip.diff ]; }
       { obsidian = prev.obsidian.override { electron = final.electron_24; }; }
-      (import ./updates/cliphist.nix mod-args) # Tmp fix
       (import ./updates/vscode.nix mod-args) # Adds support of APC
-      (import ./updates/zapret.nix mod-args) # Startup fix
+      (import ./updates/zapret.nix mod-args) # Keeping version
     ];
 
   # Aliases
   aliases = final: _: {
     # pkgs.master
     master = import inputs.nixpkgs-master {
-      system = final.system;
       config.allowUnfree = true;
+      system = final.system;
     };
 
     # pkgs.stable
     stable = import inputs.nixpkgs-stable {
-      system = final.system;
       config.allowUnfree = true;
+      system = final.system;
     };
 
     # pkgs.inputs

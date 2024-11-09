@@ -42,6 +42,7 @@ in {
             options = {
               services = myLib.mkStubOption "Services options for hm";
               programs = myLib.mkStubOption "Apps options for hm";
+              colorscheme = myLib.mkStubOption "Colorscheme options";
               desktop = myLib.mkStubOption "Desktop options for hm";
               cli = myLib.mkStubOption "CLI options for hm";
             };

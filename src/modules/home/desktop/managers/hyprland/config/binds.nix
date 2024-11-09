@@ -34,7 +34,7 @@ in {
         (lib.mapAttrsToList
           (k: d: "SUPERALTSHIFT,${k},movecurrentworkspacetomonitor,${d}")
           directions)
-        (lib.mapAttrsToList (k: d: "SUPERCONTROL,${k},movewindoworgroup,${d}")
+        (lib.mapAttrsToList (k: d: "SUPERCONTROL,${k},movewindow,${d}")
           directions)
 
         [

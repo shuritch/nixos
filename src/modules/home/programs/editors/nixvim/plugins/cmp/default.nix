@@ -38,11 +38,11 @@
           option.get_bufnrs.__raw = getBuff;
           priority = 1000;
         }
-        {
-          name = "nvim_lsp_document_symbol";
-          option.get_bufnrs.__raw = getBuff;
-          priority = 1000;
-        }
+        # {
+        #   name = "nvim_lsp_document_symbol";
+        #   option.get_bufnrs.__raw = getBuff;
+        #   priority = 1000;
+        # }
         {
           name = "treesitter";
           option.get_bufnrs.__raw = getBuff;
@@ -71,10 +71,10 @@
           name = "path";
           priority = 300;
         }
-        {
-          name = "cmdline";
-          priority = 300;
-        }
+        # {
+        #   name = "cmdline";
+        #   priority = 300;
+        # }
         {
           name = "spell";
           priority = 300;
@@ -83,14 +83,14 @@
           name = "git";
           priority = 250;
         }
-        {
-          name = "fish";
-          priority = 250;
-        }
-        {
-          name = "calc";
-          priority = 150;
-        }
+        # {
+        #   name = "fish";
+        #   priority = 250;
+        # }
+        # {
+        #   name = "calc";
+        #   priority = 150;
+        # }
         {
           name = "emoji";
           priority = 100;

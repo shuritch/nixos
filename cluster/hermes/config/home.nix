@@ -1,5 +1,11 @@
 { pkgs, config, ... }: {
   my.system.users.${config.my.system.admin}.home = {
+    colorscheme = {
+      source = pkgs.wallpaper-tropical-paradise;
+      type = "fruit-salad";
+      mode = "dark";
+    };
+
     desktop = {
       enable = true;
       isWayland = true;

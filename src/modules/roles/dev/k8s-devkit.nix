@@ -1,5 +1,5 @@
 { pkgs, lib, config, ... }: {
-  config = lib.mkIf (builtins.elem "clang-devkit" config.my.system.roles) {
+  config = lib.mkIf (builtins.elem "k8s-devkit" config.my.system.roles) {
     environment.systemPackages = with pkgs; [
       kubectl
       kubectx
