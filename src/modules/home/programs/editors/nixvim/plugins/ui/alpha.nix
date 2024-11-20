@@ -55,6 +55,7 @@ in {
             (mkButton "n" ":ene <BAR> startinsert <CR>" "📁 New File" "Operator")
             (mkButton "r" ":Telescope oldfiles <CR>" "📜 Recent Files"
               "Operator")
+            (mkButton "g" "<CMD>LazyGit<CR>" " Open LazyGit" "Constant")
             (mkButton "q" "<CMD>qa<CR>" "💣 Quit Neovim" "String")
           ];
         }

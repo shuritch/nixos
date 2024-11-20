@@ -13,7 +13,7 @@
       "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz";
 
     # # Scroll
-    scrolloff = 8; # Number of screen lines to show around the cursor
+    scrolloff = 10; # Number of screen lines to show around the cursor
     # sidescrolloff = 15;
     # sidescroll = 1;
 

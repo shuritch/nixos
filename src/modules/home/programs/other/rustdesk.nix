@@ -6,6 +6,6 @@ in {
     lib.mkEnableOption "Enable rustdesk";
 
   config = lib.mkIf (cfg.desktop.enable && cfg.programs.rustdesk.enable) {
-    home.packages = with pkgs; [ rustdesk-flutter ];
+    home.packages = with pkgs; [ stable.rustdesk-flutter ];
   };
 }
