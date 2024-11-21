@@ -9,12 +9,13 @@ in {
       active_opacity = 1.0;
       inactive_opacity = 0.85;
       fullscreen_opacity = 1.0;
-
-      drop_shadow = true;
-      shadow_range = 12;
-      shadow_offset = "3 3";
-      "col.shadow" = "0x44000000";
-      "col.shadow_inactive" = "0x66000000";
+      shadow = {
+        enabled = true;
+        range = 12;
+        offset = "3 3";
+        "color" = "0x44000000";
+        "color_inactive" = "0x66000000";
+      };
 
       blur = {
         enabled = true;

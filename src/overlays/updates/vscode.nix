@@ -37,6 +37,7 @@ in {
 
     vscodeServer = final.srcOnly {
       name = "vscode-server-${rev}.tar.gz";
+      stdenv = final.stdenv;
       src = final.fetchurl {
         name = "vscode-server-${rev}.tar.gz";
         url =

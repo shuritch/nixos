@@ -47,7 +47,7 @@
         roles = [ "nodejs-devkit" ];
         platform = "x86_64-linux";
         home-manager = true;
-        admin = "shuritch";
+        admin = "chief";
         class = "desktop";
         origin = "23.11";
       };
