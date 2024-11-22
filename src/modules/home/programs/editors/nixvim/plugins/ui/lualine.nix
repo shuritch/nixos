@@ -8,7 +8,8 @@ in {
     settings = {
       options = {
         inactiveSections.lualine_x = [ "filename" "filetype" ];
-        disabledFiletypes.statusline = [ "dashboard" "alpha" "starter" ];
+        disabledFiletypes.statusline =
+          [ "dashboard" "alpha" "starter" "snacks_dashboard" ];
         globalstatus = true;
         theme.normal = {
           a.bg = "#nil";

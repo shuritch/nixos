@@ -10,5 +10,6 @@
     ./ufo.nix
     ./undotree.nix
     ./yaml-companion.nix
+    ./snacks.nix
   ];
 }
