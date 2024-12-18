@@ -64,7 +64,7 @@ in {
         space = "ncdu";
         htop = "btop";
         cat = "bat";
-        cd = "z";
+        # cd = "z";
         ls = "eza";
         exa = "eza";
         l = "eza --icons  -a --group-directories-first -1";
