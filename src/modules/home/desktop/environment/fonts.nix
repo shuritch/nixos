@@ -4,8 +4,8 @@ let cfg = config.my.home.desktop;
 in {
   options.my.home.desktop.fonts = {
     monospace = myLib.mkFontOption "monospace" {
-      name = "FiraCode Nerd Font";
-      package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+      name = "FiraMono Nerd Font";
+      package = pkgs.nerd-fonts.fira-mono;
     };
 
     regular = myLib.mkFontOption "regular" {
@@ -16,10 +16,7 @@ in {
     extra = lib.mkOption {
       type = lib.types.listOf lib.types.package;
       description = "Extra fonts";
-      default = with pkgs; [
-        (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-        noto-fonts-emoji
-      ];
+      default = with pkgs; [ nerd-fonts.jetbrains-mono noto-fonts-emoji ];
     };
   };
 
