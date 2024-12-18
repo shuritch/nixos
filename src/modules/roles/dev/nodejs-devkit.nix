@@ -1,10 +1,7 @@
 { pkgs, lib, config, ... }: {
   config = lib.mkIf (builtins.elem "nodejs-devkit" config.my.system.roles) {
     environment.systemPackages = with pkgs; [
-      python
-      cmake
       gnumake
-      gcc
       chromium
       bun
       shfmt

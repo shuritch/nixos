@@ -7,15 +7,11 @@
     zram = true;
 
     cpu = "intel";
-    gpu = "hybrid-nvidia";
-    nvidiaPrime = {
-      nvidiaBusId = "PCI:1:0:0";
-      intelBusId = "PCI:0:2:0";
-    };
+    gpu = "nvidia";
 
     monitors = [
       { # DELL WE
-        name = "HDMI-A-3";
+        name = "HDMI-A-1";
         workspaces = [ "0" "1" ];
         primary = true;
         width = 3440;
@@ -24,7 +20,7 @@
         y = 0;
       }
       { # BENQ
-        name = "HDMI-A-4";
+        name = "HDMI-A-2";
         workspaces = [ "2" "3" ];
         width = 2560;
         height = 1440;

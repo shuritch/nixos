@@ -55,7 +55,7 @@
       nixosConfigurations.hermes = mkSystem "hermes" {
         extraArguments = { inherit myLib inputs outputs; };
         source = ./cluster/hermes/configuration.nix;
-        roles = [ "nodejs-devkit" ];
+        roles = [ "nodejs-devkit" "python-devkit" ];
         platform = "x86_64-linux";
         home-manager = true;
         admin = "shuritch";
