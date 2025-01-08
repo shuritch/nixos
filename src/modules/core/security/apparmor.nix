@@ -12,16 +12,14 @@ in {
       packages = [ pkgs.apparmor-profiles ];
       policies = {
         "default_deny" = {
-          enforce = false;
-          enable = false;
+          state = "disable";
           profile = ''
             profile default_deny /** { }
           '';
         };
 
         "sudo" = {
-          enforce = false;
-          enable = false;
+          state = "disable";
           profile = ''
             ${lib.getExe pkgs.sudo} {
               file /** rwlkUx,
@@ -30,8 +28,7 @@ in {
         };
 
         "nix" = {
-          enforce = false;
-          enable = false;
+          state = "disable";
           profile = ''
             ${lib.getExe config.nix.package} {
               unconfined,

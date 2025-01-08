@@ -16,20 +16,20 @@ in {
 
         colors = rec {
           bright = normal;
-          primary = {
-            background = config.my.home.colorscheme.colors.surface;
-            foreground = config.my.home.colorscheme.colors.on_surface;
+          primary = with config.my.home.colorscheme.colors; {
+            background = surface;
+            foreground = on_surface;
           };
 
-          normal = {
-            black = config.my.home.colorscheme.colors.surface_bright;
-            white = config.my.home.colorscheme.colors.on_surface;
-            red = config.my.home.colorscheme.harmonized.red;
-            green = config.my.home.colorscheme.harmonized.green;
-            yellow = config.my.home.colorscheme.harmonized.yellow;
-            blue = config.my.home.colorscheme.harmonized.blue;
-            magenta = config.my.home.colorscheme.harmonized.magenta;
-            cyan = config.my.home.colorscheme.harmonized.cyan;
+          normal = with config.my.home.colorscheme.colors; {
+            black = surface_bright;
+            white = on_surface;
+            red = red;
+            green = green;
+            yellow = yellow;
+            blue = blue;
+            magenta = magenta;
+            cyan = cyan;
           };
         };
 

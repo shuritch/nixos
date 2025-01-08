@@ -1,9 +1,9 @@
 { config, lib, ... }:
 
 let
+  c = scheme.colors;
   chosen = config.my.home.programs.nixvim.theme;
   scheme = config.my.home.colorscheme;
-  c = scheme.colors // scheme.harmonized;
   hash = builtins.hashString "md5" (builtins.toJSON scheme.colors);
 in {
   programs.nixvim.extraConfigVim = lib.mkIf (chosen == "system-enhanced") ''

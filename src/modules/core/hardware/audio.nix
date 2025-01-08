@@ -5,7 +5,7 @@ in {
   options.my.hardware.audio = lib.mkEnableOption "Enable audio hardware.";
   config = lib.mkIf cfg.audio {
     services.playerctld.enable = true;
-    hardware.pulseaudio.enable = lib.mkForce false;
+    services.pulseaudio.enable = lib.mkForce false;
     security.rtkit.enable = true; # scheduling
 
     environment.systemPackages =

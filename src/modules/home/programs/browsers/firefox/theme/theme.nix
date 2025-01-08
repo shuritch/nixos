@@ -1,8 +1,6 @@
 { config, ... }:
 
-let
-  c = config.my.home.colorscheme.colors
-    // config.my.home.colorscheme.harmonized;
+let c = config.my.home.colorscheme.colors;
 in {
   config.programs.firefox.profiles.dev-edition-default = let
     addRoot = path: ''

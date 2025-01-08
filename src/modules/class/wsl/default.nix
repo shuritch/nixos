@@ -13,6 +13,7 @@ lib.optionalAttrs (myClass == "wsl") {
       };
     };
 
+    services.resolved.enable = lib.mkForce false;
     networking.tcpcrypt.enable = lib.mkForce false;
     services = { # disable useless features in WSL
       smartd.enable = lib.mkForce false;

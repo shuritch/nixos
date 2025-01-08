@@ -2,13 +2,8 @@
 
 let
   generate = myLib.generateColorscheme pkgs;
-  cfg = config.my.home.colorscheme;
   hexColor = lib.types.strMatching "#([0-9a-fA-F]{3}){1,2}";
-  removeFilterPrefixAttrs = prefix: attrs:
-    lib.mapAttrs' (n: v: {
-      name = lib.removePrefix prefix n;
-      value = v;
-    }) (lib.filterAttrs (n: _: lib.hasPrefix prefix n) attrs);
+  cfg = config.my.home.colorscheme;
 in {
   imports = [ ./scripts.nix ];
   options.my.home.colorscheme = {
@@ -49,31 +44,24 @@ in {
     base16colors = lib.mkOption {
       readOnly = true;
       type = lib.types.attrsOf hexColor;
-      default = {
-        base00 = cfg.colors.surface; # bg
-        base01 = cfg.colors.surface_variant; # bg alt 1
-        base02 = cfg.colors.tertiary_container; # bg alt 2
-        base03 = cfg.colors.primary_container; # bright bg
-        base04 = cfg.colors.on_surface_variant; # fg alt 1
-        base05 = cfg.colors.on_surface; # fg
-        base06 = cfg.colors.on_tertiary_container; # fg alt 2
-        base07 = cfg.colors.on_primary_container; # bright fg
-        base08 = cfg.harmonized.red; # ! red
-        base09 = cfg.colors.primary; # accent 1
-        base0A = cfg.harmonized.yellow; # yellow
-        base0B = cfg.harmonized.green; # * green
-        base0C = cfg.harmonized.cyan; # ? cyan
-        base0D = cfg.harmonized.blue; # ? blue
-        base0E = cfg.harmonized.magenta; # magenta
-        base0F = cfg.colors.error; # accent 2
+      default = with cfg.colors; {
+        base00 = surface; # bg
+        base01 = surface_variant; # bg alt 1
+        base02 = tertiary_container; # bg alt 2
+        base03 = primary_container; # bright bg
+        base04 = on_surface_variant; # fg alt 1
+        base05 = on_surface; # fg
+        base06 = on_tertiary_container; # fg alt 2
+        base07 = on_primary_container; # bright fg
+        base08 = red; # ! red
+        base09 = primary; # accent 1
+        base0A = yellow; # yellow
+        base0B = green; # * green
+        base0C = cyan; # ? cyan
+        base0D = blue; # ? blue
+        base0E = magenta; # magenta
+        base0F = error; # accent 2
       };
-    };
-
-    harmonized = lib.mkOption {
-      readOnly = true;
-      type = lib.types.attrsOf hexColor;
-      default = removeFilterPrefixAttrs "${cfg.mode}-"
-        cfg.rawColorscheme.harmonized_colors;
     };
   };
 
