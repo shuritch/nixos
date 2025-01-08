@@ -1,7 +1,7 @@
 {
   # Completion plugin for nvim
   # https://github.com/hrsh7th/nvim-cmp/
-  imports = [ ./codecompanion.nix ./lspkind.nix ./schemastore.nix ];
+  imports = [ ./lspkind.nix ./schemastore.nix ];
   config.programs.nixvim.plugins.cmp = {
     enable = true;
     settings = {

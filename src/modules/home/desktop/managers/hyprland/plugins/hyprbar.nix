@@ -43,7 +43,7 @@ in {
         };
 
         windowrulev2 = [
-          "plugin:hyprbars:bar_color ${rgba colors.primary "ee"}, focus:1"
+          "plugin:hyprbars:bar_color ${rgba colors.primary "99"}, focus:1"
           "plugin:hyprbars:title_color ${rgb colors.on_primary}, focus:1"
         ];
       };

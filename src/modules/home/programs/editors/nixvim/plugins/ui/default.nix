@@ -1,11 +1,12 @@
 {
   imports = [
     ./dressing.nix
+    ./fzf-lua.nix
     ./indent-blankline.nix
     ./lualine.nix
     ./noice.nix
     ./smart-splits.nix
-    ./telescope.nix
+    ./snacks.nix
   ];
 
   programs.nixvim.plugins = {

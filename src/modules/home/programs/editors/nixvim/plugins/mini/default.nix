@@ -7,10 +7,12 @@
     enable = true;
 
     modules = {
+      pairs = { }; # { -> }
       icons = { }; # Icon provider
       indentscope = { symbol = ""; }; # Shows indents
       surround = { }; # Surround actions
       bracketed = { }; # Go forward/backward with square brackets
+      cursorword = { }; # Highlights similar worlds
       align = { }; # Align text interactively
       ai = { }; # Extend and create a/i textobjects
       # Highlight patterns in text

@@ -2,14 +2,14 @@
   description = "<Shuritch NixOS configuration>";
 
   inputs = {
-    #################### Official NixOS and HM Package Sources ####################
+    ###################### NixOS / HM #######################
     systems.url = "github:nix-systems/default-linux";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    #################### Utilities ####################
+    ####################### Utilities #######################
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";

@@ -22,7 +22,7 @@ in {
 
     type = lib.mkOption {
       type = lib.types.enum myLib.colorSchemeTypes;
-      default = "fruit-salad";
+      default = "rainbow";
     };
 
     generatedDrv = lib.mkOption {
@@ -38,7 +38,15 @@ in {
     colors = lib.mkOption {
       readOnly = true;
       type = lib.types.attrsOf hexColor;
-      default = cfg.rawColorscheme.colors.${cfg.mode};
+      default = cfg.rawColorscheme.colors.${cfg.mode} // {
+        red = "#dd0000";
+        orange = "#dd5522";
+        yellow = "#dddd00";
+        green = "#22dd22";
+        cyan = "#22dddd";
+        blue = "#2222dd";
+        magenta = "#dd22dd";
+      };
     };
 
     base16colors = lib.mkOption {

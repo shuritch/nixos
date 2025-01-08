@@ -1,1 +1,1 @@
-{ imports = [ ./gitblame.nix ./gitlinker.nix ]; }
+{ imports = [ ./gitsigns.nix ./gitlinker.nix ]; }

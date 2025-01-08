@@ -1,11 +1,11 @@
 { pkgs, ... }: {
-  # QOL
   # https://github.com/folke/snacks.nvim
   config.programs.nixvim = {
     plugins.snacks = {
       enable = true;
       settings = {
         git.enabled = true;
+        animate.enabled = true;
         gitbrowse.enabled = true;
         quickfile.enabled = true;
         lazygit.enabled = true;
