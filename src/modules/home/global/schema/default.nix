@@ -38,15 +38,7 @@ in {
     colors = lib.mkOption {
       readOnly = true;
       type = lib.types.attrsOf hexColor;
-      default = cfg.rawColorscheme.colors.${cfg.mode} // {
-        red = "#dd0000";
-        orange = "#dd5522";
-        yellow = "#dddd00";
-        green = "#22dd22";
-        cyan = "#22dddd";
-        blue = "#2222dd";
-        magenta = "#dd22dd";
-      };
+      default = cfg.rawColorscheme.colors.${cfg.mode};
     };
 
     base16colors = lib.mkOption {
