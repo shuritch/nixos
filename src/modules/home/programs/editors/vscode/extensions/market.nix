@@ -88,6 +88,18 @@ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     version = "0.3.9";
     sha256 = "VMUICGvAFWrG/uL3aGKNUIt1ARovc84TxkjgSkXuoME=";
   }
+  {
+    name = "vscode-versionlens";
+    publisher = "pflannery";
+    version = "1.16.1";
+    sha256 = "sha256-0w8tnHbQJLdTi3/ZArC0MdVnZezX5XBHgfpO2B1zK64=";
+  }
+  {
+    name = "template-string-converter";
+    publisher = "meganrogge";
+    version = "0.6.1";
+    sha256 = "sha256-w0ppzh0m/9Hw3BPJbAKsNcMStdzoH9ODf3zweRcCG5k=";
+  }
   #? Corner cases
   # {
   #   name = "vscode-nginx-conf";

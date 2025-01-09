@@ -62,6 +62,7 @@
   "strapi"
   "styleguide"
   "tekst"
+  "direnv"
   "Uberi"
   "unref"
   "ymap"

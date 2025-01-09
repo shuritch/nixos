@@ -75,6 +75,7 @@ config:
   "terminal.integrated.scrollback" = 100000000;
   "terminal.integrated.env.linux" = { };
   "terminal.integrated.env.windows" = { };
+  "terminal.integrated.fontLigatures" = true;
   "terminal.integrated.fontFamily" =
     config.my.home.desktop.fonts.monospace.name;
 
@@ -203,10 +204,20 @@ config:
   "typescript.inlayHints.parameterTypes.enabled" = false;
   "typescript.inlayHints.variableTypes.enabled" = false;
   "typescript.inlayHints.enumMemberValues.enabled" = false;
-  "typescript.inlayHints.parameterNames.enabled" = "none";
+  "typescript.inlayHints.parameterNames.enabled" = "all"; # ? none
   "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName" = false;
   "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" =
     false;
+  "[javascript]"."editor.rulers" = [
+    {
+      "column" = 100;
+      "color" = "#fd06063f";
+    }
+    {
+      "column" = 80;
+      "color" = "#8b00fd3f";
+    }
+  ];
 
   #? Formatters
   "[json]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
@@ -257,4 +268,60 @@ config:
   "prettier.singleQuote" = true;
   "prettier.arrowParens" = "avoid";
   "prettier.printWidth" = 100;
+  "better-comments.tags" = [
+    {
+      "tag" = "!";
+      "color" = "#FF2D00";
+      "strikethrough" = false;
+      "underline" = false;
+      "backgroundColor" = "transparent";
+      "bold" = false;
+      "italic" = false;
+    }
+    {
+      "tag" = "?";
+      "color" = "#3498DB";
+      "strikethrough" = false;
+      "underline" = false;
+      "backgroundColor" = "transparent";
+      "bold" = false;
+      "italic" = false;
+    }
+    {
+      "tag" = "//";
+      "color" = "#474747";
+      "strikethrough" = true;
+      "underline" = false;
+      "backgroundColor" = "transparent";
+      "bold" = false;
+      "italic" = false;
+    }
+    {
+      "tag" = "todo";
+      "color" = "#FF8C00";
+      "strikethrough" = false;
+      "underline" = false;
+      "backgroundColor" = "transparent";
+      "bold" = false;
+      "italic" = false;
+    }
+    {
+      "tag" = "*";
+      "color" = "#98C379";
+      "strikethrough" = false;
+      "underline" = false;
+      "backgroundColor" = "transparent";
+      "bold" = false;
+      "italic" = false;
+    }
+    {
+      "tag" = "#";
+      "color" = "#FF2D00";
+      "strikethrough" = false;
+      "underline" = false;
+      "backgroundColor" = "transparent";
+      "bold" = false;
+      "italic" = false;
+    }
+  ];
 } // import ./styles config
