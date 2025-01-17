@@ -21,7 +21,7 @@
       }
       { # BENQ
         name = "HDMI-A-2";
-        workspaces = [ "2" "3" ];
+        workspaces = [ "9" ];
         width = 2560;
         height = 1440;
         x = -2560;

@@ -19,7 +19,7 @@ in {
   config = lib.mkIf (cfg.enable && cfg.manager == "hyprland") {
     wayland.windowManager.hyprland.settings = {
       general = {
-        gaps_in = 15; # 5
+        gaps_in = 10; # 5
         gaps_out = 20;
         border_size = 2; # 3
         "col.active_border" = rgba c.primary "aa";

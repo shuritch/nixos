@@ -206,10 +206,10 @@ config: {
   "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName" = false;
   "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" =
     false;
-  "[javascript]"."editor.rulers" = [{
-    "column" = 100;
-    "color" = "#fd06063f";
-  }];
+  # "[javascript]"."editor.rulers" = [{
+  #   "column" = 100;
+  #   "color" = "#fd06063f";
+  # }];
 
   #* Formatters
   "[json]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
