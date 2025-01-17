@@ -26,7 +26,10 @@ in {
         passthrough = false;
         position = "bottom";
         height = 40;
-        margin = "6";
+        margin-top = 6;
+        margin-bottom = 6;
+        margin-left = 20;
+        margin-right = 20;
       };
 
       style = let

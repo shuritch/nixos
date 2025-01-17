@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 let cfg = config.my.home.desktop;
 in {
-  imports = [ ./config ./plugins ];
+  imports = [ ./config ];
   config = lib.mkIf (cfg.enable && cfg.manager == "hyprland") {
     home.packages = with pkgs; [ grimblast hyprpicker hyprland-qtutils ];
     wayland.windowManager.hyprland = {

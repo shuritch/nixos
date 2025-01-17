@@ -32,4 +32,14 @@
     "command" = "workbench.action.navigateForward";
     "when" = "textInputFocus";
   }
+  {
+    "key" = "ctrl+alt+right";
+    "command" = "-workbench.action.moveEditorToNextGroup";
+    "when" = "textInputFocus";
+  }
+  {
+    "key" = "ctrl+alt+right";
+    "command" = "-quickInput.acceptInBackground";
+    "when" = "textInputFocus";
+  }
 ]
