@@ -4,7 +4,7 @@
     podman.enable = true;
     postgresql.enable = false;
     printing.enable = true;
-    earlyroom.enable = true;
+    earlyroom.enable = false;
     syncthing = {
       enable = true;
       devices = {

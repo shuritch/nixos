@@ -4,10 +4,6 @@
     "command" = "workbench.action.showCommands";
   }
   {
-    "key" = "ctrl ctrl";
-    "command" = "workbench.action.toggleSidebarVisibility";
-  }
-  {
     "key" = "shift shift";
     "command" = "workbench.action.toggleSidebarVisibility";
   }
@@ -24,6 +20,16 @@
   {
     "key" = "alt+left";
     "command" = "cursorHome";
+    "when" = "textInputFocus";
+  }
+  {
+    "key" = "ctrl+alt+left";
+    "command" = "workbench.action.navigateBack";
+    "when" = "textInputFocus";
+  }
+  {
+    "key" = "ctrl+alt+right";
+    "command" = "workbench.action.navigateForward";
     "when" = "textInputFocus";
   }
 ]

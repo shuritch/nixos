@@ -5,7 +5,15 @@ let
 in {
   imports = [ ./modules ];
   config = lib.mkIf (cfg.enable && cfg.taskbar == "waybar") {
-    systemd.user.services.waybar.Unit.StartLimitBurst = 30;
+    systemd.user.services.waybar.Unit = {
+      StartLimitBurst = 30; # Let it try to start a few more times
+      X-Restart-Triggers = lib.mkForce [ ];
+      X-Reload-Triggers = [ # Reload instead of restarting
+        "${config.xdg.configFile."waybar/config".source}"
+        "${config.xdg.configFile."waybar/style.css".source}"
+      ];
+    };
+
     programs.waybar = {
       enable = true;
       systemd.enable = true;

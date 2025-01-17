@@ -1,6 +1,4 @@
-config:
-
-{
+config: {
   #? Security & Telemetry
   "telemetry.telemetryLevel" = "off";
   "security.workspace.trust.untrustedFiles" = "open";
@@ -20,7 +18,7 @@ config:
   "window.nativeFullScreen" = true;
   "window.restoreWindows" = "all"; # none | all
   "window.newWindowDimensions" = "inherit";
-  "window.commandCenter" = true;
+  "window.commandCenter" = false;
   "window.zoomLevel" = 2;
   "window.nativeTabs" = true;
 
@@ -42,16 +40,16 @@ config:
   "workbench.editor.showTabs" = "single"; # none | single
   "workbench.colorTheme" = "Blink Contrast (rainglow)";
   "workbench.iconTheme" = "material-icon-theme";
-  "material-icon-theme.files.color" = "#42a5f5"; # ?
+  "material-icon-theme.files.color" = "#42a5f5";
   "material-icon-theme.activeIconPack" = "angular_ngrx";
   "material-icon-theme.saturation" = 0;
   "workbench.startupEditor" = "none"; # newUntitledFile | readme | none
   "workbench.list.smoothScrolling" = true;
   "workbench.layoutControl.enabled" = false;
-  "workbench.editor.enablePreviewFromQuickOpen" = false; # ?
+  "workbench.editor.enablePreviewFromQuickOpen" = false;
   "workbench.activityBar.location" = "hidden";
-  "workbench.statusBar.visible" = false; # ?
-  "workbench.editor.editorActionsLocation" = "titleBar";
+  "workbench.statusBar.visible" = false;
+  "workbench.editor.editorActionsLocation" = "default";
   "workbench.editor.limit.enabled" = true;
   "workbench.editor.limit.excludeDirty" = true;
   "workbench.editor.limit.value" = 5;
@@ -208,18 +206,12 @@ config:
   "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName" = false;
   "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" =
     false;
-  "[javascript]"."editor.rulers" = [
-    {
-      "column" = 100;
-      "color" = "#fd06063f";
-    }
-    {
-      "column" = 80;
-      "color" = "#8b00fd3f";
-    }
-  ];
+  "[javascript]"."editor.rulers" = [{
+    "column" = 100;
+    "color" = "#fd06063f";
+  }];
 
-  #? Formatters
+  #* Formatters
   "[json]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
   "[jsonc]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
   "[xml]"."editor.defaultFormatter" = "redhat.vscode-xml";
@@ -314,14 +306,5 @@ config:
       "bold" = false;
       "italic" = false;
     }
-    {
-      "tag" = "#";
-      "color" = "#FF2D00";
-      "strikethrough" = false;
-      "underline" = false;
-      "backgroundColor" = "transparent";
-      "bold" = false;
-      "italic" = false;
-    }
   ];
-} // import ./styles config
+}

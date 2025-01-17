@@ -7,7 +7,6 @@
   ".stylelintrc.cjs" = ".stylelintrc.json, .stylelintignore, .stylelintrc.cjs";
   "docker-compose.yml" =
     "docker-compose.yml, docker-compose.override.yml, docker-compose.dev.yml";
-
   ".clang-tidy" = ".clang-format, .clangd, compile_commands.json";
   ".env" = "*.env, .env.*, .envrc, env.d.ts";
   ".gitignore" =

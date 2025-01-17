@@ -3,7 +3,7 @@
 let
   cfg = config.my.home.desktop;
   monitors = config.my.hardware.monitors;
-  bar = config.programs.waybar.settings.primary; # TODO
+  bar = config.programs.waybar.settings.primary;
   cfgh = config.wayland.windowManager.hyprland.settings;
   gap = cfgh.general.gaps_out - cfgh.general.gaps_in;
   space = lib.mapAttrs (_: toString) {

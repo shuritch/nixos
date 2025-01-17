@@ -15,7 +15,6 @@ in {
     in lib.foldl (a: b: a // b) { } [
       { wl-clipboard = patch prev.wl-clipboard [ ./patches/wl-clip.diff ]; }
       { obsidian = prev.obsidian.override { electron = final.electron_24; }; }
-      (import ./updates/vscode.nix mod-args) # Adds support of APC
       (import ./updates/zapret.nix mod-args) # Keeping version
     ];
 
