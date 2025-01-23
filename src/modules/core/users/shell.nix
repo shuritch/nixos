@@ -1,5 +1,7 @@
-{ config, pkgs, ... }: {
-  users.defaultUserShell = if config.programs.fish.enable then
+{ config, pkgs, ... }:
+
+let
+  shell = if config.programs.fish.enable then
     pkgs.fish
   else if config.programs.nushell.enable then
     pkgs.nushell
@@ -7,4 +9,7 @@
     pkgs.zsh
   else
     pkgs.bash;
+in {
+  users.defaultUserShell = shell;
+  environment.shells = [ shell ];
 }

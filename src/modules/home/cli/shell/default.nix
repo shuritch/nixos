@@ -24,7 +24,7 @@ in {
   };
 
   config = {
-    home.sessionVariables.SHELL = cfg.type;
+    home.sessionVariables.SHELL = "/run/current-system/sw/bin/${cfg.type}";
     my.home.cli.shell.aliases = {
       c = "printf '\\033[2J\\033[3J\\033[1;1H'";
       clear = "printf '\\033[2J\\033[3J\\033[1;1H'";

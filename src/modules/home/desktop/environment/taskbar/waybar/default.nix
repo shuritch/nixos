@@ -26,7 +26,7 @@ in {
         passthrough = false;
         position = "bottom";
         height = 40;
-        margin-top = 6;
+        margin-top = 0;
         margin-bottom = 6;
         margin-left = 20;
         margin-right = 20;

@@ -5,7 +5,6 @@ in {
   config = lib.mkIf (cfg.enable && cfg.manager == "hyprland") {
     wayland.windowManager.hyprland.settings.decoration = {
       rounding = 7;
-
       active_opacity = 1.0;
       inactive_opacity = 0.85;
       fullscreen_opacity = 1.0;

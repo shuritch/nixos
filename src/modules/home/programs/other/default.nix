@@ -5,6 +5,7 @@
     ./gparted.nix
     ./libreoffice.nix
     ./mpv.nix
+    ./nekoray.nix
     ./obsidian.nix
     ./oculante.nix
     ./pgadmin.nix

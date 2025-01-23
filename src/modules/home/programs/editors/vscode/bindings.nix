@@ -42,4 +42,8 @@
     "command" = "-quickInput.acceptInBackground";
     "when" = "textInputFocus";
   }
+  {
+    "key" = "ctrl+[Backquote]";
+    "command" = "workbench.action.terminal.toggleTerminal";
+  }
 ]

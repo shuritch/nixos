@@ -57,10 +57,10 @@
           option.get_bufnrs.__raw = getBuff;
           priority = 500;
         }
-        {
-          name = "cmp_tabnine";
-          priority = 400;
-        }
+        # {
+        #   name = "cmp_tabnine";
+        #   priority = 400;
+        # }
         {
           name = "rg";
           priority = 300;

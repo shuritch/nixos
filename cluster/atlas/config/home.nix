@@ -21,12 +21,12 @@
 
       exec = [
         # Trash apps without tray flag
-        "[workspace name:0 silent] zapzap ; sleep 2; hyprctl dispatch closewindow zapzap"
+        "[workspace name:0 silent] zapzap; sleep 2; hyprctl dispatch closewindow title:ZapZap"
         "[workspace name:0 silent] thunderbird"
         # Worspace bound apps
         "[workspace special silent] kitty"
         "[workspace 1 silent] silent-code"
-        "[workspace 2 silent] firefox-developer-edition"
+        "[workspace name:F1 silent] firefox-developer-edition"
         # XM4 Autoconnect fix
         ''sleep 2 && echo "connect AC:80:0A:E3:3B:CE" | bluetoothctl''
         # Tray apps
@@ -44,23 +44,22 @@
     };
 
     programs = {
-      vscode.enable = true;
-      micro.enable = true;
-      nixvim.enable = true;
+      libreoffice.enable = true;
+      thunderbird.enable = true;
       firefox.enable = true;
+      discord.enable = true;
+      telegram.enable = true;
+      vscode.enable = true;
+      nixvim.enable = true;
       chrome.enable = true;
       zapzap.enable = true;
-      discord.enable = true;
-      thunderbird.enable = true;
-      telegram.enable = true;
-      libreoffice.enable = true;
       zathura.enable = true;
       oculante.enable = true;
-      mpv.enable = true;
       postman.enable = true;
-      obsidian.enable = true;
-      rustdesk.enable = true;
+      nekoray.enable = true;
+      micro.enable = true;
       gimp.enable = true;
+      mpv.enable = true;
     };
 
     services = {
