@@ -91,7 +91,7 @@
   "*.c" = "$(capture).h";
   "*.cc" = "$(capture).hpp, $(capture).h, $(capture).hxx, $(capture).hh";
   "*.cjs" =
-    "$(capture).cjs.map, $(capture).*.cjs, $(capture)_*.cjs, $(capture).*.d.ts";
+    "$(capture).cjs.map, $(capture).*.cjs, $(capture)_*.cjs, $(capture).d.ts";
   "*.component.ts" =
     "$(capture).component.html, $(capture).component.spec.ts, $(capture).component.css, $(capture).component.scss, $(capture).component.sass, $(capture).component.less";
   "*.cpp" = "$(capture).hpp, $(capture).h, $(capture).hxx, $(capture).hh";
@@ -108,13 +108,13 @@
   "*.go" = "$(capture)_test.go";
   "*.java" = "$(capture).class";
   "*.js" =
-    "$(capture).js.map, $(capture).*.js, $(capture)_*.js, $(capture).*.d.ts";
+    "$(capture).js.map, $(capture).*.js, $(capture)_*.js, $(capture).d.ts";
   "*.jsx" =
     "$(capture).js, $(capture).*.jsx, $(capture)_*.js, $(capture)_*.jsx, $(capture).less, $(capture).module.less";
   "*.master" = "$(capture).*.cs, $(capture).*.vb";
   "*.md" = "$(capture).*";
   "*.mjs" =
-    "$(capture).mjs.map, $(capture).*.mjs, $(capture)_*.mjs, $(capture).*.d.ts";
+    "$(capture).mjs.map, $(capture).*.mjs, $(capture)_*.mjs, $(capture).d.ts";
   "*.module.ts" =
     "$(capture).resolver.ts, $(capture).controller.ts, $(capture).service.ts";
   "*.mts" = "$(capture).mts.map, $(capture).*.mts, $(capture)_*.mts";
@@ -127,7 +127,7 @@
   "*.tex" =
     "$(capture).acn, $(capture).acr, $(capture).alg, $(capture).aux, $(capture).bbl, $(capture).blg, $(capture).fdb_latexmk, $(capture).fls, $(capture).glg, $(capture).glo, $(capture).gls, $(capture).idx, $(capture).ind, $(capture).ist, $(capture).lof, $(capture).log, $(capture).lot, $(capture).out, $(capture).pdf, $(capture).synctex.gz, $(capture).toc, $(capture).xdv";
   "*.ts" =
-    "$(capture).js, $(capture).d.ts.map, $(capture).*.ts, $(capture)_*.js, $(capture)_*.ts, $(capture).*.d.ts";
+    "$(capture).js, $(capture).d.ts.map, $(capture).*.ts, $(capture)_*.js, $(capture)_*.ts, $(capture).d.ts";
   "*.tsx" =
     "$(capture).ts, $(capture).*.tsx, $(capture)_*.ts, $(capture)_*.tsx, $(capture).less, $(capture).module.less, $(capture).scss, $(capture).module.scss";
   "*.vbproj" = "*.config, *proj.user, appsettings.*, bundleconfig.json";
