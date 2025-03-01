@@ -83,12 +83,6 @@ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     sha256 = "sha256-YmVMeE5yWZ7vrQmyDJKk/LgqYhFQFIPLf0bRYV5PRF0=";
   }
   {
-    name = "apc-extension";
-    publisher = "drcika";
-    version = "0.3.9";
-    sha256 = "VMUICGvAFWrG/uL3aGKNUIt1ARovc84TxkjgSkXuoME=";
-  }
-  {
     name = "vscode-versionlens";
     publisher = "pflannery";
     version = "1.16.1";

@@ -55,6 +55,7 @@
       zapzap.enable = true;
       zathura.enable = true;
       oculante.enable = true;
+      insomnia.enable = true;
       postman.enable = true;
       nekoray.enable = true;
       micro.enable = true;

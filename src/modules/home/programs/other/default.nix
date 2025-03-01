@@ -3,6 +3,7 @@
     ./deluge.nix
     ./gimp.nix
     ./gparted.nix
+    ./insomnia.nix
     ./libreoffice.nix
     ./mpv.nix
     ./nekoray.nix

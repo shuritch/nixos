@@ -8,6 +8,10 @@
     "command" = "workbench.action.toggleSidebarVisibility";
   }
   {
+    "key" = "ctrl ctrl";
+    "command" = "workbench.action.toggleSidebarVisibility";
+  }
+  {
     "key" = "alt+backspace";
     "command" = "editor.action.deleteLines";
     "when" = "textInputFocus && !editorReadonly";

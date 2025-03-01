@@ -3,6 +3,7 @@
     bluetooth = true;
     thunderbolt = true;
     input.mouse = true;
+    webcam = true;
     audio = true;
     zram = true;
 

@@ -16,6 +16,7 @@ in {
       { wl-clipboard = patch prev.wl-clipboard [ ./patches/wl-clip.diff ]; }
       { obsidian = prev.obsidian.override { electron = final.electron_24; }; }
       (import ./updates/zapret.nix mod-args) # Keeping version
+      (import ./updates/zoom.nix mod-args) # 6.0.2.4680
     ];
 
   # Aliases
