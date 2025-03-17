@@ -18,7 +18,7 @@
     # sidescroll = 1;
 
     # Enable relative line numbers
-    number = false;
+    number = true;
     relativenumber = true;
 
     # Number of spaces a <Tab>
@@ -64,7 +64,7 @@
     # foldexpr = "v:lua.vim.treesitter.foldexpr()";
     # foldnestmax = 3; # deepest fold is 3 levels
     foldlevelstart = 99;
-    # foldmethod = "expr";
+    foldmethod = "indent";
     foldenable = true;
     foldcolumn = "0";
     foldlevel = 99;
@@ -79,14 +79,13 @@
     #   "eol:↲,tab:|->,lead:·,space: ,trail:•,extends:→,precedes:←,nbsp:␣";
 
     # Columns
-    # signcolumn = "yes"; # Whether to show the signcolumn
+    signcolumn = "yes"; # Whether to show the signcolumn
     # colorcolumn = "100"; # Columns to highlight
     # cursorcolumn = false; # Highlight the screen column of the cursor
 
     # Other
     updatetime = 50; # faster completion (4000ms default)
     completeopt = [ "menuone" "noselect" "noinsert" ]; # CMP
-    # completeopt = [ "menu" "menuone" "noselect" ]; # CMP
     timeoutlen = 10; # Reduce which-key timeout to 10ms
     spell = true; # Highlight spelling mistakes (local to window)
     # lazyredraw = true; # Redraw only when needed

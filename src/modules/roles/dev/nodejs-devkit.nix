@@ -9,7 +9,6 @@
       nodePackages.lerna
       typescript
       nest-cli
-      turbo
 
       nodejs_latest
       nodejs_latest.pkgs.prettier

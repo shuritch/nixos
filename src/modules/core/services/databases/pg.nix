@@ -2,21 +2,28 @@
 
 let cfg = config.my.services;
 in {
-  options.my.services.postgresql =
-    myLib.mkServiceOption { name = "postgresql"; };
+  options.my.services.postgresql = myLib.mkServiceOption {
+    name = "postgresql";
+    extraConfig.enableAdmin = lib.mkEnableOption "Enable pgAdmin";
+  };
+
+  config.services.pgadmin = lib.mkIf cfg.postgresql.enableAdmin {
+    enable = true;
+    initialEmail = config.my.system.users.${config.my.system.admin}.email;
+    initialPasswordFile = (builtins.toFile "pg-password" "root");
+    minimumPasswordLength = 4;
+  };
 
   config.services.postgresql = lib.mkIf cfg.postgresql.enable {
     enable = true;
     checkConfig = true;
     enableTCPIP = false;
-    package = pkgs.postgresql_16;
-    dataDir =
-      "/srv/storage/postgresql/${config.services.postgresql.package.psqlSchema}";
+    package = pkgs.postgresql_15;
 
-    extraPlugins = [ ];
-    ensureDatabases = [ "mydatabase" ];
+    extensions = [ ];
+    ensureDatabases = [ "public" ];
     ensureUsers = [{
-      name = "postgres";
+      name = config.my.system.admin;
       ensureClauses = {
         login = true;
         superuser = true;

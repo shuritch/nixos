@@ -13,8 +13,9 @@ in {
   };
 
   config = {
-    environment.systemPackages = lib.optionals cfg.ui [ pkgs.opensnitch-ui ];
-    services.opensnitch.enable = cfg.ui;
+    # # Seams opensnitch conflicts with systemd-resolved now
+    # environment.systemPackages = lib.optionals cfg.ui [ pkgs.opensnitch-ui ];
+    # services.opensnitch.enable = cfg.ui;
     networking.firewall = {
       enable = true;
       inherit (cfg) package allowPing;

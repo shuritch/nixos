@@ -2,7 +2,7 @@
 
 let cfg = config.my.home.programs;
 in {
-  imports = [ ./browsers ./editors ./other ./social ];
+  imports = [ ./browsers ./editors ./other ./social ./vpn ];
 
   assertions = let
     cli-apps = [ "nixvim" "micro" ];
@@ -17,5 +17,6 @@ in {
       desktop configuration is not available. Please disable
       this application or enable Desktop configuration to proceed.
     '';
+
   }) enabledDesktopApps);
 }

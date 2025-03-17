@@ -138,7 +138,7 @@ config: {
   "editor.linkedEditing" = true;
   "editor.mouseWheelZoom" = false;
   "editor.inlineSuggest.enabled" = true;
-  "editor.suggest.insertMode" = "replace";
+  "editor.suggest.insertMode" = "insert";
   "editor.minimap.maxColumn" = 80;
   "editor.insertSpaces" = true;
   "editor.largeFileOptimizations" = false;

@@ -1,7 +1,10 @@
 {
-  config.programs.nixvim.plugins.mini.modules.diff.view.signs = {
-    add = "│";
-    change = "│";
-    delete = "-";
+  config.programs.nixvim.plugins.mini.modules.diff.view = {
+    style = "sign";
+    signs = {
+      add = "│";
+      change = "│";
+      delete = "-";
+    };
   };
 }

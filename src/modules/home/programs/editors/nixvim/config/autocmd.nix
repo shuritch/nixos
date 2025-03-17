@@ -19,7 +19,7 @@
 
     { # Enable spellcheck for some filetypes
       event = "FileType";
-      pattern = [ "tex" "latex" "markdown" "js" "nix" "ts" "svelte" ];
+      pattern = [ "tex" "latex" "markdown" ];
       command = "setlocal spell spelllang=en,ru";
     }
 

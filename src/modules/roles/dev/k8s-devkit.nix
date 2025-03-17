@@ -5,6 +5,7 @@
       kubectx
       kubetail
       kubent
+      lens
       kubernetes-helm
       minikube
     ];

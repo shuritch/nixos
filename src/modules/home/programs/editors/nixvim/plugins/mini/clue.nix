@@ -1,8 +1,5 @@
-{ config, ... }:
-
-let inherit (config.my.home.programs.nixvim) colors;
-in {
-  # HELP
+{
+  # Better help
   config.programs.nixvim = {
     plugins.mini.modules.clue = {
       window = {
@@ -101,30 +98,6 @@ in {
         { __raw = "require('mini.clue').gen_clues.windows()"; }
         { __raw = "require('mini.clue').gen_clues.z()"; }
       ];
-    };
-
-    highlight = {
-      MiniClueDescSingle.bg = colors.base00;
-      MiniClueDescGroup = {
-        bg = colors.base00;
-        fg = colors.base0E;
-      };
-      MiniClueNextKey = {
-        bg = colors.base00;
-        fg = colors.base0D;
-      };
-      MiniClueNextKeyWithPostkeys = {
-        bg = colors.base00;
-        fg = colors.base0F;
-      };
-      MiniClueSeparator = {
-        bg = colors.base00;
-        fg = colors.base0E;
-      };
-      MiniClueBorder = {
-        bg = colors.base00;
-        fg = colors.base0E;
-      };
     };
   };
 }

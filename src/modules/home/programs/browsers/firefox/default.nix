@@ -24,16 +24,17 @@ in {
         id = 0;
         name = "dev-edition-default";
         isDefault = true;
-        extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-          ublock-origin
-          sponsorblock
-          return-youtube-dislikes
-          youtube-shorts-block
+        extensions.packages =
+          with inputs.firefox-addons.packages.${pkgs.system}; [
+            ublock-origin
+            sponsorblock
+            return-youtube-dislikes
+            youtube-shorts-block
 
-          (wappalyzer.overrideAttrs { meta.license.free = true; })
-          (languagetool.overrideAttrs { meta.license.free = true; })
-          simple-translate
-        ];
+            (wappalyzer.overrideAttrs { meta.license.free = true; })
+            (languagetool.overrideAttrs { meta.license.free = true; })
+            simple-translate
+          ];
       };
     };
 }

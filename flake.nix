@@ -5,7 +5,7 @@
     ###################### NixOS / HM #######################
     systems.url = "github:nix-systems/default-linux";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -19,6 +19,9 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.url = "github:misterio77/nix-colors";
+    # Plugins built for source
+    snacks-nvim.url = "github:folke/snacks.nvim";
+    snacks-nvim.flake = false;
   };
 
   outputs = inputs:
@@ -44,7 +47,7 @@
       nixosConfigurations.atlas = mkSystem "atlas" {
         extraArguments = { inherit myLib inputs outputs; };
         source = ./cluster/atlas/configuration.nix;
-        roles = [ "nodejs-devkit" ];
+        roles = [ "nodejs-devkit" "k8s-devkit" ];
         platform = "x86_64-linux";
         home-manager = true;
         admin = "chief";

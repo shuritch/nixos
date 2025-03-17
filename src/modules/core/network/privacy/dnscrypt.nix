@@ -7,7 +7,7 @@ in {
 
   config = lib.mkIf cfg.dnscrypt.enable {
     networking = {
-      nameservers = [ "127.0.0.1" "::1" ];
+      nameservers = [ "127.0.0.1" "::1" ]; # "127.0.0.53"
       dhcpcd.extraConfig = "nohook resolv.conf";
       networkmanager.dns = "systemd-resolved";
       enableIPv6 = false; # No leaks

@@ -1,1 +1,20 @@
-{ imports = [ ./cmp ./git ./lsp ./mini ./snippets ./treesitter ./ui ./utils ]; }
+{
+  imports = [
+    ./mini
+    ./snacks
+    ./blink.nix
+    ./bufferline.nix
+    ./catppuccin.nix
+    ./conform.nix
+    ./lint.nix
+    ./lsp.nix
+    ./lualine.nix
+    ./lz-n.nix
+    ./markview.nix
+    ./noice.nix
+    ./none-ls.nix
+    ./quicker.nix
+    ./treesitter.nix
+    ./ufo.nix
+  ];
+}

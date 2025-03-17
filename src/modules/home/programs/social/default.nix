@@ -1,7 +1,7 @@
 {
   imports = [
     ./discord.nix
-    ./teamspeak.nix
+    ./slack.nix
     ./telegram.nix
     ./thunderbird.nix
     ./whatsapp.nix

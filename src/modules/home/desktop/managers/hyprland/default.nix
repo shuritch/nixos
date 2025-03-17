@@ -5,7 +5,7 @@ in {
   config = lib.mkIf (cfg.enable && cfg.manager == "hyprland") {
     home.packages = with pkgs; [ grimblast hyprpicker hyprland-qtutils ];
     wayland.windowManager.hyprland = {
-      package = pkgs.hyprland.override { wrapRuntimeDeps = false; };
+      # package = pkgs.hyprland.override { wrapRuntimeDeps = false; };
       xwayland.enable = true;
       enable = true;
 

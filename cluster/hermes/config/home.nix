@@ -29,13 +29,13 @@
 
     programs = {
       nixvim.enable = true;
+      slack.enable = true;
       firefox.enable = true;
       libreoffice.enable = true;
       zathura.enable = true;
       oculante.enable = true;
       mpv.enable = true;
       postman.enable = true;
-      obsidian.enable = true;
       rustdesk.enable = true;
       gimp.enable = true;
     };

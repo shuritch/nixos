@@ -23,9 +23,10 @@
         # Trash apps without tray flag
         "[workspace name:0 silent] zapzap; sleep 2; hyprctl dispatch closewindow title:ZapZap"
         "[workspace name:0 silent] thunderbird"
-        # Worspace bound apps
+        # Workspace bound apps
         "[workspace special silent] kitty"
         "[workspace 1 silent] silent-code"
+        "[workspace name:F2 silent] slack"
         "[workspace name:F1 silent] firefox-developer-edition"
         # XM4 Autoconnect fix
         ''sleep 2 && echo "connect AC:80:0A:E3:3B:CE" | bluetoothctl''
@@ -46,6 +47,7 @@
     programs = {
       libreoffice.enable = true;
       thunderbird.enable = true;
+      slack.enable = true;
       firefox.enable = true;
       discord.enable = true;
       telegram.enable = true;
@@ -55,9 +57,9 @@
       zapzap.enable = true;
       zathura.enable = true;
       oculante.enable = true;
-      insomnia.enable = true;
       postman.enable = true;
       nekoray.enable = true;
+      fortivpn.enable = true;
       micro.enable = true;
       gimp.enable = true;
       mpv.enable = true;
