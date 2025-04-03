@@ -29,7 +29,6 @@
 
     programs = {
       nixvim.enable = true;
-      slack.enable = true;
       firefox.enable = true;
       libreoffice.enable = true;
       zathura.enable = true;

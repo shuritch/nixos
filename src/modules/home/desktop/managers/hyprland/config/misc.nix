@@ -8,7 +8,7 @@ in {
       close_special_on_empty = true;
       focus_on_activate = true;
       new_window_takes_over_fullscreen = 2; # 0-2
-
+      disable_hyprland_qtutils_check = true;
       disable_splash_rendering = true;
       disable_hyprland_logo = true; # No startup logo
       force_default_wallpaper = 0; # No anime

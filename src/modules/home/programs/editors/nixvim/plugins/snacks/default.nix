@@ -15,7 +15,7 @@
         };
 
         indent = {
-          inden.enabled = false;
+          indent.enabled = false;
           chunk = {
             enabled = true;
             only_current = true;

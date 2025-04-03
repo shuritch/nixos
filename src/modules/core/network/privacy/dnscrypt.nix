@@ -6,13 +6,6 @@ in {
     lib.mkEnableOption "Enable dnscrypt-proxy2.";
 
   config = lib.mkIf cfg.dnscrypt.enable {
-    networking = {
-      nameservers = [ "127.0.0.1" "::1" ]; # "127.0.0.53"
-      dhcpcd.extraConfig = "nohook resolv.conf";
-      networkmanager.dns = "systemd-resolved";
-      enableIPv6 = false; # No leaks
-    };
-
     services.dnscrypt-proxy2 = {
       enable = true;
       settings = {
@@ -36,11 +29,6 @@ in {
           ];
         };
       };
-    };
-
-    services.resolved = {
-      enable = true;
-      fallbackDns = [ ];
     };
 
     systemd.services.dnscrypt-proxy2.serviceConfig = {

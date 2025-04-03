@@ -3,20 +3,17 @@
 let cfg = config.my.home.desktop;
 in {
   config = lib.mkIf (cfg.enable && cfg.manager == "hyprland") {
-    wayland.windowManager.hyprland.settings.windowrule = [
-      "float, ^(rofi)$"
-      "float, ^(wofi)$"
-      "float, ^(pwvucontrol)$"
-      "float, ^(blueman)$"
-      "float, ^(nm-connection-editor)$"
-      "float, ^(Color Picker)$"
-      "float, ^(Network)$"
-      "float, ^(xdg-desktop-portal)$"
-      "float, ^(xdg-desktop-portal-gnome)$"
-      "float, ^(transmission-gtk)$"
-    ];
-
     wayland.windowManager.hyprland.settings.windowrulev2 = [
+      "float, class:^(rofi)$"
+      "float, class:^(wofi)$"
+      "float, class:^(pwvucontrol)$"
+      "float, class:^(blueman)$"
+      "float, class:^(nm-connection-editor)$"
+      "float, class:^(Color Picker)$"
+      "float, class:^(Network)$"
+      "float, class:^(xdg-desktop-portal)$"
+      "float, class:^(xdg-desktop-portal-gnome)$"
+      "float, class:^(transmission-gtk)$"
       "float, title:Picture-in-Picture"
       "float, class:oculante"
       "float, class:download"

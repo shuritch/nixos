@@ -5,7 +5,6 @@
     ./gparted.nix
     ./libreoffice.nix
     ./mpv.nix
-    ./obsidian.nix
     ./oculante.nix
     ./postman.nix
     ./rustdesk.nix

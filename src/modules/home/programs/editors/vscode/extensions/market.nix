@@ -94,6 +94,12 @@ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     version = "0.6.1";
     sha256 = "sha256-w0ppzh0m/9Hw3BPJbAKsNcMStdzoH9ODf3zweRcCG5k=";
   }
+  {
+    name = "codeium";
+    publisher = "Codeium";
+    version = "1.43.3";
+    sha256 = "sha256-WejMBIG7bl7iOPsdB22jqNmT7hfCsJ/1j4P/Clv/t74=";
+  }
   #? Corner cases
   # {
   #   name = "vscode-nginx-conf";

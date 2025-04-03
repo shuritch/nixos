@@ -15,7 +15,6 @@ in {
     in lib.foldl (a: b: a // b) { } [
       { wl-clipboard = patch prev.wl-clipboard [ ./patches/wl-clip.diff ]; }
       (import ./updates/zapret.nix mod-args) # Keeping version
-      (import ./updates/zoom.nix mod-args) # 6.0.2.4680
     ];
 
   # Aliases

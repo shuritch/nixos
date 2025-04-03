@@ -32,7 +32,6 @@ with pkgs.vscode-extensions; [
   yzhang.markdown-all-in-one
   aaron-bond.better-comments
   pkief.material-icon-theme
-  tabnine.tabnine-vscode
   wix.vscode-import-cost
   ibm.output-colorizer
   #? Corner cases

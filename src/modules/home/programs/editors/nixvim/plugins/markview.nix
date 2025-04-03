@@ -3,7 +3,7 @@
   # https://github.com/OXY2DEV/markview.nvim/
   config.programs.nixvim.plugins.markview = {
     enable = true;
-    settings = {
+    settings.preview = {
       buf_ignore = [ ];
       hybrid_modes = [ "i" ];
       modes = [ "n" "i" "no" "c" ];

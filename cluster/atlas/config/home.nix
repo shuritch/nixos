@@ -47,7 +47,6 @@
     programs = {
       libreoffice.enable = true;
       thunderbird.enable = true;
-      slack.enable = true;
       firefox.enable = true;
       discord.enable = true;
       telegram.enable = true;
@@ -55,10 +54,10 @@
       nixvim.enable = true;
       chrome.enable = true;
       zapzap.enable = true;
+      slack.enable = true;
       zathura.enable = true;
       oculante.enable = true;
       postman.enable = true;
-      nekoray.enable = true;
       fortivpn.enable = true;
       micro.enable = true;
       gimp.enable = true;
