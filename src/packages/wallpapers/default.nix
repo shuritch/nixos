@@ -9,14 +9,14 @@ let
 
   getPaperName = name: lib.last (lib.splitString "wallpaper-" name);
   makeSchemaName = name: "colorscheme-${getPaperName name}";
-  schemes = lib.mapAttrs' (n: _:
+  schemas = lib.mapAttrs' (n: _:
     let pname = makeSchemaName n;
     in lib.nameValuePair pname (generateColorscheme pkgs pname papers.${n}))
     papers;
 
 in lib.foldl (a: b: a // b) { } [
   papers
-  schemes
+  schemas
   { papersDrvs = pkgs.linkFarmFromDrvs "wallpapers" (lib.attrValues papers); }
   {
     colorschemesDrvs = let
@@ -25,9 +25,9 @@ in lib.foldl (a: b: a // b) { } [
         (scheme: lib.importJSON "${drv}/${scheme}.json");
 
       json = pkgs.writeText "colorschemes.json"
-        (builtins.toJSON (lib.mapAttrs (_: require) schemes));
+        (builtins.toJSON (lib.mapAttrs (_: require) schemas));
 
     in pkgs.linkFarmFromDrvs "colorschemes"
-    (lib.attrValues schemes ++ [ json ]);
+    (lib.attrValues schemas ++ [ json ]);
   }
 ]

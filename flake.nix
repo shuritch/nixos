@@ -44,7 +44,18 @@
          to do this manually, as it is more clear.
       */
 
-      nixosConfigurations.atlas = mkSystem "atlas" {
+      nixosConfigurations.codex = mkSystem "codex" {
+        extraArguments = { inherit myLib inputs outputs; };
+        source = ./cluster/codex/configuration.nix;
+        roles = [ "nodejs-devkit" "k8s-devkit" ];
+        platform = "x86_64-linux";
+        home-manager = true;
+        admin = "shuritch";
+        class = "desktop";
+        origin = "24.11";
+      };
+
+      nnixosConfigurations.atlas = mkSystem "atlas" {
         extraArguments = { inherit myLib inputs outputs; };
         source = ./cluster/atlas/configuration.nix;
         roles = [ "nodejs-devkit" "k8s-devkit" ];

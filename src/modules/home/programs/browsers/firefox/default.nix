@@ -31,7 +31,7 @@ in {
             return-youtube-dislikes
             youtube-shorts-block
 
-            (wappalyzer.overrideAttrs { meta.license.free = true; })
+            #(wappalyzer.overrideAttrs { meta.license.free = true; })
             (languagetool.overrideAttrs { meta.license.free = true; })
             simple-translate
           ];

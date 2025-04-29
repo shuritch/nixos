@@ -72,12 +72,12 @@ nix-shell -p curl git
 ```bash
 # Manual installation (Live CD)
 nix-shell -p curl git
-curl https://raw.githubusercontent.com/shuritch/nixos/main/core/cluster/<hostname>/disko.nix > /mnt/config/disko.nix
+curl https://raw.githubusercontent.com/shuritch/nixos/main/src/disko/default.nix > /mnt/config/disko.nix
 # Edit disko.nix (Replace device with name from lsblk result at least)
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /mnt/config/disko.nix
 git clone https://github.com/shuritch/nixos /mnt/etc/nixos/flake
-sudo nixos-generate-config --dir /mnt/etc/nixos
-mv -f /mnt/etc/nixos/hardware-configuration.nix /mnt/etx/nixos/flake/cluster/<hostname>
+sudo nixos-generate-config --root /mnt/etc/nixos
+cp -f /mnt/etc/nixos/hardware-configuration.nix /mnt/etx/nixos/flake/cluster/<hostname>
 sudo nixos-install --flake /mnt/etc/nixos/flake#<hostname>
 # reboot 🚀
 ```
@@ -101,9 +101,10 @@ sudo nixos-rebuild switch --flake .#<hostname> # If Hosts updated
 ```graphql
 .
 │  # 👇 Cluster
-│ ╭> atlas                          # Desktop │ 32GB RAM, i9-9900k , RTX 2080S & UHD630 │ Hyprland
-│ ├> hermes                         # Laptop  │ 16GB RAM, i7-1165G7, Iris XE G7         │ Hyprland
-│ ├> pandora                        # ISO     │ Bootable USB                            │ TTY
+│ ╭> atlas                          # Desktop │ 32GB RAM, i9-9900k  , RTX 2080S & UHD630 │ Hyprland
+│ ├> codex                          # Desktop │ 32GB RAM, r7-9800x3d, RX 7900XTX & RDNA2 │ Hyprland
+│ ├> hermes                         # Laptop  │ 16GB RAM, i7-1165G7 , Iris XE G7         │ Hyprland
+│ ├> pandora                        # ISO     │ Bootable USB                             │ TTY
 ├─┤
 │ │  # 👇 Host configuration (example)
 │ │ ╭> config                       # Separated configuration

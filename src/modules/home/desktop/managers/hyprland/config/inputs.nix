@@ -9,7 +9,7 @@ in {
       input = {
         kb_layout = lib.concatStringsSep "," input.keyboard.languages;
         kb_options = input.keyboard.toggle;
-        kb_variant = "lang";
+        # kb_variant = "lang";
         sensitivity = 0; # No modifiers
         follow_mouse = 1;
         touchpad = {
