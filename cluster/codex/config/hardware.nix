@@ -20,14 +20,14 @@
         x = 0;
         y = 0;
       }
-      #{ # BENQ
-      #  name = "HDMI-A-2";
-      #  workspaces = [ "F1" "F2" "F3" "F4" "F5" "F6" "F7" "F8" "F9" ];
-      #  width = 2560;
-      #  height = 1440;
-      #  x = -2560;
-      #  y = 0;
-      #}
+      { # BENQ
+        name = "HDMI-A-2";
+        workspaces = [ "F1" "F2" "F3" "F4" "F5" "F6" "F7" "F8" "F9" ];
+        width = 2560;
+        height = 1440;
+        x = -2560;
+        y = 0;
+      }
     ];
   };
 }

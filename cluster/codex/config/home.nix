@@ -26,8 +26,8 @@
         # Workspace bound apps
         "[workspace special silent] kitty"
         "[workspace name:1 silent] silent-code"
-        "[workspace name:3 silent] slack"
-        "[workspace name:2 silent] firefox-developer-edition"
+        "[workspace name:F2 silent] slack"
+        "[workspace name:F1 silent] firefox-developer-edition"
         # XM4 Autoconnect fix
         ''sleep 2 && echo "connect AC:80:0A:E3:3B:CE" | bluetoothctl''
         # Tray apps
@@ -53,7 +53,7 @@
       vscode.enable = true;
       nixvim.enable = true;
       chrome.enable = true;
-      zapzap.enable = true;
+      whatsie.enable = true;
       slack.enable = true;
       zathura.enable = true;
       oculante.enable = true;

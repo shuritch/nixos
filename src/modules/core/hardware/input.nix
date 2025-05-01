@@ -31,6 +31,7 @@ in {
           mouse = {
             accelProfile = "adaptive";
             middleEmulation = false;
+            accelSpeed = "0.3";
           };
 
           touchpad = {
