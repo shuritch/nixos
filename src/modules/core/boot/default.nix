@@ -58,7 +58,6 @@ in {
       (lib.mkIf cfg.initrd.enableTweaks {
         verbose = false; # removes only the mandatory messages by NixOS
         systemd.enable = true; # enable systemd in initrd (experimental)
-        systemd.strip = true; # strip copied binaries and libraries from inframs
       })
 
       (lib.mkIf cfg.initrd.optimizeCompressor {
