@@ -4,6 +4,6 @@
     sing-box.enable = true;
     docker.enable = true;
     printing.enable = true;
-    earlyroom.enable = true;
+    earlyroom.enable = false;
   };
 }

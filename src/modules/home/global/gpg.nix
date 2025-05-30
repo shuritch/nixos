@@ -1,3 +1,9 @@
+# Ты знаешь что такое SEO ?
+# Разницу CRM / CMS
+# Как у тебя вообще с фронтом / технологиями
+# Какой у тебя опыт фул стек разработки
+# В каких процессах бэкенд разработки ты участвовал
+
 { lib, pkgs, config, ... }: {
   services.gpg-agent = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     enable = true;
@@ -8,7 +14,7 @@
     maxCacheTtl = 1209600;
     maxCacheTtlSsh = 1209600;
     extraConfig = "allow-preset-passphrase";
-    pinentryPackage = if config.my.home.desktop.enable then
+    pinentry.package = if config.my.home.desktop.enable then
       pkgs.pinentry-gnome3 # requires services.dbus.packages = [ pkgs.gcr ]
     else
       pkgs.pinentry-curses;
