@@ -28,15 +28,21 @@
     };
 
     programs = {
-      nixvim.enable = true;
-      firefox.enable = true;
       libreoffice.enable = true;
+      firefox.enable = true;
+      discord.enable = true;
+      telegram.enable = true;
+      vscode.enable = true;
+      nixvim.enable = true;
+      chrome.enable = true;
+      slack.enable = true;
       zathura.enable = true;
       oculante.enable = true;
-      mpv.enable = true;
       postman.enable = true;
-      rustdesk.enable = true;
+      fortivpn.enable = true;
+      micro.enable = true;
       gimp.enable = true;
+      mpv.enable = true;
     };
 
     services = {

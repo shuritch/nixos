@@ -7,4 +7,9 @@
     hashedPassword = # mkpasswd
       "$y$j9T$7q5upyxvLUC/BL6pEeZy/.$RfAhy7zm1lTecMFFtiuDzWA.1sf6mcz45V2W2Xw0m9A";
   };
+
+  networking.extraHosts = ''
+    0.0.0.0 seo-admin.local.com
+    ::1 seo-admin.local.com
+  '';
 }

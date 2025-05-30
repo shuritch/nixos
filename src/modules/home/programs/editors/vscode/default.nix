@@ -28,7 +28,7 @@ in {
           sleep 0.2
         done,
 
-        hyprctl dispatch movetoworkspacesilent 1,code
+        hyprctl dispatch movetoworkspacesilent 1,class:code
       '')
     ];
 

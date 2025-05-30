@@ -7,7 +7,6 @@
   "**/.grit" = true;
   "**/.changeset" = true;
   "**/node_modules" = true;
-  "**/.husky" = true;
   "**/dist" = true;
   "**/coverage" = true;
   "**/.next" = true;

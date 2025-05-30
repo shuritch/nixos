@@ -26,6 +26,7 @@ with pkgs.vscode-extensions; [
   redhat.vscode-xml
   jnoortheen.nix-ide
   brettm12345.nixfmt-vscode
+  vue.volar
   bbenoist.nix
   # Other
   kamikillerto.vscode-colorize
