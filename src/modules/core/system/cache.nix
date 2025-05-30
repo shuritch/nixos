@@ -13,7 +13,6 @@
       "https://anyrun.cachix.org" # Anyrun program launcher
       "https://nyx.cachix.org" # Cached stuff from my flake outputs
       "https://neovim-flake.cachix.org" # A cache for my neovim flake
-      "https://cache.notashelf.dev" # Raf's binary cache, served over https
       "https://ags.cachix.org" # Ags
     ];
 
