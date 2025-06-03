@@ -1,6 +1,9 @@
 { lib, config, ... }:
 
-let cfg = config.my.boot;
+let
+  cfg = config.my.boot;
+  mainMonitor = lib.lists.findSingle (x: x.primary == true) null null
+    config.my.hardware.monitors;
 in {
   options.my.boot = {
     device = lib.mkOption {
@@ -24,5 +27,10 @@ in {
     enable = lib.mkDefault true;
     useOSProber = true;
     efiSupport = true;
+    extraConfig = ''
+      GRUB_GFXMODE="${toString mainMonitor.width}x${
+        toString mainMonitor.height
+      }"
+    '';
   };
 }
