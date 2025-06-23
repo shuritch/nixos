@@ -33,8 +33,8 @@ in {
           NFQWS_OPT_DESYNC_QUIC="--dpi-desync=fake,tamper --dpi-desync-any-protocol"
           NFQWS_OPT_DESYNC=${
             lib.concatStrings [
-              #  2024-10-13
-              "--dpi-desync=fake,split2 --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1 "
+              #  2025-06-23
+              "--dpi-desync=syndata,fake,split2 --dpi-desync-fooling=md5sig --dpi-desync-split-pos=1 "
               "--dpi-desync-any-protocol --dpi-desync-ttl=6 --dpi-desync-repeats=20 "
               "--dpi-desync-fake-tls=${./hello_google_com.bin} "
             ]

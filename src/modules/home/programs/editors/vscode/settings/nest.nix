@@ -115,8 +115,8 @@
   "*.md" = "$(capture).*";
   "*.mjs" =
     "$(capture).mjs.map, $(capture).*.mjs, $(capture)_*.mjs, $(capture).d.ts";
-  "*.module.ts" =
-    "$(capture).resolver.ts, $(capture).controller.ts, $(capture).service.ts";
+  # "*.module.ts" =
+  #   "$(capture).resolver.ts, $(capture).controller.ts, $(capture).service.ts";
   "*.mts" = "$(capture).mts.map, $(capture).*.mts, $(capture)_*.mts";
   "*.pubxml" = "$(capture).pubxml.user";
   "*.py" = "$(capture).pyi";

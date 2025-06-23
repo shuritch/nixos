@@ -4,7 +4,7 @@
   zapret = prev.zapret.overrideAttrs (attrs: {
     src = builtins.fetchGit {
       url = "https://github.com/bol-van/zapret.git";
-      rev = "171ae7ccdc4789f889cc95844c1e5aaef41f9bcd";
+      rev = "29c8aec1116d504692bebc16420d0e3ad65c030b";
     };
 
     installPhase = ''
