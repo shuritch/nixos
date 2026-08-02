@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, myLib, ... }:
 
 let cfg = config.my.system;
 in {
@@ -24,14 +24,14 @@ in {
 
   config = {
     time = {
-      timeZone = cfg.timeZone;
+      timeZone = if myLib.isServer then "UTC" else cfg.timeZone;
       hardwareClockInLocalTime = true;
     };
 
     i18n = {
       defaultLocale = "${cfg.defaultLocale}.UTF-8";
 
-      supportedLocales = [ "C.UTF-8/UTF-8" "${cfg.defaultLocale}.UTF-8/UTF-8" ]
+      extraLocales = [ "C.UTF-8/UTF-8" "${cfg.defaultLocale}.UTF-8/UTF-8" ]
         ++ map (l: "${l}.UTF-8/UTF-8") cfg.extraLocales;
 
       extraLocaleSettings = {

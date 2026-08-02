@@ -2,7 +2,7 @@
 
 let
   defaultBrowser = if config.programs.firefox.enable then
-    "firefox-developer-edition"
+    "firefox-devedition"
   else if config.programs.chrome.enable then
     "chromium"
   else

@@ -1,17 +1,18 @@
-{ config, lib, ... }:
+{ lib, config, ... }:
 
 let cfg = config.my.network;
 in {
-  options.my.network.blocker.enable = lib.mkEnableOption "Enable stevenblack.";
+  options.my.network = {
+    blocker.enable = lib.mkEnableOption "Enable stevenblack.";
+  };
+
   config.networking.stevenblack = lib.mkIf cfg.blocker.enable {
     enable = true;
     block = [
-      # "social"
       "fakenews"
-      "gambling"
+      # "gambling"
+      # "social"
       "porn"
     ];
   };
 }
-
-# sasha ivanov

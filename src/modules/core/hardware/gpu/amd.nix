@@ -1,30 +1,18 @@
-{ pkgs, config, lib, ... }:
+{ lib, config, pkgs, ... }:
 
 let cfg = config.my.hardware;
 in {
-  config = lib.mkIf
-    (cfg.gpu != null && (cfg.gpu == "amd" || cfg.gpu == "hybrid-amd")) {
-      services.xserver.videoDrivers = [ "modesetting" "amdgpu" ];
-      environment.systemPackages = [ pkgs.nvtopPackages.amd ];
+  options.my.hardware = {
+    # Defined in ./default.nix
+  };
 
-      boot = {
-        initrd.kernelModules = [ "amdgpu" ];
-        kernelModules = [ "amdgpu" ];
-      };
-
-      hardware.graphics = {
-        extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
-        extraPackages = [
-          pkgs.amdvlk
-          pkgs.mesa
-          pkgs.vulkan-tools
-          pkgs.vulkan-loader
-          pkgs.vulkan-validation-layers
-          pkgs.vulkan-extension-layer
-        ] ++ (if pkgs ? rocmPackages.clr then
-          with pkgs.rocmPackages; [ clr clr.icd ]
-        else
-          with pkgs; [ rocm-opencl-icd rocm-opencl-runtime ]);
-      };
-    };
+  config = lib.mkIf (cfg.gpu == "amd") {
+    services.xserver.videoDrivers = [ "amdgpu" ];
+    boot.kernelModules = [ "amdgpu" ];
+    hardware.graphics.extraPackages = [
+      # enables AMDVLK & OpenCL support
+      pkgs.rocmPackages.clr
+      pkgs.rocmPackages.clr.icd
+    ];
+  };
 }

@@ -1,7 +1,6 @@
-{ inputs, lib, ... }@args:
+{ lib, inputs, ... }@args:
 
-let patch = p: m: p.overrideAttrs (a: { patches = (a.patches or [ ]) ++ m; });
-in {
+{
   # Self-hosted packages
   additions = final: prev:
     import ../packages ({
@@ -13,7 +12,6 @@ in {
   modifications = final: prev:
     let mod-args = { inherit final prev; } // args;
     in lib.foldl (a: b: a // b) { } [
-      { wl-clipboard = patch prev.wl-clipboard [ ./patches/wl-clip.diff ]; }
       (import ./updates/zapret.nix mod-args) # Keeping version
     ];
 

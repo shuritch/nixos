@@ -1,1 +1,11 @@
-{ imports = [ ./blocker.nix ./dnscrypt.nix ./frkn ./tcpcrypt.nix ]; }
+{
+  imports = [
+    # keep-sorted start
+    ./frkn
+    ./vpn
+    ./blocker.nix
+    ./dnscrypt.nix
+    ./tcpcrypt.nix
+    # keep-sorted end
+  ];
+}

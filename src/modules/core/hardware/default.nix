@@ -1,37 +1,24 @@
-{ config, lib, ... }:
+{ ... }:
 
-let cfg = config.my.hardware;
+let
 in {
   imports = [
+    # keep-sorted start
     ./battery
     ./cpu
     ./gpu
     ./audio.nix
     ./bluetooth.nix
-    ./drive.nix
+    ./graphics.nix
+    ./firmware.nix
     ./input.nix
     ./lid.nix
+    ./monitoring.nix
     ./monitors.nix
     ./ram.nix
-    ./video.nix
+    ./ssd.nix
+    ./thunderbolt.nix
+    ./webcam.nix
+    # keep-sorted end
   ];
-
-  options.my.hardware = {
-    webcam = lib.mkEnableOption "Enable webcam kernel support.";
-    thunderbolt = lib.mkEnableOption "Enable thunderbolt support." // {
-      default = true;
-    };
-  };
-
-  config = {
-    hardware.enableRedistributableFirmware = true;
-    boot.blacklistedKernelModules = lib.concatLists [
-      (lib.optionals (!cfg.webcam) [ "uvcvideo" ])
-      (lib.optionals (!cfg.bluetooth) [ "bluetooth" "btusb" ])
-      (lib.optionals (!cfg.thunderbolt) [
-        "thunderbolt" # DMA attacks prevention
-        "firewire-core"
-      ])
-    ];
-  };
 }

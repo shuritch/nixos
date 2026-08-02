@@ -4,3 +4,4 @@
 .pre-commit-config.yaml
 .private-config.json
 *.ignore-this.*
+hermes

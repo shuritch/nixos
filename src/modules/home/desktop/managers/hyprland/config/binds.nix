@@ -17,24 +17,21 @@ let
   };
 in {
   config = lib.mkIf (cfg.enable && cfg.manager == "hyprland") {
-    wayland.windowManager.hyprland.settings = {
+    wayland.windowManager.hyprland.settings = with lib; {
       bindm = [ "SUPER,mouse:272,movewindow" "SUPER,mouse:273,resizewindow" ];
       bind = lib.concatLists [
-        (lib.mapAttrsToList (k: v:
+        (mapAttrsToList (k: v:
           "${lib.stringAsChars (x: if x != "+" then x else ",") k},exec,${v}")
           config.my.home.desktop.binds)
 
         (map (n: "SUPER,${n},workspace,name:${n}") workspaces)
         (map (n: "SUPERSHIFT,${n},movetoworkspacesilent,name:${n}") workspaces)
-        (lib.mapAttrsToList (k: d: "SUPER,${k},movefocus,${d}") directions)
-        (lib.mapAttrsToList (k: d: "SUPERSHIFT,${k},swapwindow,${d}")
-          directions)
-        (lib.mapAttrsToList (k: d: "SUPERALT,${k},focusmonitor,${d}")
-          directions)
-        (lib.mapAttrsToList
+        (mapAttrsToList (k: d: "SUPER,${k},movefocus,${d}") directions)
+        (mapAttrsToList (k: d: "SUPERSHIFT,${k},swapwindow,${d}") directions)
+        (mapAttrsToList (k: d: "SUPERALT,${k},focusmonitor,${d}") directions)
+        (mapAttrsToList (k: d: "SUPERCONTROL,${k},movewindow,${d}") directions)
+        (mapAttrsToList
           (k: d: "SUPERALTSHIFT,${k},movecurrentworkspacetomonitor,${d}")
-          directions)
-        (lib.mapAttrsToList (k: d: "SUPERCONTROL,${k},movewindow,${d}")
           directions)
 
         [
@@ -64,7 +61,9 @@ in {
 
           "SUPER,u,togglespecialworkspace"
           "SUPERSHIFT,u,movetoworkspacesilent,special"
-          "SUPER,i,pseudo"
+          "SUPER,y,toggleswallow"
+          "SUPER,i,pin"
+          "SUPER,i,fullscreenstate,0 3"
         ]
       ];
     };

@@ -1,8 +1,13 @@
-{
-  # substituters to use
-  nix.settings = {
+{ ... }:
+
+let
+in {
+  options.my.system = {
+    # Doesn't require options
+  };
+
+  config.nix.settings = {
     substituters = [
-      "https://shuritch-nixos.cachix.org" # My cache
       "https://cache.nixos.org" # Funny binary cache
       "https://nix-community.cachix.org" # Nix-community cache
       "https://cache.privatevoid.net" # For nix-super
@@ -18,7 +23,6 @@
     ];
 
     trusted-public-keys = [
-      "shuritch-nixos.cachix.org-1:zyYff3kQmaqUMIpKT1epk2Opzuo8htxFDo94hHUNixM="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cache.privatevoid.net:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg="

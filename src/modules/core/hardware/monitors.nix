@@ -1,4 +1,5 @@
 { lib, config, ... }:
+
 let cfg = config.my.hardware;
 in {
   options.my.hardware.monitors = lib.mkOption {

@@ -1,15 +1,15 @@
 { pkgs, config, ... }: {
   my.system.users.${config.my.system.admin}.home = {
     colorscheme = {
-      source = pkgs.wallpaper-ship-in-storm;
-      type = "fruit-salad";
+      source = pkgs.wallpaper-herakles;
+      type = "tonal-spot";
       mode = "dark";
     };
 
     desktop = {
       enable = true;
       isWayland = true;
-      wallpaper = pkgs.wallpaper-ship-in-storm;
+      wallpaper = pkgs.wallpaper-herakles;
       manager = "hyprland";
       locker = "swaylock";
       explorer = "thunar";
@@ -19,15 +19,19 @@
       notifier = "mako";
       idle = "swayidle";
 
+      fonts = {
+        monospace = 16;
+        regular = 16;
+      };
+
       exec = [
         # Trash apps without tray flag
-        "[workspace name:0 silent] zapzap; sleep 2; hyprctl dispatch closewindow title:ZapZap"
         "[workspace name:0 silent] thunderbird"
         # Workspace bound apps
         "[workspace special silent] kitty"
-        "[workspace 1 silent] silent-code"
-        "[workspace name:F2 silent] slack"
-        "[workspace name:F1 silent] firefox-developer-edition"
+        "[workspace name:1 silent] silent-code"
+        "[workspace name:F1 silent] slack"
+        "[workspace name:5 silent] firefox-devedition"
         # XM4 Autoconnect fix
         ''sleep 2 && echo "connect AC:80:0A:E3:3B:CE" | bluetoothctl''
         # Tray apps
@@ -53,7 +57,6 @@
       vscode.enable = true;
       nixvim.enable = true;
       chrome.enable = true;
-      zapzap.enable = true;
       slack.enable = true;
       zathura.enable = true;
       oculante.enable = true;

@@ -2,7 +2,10 @@
 
 let cfg = config.my.system;
 in {
-  options.my.system.docs = lib.mkEnableOption "Enable documentation pages.";
+  options.my.system = {
+    docs = lib.mkEnableOption "Enable documentation pages.";
+  };
+
   config.documentation = lib.mapAttrs (_: lib.mkForce) {
     enable = cfg.docs;
     dev.enable = cfg.docs;

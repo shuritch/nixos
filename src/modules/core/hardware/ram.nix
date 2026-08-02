@@ -2,7 +2,10 @@
 
 let cfg = config.my.hardware;
 in {
-  options.my.hardware.zram = lib.mkEnableOption "Enable ZRAM.";
+  options.my.hardware = {
+    zram = lib.mkEnableOption "Enable ZRAM compressor.";
+  };
+
   config = lib.mkIf cfg.zram {
     zramSwap = {
       enable = true;

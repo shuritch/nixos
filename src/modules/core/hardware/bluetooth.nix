@@ -1,8 +1,11 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 let cfg = config.my.hardware;
 in {
-  options.my.hardware.bluetooth = lib.mkEnableOption "Enable Bluetooth support";
+  options.my.hardware = {
+    bluetooth = lib.mkEnableOption "Enable Bluetooth support";
+  };
+
   config = lib.mkIf cfg.bluetooth {
     boot.kernelParams = [ "btusb" ];
     services.blueman.enable = true;
@@ -19,5 +22,11 @@ in {
         AutoEnable = true;
       };
     };
+
+    boot.blacklistedKernelModules = lib.optionals (!cfg.bluetooth) [
+      # Restricts bluetooth on kernel level
+      "bluetooth"
+      "btusb"
+    ];
   };
 }

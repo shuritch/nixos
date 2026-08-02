@@ -1,11 +1,34 @@
 { lib, config, ... }:
-let
-  cfg = config.my.hardware.battery;
-  MHz = x: x * 1000;
+
+let cfg = config.my.hardware.battery;
 in {
   options.my.hardware.battery.cpufreq = {
     enable = lib.mkEnableOption "Enable cpu frequency." // {
       default = cfg.enable;
+    };
+
+    onBatteryMinFreq = lib.mkOption {
+      description = "Minimum CPU frequency in MHz on battery.";
+      type = lib.types.number;
+      default = 1200;
+    };
+
+    onBatteryMaxFreq = lib.mkOption {
+      description = "Maximum CPU frequency in MHz on battery.";
+      type = lib.types.number;
+      default = 1800;
+    };
+
+    onChargerMinFreq = lib.mkOption {
+      description = "Minimum CPU frequency in MHz on charger.";
+      type = lib.types.number;
+      default = 1800;
+    };
+
+    onChargerMaxFreq = lib.mkOption {
+      description = "Maximum CPU frequency in MHz on charger.";
+      type = lib.types.number;
+      default = 3800;
     };
 
     thresholds = {
@@ -22,46 +45,18 @@ in {
         default = 80;
       };
     };
-
-    battery = {
-      min = lib.mkOption {
-        description = "Minimum CPU frequency in MHz on battery.";
-        type = lib.types.number;
-        default = 1200;
-      };
-
-      max = lib.mkOption {
-        description = "Maximum CPU frequency in MHz on battery.";
-        type = lib.types.number;
-        default = 1800;
-      };
-    };
-
-    charger = {
-      min = lib.mkOption {
-        description = "Minimum CPU frequency in MHz on charger.";
-        type = lib.types.number;
-        default = 1800;
-      };
-
-      max = lib.mkOption {
-        description = "Maximum CPU frequency in MHz on charger.";
-        type = lib.types.number;
-        default = 3800;
-      };
-    };
   };
 
   # <https://github.com/AdnanHodzic/auto-cpufreq/#example-config-file-contents>
   config.services.auto-cpufreq = lib.mkIf cfg.cpufreq.enable {
     enable = true;
-
-    settings = {
+    settings = let MHz = x: x * 1000;
+    in {
       battery = {
         governor = "powersave";
         energy_performance_preference = "power";
-        scaling_min_freq = (MHz cfg.cpufreq.battery.min);
-        scaling_max_freq = (MHz cfg.cpufreq.battery.max);
+        scaling_min_freq = (MHz cfg.cpufreq.onBatteryMinFreq);
+        scaling_max_freq = (MHz cfg.cpufreq.onBatteryMaxFreq);
         turbo = "never";
 
         enable_thresholds = cfg.cpufreq.thresholds.enable;
@@ -72,8 +67,8 @@ in {
       charger = {
         governor = "performance";
         energy_performance_preference = "performance";
-        scaling_min_freq = (MHz cfg.cpufreq.charger.min);
-        scaling_max_freq = (MHz cfg.cpufreq.charger.max);
+        scaling_min_freq = (MHz cfg.cpufreq.onChargerMinFreq);
+        scaling_max_freq = (MHz cfg.cpufreq.onChargerMaxFreq);
         turbo = "auto";
       };
     };

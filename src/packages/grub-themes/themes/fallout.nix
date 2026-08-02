@@ -1,7 +1,10 @@
-{ pkgs, lib, ... }: {
-  grub-custom-fallout-theme = pkgs.stdenv.mkDerivation {
+{ lib, pkgs, ... }:
+
+let inherit (pkgs) stdenv fetchFromGitHub;
+in {
+  grub-custom-fallout-theme = stdenv.mkDerivation {
     name = "grub-custom-fallout-theme";
-    src = pkgs.fetchFromGitHub {
+    src = fetchFromGitHub {
       owner = "shuritch";
       repo = "fallout-grub-theme";
       rev = "b607c1ba65990116b683edce7f2178b7d1b6a48f";
@@ -13,9 +16,9 @@
       cp -R ./* $out/
     '';
 
-    meta = with lib; {
-      license = licenses.unlicense;
-      platforms = platforms.all;
+    meta = {
+      license = lib.licenses.unlicense;
+      platforms = lib.platforms.all;
     };
   };
 }

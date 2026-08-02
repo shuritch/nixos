@@ -1,43 +1,23 @@
-{ lib, pkgs, config, myLib, ... }:
+{ lib, config, myLib, ... }:
 
-let cfg = config.my.network.firewall;
+let cfg = config;
 in {
-  options.my.network.firewall = {
-    allowPing = lib.mkEnableOption "Allow servers to be pinged.";
-    ui = lib.mkEnableOption "Enable opensnitch firewall ui.";
-    package = lib.mkOption {
-      description = "One of iptables / nftables.";
-      type = lib.types.package;
-      default = pkgs.iptables;
-    };
+  options.my.network = {
+    # Doesn't require options
   };
 
-  config = {
-    # # Seams opensnitch conflicts with systemd-resolved now
-    # environment.systemPackages = lib.optionals cfg.ui [ pkgs.opensnitch-ui ];
-    # services.opensnitch.enable = cfg.ui;
-    networking.firewall = {
+  config.networking = {
+    nftables.enable = true;
+    firewall = {
       enable = true;
-      inherit (cfg) package allowPing;
-      checkReversePath = lib.mkForce false; # Don't filter DHCP packets
+      allowedTCPPorts = [ ];
+      allowedUDPPorts = [ ];
+      allowedUDPPortRanges = [ ];
+      allowedTCPPortRanges = [ ];
+      allowPing = myLib.isServer cfg;
       logReversePathDrops = true; # Better logs
       logRefusedConnections = false;
-      allowedTCPPorts = [ 443 8080 ];
-      allowedUDPPorts = [ ];
-
-      # KDE Connect UDP port ranges
-      allowedUDPPortRanges =
-        lib.mkIf (myLib.testHM config "services.kdeconnect.enable") [{
-          from = 1714;
-          to = 1764;
-        }];
-
-      # KDE Connect TCP port ranges
-      allowedTCPPortRanges =
-        lib.mkIf (myLib.testHM config "services.kdeconnect.enable") [{
-          from = 1714;
-          to = 1764;
-        }];
+      checkReversePath = lib.mkForce false; # Don't filter DHCP packets
     };
   };
 }

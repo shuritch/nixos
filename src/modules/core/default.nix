@@ -1,12 +1,16 @@
-{
+{ ... }:
+
+let
+in {
   imports = [
+    # keep-sorted start
     ./boot
+    ./filesystem
     ./hardware
-    ./system
     ./network
     ./security
     ./services
-    ./programs
-    ./users
+    ./system
+    # keep-sorted end
   ];
 }

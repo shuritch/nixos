@@ -19,7 +19,7 @@ in {
   config.programs.firefox =
     lib.mkIf (cfg.desktop.enable && cfg.programs.firefox.enable) {
       enable = true;
-      package = pkgs.firefox-devedition-bin;
+      package = pkgs.firefox-devedition;
       profiles.dev-edition-default = {
         id = 0;
         name = "dev-edition-default";

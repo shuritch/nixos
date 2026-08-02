@@ -1,8 +1,8 @@
-{ config, lib, ... }:
+{ lib, config, ... }:
 
 let cfg = config.my.hardware;
 in {
-  options.my.hardware.input = {
+  options.my.hardware = {
     mouse = lib.mkEnableOption "Enable mouse and touchpad support.";
     touchscreen = lib.mkEnableOption "Enable touchscreen support.";
     gyroscope = lib.mkEnableOption "Enable gyroscope support.";
@@ -29,9 +29,9 @@ in {
         libinput = lib.mkIf cfg.input.mouse {
           enable = true;
           mouse = {
-            accelProfile = "adaptive";
+            accelProfile = "flat";
             middleEmulation = false;
-            accelSpeed = "0.3";
+            accelSpeed = "0.1";
           };
 
           touchpad = {

@@ -11,7 +11,7 @@ with lib; rec {
     in if lib.pathExists then default else config;
 
   mkSystem = hostName:
-    { roles ? [ ], class ? "desktop", admin ? "nixos", platform ? "x86_64-linux"
+    { roles ? [ ], class ? "desktop", platform ? "x86_64-linux"
     , source ? mkSourcePath hostName, extraArguments ? { }, origin ? "23.05"
     , home-manager ? false }:
 
@@ -34,7 +34,7 @@ with lib; rec {
           system.stateVersion = origin;
           networking.hostName = hostName;
           nixpkgs.hostPlatform = mkDefault platform;
-          my.system = { inherit class admin roles; };
+          my.system = { inherit class roles; };
         })
 
         (optionals (class == "iso") [

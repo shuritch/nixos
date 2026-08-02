@@ -1,10 +1,8 @@
 { inputs, config, lib, ... }:
 
-let
-  cfg = config.my.home.programs;
-  module = inputs.nixvim.homeManagerModules.nixvim;
+let cfg = config.my.home.programs;
 in {
-  imports = [ module ./config ./plugins ];
+  imports = [ inputs.nixvim.homeModules.nixvim ./config ./plugins ];
   options.my.home.programs.nixvim.enable = lib.mkEnableOption "Enable nixvim.";
   config.programs.nixvim = lib.mkIf cfg.nixvim.enable {
     defaultEditor = true;

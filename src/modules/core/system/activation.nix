@@ -2,8 +2,17 @@
 
 let cfg = config.my.system;
 in {
-  options.my.system.moveFlake = lib.mkEnableOption "Move flake to $FLAKE";
+  options.my.system = {
+    moveFlake = lib.mkEnableOption "Move flake to $FLAKE" // {
+      default = true;
+    };
+  };
+
   config.system = {
+    nixos-init.enable = true;
+    etc.overlay.enable = true;
+    activatable = true;
+
     # Move flake if not already moved (only for home directory)
     activationScripts.moveFlake = lib.mkIf cfg.moveFlake {
       text = ''

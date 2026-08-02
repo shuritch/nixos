@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 let cfg = config.my.hardware;
 in {
-  options.my.hardware.lid = lib.mkEnableOption "Enable lid support.";
+  options.my.hardware = {
+    lid = lib.mkEnableOption "Enable lid drivers support.";
+  };
+
   config = lib.mkIf cfg.lid {
     environment.systemPackages = with pkgs; [ acpi powertop brightnessctl ];
     hardware.acpilight.enable = lib.mkDefault false; # Prefer brightnessctl

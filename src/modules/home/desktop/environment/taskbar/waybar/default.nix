@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, myLib, ... }:
 let
   inherit (config.my.home.colorscheme) colors;
   cfg = config.my.home.desktop;
@@ -33,7 +33,7 @@ in {
       };
 
       style = let
-        inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
+        inherit (myLib) hexToRGBString;
         rgb = c: o: "rgba(${hexToRGBString "," (lib.removePrefix "#" c)},${o})";
       in ''
         * {

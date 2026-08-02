@@ -1,22 +1,24 @@
 { lib, config, pkgs, myLib, ... }:
 
-let cfg = config.my.network;
+let cfg = config;
 in {
   options.my.network = {
-    randomMac = lib.mkEnableOption "Makes unreachable over SSH.";
+    # Doesn't require options
   };
 
   config = {
     environment.systemPackages =
-      lib.optionals (myLib.testHM config "desktop.enable") [
+      lib.optionals (myLib.testHM cfg "desktop.enable") [
         pkgs.networkmanagerapplet # provides nm-connection-editor
       ];
 
+    programs.nm-applet = lib.mkIf (myLib.testHM cfg "desktop.enable") {
+      enable = true; # Adds applet to waybar
+    };
+
     networking.networkmanager = {
       enable = true;
-      plugins = lib.mkForce [ pkgs.networkmanager-openvpn ];
-      dns = "systemd-resolved"; # 👇 makes unreachable over SSH
-      ethernet.macAddress = lib.mkIf cfg.randomMac "random";
+      dns = "systemd-resolved";
       unmanaged = [
         "interface-name:tailscale*"
         "interface-name:br-*"
@@ -29,21 +31,10 @@ in {
       ];
 
       wifi = {
-        backend = cfg.wirelessBackend; # iwd / wpa_supplicant
-        # macAddress = "random"; # random mac address on every boot
-        scanRandMacAddress = true; # random MAC  during scanning
+        backend = "iwd"; # iwd / wpa_supplicant
+        scanRandMacAddress = true; # random MAC during scanning
         powersave = true;
       };
     };
-
-    # Integrated VPN Fix
-    services.strongswan = {
-      enable = true;
-      secrets = [ "ipsec.d/ipsec.nm-l2tp.secrets" ];
-    };
-
-    # Integrated VPN Fix
-    systemd.tmpfiles.rules =
-      [ "L /etc/ipsec.secrets - - - - /etc/ipsec.d/ipsec.nm-l2tp.secrets" ];
   };
 }

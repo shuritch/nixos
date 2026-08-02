@@ -17,7 +17,7 @@ in {
     ];
 
     wayland.windowManager.hyprland.settings.animations = {
-      enabled = (myLib.isDesktop config);
+      enabled = (myLib.isDesktop config); # TODO remove isDesktop
       first_launch_animation = false;
 
       bezier = [

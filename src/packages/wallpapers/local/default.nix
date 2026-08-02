@@ -2,11 +2,11 @@
 
 let
   ext = [ ".jpg" ".png" ".jpeg" ];
-  isValidWallpaper = s: lib.any (v: lib.hasSuffix v s) ext;
+  isValidWallpaper = val: lib.any (suf: lib.hasSuffix suf val) ext;
   papers = lib.filterAttrs (k: _: isValidWallpaper k) (builtins.readDir ./.);
+  mkName = k: "wallpaper-${lib.head (lib.splitString "." k)}";
 in lib.mapAttrs' (k: _:
-  let name = "wallpaper-${lib.head (lib.splitString "." k)}";
-  in lib.nameValuePair name (pkgs.stdenv.mkDerivation {
-    inherit name;
+  lib.nameValuePair (mkName k) (pkgs.stdenv.mkDerivation {
+    name = mkName k;
     buildCommand = "cp ${./.}/${k} $out";
   })) papers

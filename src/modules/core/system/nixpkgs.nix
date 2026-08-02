@@ -1,10 +1,17 @@
-{ outputs, ... }: {
-  nixpkgs = {
+{ outputs, ... }:
+
+let
+in {
+  options.my.system = {
+    # Doesn't require options
+  };
+
+  config.nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
-      allowUnsupportedSystem = true;
+      allowUnsupportedSystem = false;
       allowAliases = true;
       allowBroken = false;
 

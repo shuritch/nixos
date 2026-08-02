@@ -46,10 +46,8 @@ in {
       };
 
       services."clean-audit-log" = {
-        serviceConfig = {
-          Type = "oneshot";
-          User = "root";
-        };
+        serviceConfig.Type = "oneshot";
+        serviceConfig.User = "root";
         script = ''
           set -eu
           if [[ $(stat -c "%s" /var/log/audit/audit.log) -gt ${

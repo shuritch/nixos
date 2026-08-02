@@ -2,13 +2,19 @@
   description = "<Shuritch NixOS configuration>";
 
   inputs = {
-    ###################### NixOS / HM #######################
+    ###################### Essential #######################
     systems.url = "github:nix-systems/default-linux";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    ######################  Cleaning  #######################
+    impermanence.url = "github:nix-community/impermanence";
+    impermanence.inputs.nixpkgs.follows = "nixpkgs";
+    impermanence.inputs.home-manager.follows = "home-manager";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
     ####################### Utilities #######################
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
@@ -16,12 +22,6 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
-    nix-colors.url = "github:misterio77/nix-colors";
-    # Plugins built for source
-    snacks-nvim.url = "github:folke/snacks.nvim";
-    snacks-nvim.flake = false;
   };
 
   outputs = inputs:
@@ -44,26 +44,14 @@
          to do this manually, as it is more clear.
       */
 
-      nixosConfigurations.codex = mkSystem "codex" {
+      nixosConfigurations.atlas = mkSystem "atlas" {
         extraArguments = { inherit myLib inputs outputs; };
         source = ./cluster/codex/configuration.nix;
         roles = [ "nodejs-devkit" "k8s-devkit" ];
         platform = "x86_64-linux";
         home-manager = true;
-        admin = "shuritch";
         class = "desktop";
         origin = "24.11";
-      };
-
-      nnixosConfigurations.atlas = mkSystem "atlas" {
-        extraArguments = { inherit myLib inputs outputs; };
-        source = ./cluster/atlas/configuration.nix;
-        roles = [ "nodejs-devkit" "k8s-devkit" ];
-        platform = "x86_64-linux";
-        home-manager = true;
-        admin = "chief";
-        class = "desktop";
-        origin = "23.11";
       };
 
       nixosConfigurations.hermes = mkSystem "hermes" {
@@ -72,19 +60,7 @@
         roles = [ "nodejs-devkit" "python-devkit" ];
         platform = "x86_64-linux";
         home-manager = true;
-        admin = "shuritch";
         class = "laptop";
-        origin = "24.05";
-      };
-
-      nixosConfigurations.pandora = mkSystem "pandora" {
-        extraArguments = { inherit myLib inputs outputs; };
-        source = ./cluster/pandora/configuration.nix;
-        roles = [ "headless" ];
-        platform = "x86_64-linux";
-        home-manager = false;
-        admin = "nixos";
-        class = "iso";
         origin = "24.05";
       };
     };

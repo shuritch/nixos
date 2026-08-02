@@ -1,17 +1,22 @@
-{ inputs, lib, pkgs, config, ... }:
+{ lib, config, pkgs, inputs, ... }:
 
-let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+let
+  inherit (lib) mapAttrs attrValues types filterAttrs;
+  flInputs =
+    filterAttrs (n: v: (types.isType "flake" v) && (n != "self")) inputs;
 in {
   nix = {
-    # https://git.lix.systems/lix-project/lix/src/branch/main/doc/manual/rl-next
-    # https://docs.lix.systems/manual/lix/nightly/release-notes/rl-next.html
-    package = pkgs.nixVersions.nix_2_24; # pkgs.nixVersions.nix_2_22 / lix
-    registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    channel.enable = false;
+    package = pkgs.nixVersions.nix_2_31;
+    nixPath = attrValues (mapAttrs (k: v: "${k}=flake:${v.outPath}") flInputs);
+    registry = lib.mapAttrs (_: flake: { inherit flake; }) flInputs // {
+      nixpkgs = lib.mkForce { flake = inputs.nixpkgs; };
+    };
+
     # Make builds run with a low priority, keeping the system fast
-    daemonCPUSchedPolicy = "idle"; # other | batch | idle
-    daemonIOSchedClass = "idle"; # other | batch | idle
-    daemonIOSchedPriority = 7; # 0-7
+    # daemonCPUSchedPolicy = "idle"; # other | batch | idle
+    # daemonIOSchedClass = "idle"; # other | batch | idle
+    # daemonIOSchedPriority = 7; # 0-7
 
     optimise = {
       automatic = true;
@@ -21,7 +26,7 @@ in {
     gc = {
       automatic = true;
       options = "--delete-older-than 3d"; # ? Maybe 7 ?
-      dates = "weekly";
+      dates = "Mon *-*-* 03:00";
     };
 
     extraOptions = ''
@@ -29,24 +34,30 @@ in {
     '';
 
     settings = {
+      build-dir = "/var/tmp";
       max-jobs = "auto";
       connect-timeout = 5;
       log-lines = 30;
       keep-going = true; # Keeps building
       min-free = 128000000; # 128MB
       max-free = 1000000000; # 1GB
+      use-registries = true;
       flake-registry = ""; # Disable global flake registry
-      trusted-users = [ "root" "@wheel" config.my.system.admin ];
       system-features = [ "kvm" "big-parallel" "nixos-test" "recursive-nix" ];
       extra-platforms = config.boot.binfmt.emulatedSystems;
       auto-optimise-store = lib.mkDefault true;
-      use-xdg-base-directories = false;
+      allow-import-from-derivation = true;
+      use-xdg-base-directories = true;
       accept-flake-config = false; # CVE
       http-connections = 50;
       keep-derivations = true;
       keep-outputs = true;
       # use-cgroups = true;
       warn-dirty = false;
+      sandbox = true;
+
+      allowed-users = [ "root" "@wheel" config.my.system.admin ];
+      trusted-users = [ "root" "@wheel" config.my.system.admin ];
 
       experimental-features = [
         "nix-command"

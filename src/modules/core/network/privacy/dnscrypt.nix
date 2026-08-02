@@ -1,11 +1,13 @@
-{ config, lib, ... }:
+{ lib, config, ... }:
 
 let cfg = config.my.network;
 in {
-  options.my.network.dnscrypt.enable =
-    lib.mkEnableOption "Enable dnscrypt-proxy2.";
+  options.my.network = {
+    dnscrypt.enable = lib.mkEnableOption "Enable dnscrypt-proxy2.";
+  };
 
   config = lib.mkIf cfg.dnscrypt.enable {
+    networking.enableIPv6 = false;
     services.dnscrypt-proxy2 = {
       enable = true;
       settings = {

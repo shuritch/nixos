@@ -1,55 +1,41 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
-let cfg = config.my.security;
+let cfg = config;
 in {
   options.my.security = {
-    wheelNeedsPassword = lib.mkEnableOption "Ask for password wheel users." // {
-      default = true;
-    };
+    # Doesn't require options
   };
 
-  config.security = {
-    sudo-rs.enable = lib.mkForce false; # unstable
-    sudo = {
-      enable = true; # paswordless sudo 👇
-      wheelNeedsPassword = lib.mkDefault cfg.wheelNeedsPassword;
+  config = {
+    security.sudo-rs = {
+      enable = true; # password less sudo 👇
+      wheelNeedsPassword = lib.mkDefault false;
       execWheelOnly = true;
       extraConfig = ''
-        Defaults lecture = never
+        Defaults !lecture
         Defaults pwfeedback
         Defaults env_keep += "EDITOR PATH DISPLAY"
         Defaults timestamp_timeout = 300
       '';
 
-      extraRules = [{
+      extraRules = let inherit (lib) getExe';
+      in [{
         groups = [ "wheel" ];
         commands = [
           {
-            command = "/nix/store/*/bin/switch-to-configuration";
-            options = [ "SETENV" "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/nix-store";
-            options = [ "SETENV" "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/nix-env";
-            options = [ "SETENV" "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/nixos-rebuild";
+            command = getExe' cfg.system.build.nixos-rebuild "nixos-rebuild";
             options = [ "NOPASSWD" ];
           }
           {
-            command = "/run/current-system/sw/bin/darwin-rebuild";
+            command = getExe' pkgs.systemd "systemctl";
             options = [ "NOPASSWD" ];
           }
           {
-            command = "/run/current-system/sw/bin/nix-collect-garbage";
-            options = [ "SETENV" "NOPASSWD" ];
+            command = getExe' pkgs.systemd "reboot";
+            options = [ "NOPASSWD" ];
           }
           {
-            command = "/run/current-system/sw/bin/systemctl";
+            command = getExe' pkgs.systemd "shutdown";
             options = [ "NOPASSWD" ];
           }
         ];

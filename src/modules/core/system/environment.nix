@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let cfg = config.my.system;
 in {
   options.my.system = {
     flakePath = lib.mkOption {
       description = "Flake directory location.";
-      default = /etc/nixos/flake;
+      default = /home/${config.my.system.admin}/flake;
       type = lib.types.path;
     };
 
@@ -22,14 +22,17 @@ in {
     };
   };
 
-  config = {
-    environment.systemPackages = cfg.packages;
-    environment.variables = cfg.environment // {
-      FLAKE = (toString cfg.flakePath);
-    };
+  config.environment = {
+    variables = cfg.environment // { FLAKE = (toString cfg.flakePath); };
+    stub-ld.enable = true; # Kills dynamically linked executables
+    defaultPackages = lib.mkForce [ ];
+    systemPackages = cfg.packages ++ [
+      pkgs.git
+      pkgs.curl
+      pkgs.wget
+      pkgs.pciutils
+      pkgs.lshw
 
-    environment.profileRelativeSessionVariables = { # QT FIX
-      QT_PLUGIN_PATH = [ "/lib/qt-6/plugins" ];
-    };
+    ];
   };
 }

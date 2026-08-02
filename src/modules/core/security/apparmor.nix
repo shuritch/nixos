@@ -1,9 +1,12 @@
-{ lib, pkgs, config, ... }:
+{ lib, config, pkgs, ... }:
 
-let cfg = config.my.security;
+let cfg = config;
 in {
-  options.my.security.apparmor.enable = lib.mkEnableOption "Enable apparmor.";
-  config = lib.mkIf cfg.apparmor.enable {
+  options.my.security = {
+    # Doesn't require options
+  };
+
+  config = {
     services.dbus.apparmor = "disabled";
     security.apparmor = {
       enable = true;
@@ -30,7 +33,7 @@ in {
         "nix" = {
           state = "disable";
           profile = ''
-            ${lib.getExe config.nix.package} {
+            ${lib.getExe cfg.nix.package} {
               unconfined,
             }
           '';
